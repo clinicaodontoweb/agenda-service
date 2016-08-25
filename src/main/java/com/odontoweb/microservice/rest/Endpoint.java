@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.odontoweb.arquitetura.model.User;
 import com.odontoweb.arquitetura.security.JWTAuthorizationUtil;
 import com.odontoweb.microservice.impl.model.Usuario;
+import com.odontoweb.microservice.impl.service.ConvenioService;
+import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.impl.service.RoleService;
 import com.odontoweb.microservice.impl.service.UsuarioService;
 import com.odontoweb.microservice.rest.binder.UsuarioBinder;
@@ -27,6 +29,8 @@ public class Endpoint {
 	
 	@Autowired UsuarioService usuarioService;
 	@Autowired RoleService roleService;
+	@Autowired PacienteService pacienteService;
+	@Autowired ConvenioService convenioService;
 	@Autowired UsuarioBinder usuarioBinder;
 	@Autowired JWTAuthorizationUtil jwtUtil;
 
