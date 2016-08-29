@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_CONTATO")
 public class Contato implements Serializable {
 
 	private static final long serialVersionUID = -629010714259641248L;
@@ -52,6 +54,11 @@ public class Contato implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Contato [id=" + idContato + ", email=" + email + "]";
 	}
 
 }

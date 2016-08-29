@@ -10,25 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TBL_BAIRRO")
-public class Bairro implements Serializable {
+@Table(name = "TBL_TIPO_CONSULTA")
+public class TipoConsulta implements Serializable {
 
-	private static final long serialVersionUID = -4519130640084136900L;
+	private static final long serialVersionUID = 8511761043739548695L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_bairro")
-	private Long idBairro;
-
+	@Column(name = "id_tipo_consulta")
+	private Long idTipoConsulta;
+	
 	@Column(name = "nome")
 	private String nome;
 
-	public Long getIdBairro() {
-		return idBairro;
+	public Long getIdTipoConsulta() {
+		return idTipoConsulta;
 	}
 
-	public void setIdBairro(Long idBairro) {
-		this.idBairro = idBairro;
+	public void setIdTipoConsulta(Long idTipoConsulta) {
+		this.idTipoConsulta = idTipoConsulta;
 	}
 
 	public String getNome() {
@@ -41,7 +41,7 @@ public class Bairro implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Bairro [id= " + idBairro + ", nome=" + nome + "]";
+		return "TipoConsulta [id=" + idTipoConsulta + ", nome=" + nome + "]";
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.odontoweb.microservice.impl.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +22,7 @@ import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
 @Entity
+@Table(name = "TBL_PACIENTE")
 public class Paciente implements Serializable {
 
 	private static final long serialVersionUID = 1644986742662471482L;
@@ -142,4 +145,10 @@ public class Paciente implements Serializable {
 		this.convenio = convenio;
 	}
 
+	@Override
+	public String toString() {
+		return "Paciente [id=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", genero=" + genero
+				+ ", dataNascimento=" + new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento) + ", estadoCivil=" + estadoCivil
+				+ ", contato=" + contato + ", endereco=" + endereco + ", convenio=" + convenio + "]";
+	}
 }

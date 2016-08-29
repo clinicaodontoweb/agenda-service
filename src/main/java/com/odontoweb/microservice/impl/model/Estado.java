@@ -10,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_ESTADO")
 public class Estado implements Serializable {
 
 	private static final long serialVersionUID = -3421186199020436949L;
@@ -50,6 +52,11 @@ public class Estado implements Serializable {
 
 	public void setSigla(Sigla sigla) {
 		this.sigla = sigla;
+	}
+
+	@Override
+	public String toString() {
+		return "Estado [id=" + idEstado + ", nome=" + nome + ", sigla=" + sigla + "]";
 	}
 
 }

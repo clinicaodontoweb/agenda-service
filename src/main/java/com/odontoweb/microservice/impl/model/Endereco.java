@@ -10,40 +10,112 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Endereco implements Serializable{
+@Table(name = "TBL_ENDERECO")
+public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = -538703579751183417L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_endereco")
 	private Long idEndereco;
-	
+
 	@Column(name = "endereco")
 	private String endereco;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cep")
 	private Cep cep;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_ponto_referencia")
-	private PontoReferencia pontoReferencia;
-	
+
+	@Column(name = "ponto_referencia")
+	private String pontoReferencia;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cidade")
 	private Cidade cidade;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_bairro")
 	private Bairro bairro;
-	
+
 	@Column(name = "numero")
 	private Integer numero;
-	
+
 	@Column(name = "complemento")
 	private String complemento;
+
+	public Long getIdEndereco() {
+		return idEndereco;
+	}
+
+	public void setIdEndereco(Long idEndereco) {
+		this.idEndereco = idEndereco;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public Cep getCep() {
+		return cep;
+	}
+
+	public void setCep(Cep cep) {
+		this.cep = cep;
+	}
+
+	public String getPontoReferencia() {
+		return pontoReferencia;
+	}
+
+	public void setPontoReferencia(String pontoReferencia) {
+		this.pontoReferencia = pontoReferencia;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Bairro getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(Bairro bairro) {
+		this.bairro = bairro;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
+	@Override
+	public String toString() {
+		return "Endereco [id=" + idEndereco + ", endereco=" + endereco + ", cep=" + cep + ", pontoReferencia="
+				+ pontoReferencia + ", cidade=" + cidade + ", bairro=" + bairro + ", numero=" + numero
+				+ ", complemento=" + complemento + "]";
+	}
 
 }

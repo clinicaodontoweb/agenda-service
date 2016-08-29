@@ -9,10 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.odontoweb.microservice.impl.model.enums.TipoTelefone;
 
 @Entity
+@Table(name = "TBL_TELEFONE")
 public class Telefone implements Serializable {
 
 	private static final long serialVersionUID = -449952274078352247L;
@@ -21,13 +23,13 @@ public class Telefone implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_telefone")
 	private Long idTelefone;
-	
+
 	@Column(name = "numero")
 	private Integer numero;
-	
-	@Column(name = "numero")
+
+	@Column(name = "ddd")
 	private Integer ddd;
-	
+
 	@Column(name = "tipo_telefone")
 	@Enumerated(EnumType.STRING)
 	private TipoTelefone tipoTelefone;
@@ -62,6 +64,12 @@ public class Telefone implements Serializable {
 
 	public void setTipoTelefone(TipoTelefone tipoTelefone) {
 		this.tipoTelefone = tipoTelefone;
+	}
+
+	@Override
+	public String toString() {
+		return "Telefone [id=" + idTelefone + ", numero=" + numero + ", ddd=" + ddd + ", tipoTelefone=" + tipoTelefone
+				+ "]";
 	}
 
 }

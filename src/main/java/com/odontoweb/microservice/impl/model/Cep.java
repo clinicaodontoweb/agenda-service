@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_CEP")
 public class Cep implements Serializable {
 
 	private static final long serialVersionUID = 3535476443901518609L;
@@ -35,6 +37,11 @@ public class Cep implements Serializable {
 
 	public void setCep(Integer cep) {
 		this.cep = cep;
+	}
+
+	@Override
+	public String toString() {
+		return "Cep [id= " + idCep + ", cep=" + cep + "]";
 	}
 
 }

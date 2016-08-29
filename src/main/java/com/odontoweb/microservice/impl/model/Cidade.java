@@ -10,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_CIDADE")
 public class Cidade implements Serializable {
 
 	private static final long serialVersionUID = 7165809300277589933L;
@@ -52,4 +54,9 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 
+	@Override
+	public String toString() {
+		return "Cidade [id="+idCidade+", nome="+nome+", estado="+estado+"]";
+	}
+	
 }

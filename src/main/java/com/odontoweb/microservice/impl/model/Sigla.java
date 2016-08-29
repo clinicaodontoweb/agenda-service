@@ -37,4 +37,8 @@ public class Sigla implements Serializable {
 		this.sigla = sigla;
 	}
 
+	@Override
+	public String toString() {
+		return "Sigla [id=" + idSigla + ", sigla=" + sigla + "]";
+	}
 }
