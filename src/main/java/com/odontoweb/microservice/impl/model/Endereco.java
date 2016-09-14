@@ -20,31 +20,31 @@ public class Endereco implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_endereco")
+	@Column(name = "ID")
 	private Long idEndereco;
 
-	@Column(name = "endereco")
+	@Column(name = "STR_ENDERECO")
 	private String endereco;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_cep")
+	@JoinColumn(name = "FK_CEP")
 	private Cep cep;
 
-	@Column(name = "ponto_referencia")
+	@Column(name = "STR_PONTO_REFERENCIA")
 	private String pontoReferencia;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_cidade")
+	@JoinColumn(name = "FK_CIDADE")
 	private Cidade cidade;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_bairro")
+	@JoinColumn(name = "FK_BAIRRO")
 	private Bairro bairro;
 
-	@Column(name = "numero")
+	@Column(name = "NUM_NUMERO")
 	private Integer numero;
 
-	@Column(name = "complemento")
+	@Column(name = "STR_COMPLEMENTO")
 	private String complemento;
 
 	public Long getIdEndereco() {

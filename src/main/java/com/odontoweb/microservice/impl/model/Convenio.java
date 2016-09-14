@@ -20,24 +20,24 @@ public class Convenio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_convenio")
+	@Column(name = "ID")
 	private Long idConvenio;
 
-	@Column(name = "nome")
+	@Column(name = "STR_NOME")
 	private String nome;
 
-	@Column(name = "cnpj")
+	@Column(name = "STR_CNPJ")
 	private String cnpj;
 
-	@Column(name = "razao_social")
+	@Column(name = "STR_RAZAO_SOCIAL")
 	private String razaoSocial;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_endereco")
+	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_contato")
+	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
 	public Long getIdConvenio() {

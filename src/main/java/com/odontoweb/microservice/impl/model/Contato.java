@@ -21,15 +21,15 @@ public class Contato implements Serializable {
 	private static final long serialVersionUID = -629010714259641248L;
 
 	@Id
-	@Column(name = "id_contato")
+	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idContato;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_contato")
+	@JoinColumn(name = "FK_CONTATO")
 	private List<Telefone> telefones;
 
-	@Column(name = "email")
+	@Column(name = "STR_EMAIL")
 	private String email;
 
 	public Long getIdContato() {

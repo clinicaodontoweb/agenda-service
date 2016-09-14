@@ -17,10 +17,10 @@ public class Bairro implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_bairro")
+	@Column(name = "ID")
 	private Long idBairro;
 
-	@Column(name = "nome")
+	@Column(name = "STR_NOME")
 	private String nome;
 
 	public Long getIdBairro() {

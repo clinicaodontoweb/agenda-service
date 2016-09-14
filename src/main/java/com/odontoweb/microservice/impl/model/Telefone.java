@@ -21,16 +21,16 @@ public class Telefone implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_telefone")
+	@Column(name = "ID")
 	private Long idTelefone;
 
-	@Column(name = "numero")
+	@Column(name = "NUM_NUMERO")
 	private Integer numero;
 
-	@Column(name = "ddd")
+	@Column(name = "NUM_DDD")
 	private Integer ddd;
 
-	@Column(name = "tipo_telefone")
+	@Column(name = "STR_TIPO_TELEFONE")
 	@Enumerated(EnumType.STRING)
 	private TipoTelefone tipoTelefone;
 

@@ -20,14 +20,14 @@ public class Cidade implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cidade")
+	@Column(name = "ID")
 	private Long idCidade;
 
-	@Column(name = "nome")
+	@Column(name = "STR_NOME")
 	private String nome;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_estado")
+	@JoinColumn(name = "FK_ESTADO")
 	private Estado estado;
 
 	public Long getIdCidade() {

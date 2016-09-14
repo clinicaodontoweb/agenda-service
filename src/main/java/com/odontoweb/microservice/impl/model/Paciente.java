@@ -29,40 +29,40 @@ public class Paciente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_paciente")
+	@Column(name = "ID")
 	private Long idPaciente;
 
-	@Column(name = "cpf")
+	@Column(name = "STR_CPF")
 	private String cpf;
 
-	@Column(name = "rg")
+	@Column(name = "STR_RG")
 	private String rg;
 
-	@Column(name = "nome")
+	@Column(name = "STR_NOME")
 	private String nome;
 
-	@Column(name = "genero")
+	@Column(name = "STR_GENERO")
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
-	@Column(name = "data_nascimento")
+	@Column(name = "DTA_DATA_NASCIMENTO")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
 
-	@Column(name = "estado_civil")
+	@Column(name = "STR_ESTADO_CIVIL")
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_contato")
+	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_endereco")
+	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_convenio")
+	@JoinColumn(name = "FK_CONVENIO")
 	private Convenio convenio;
 
 	public Long getIdPaciente() {

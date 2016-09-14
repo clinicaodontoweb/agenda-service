@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,23 +26,24 @@ public class Profissional implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_profissional")
+	@Column(name = "ID")
 	private Long idProfissional;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_profissional")
+	@JoinColumn(name = "FK_PROFISSIONAL")
 	private List<Telefone> telefones;
 	
-	@Column(name = "genero")
+	@Column(name = "STR_GENERO")
+	@Enumerated(EnumType.STRING)
 	private Genero genero;
 	
-	@Column(name = "conselho")
+	@Column(name = "STR_CONSELHO")
 	private String conselho;
 	
-	@Column(name = "registro")
+	@Column(name = "STR_REGISTRO")
 	private String registro;
 	
-	@Column(name = "codigo_brasileiro_ocupacao")
+	@Column(name = "STR_CODIGO_BRASILEIRO_OCUPACAO")
 	private String codigoBrasileiroOcupacao;
 
 	public Long getIdProfissional() {

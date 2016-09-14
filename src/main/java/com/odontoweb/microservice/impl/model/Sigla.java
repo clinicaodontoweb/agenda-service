@@ -15,10 +15,10 @@ public class Sigla implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_sigla")
+	@Column(name = "ID")
 	private Long idSigla;
 
-	@Column(name = "sigla")
+	@Column(name = "STR_SIGLA")
 	private String sigla;
 
 	public Long getIdSigla() {

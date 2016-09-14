@@ -17,10 +17,10 @@ public class Cep implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cep")
+	@Column(name = "ID")
 	private Long idCep;
 
-	@Column(name = "cep")
+	@Column(name = "NUM_CEP")
 	private Integer cep;
 
 	public Long getIdCep() {
