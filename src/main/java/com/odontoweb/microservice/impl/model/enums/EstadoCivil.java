@@ -1,7 +1,7 @@
 package com.odontoweb.microservice.impl.model.enums;
 
 public enum EstadoCivil {
-	SOLTEIRO("Solteiro"), CASADO("Casado"), DIVORCIADO("Divorciado"), VIUVO("Viúvo");
+	SOLTEIRO("Solteiro"), CASADO("Casado"), DIVORCIADO("Divorciado"), VIUVO("ViÃºvo");
 
 	private String estadoCivil;
 

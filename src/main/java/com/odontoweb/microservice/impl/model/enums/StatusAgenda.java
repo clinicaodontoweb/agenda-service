@@ -1,7 +1,7 @@
 package com.odontoweb.microservice.impl.model.enums;
 
 public enum StatusAgenda {
-	ABERTO("Aberto"), CONCLUIDO("Concluído"), CANCELADO("Cancelado");
+	ABERTO("Aberto"), CONCLUIDO("ConcluÃ­do"), CANCELADO("Cancelado");
 
 	private String statusAgenda;
 
