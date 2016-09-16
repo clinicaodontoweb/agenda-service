@@ -13,14 +13,12 @@ public class Sigla implements Serializable {
 
 	private static final long serialVersionUID = 2565988292432425188L;
 
+	private Long idSigla;
+	private String sigla;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idSigla;
-
-	@Column(name = "STR_SIGLA")
-	private String sigla;
-
 	public Long getIdSigla() {
 		return idSigla;
 	}
@@ -29,6 +27,7 @@ public class Sigla implements Serializable {
 		this.idSigla = idSigla;
 	}
 
+	@Column(name = "STR_SIGLA")
 	public String getSigla() {
 		return sigla;
 	}

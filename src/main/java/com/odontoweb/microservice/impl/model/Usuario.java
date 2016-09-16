@@ -22,14 +22,32 @@ import org.hibernate.annotations.Type;
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long id;
+	
+	@Column(name = "STR_NOME")
 	private String nome;
+	
+	@Column(name = "STR_TENANT")
 	private String tenant;
+	
+	@Column(name = "NUM_TELEFONE")
 	private Long telefone;
+	
+	@Column(name = "STR_EMAIL")
 	private String email;
+	
+	@Column(name = "STR_SENHA")
 	private String senha;
+	
+	@Type(type="true_false")
+	@Column(name = "BOO_ADMIN")
 	private Boolean admin;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "TBL_USUARIO_ROLE", joinColumns = {@JoinColumn(name = "FK_USUARIO", referencedColumnName = "ID")}, inverseJoinColumns = {@JoinColumn(name = "FK_ROLE", referencedColumnName = "ID")})
 	private List<Role> roles;
 	
 	public Usuario() {}
@@ -39,9 +57,7 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	
 	public Long getId() {
 		return id;
 	}
@@ -50,7 +66,7 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
-	@Column(name = "STR_NOME")
+	
 	public String getNome() {
 		return nome;
 	}
@@ -59,7 +75,7 @@ public class Usuario implements Serializable{
 		this.nome = nome;
 	}
 
-	@Column(name = "STR_TENANT")
+	
 	public String getTenant() {
 		return tenant;
 	}
@@ -68,7 +84,6 @@ public class Usuario implements Serializable{
 		this.tenant = tenant;
 	}
 
-	@Column(name = "NUM_TELEFONE")
 	public Long getTelefone() {
 		return telefone;
 	}
@@ -77,7 +92,6 @@ public class Usuario implements Serializable{
 		this.telefone = telefone;
 	}
 
-	@Column(name = "STR_EMAIL")
 	public String getEmail() {
 		return email;
 	}
@@ -86,7 +100,6 @@ public class Usuario implements Serializable{
 		this.email = email;
 	}
 
-	@Column(name = "STR_SENHA")
 	public String getSenha() {
 		return senha;
 	}
@@ -95,8 +108,6 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	@Type(type="true_false")
-	@Column(name = "BOO_ADMIN")
 	public Boolean getAdmin() {
 		return admin;
 	}
@@ -105,8 +116,6 @@ public class Usuario implements Serializable{
 		this.admin = admin;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "TBL_USUARIO_ROLE", joinColumns = {@JoinColumn(name = "FK_USUARIO", referencedColumnName = "ID")}, inverseJoinColumns = {@JoinColumn(name = "FK_ROLE", referencedColumnName = "ID")})
 	public List<Role> getRoles() {
 		return roles;
 	}

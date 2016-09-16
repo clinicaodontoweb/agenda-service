@@ -56,6 +56,7 @@ public class Endpoint {
 	@RequestMapping(value = "/sigla", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> sigla(@RequestBody @Valid SiglaRequest siglaRequest){
 		Sigla sigla = new Sigla();
+		System.out.print("serviço sigla>>>>>>>>>>>>>>>>>>>");
 		sigla.setIdSigla(siglaRequest.getIdSigla());
 		sigla.setSigla(siglaRequest.getSigla());
 		Boolean salvou = siglaService.save(sigla);
