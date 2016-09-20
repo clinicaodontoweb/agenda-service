@@ -1,80 +1,29 @@
-package com.odontoweb.microservice.impl.model;
+package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.odontoweb.microservice.impl.model.Paciente;
+import com.odontoweb.microservice.impl.model.Profissional;
+import com.odontoweb.microservice.impl.model.TipoConsulta;
 import com.odontoweb.microservice.impl.model.enums.StatusAgenda;
 
-@Entity
-@Table(name = "TBL_AGENDA")
-public class Agenda implements Serializable {
+public class AgendaRequest implements Serializable {
 
-	private static final long serialVersionUID = -2835460669437123413L;
+	private static final long serialVersionUID = -2690624974662872216L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long idAgenda;
-
-	@Column(name = "BOO_CONFIRMADO")
 	private Boolean confirmado;
-
-	@Column(name = "BOO_ENCAIXE")
 	private Boolean encaixe;
-
-	@Column(name = "STR_STATUS_AGENDA")
-	@Enumerated(EnumType.STRING)
 	private StatusAgenda statusAgenda;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_TIPO_CONSULTA")
 	private TipoConsulta tipoConsulta;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_PROFISSIONAL")
 	private Profissional profissional;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_PACIENTE")
 	private Paciente paciente;
-
-	@Column(name = "NUM_ANO")
 	private Integer ano;
-
-	@Column(name = "NUM_MES")
 	private Integer mes;
-
-	@Column(name = "NUM_DIA")
 	private Integer dia;
-
-	@Column(name = "NUM_HORA")
 	private Integer hora;
-
-	@Column(name = "NUM_MINUTO")
 	private Integer minuto;
-
-	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
-
-	public Agenda() {
-	}
-
-	public Agenda(Long idAgenda, Boolean confirmado, Boolean encaixe, StatusAgenda statusAgenda,
-			TipoConsulta tipoConsulta, Profissional profissional, Paciente paciente, Integer ano, Integer mes,
-			Integer dia, Integer hora, Integer minuto, String observacao) {
-
-	}
 
 	public Long getIdAgenda() {
 		return idAgenda;
@@ -178,14 +127,6 @@ public class Agenda implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}
-
-	@Override
-	public String toString() {
-		return "Agenda [id=" + idAgenda + ", confirmado=" + confirmado + ", encaixe=" + encaixe + ", statusAgenda="
-				+ statusAgenda + ", tipoConsulta=" + tipoConsulta + ", profissional=" + profissional + ", paciente="
-				+ paciente + ", ano=" + ano + ", mes=" + mes + ", dia=" + dia + ", hora=" + hora + ", minuto=" + minuto
-				+ ", observacao=" + observacao + "]";
 	}
 
 }

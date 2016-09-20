@@ -29,6 +29,15 @@ public class Cidade implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_ESTADO")
 	private Estado estado;
+	
+	public Cidade() {
+	}
+	
+	public Cidade(Long idCidade, String nome, Estado estado) {	
+		this.idCidade = idCidade;
+		this.nome = nome;
+		this.estado = estado;
+	}
 
 	public Long getIdCidade() {
 		return idCidade;

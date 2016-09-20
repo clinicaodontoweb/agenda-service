@@ -16,6 +16,14 @@ public class Sigla implements Serializable {
 	private Long idSigla;
 	private String sigla;
 
+	public Sigla() {
+	}
+
+	public Sigla(Long idSigla, String sigla) {
+		this.idSigla = idSigla;
+		this.sigla = sigla;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")

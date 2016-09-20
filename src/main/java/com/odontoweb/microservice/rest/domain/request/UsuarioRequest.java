@@ -5,17 +5,18 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class UsuarioRequest implements Serializable{
+public class UsuarioRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@NotNull(message = "Email é obrigatório")
 	@Size(min = 1, max = 100, message = "Tamanho do email deve ser entre 1 e 100")
 	private String email;
-	
+
 	@NotNull(message = "Senha é obrigatório")
 	private String senha;
-	
-	public UsuarioRequest() {}
+
+	public UsuarioRequest() {
+	}
 
 	public UsuarioRequest(String email, String senha) {
 		this.email = email;
@@ -37,5 +38,5 @@ public class UsuarioRequest implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 }

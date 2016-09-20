@@ -23,6 +23,14 @@ public class Cep implements Serializable {
 	@Column(name = "NUM_CEP")
 	private Integer cep;
 
+	public Cep() {
+	}
+
+	public Cep(Long idCep, Integer cep) {
+		this.idCep = idCep;
+		this.cep = cep;
+	}
+
 	public Long getIdCep() {
 		return idCep;
 	}

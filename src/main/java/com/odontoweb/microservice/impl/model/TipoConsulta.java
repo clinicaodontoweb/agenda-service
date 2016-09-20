@@ -19,9 +19,17 @@ public class TipoConsulta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long idTipoConsulta;
-	
+
 	@Column(name = "STR_NOME")
 	private String nome;
+
+	public TipoConsulta() {
+	}
+
+	public TipoConsulta(Long idTipoConsulta, String nome) {
+		this.idTipoConsulta = idTipoConsulta;
+		this.nome = nome;
+	}
 
 	public Long getIdTipoConsulta() {
 		return idTipoConsulta;

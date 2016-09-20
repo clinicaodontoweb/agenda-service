@@ -30,6 +30,15 @@ public class Estado implements Serializable {
 	@JoinColumn(name = "FK_SIGLA")
 	private Sigla sigla;
 
+	public Estado() {
+	}
+
+	public Estado(Long idEstado, String nome, Sigla sigla) {
+		this.idEstado = idEstado;
+		this.nome = nome;
+		this.sigla = sigla;
+	}
+
 	public Long getIdEstado() {
 		return idEstado;
 	}

@@ -1,74 +1,33 @@
-package com.odontoweb.microservice.impl.model;
+package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import com.odontoweb.microservice.impl.model.Contato;
+import com.odontoweb.microservice.impl.model.Convenio;
+import com.odontoweb.microservice.impl.model.Endereco;
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
-@Entity
-@Table(name = "TBL_PACIENTE")
-public class Paciente implements Serializable {
+public class PacienteResponse implements Serializable {
 
-	private static final long serialVersionUID = 1644986742662471482L;
+	private static final long serialVersionUID = 1098978359016228966L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long idPaciente;
-
-	@Column(name = "STR_CPF")
 	private String cpf;
-
-	@Column(name = "STR_RG")
 	private String rg;
-
-	@Column(name = "STR_NOME")
 	private String nome;
-
-	@Column(name = "STR_GENERO")
-	@Enumerated(EnumType.STRING)
 	private Genero genero;
-
-	@Column(name = "DTA_DATA_NASCIMENTO")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
-
-	@Column(name = "STR_ESTADO_CIVIL")
-	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_CONVENIO")
 	private Convenio convenio;
 
-	public Paciente() {
+	public PacienteResponse() {
 	}
 
-	public Paciente(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
+	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
 			EstadoCivil estadoCivil, Contato contato, Endereco endereco, Convenio convenio) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
@@ -162,10 +121,4 @@ public class Paciente implements Serializable {
 		this.convenio = convenio;
 	}
 
-	@Override
-	public String toString() {
-		return "Paciente [id=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", genero=" + genero
-				+ ", dataNascimento=" + new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento) + ", estadoCivil="
-				+ estadoCivil + ", contato=" + contato + ", endereco=" + endereco + ", convenio=" + convenio + "]";
-	}
 }

@@ -1,56 +1,27 @@
-package com.odontoweb.microservice.impl.model;
+package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import com.odontoweb.microservice.impl.model.Telefone;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
-@Entity
-@Table(name = "TBL_PROFISSIONAL")
-public class Profissional implements Serializable {
+public class ProfissionalResponse implements Serializable {
 
-	private static final long serialVersionUID = 5100117436384354033L;
+	private static final long serialVersionUID = -1205176944035282783L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long idProfissional;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "FK_PROFISSIONAL")
 	private List<Telefone> telefones;
-
-	@Column(name = "STR_GENERO")
-	@Enumerated(EnumType.STRING)
 	private Genero genero;
-
-	@Column(name = "STR_CONSELHO")
 	private String conselho;
-
-	@Column(name = "STR_REGISTRO")
 	private String registro;
-
-	@Column(name = "STR_CODIGO_BRASILEIRO_OCUPACAO")
 	private String codigoBrasileiroOcupacao;
 
-	public Profissional() {
+	public ProfissionalResponse() {
 	}
 
-	public Profissional(Long idProfissional, List<Telefone> telefones, Genero genero, String conselho, String registro,
-			String codigoBrasileiroOcupacao) {
+	public ProfissionalResponse(Long idProfissional, List<Telefone> telefones, Genero genero, String conselho,
+			String registro, String codigoBrasileiroOcupacao) {
 		this.idProfissional = idProfissional;
 		this.telefones = telefones;
 		this.genero = genero;
@@ -105,12 +76,6 @@ public class Profissional implements Serializable {
 
 	public void setCodigoBrasileiroOcupacao(String codigoBrasileiroOcupacao) {
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
-	}
-
-	@Override
-	public String toString() {
-		return "Profissional [id=" + idProfissional + ", generoso=" + genero + ", conselho=" + conselho + ", registro="
-				+ registro + ", codigoBrasileiroOcupacao=" + codigoBrasileiroOcupacao + "]";
 	}
 
 }

@@ -40,6 +40,18 @@ public class Convenio implements Serializable {
 	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
+	public Convenio() {
+	}
+
+	public Convenio(Long idConvenio, String nome, String cnpj, String razaoSocial, Endereco endereco, Contato contato) {
+		this.idConvenio = idConvenio;
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.razaoSocial = razaoSocial;
+		this.endereco = endereco;
+		this.contato = contato;
+	}
+
 	public Long getIdConvenio() {
 		return idConvenio;
 	}

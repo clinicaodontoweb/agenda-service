@@ -23,6 +23,14 @@ public class Bairro implements Serializable {
 	@Column(name = "STR_NOME")
 	private String nome;
 
+	public Bairro() {
+	}
+
+	public Bairro(Long idBairro, String nome) {
+		this.idBairro = idBairro;
+		this.nome = nome;
+	}
+
 	public Long getIdBairro() {
 		return idBairro;
 	}
