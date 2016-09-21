@@ -1,6 +1,9 @@
 package com.odontoweb.microservice.rest.binder;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Sigla;
 import com.odontoweb.microservice.rest.domain.request.SiglaRequest;
@@ -16,5 +19,11 @@ public class SiglaBinder implements Serializable {
 
 	public SiglaResponse modelToResponse(Sigla sigla) {
 		return new SiglaResponse(sigla.getIdSigla(), sigla.getSigla());
+	}
+
+	public List<SiglaResponse> modelToListResponse(List<Sigla> siglas){
+		if(siglas == null) return null;
+		return siglas.stream().filter(Objects::nonNull).map(sigla->modelToResponse(sigla)).collect(Collectors.toList());
+		
 	}
 }

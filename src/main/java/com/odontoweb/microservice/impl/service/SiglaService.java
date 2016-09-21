@@ -23,12 +23,16 @@ public class SiglaService implements Serializable {
 		return siglaRepository.findAll();
 	}
 
-	public boolean save(Sigla sigla) {
-		return siglaRepository.save(sigla) != null;
+	public void save(Sigla sigla) {
+		siglaRepository.save(sigla);
 	}
 
 	public Sigla findById(Long id) {
 		return siglaRepository.findOne(id);
+	}
+	
+	public void delete(Long id) {
+		siglaRepository.delete(id);
 	}
 
 }

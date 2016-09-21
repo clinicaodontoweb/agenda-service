@@ -28,6 +28,16 @@ import com.odontoweb.microservice.impl.service.RoleService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
 import com.odontoweb.microservice.impl.service.UsuarioService;
+import com.odontoweb.microservice.rest.binder.AgendaBinder;
+import com.odontoweb.microservice.rest.binder.BairroBinder;
+import com.odontoweb.microservice.rest.binder.CepBinder;
+import com.odontoweb.microservice.rest.binder.CidadeBinder;
+import com.odontoweb.microservice.rest.binder.ConvenioBinder;
+import com.odontoweb.microservice.rest.binder.EstadoBinder;
+import com.odontoweb.microservice.rest.binder.PacienteBinder;
+import com.odontoweb.microservice.rest.binder.ProfissionalBinder;
+import com.odontoweb.microservice.rest.binder.SiglaBinder;
+import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
 import com.odontoweb.microservice.rest.binder.UsuarioBinder;
 
 @Configuration
@@ -96,5 +106,55 @@ public class ServiceConfig {
 	@Bean
 	public UsuarioBinder usuarioBinder() {
 		return new UsuarioBinder();
+	}
+
+	@Bean
+	public AgendaBinder agendaBinder() {
+		return new AgendaBinder();
+	}
+
+	@Bean
+	public BairroBinder bairroBinder() {
+		return new BairroBinder();
+	}
+
+	@Bean
+	public CepBinder cepBinder() {
+		return new CepBinder();
+	}
+
+	@Bean
+	public CidadeBinder cidadeBinder() {
+		return new CidadeBinder();
+	}
+
+	@Bean
+	public ConvenioBinder convenioBinder() {
+		return new ConvenioBinder();
+	}
+
+	@Bean
+	public EstadoBinder estadoBinder() {
+		return new EstadoBinder();
+	}
+
+	@Bean
+	public PacienteBinder pacienteBinder() {
+		return new PacienteBinder();
+	}
+
+	@Bean
+	public ProfissionalBinder profissionalBinder() {
+		return new ProfissionalBinder();
+	}
+
+	@Bean
+	public SiglaBinder siglaBinder() {
+		return new SiglaBinder();
+	}
+
+	@Bean
+	public TipoConsultaBinder tipoConsultaBinder() {
+		return new TipoConsultaBinder();
 	}
 }
