@@ -7,13 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_SIGLA")
 public class Sigla implements Serializable {
 
 	private static final long serialVersionUID = 2565988292432425188L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Long idSigla;
+	
+	@Column(name = "STR_SIGLA")
 	private String sigla;
 
 	public Sigla() {
@@ -24,9 +31,7 @@ public class Sigla implements Serializable {
 		this.sigla = sigla;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	
 	public Long getIdSigla() {
 		return idSigla;
 	}
@@ -35,7 +40,6 @@ public class Sigla implements Serializable {
 		this.idSigla = idSigla;
 	}
 
-	@Column(name = "STR_SIGLA")
 	public String getSigla() {
 		return sigla;
 	}
