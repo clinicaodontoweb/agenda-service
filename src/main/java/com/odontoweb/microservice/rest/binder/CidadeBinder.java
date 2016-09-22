@@ -1,6 +1,9 @@
 package com.odontoweb.microservice.rest.binder;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Cidade;
 import com.odontoweb.microservice.rest.domain.request.CidadeRequest;
@@ -16,6 +19,14 @@ public class CidadeBinder implements Serializable {
 
 	public CidadeResponse modelToResponse(Cidade cidade) {
 		return new CidadeResponse(cidade.getIdCidade(), cidade.getNome(), cidade.getEstado());
+	}
+
+	public List<CidadeResponse> modelToListResponse(List<Cidade> cidades) {
+		if (cidades == null)
+			return null;
+		return cidades.stream().filter(Objects::nonNull).map(cidade -> modelToResponse(cidade))
+				.collect(Collectors.toList());
+
 	}
 
 }

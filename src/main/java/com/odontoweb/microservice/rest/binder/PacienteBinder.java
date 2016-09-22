@@ -1,6 +1,9 @@
 package com.odontoweb.microservice.rest.binder;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
@@ -21,6 +24,14 @@ public class PacienteBinder implements Serializable {
 		return new PacienteResponse(paciente.getIdPaciente(), paciente.getCpf(), paciente.getRg(), paciente.getNome(),
 				paciente.getGenero(), paciente.getDataNascimento(), paciente.getEstadoCivil(), paciente.getContato(),
 				paciente.getEndereco(), paciente.getConvenio());
+	}
+
+	public List<PacienteResponse> modelToListResponse(List<Paciente> pacientes) {
+		if (pacientes == null)
+			return null;
+		return pacientes.stream().filter(Objects::nonNull).map(paciente -> modelToResponse(paciente))
+				.collect(Collectors.toList());
+
 	}
 
 }

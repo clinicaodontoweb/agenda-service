@@ -1,6 +1,9 @@
 package com.odontoweb.microservice.rest.binder;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Convenio;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
@@ -18,5 +21,13 @@ public class ConvenioBinder implements Serializable {
 	public ConvenioResponse modelToResponse(Convenio convenio) {
 		return new ConvenioResponse(convenio.getIdConvenio(), convenio.getNome(), convenio.getCnpj(),
 				convenio.getRazaoSocial(), convenio.getEndereco(), convenio.getContato());
+	}
+
+	public List<ConvenioResponse> modelToListResponse(List<Convenio> convenios) {
+		if (convenios == null)
+			return null;
+		return convenios.stream().filter(Objects::nonNull).map(convenio -> modelToResponse(convenio))
+				.collect(Collectors.toList());
+
 	}
 }

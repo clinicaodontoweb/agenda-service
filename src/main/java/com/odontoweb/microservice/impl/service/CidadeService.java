@@ -30,4 +30,8 @@ public class CidadeService implements Serializable {
 	public Cidade findById(Long id) {
 		return cidadeRepository.findOne(id);
 	}
+
+	public void delete(Long id) {
+		cidadeRepository.delete(id);
+	}
 }

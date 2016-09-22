@@ -15,17 +15,21 @@ public class AgendaService {
 	public AgendaService(AgendaRepository agendaRepository) {
 		this.agendaRepository = agendaRepository;
 	}
-	
-	public List<Agenda> findAll(){
+
+	public List<Agenda> findAll() {
 		return agendaRepository.findAll();
 	}
-	
-	public boolean save(Agenda agenda){
+
+	public boolean save(Agenda agenda) {
 		return agendaRepository.save(agenda) != null;
 	}
-	
-	public Agenda findById(Long id){
+
+	public Agenda findById(Long id) {
 		return agendaRepository.findOne(id);
+	}
+
+	public void delete(Long id) {
+		agendaRepository.delete(id);
 	}
 
 }

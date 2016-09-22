@@ -28,4 +28,8 @@ public class ConvenioService {
 		return convenioRepository.findOne(idConvenio);
 	}
 
+	public void delete(Long id) {
+		convenioRepository.delete(id);
+	}
+
 }

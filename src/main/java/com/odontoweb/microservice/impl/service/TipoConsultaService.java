@@ -25,4 +25,8 @@ public class TipoConsultaService {
 		return this.tipoConsultaRepository.findOne(id);
 	}
 	
+	public void delete(Long id) {
+		tipoConsultaRepository.delete(id);
+	}
+	
 }

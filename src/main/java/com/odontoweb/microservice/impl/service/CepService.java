@@ -31,4 +31,8 @@ public class CepService implements Serializable {
 		return cepRepository.findOne(id);
 	}
 
+	public void delete(Long id) {
+		cepRepository.delete(id);
+	}
+
 }

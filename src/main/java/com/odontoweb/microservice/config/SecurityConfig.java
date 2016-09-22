@@ -50,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/auth/**").permitAll()
 			.antMatchers("/roles**").permitAll()
 			.antMatchers("/sigla/**").permitAll()
+			.antMatchers("/estado/**").permitAll()
+			.antMatchers("/paciente/**").permitAll()
+			.antMatchers("/profissional/**").permitAll()
+			.antMatchers("/tipoConsulta/**").permitAll()
 			.anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

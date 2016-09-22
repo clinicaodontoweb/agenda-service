@@ -31,4 +31,8 @@ public class BairroService implements Serializable {
 		return bairroRepository.findOne(id);
 	}
 
+	public void delete(Long id) {
+		bairroRepository.delete(id);
+	}
+
 }

@@ -1,6 +1,9 @@
 package com.odontoweb.microservice.rest.binder;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Profissional;
 import com.odontoweb.microservice.rest.domain.request.ProfissionalRequest;
@@ -20,6 +23,14 @@ public class ProfissionalBinder implements Serializable {
 		return new ProfissionalResponse(profissional.getIdProfissional(), profissional.getTelefones(),
 				profissional.getGenero(), profissional.getConselho(), profissional.getRegistro(),
 				profissional.getCodigoBrasileiroOcupacao());
+	}
+	
+	public List<ProfissionalResponse> modelToListResponse(List<Profissional> profissionais) {
+		if (profissionais == null)
+			return null;
+		return profissionais.stream().filter(Objects::nonNull).map(profissional -> modelToResponse(profissional))
+				.collect(Collectors.toList());
+
 	}
 
 }
