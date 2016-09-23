@@ -2,6 +2,7 @@ package com.odontoweb.microservice.impl.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,11 +33,11 @@ public class Convenio implements Serializable {
 	@Column(name = "STR_RAZAO_SOCIAL")
 	private String razaoSocial;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
