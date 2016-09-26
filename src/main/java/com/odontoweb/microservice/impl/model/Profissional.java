@@ -29,7 +29,7 @@ public class Profissional implements Serializable {
 	@Column(name = "ID")
 	private Long idProfissional;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_PROFISSIONAL")
 	private List<Telefone> telefones;
 

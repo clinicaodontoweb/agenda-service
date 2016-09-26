@@ -31,6 +31,19 @@ public class AgendaResponse implements Serializable {
 	public AgendaResponse(Long idAgenda, Boolean confirmado, Boolean encaixe, StatusAgenda statusAgenda,
 			TipoConsulta tipoConsulta, Profissional profissional, Paciente paciente, Integer ano, Integer mes,
 			Integer dia, Integer hora, Integer minuto, String observacao) {
+		this.idAgenda = idAgenda;
+		this.confirmado = confirmado;
+		this.encaixe = encaixe;
+		this.statusAgenda = statusAgenda;
+		this.tipoConsulta = tipoConsulta;
+		this.profissional = profissional;
+		this.paciente = paciente;
+		this.ano = ano;
+		this.mes = mes;
+		this.dia = dia;
+		this.hora = hora;
+		this.minuto = minuto;
+		this.observacao = observacao;
 
 	}
 
