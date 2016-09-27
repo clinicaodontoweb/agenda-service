@@ -11,6 +11,7 @@ public class ProfissionalRequest implements Serializable {
 	private static final long serialVersionUID = -5217785988080284220L;
 
 	private Long idProfissional;
+	private String nome;
 	private List<Telefone> telefones;
 	private Genero genero;
 	private String conselho;
@@ -23,6 +24,14 @@ public class ProfissionalRequest implements Serializable {
 
 	public void setIdProfissional(Long idProfissional) {
 		this.idProfissional = idProfissional;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Telefone> getTelefones() {
@@ -63,7 +72,6 @@ public class ProfissionalRequest implements Serializable {
 
 	public void setCodigoBrasileiroOcupacao(String codigoBrasileiroOcupacao) {
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
-	}	
-	
+	}
 
 }

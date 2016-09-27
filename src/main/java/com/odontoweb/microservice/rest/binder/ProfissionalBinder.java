@@ -14,17 +14,17 @@ public class ProfissionalBinder implements Serializable {
 	private static final long serialVersionUID = -2268580869115475558L;
 
 	public Profissional requestToModel(ProfissionalRequest profissionalRequest) {
-		return new Profissional(profissionalRequest.getIdProfissional(), profissionalRequest.getTelefones(),
-				profissionalRequest.getGenero(), profissionalRequest.getConselho(), profissionalRequest.getRegistro(),
-				profissionalRequest.getCodigoBrasileiroOcupacao());
+		return new Profissional(profissionalRequest.getIdProfissional(), profissionalRequest.getNome(),
+				profissionalRequest.getTelefones(), profissionalRequest.getGenero(), profissionalRequest.getConselho(),
+				profissionalRequest.getRegistro(), profissionalRequest.getCodigoBrasileiroOcupacao());
 	}
 
 	public ProfissionalResponse modelToResponse(Profissional profissional) {
-		return new ProfissionalResponse(profissional.getIdProfissional(), profissional.getTelefones(),
-				profissional.getGenero(), profissional.getConselho(), profissional.getRegistro(),
-				profissional.getCodigoBrasileiroOcupacao());
+		return new ProfissionalResponse(profissional.getIdProfissional(), profissional.getNome(),
+				profissional.getTelefones(), profissional.getGenero(), profissional.getConselho(),
+				profissional.getRegistro(), profissional.getCodigoBrasileiroOcupacao());
 	}
-	
+
 	public List<ProfissionalResponse> modelToListResponse(List<Profissional> profissionais) {
 		if (profissionais == null)
 			return null;

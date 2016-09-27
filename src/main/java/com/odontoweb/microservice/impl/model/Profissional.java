@@ -29,6 +29,9 @@ public class Profissional implements Serializable {
 	@Column(name = "ID")
 	private Long idProfissional;
 
+	@Column(name = "STR_NOME")
+	private String nome;
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_PROFISSIONAL")
 	private List<Telefone> telefones;
@@ -49,9 +52,10 @@ public class Profissional implements Serializable {
 	public Profissional() {
 	}
 
-	public Profissional(Long idProfissional, List<Telefone> telefones, Genero genero, String conselho, String registro,
+	public Profissional(Long idProfissional, String nome, List<Telefone> telefones, Genero genero, String conselho, String registro,
 			String codigoBrasileiroOcupacao) {
 		this.idProfissional = idProfissional;
+		this.nome = nome;
 		this.telefones = telefones;
 		this.genero = genero;
 		this.conselho = conselho;
@@ -65,6 +69,14 @@ public class Profissional implements Serializable {
 
 	public void setIdProfissional(Long idProfissional) {
 		this.idProfissional = idProfissional;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Telefone> getTelefones() {
@@ -109,8 +121,8 @@ public class Profissional implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Profissional [id=" + idProfissional + ", generoso=" + genero + ", conselho=" + conselho + ", registro="
-				+ registro + ", codigoBrasileiroOcupacao=" + codigoBrasileiroOcupacao + "]";
+		return "Profissional [id=" + idProfissional + ", nome=" + nome + ", generoso=" + genero + ", conselho="
+				+ conselho + ", registro=" + registro + ", codigoBrasileiroOcupacao=" + codigoBrasileiroOcupacao + "]";
 	}
 
 }
