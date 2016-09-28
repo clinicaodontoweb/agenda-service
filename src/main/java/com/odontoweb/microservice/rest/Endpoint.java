@@ -59,8 +59,10 @@ public class Endpoint {
 
 	@Autowired
 	SiglaService siglaService;
+	
 	@Autowired
 	AgendaService agendaService;
+	
 	@Autowired
 	ConvenioService convenioService;
 
@@ -345,6 +347,11 @@ public class Endpoint {
 	public ResponseEntity<TipoConsultaResponse> findTipoConsultaById(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(tipoConsultaBinder.modelToResponse(tipoConsultaService.findById(id)),
 				HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/agenda/profissional/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<AgendaResponse>> findAgendaByProfissional(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(agendaBinder.modelToListResponse(agendaService.findAgendaByProfissional(id)), HttpStatus.OK);
 	}
 
 }

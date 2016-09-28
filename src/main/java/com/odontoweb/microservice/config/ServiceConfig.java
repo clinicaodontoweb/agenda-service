@@ -48,8 +48,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public AgendaService agendaService(AgendaRepository repository) {
-		return new AgendaService(repository);
+	public AgendaService agendaService(AgendaRepository repository, ProfissionalRepository profissionalRepository) {
+		return new AgendaService(repository, profissionalRepository);
 	}
 
 	@Bean
