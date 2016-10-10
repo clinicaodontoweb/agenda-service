@@ -15,12 +15,15 @@ public class ConvenioBinder implements Serializable {
 
 	public Convenio requestToModel(ConvenioRequest convenioRequest) {
 		return new Convenio(convenioRequest.getIdConvenio(), convenioRequest.getNome(), convenioRequest.getCnpj(),
-				convenioRequest.getRazaoSocial(), convenioRequest.getEndereco(), convenioRequest.getContato());
+				convenioRequest.getRazaoSocial(),
+				new EnderecoBinder().requestToModel(convenioRequest.getEnderecoRequest()),
+				new ContatoBinder().requestToModel(convenioRequest.getContatoRequest()));
 	}
 
 	public ConvenioResponse modelToResponse(Convenio convenio) {
 		return new ConvenioResponse(convenio.getIdConvenio(), convenio.getNome(), convenio.getCnpj(),
-				convenio.getRazaoSocial(), convenio.getEndereco(), convenio.getContato());
+				convenio.getRazaoSocial(), new EnderecoBinder().modelToResponse(convenio.getEndereco()),
+				new ContatoBinder().modelToResponse(convenio.getContato()));
 	}
 
 	public List<ConvenioResponse> modelToListResponse(List<Convenio> convenios) {

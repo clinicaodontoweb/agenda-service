@@ -3,7 +3,6 @@ package com.odontoweb.microservice.rest.domain.response;
 import java.io.Serializable;
 import java.util.List;
 
-import com.odontoweb.microservice.impl.model.Telefone;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
 public class ProfissionalResponse implements Serializable {
@@ -12,7 +11,7 @@ public class ProfissionalResponse implements Serializable {
 
 	private Long idProfissional;
 	private String nome;
-	private List<Telefone> telefones;
+	private List<TelefoneResponse> telefones;
 	private Genero genero;
 	private String conselho;
 	private String registro;
@@ -21,7 +20,7 @@ public class ProfissionalResponse implements Serializable {
 	public ProfissionalResponse() {
 	}
 
-	public ProfissionalResponse(Long idProfissional, String nome, List<Telefone> telefones, Genero genero,
+	public ProfissionalResponse(Long idProfissional, String nome, List<TelefoneResponse> telefones, Genero genero,
 			String conselho, String registro, String codigoBrasileiroOcupacao) {
 		this.idProfissional = idProfissional;
 		this.nome = nome;
@@ -48,11 +47,11 @@ public class ProfissionalResponse implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Telefone> getTelefones() {
+	public List<TelefoneResponse> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
+	public void setTelefones(List<TelefoneResponse> telefones) {
 		this.telefones = telefones;
 	}
 

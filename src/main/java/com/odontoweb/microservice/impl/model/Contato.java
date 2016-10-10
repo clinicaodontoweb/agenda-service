@@ -31,7 +31,15 @@ public class Contato implements Serializable {
 
 	@Column(name = "STR_EMAIL")
 	private String email;
-
+	
+	public Contato() {}
+	
+	public Contato(Long idContato, List<Telefone> telefones, String email) {
+		this.idContato = idContato; 
+		this.telefones = telefones; 
+		this.email = email;
+	}
+ 
 	public Long getIdContato() {
 		return idContato;
 	}

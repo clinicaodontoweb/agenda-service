@@ -2,11 +2,15 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 public class SiglaRequest implements Serializable {
 
 	private static final long serialVersionUID = -3523894104353937660L;
 
 	private Long idSigla;
+	
+	@NotNull(message = "Sigla é obrigatório!")
 	private String sigla;
 
 	public SiglaRequest(Long idSigla, String sigla) {

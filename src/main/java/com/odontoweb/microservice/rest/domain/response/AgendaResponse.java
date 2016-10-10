@@ -2,9 +2,6 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.Paciente;
-import com.odontoweb.microservice.impl.model.Profissional;
-import com.odontoweb.microservice.impl.model.TipoConsulta;
 import com.odontoweb.microservice.impl.model.enums.StatusAgenda;
 
 public class AgendaResponse implements Serializable {
@@ -15,9 +12,9 @@ public class AgendaResponse implements Serializable {
 	private Boolean confirmado;
 	private Boolean encaixe;
 	private StatusAgenda statusAgenda;
-	private TipoConsulta tipoConsulta;
-	private Profissional profissional;
-	private Paciente paciente;
+	private TipoConsultaResponse tipoConsultaResponse;
+	private ProfissionalResponse profissionalResponse;
+	private PacienteResponse pacienteResponse;
 	private Integer ano;
 	private Integer mes;
 	private Integer dia;
@@ -29,15 +26,16 @@ public class AgendaResponse implements Serializable {
 	}
 
 	public AgendaResponse(Long idAgenda, Boolean confirmado, Boolean encaixe, StatusAgenda statusAgenda,
-			TipoConsulta tipoConsulta, Profissional profissional, Paciente paciente, Integer ano, Integer mes,
-			Integer dia, Integer hora, Integer minuto, String observacao) {
+			TipoConsultaResponse tipoConsultaResponse, ProfissionalResponse profissionalResponse,
+			PacienteResponse pacienteResponse, Integer ano, Integer mes, Integer dia, Integer hora, Integer minuto,
+			String observacao) {
 		this.idAgenda = idAgenda;
 		this.confirmado = confirmado;
 		this.encaixe = encaixe;
 		this.statusAgenda = statusAgenda;
-		this.tipoConsulta = tipoConsulta;
-		this.profissional = profissional;
-		this.paciente = paciente;
+		this.tipoConsultaResponse = tipoConsultaResponse;
+		this.profissionalResponse = profissionalResponse;
+		this.pacienteResponse = pacienteResponse;
 		this.ano = ano;
 		this.mes = mes;
 		this.dia = dia;
@@ -77,30 +75,6 @@ public class AgendaResponse implements Serializable {
 
 	public void setStatusAgenda(StatusAgenda statusAgenda) {
 		this.statusAgenda = statusAgenda;
-	}
-
-	public TipoConsulta getTipoConsulta() {
-		return tipoConsulta;
-	}
-
-	public void setTipoConsulta(TipoConsulta tipoConsulta) {
-		this.tipoConsulta = tipoConsulta;
-	}
-
-	public Profissional getProfissional() {
-		return profissional;
-	}
-
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
-	}
-
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
 	}
 
 	public Integer getAno() {
@@ -149,6 +123,30 @@ public class AgendaResponse implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public TipoConsultaResponse getTipoConsultaResponse() {
+		return tipoConsultaResponse;
+	}
+
+	public void setTipoConsultaResponse(TipoConsultaResponse tipoConsultaResponse) {
+		this.tipoConsultaResponse = tipoConsultaResponse;
+	}
+
+	public ProfissionalResponse getProfissionalResponse() {
+		return profissionalResponse;
+	}
+
+	public void setProfissionalResponse(ProfissionalResponse profissionalResponse) {
+		this.profissionalResponse = profissionalResponse;
+	}
+
+	public PacienteResponse getPacienteResponse() {
+		return pacienteResponse;
+	}
+
+	public void setPacienteResponse(PacienteResponse pacienteResponse) {
+		this.pacienteResponse = pacienteResponse;
 	}
 
 }

@@ -2,23 +2,21 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.Sigla;
-
 public class EstadoResponse implements Serializable {
 
 	private static final long serialVersionUID = -9070160270916506194L;
 
 	private Long idEstado;
 	private String nome;
-	private Sigla sigla;
+	private SiglaResponse siglaResponse;
 
 	public EstadoResponse() {
 	}
 
-	public EstadoResponse(Long idEstado, String nome, Sigla sigla) {
+	public EstadoResponse(Long idEstado, String nome, SiglaResponse siglaResponse) {
 		this.idEstado = idEstado;
 		this.nome = nome;
-		this.sigla = sigla;
+		this.siglaResponse = siglaResponse;
 	}
 
 	public Long getIdEstado() {
@@ -37,12 +35,12 @@ public class EstadoResponse implements Serializable {
 		this.nome = nome;
 	}
 
-	public Sigla getSigla() {
-		return sigla;
+	public SiglaResponse getSiglaResponse() {
+		return siglaResponse;
 	}
 
-	public void setSigla(Sigla sigla) {
-		this.sigla = sigla;
+	public void setSiglaResponse(SiglaResponse siglaResponse) {
+		this.siglaResponse = siglaResponse;
 	}
 
 }

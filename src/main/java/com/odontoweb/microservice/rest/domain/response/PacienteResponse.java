@@ -3,9 +3,6 @@ package com.odontoweb.microservice.rest.domain.response;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.odontoweb.microservice.impl.model.Contato;
-import com.odontoweb.microservice.impl.model.Convenio;
-import com.odontoweb.microservice.impl.model.Endereco;
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
@@ -20,15 +17,16 @@ public class PacienteResponse implements Serializable {
 	private Genero genero;
 	private Date dataNascimento;
 	private EstadoCivil estadoCivil;
-	private Contato contato;
-	private Endereco endereco;
-	private Convenio convenio;
+	private ContatoResponse contatoResponse;
+	private EnderecoResponse enderecoResponse;
+	private ConvenioResponse convenioResponse;
 
 	public PacienteResponse() {
 	}
 
 	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
-			EstadoCivil estadoCivil, Contato contato, Endereco endereco, Convenio convenio) {
+			EstadoCivil estadoCivil, ContatoResponse contatoResponse, EnderecoResponse enderecoResponse,
+			ConvenioResponse convenioResponse) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -36,9 +34,9 @@ public class PacienteResponse implements Serializable {
 		this.genero = genero;
 		this.dataNascimento = dataNascimento;
 		this.estadoCivil = estadoCivil;
-		this.contato = contato;
-		this.endereco = endereco;
-		this.convenio = convenio;
+		this.contatoResponse = contatoResponse;
+		this.enderecoResponse = enderecoResponse;
+		this.convenioResponse = convenioResponse;
 	}
 
 	public Long getIdPaciente() {
@@ -97,28 +95,28 @@ public class PacienteResponse implements Serializable {
 		this.estadoCivil = estadoCivil;
 	}
 
-	public Contato getContato() {
-		return contato;
+	public ContatoResponse getContatoResponse() {
+		return contatoResponse;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public void setContatoResponse(ContatoResponse contatoResponse) {
+		this.contatoResponse = contatoResponse;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public EnderecoResponse getEnderecoResponse() {
+		return enderecoResponse;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEnderecoResponse(EnderecoResponse enderecoResponse) {
+		this.enderecoResponse = enderecoResponse;
 	}
 
-	public Convenio getConvenio() {
-		return convenio;
+	public ConvenioResponse getConvenioResponse() {
+		return convenioResponse;
 	}
 
-	public void setConvenio(Convenio convenio) {
-		this.convenio = convenio;
+	public void setConvenioResponse(ConvenioResponse convenioResponse) {
+		this.convenioResponse = convenioResponse;
 	}
 
 }

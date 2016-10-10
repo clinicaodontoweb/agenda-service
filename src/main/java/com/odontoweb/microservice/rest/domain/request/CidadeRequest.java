@@ -2,15 +2,19 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.Estado;
+import javax.validation.constraints.NotNull;
 
 public class CidadeRequest implements Serializable {
 
 	private static final long serialVersionUID = 7823889884302590018L;
 
 	private Long idCidade;
+
+	@NotNull(message = "Nome da cidade obrigatório!")
 	private String nome;
-	private Estado estado;
+
+	@NotNull(message = "Estado é obrigatório!")
+	private EstadoRequest estadoRequest;
 
 	public Long getIdCidade() {
 		return idCidade;
@@ -28,12 +32,12 @@ public class CidadeRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public EstadoRequest getEstadoRequest() {
+		return estadoRequest;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setEstadoRequest(EstadoRequest estadoRequest) {
+		this.estadoRequest = estadoRequest;
 	}
 
 }

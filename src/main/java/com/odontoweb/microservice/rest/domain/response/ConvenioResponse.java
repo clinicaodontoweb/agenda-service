@@ -2,9 +2,6 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.Contato;
-import com.odontoweb.microservice.impl.model.Endereco;
-
 public class ConvenioResponse implements Serializable {
 
 	private static final long serialVersionUID = -5474776367658295233L;
@@ -13,20 +10,20 @@ public class ConvenioResponse implements Serializable {
 	private String nome;
 	private String cnpj;
 	private String razaoSocial;
-	private Endereco endereco;
-	private Contato contato;
+	private EnderecoResponse enderecoResponse;
+	private ContatoResponse contatoResponse;
 
 	public ConvenioResponse() {
 	}
 
-	public ConvenioResponse(Long idConvenio, String nome, String cnpj, String razaoSocial, Endereco endereco,
-			Contato contato) {
+	public ConvenioResponse(Long idConvenio, String nome, String cnpj, String razaoSocial,
+			EnderecoResponse enderecoResponse, ContatoResponse contatoResponse) {
 		this.idConvenio = idConvenio;
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
-		this.endereco = endereco;
-		this.contato = contato;
+		this.enderecoResponse = enderecoResponse;
+		this.contatoResponse = contatoResponse;
 	}
 
 	public Long getIdConvenio() {
@@ -61,20 +58,20 @@ public class ConvenioResponse implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public EnderecoResponse getEnderecoResponse() {
+		return enderecoResponse;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEnderecoResponse(EnderecoResponse enderecoResponse) {
+		this.enderecoResponse = enderecoResponse;
 	}
 
-	public Contato getContato() {
-		return contato;
+	public ContatoResponse getContatoResponse() {
+		return contatoResponse;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public void setContatoResponse(ContatoResponse contatoResponse) {
+		this.contatoResponse = contatoResponse;
 	}
 
 }

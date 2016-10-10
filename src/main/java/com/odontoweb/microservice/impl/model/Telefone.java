@@ -34,6 +34,16 @@ public class Telefone implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoTelefone tipoTelefone;
 
+	public Telefone() {
+	}
+
+	public Telefone(Long idTelefone, Integer numero, Integer ddd, TipoTelefone tipoTelefone) {
+		this.idTelefone = idTelefone;
+		this.numero = numero;
+		this.ddd = ddd;
+		this.tipoTelefone = tipoTelefone;
+	}
+
 	public Long getIdTelefone() {
 		return idTelefone;
 	}

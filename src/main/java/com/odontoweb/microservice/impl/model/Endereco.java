@@ -47,6 +47,21 @@ public class Endereco implements Serializable {
 	@Column(name = "STR_COMPLEMENTO")
 	private String complemento;
 
+	public Endereco() {
+	}
+
+	public Endereco(Long idEndereco, String endereco, Cep cep, String pontoReferencia, Cidade cidade, Bairro bairro,
+			Integer numero, String complemento) {
+		this.idEndereco = idEndereco;
+		this.endereco = endereco;
+		this.cep = cep;
+		this.pontoReferencia = pontoReferencia;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.numero = numero;
+		this.complemento = complemento;
+	}
+
 	public Long getIdEndereco() {
 		return idEndereco;
 	}
@@ -110,7 +125,7 @@ public class Endereco implements Serializable {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Endereco [id=" + idEndereco + ", endereco=" + endereco + ", cep=" + cep + ", pontoReferencia="

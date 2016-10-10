@@ -3,7 +3,8 @@ package com.odontoweb.microservice.rest.domain.request;
 import java.io.Serializable;
 import java.util.List;
 
-import com.odontoweb.microservice.impl.model.Telefone;
+import javax.validation.constraints.NotNull;
+
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
 public class ProfissionalRequest implements Serializable {
@@ -11,11 +12,22 @@ public class ProfissionalRequest implements Serializable {
 	private static final long serialVersionUID = -5217785988080284220L;
 
 	private Long idProfissional;
+
+	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
-	private List<Telefone> telefones;
+
+	@NotNull(message = "Pelo menos um telefone é necessário!")
+	private List<TelefoneRequest> telefones;
+
+	@NotNull(message = "Gênero é obrigatório!")
 	private Genero genero;
+
+	@NotNull(message = "Conselho é obrigatório!")
 	private String conselho;
+
+	@NotNull(message = "Registro é obrigatório!")
 	private String registro;
+
 	private String codigoBrasileiroOcupacao;
 
 	public Long getIdProfissional() {
@@ -34,11 +46,11 @@ public class ProfissionalRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Telefone> getTelefones() {
+	public List<TelefoneRequest> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
+	public void setTelefones(List<TelefoneRequest> telefones) {
 		this.telefones = telefones;
 	}
 

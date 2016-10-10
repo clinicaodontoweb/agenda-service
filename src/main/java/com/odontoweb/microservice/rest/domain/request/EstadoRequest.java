@@ -2,15 +2,19 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.Sigla;
+import javax.validation.constraints.NotNull;
 
 public class EstadoRequest implements Serializable {
 
 	private static final long serialVersionUID = -5930564505816279905L;
 
 	private Long idEstado;
+
+	@NotNull(message = "Nome do estado obrigatório!")
 	private String nome;
-	private Sigla sigla;
+
+	@NotNull(message = "Sigla do estado obrigatória!")
+	private SiglaRequest siglaRequest;
 
 	public Long getIdEstado() {
 		return idEstado;
@@ -28,12 +32,12 @@ public class EstadoRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public Sigla getSigla() {
-		return sigla;
+	public SiglaRequest getSiglaRequest() {
+		return siglaRequest;
 	}
 
-	public void setSigla(Sigla sigla) {
-		this.sigla = sigla;
+	public void setSiglaRequest(SiglaRequest siglaRequest) {
+		this.siglaRequest = siglaRequest;
 	}
 
 }

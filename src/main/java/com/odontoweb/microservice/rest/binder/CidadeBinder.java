@@ -14,11 +14,13 @@ public class CidadeBinder implements Serializable {
 	private static final long serialVersionUID = 2977065078163921913L;
 
 	public Cidade requestToModel(CidadeRequest cidadeRequest) {
-		return new Cidade(cidadeRequest.getIdCidade(), cidadeRequest.getNome(), cidadeRequest.getEstado());
+		return new Cidade(cidadeRequest.getIdCidade(), cidadeRequest.getNome(),
+				new EstadoBinder().requestToModel(cidadeRequest.getEstadoRequest()));
 	}
 
 	public CidadeResponse modelToResponse(Cidade cidade) {
-		return new CidadeResponse(cidade.getIdCidade(), cidade.getNome(), cidade.getEstado());
+		return new CidadeResponse(cidade.getIdCidade(), cidade.getNome(),
+				new EstadoBinder().modelToResponse(cidade.getEstado()));
 	}
 
 	public List<CidadeResponse> modelToListResponse(List<Cidade> cidades) {

@@ -2,19 +2,28 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.Contato;
-import com.odontoweb.microservice.impl.model.Endereco;
+import javax.validation.constraints.NotNull;
 
 public class ConvenioRequest implements Serializable {
 
 	private static final long serialVersionUID = -6143810927663734767L;
 
 	private Long idConvenio;
+
+	@NotNull(message = "Nome do convênio é obrigatório!")
 	private String nome;
+
+	@NotNull(message = "Cnpj do convênio é obrigatório!")
 	private String cnpj;
+
+	@NotNull(message = "Razão social do convênio é obrigatório!")
 	private String razaoSocial;
-	private Endereco endereco;
-	private Contato contato;
+
+	@NotNull(message = "Endereço é obrigatório!")
+	private EnderecoRequest enderecoRequest;
+
+	@NotNull(message = "Contato é obrigatório!")
+	private ContatoRequest contatoRequest;
 
 	public Long getIdConvenio() {
 		return idConvenio;
@@ -48,19 +57,20 @@ public class ConvenioRequest implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public EnderecoRequest getEnderecoRequest() {
+		return enderecoRequest;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEnderecoRequest(EnderecoRequest enderecoRequest) {
+		this.enderecoRequest = enderecoRequest;
 	}
 
-	public Contato getContato() {
-		return contato;
+	public ContatoRequest getContatoRequest() {
+		return contatoRequest;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public void setContatoRequest(ContatoRequest contatoRequest) {
+		this.contatoRequest = contatoRequest;
 	}
+
 }

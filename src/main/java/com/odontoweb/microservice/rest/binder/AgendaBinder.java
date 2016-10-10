@@ -15,16 +15,20 @@ public class AgendaBinder implements Serializable {
 
 	public Agenda requestToModel(AgendaRequest agendaRequest) {
 		return new Agenda(agendaRequest.getIdAgenda(), agendaRequest.getConfirmado(), agendaRequest.getEncaixe(),
-				agendaRequest.getStatusAgenda(), agendaRequest.getTipoConsulta(), agendaRequest.getProfissional(),
-				agendaRequest.getPaciente(), agendaRequest.getAno(), agendaRequest.getMes(), agendaRequest.getDia(),
-				agendaRequest.getHora(), agendaRequest.getMinuto(), agendaRequest.getObservacao());
+				agendaRequest.getStatusAgenda(),
+				new TipoConsultaBinder().requestToModel(agendaRequest.getTipoConsultaRequest()),
+				new ProfissionalBinder().requestToModel(agendaRequest.getProfissionalRequest()),
+				new PacienteBinder().requestToModel(agendaRequest.getPacienteRequest()), agendaRequest.getAno(),
+				agendaRequest.getMes(), agendaRequest.getDia(), agendaRequest.getHora(), agendaRequest.getMinuto(),
+				agendaRequest.getObservacao());
 	}
 
 	public AgendaResponse modelToResponse(Agenda agenda) {
 		return new AgendaResponse(agenda.getIdAgenda(), agenda.getConfirmado(), agenda.getEncaixe(),
-				agenda.getStatusAgenda(), agenda.getTipoConsulta(), agenda.getProfissional(), agenda.getPaciente(),
-				agenda.getAno(), agenda.getMes(), agenda.getDia(), agenda.getHora(), agenda.getMinuto(),
-				agenda.getObservacao());
+				agenda.getStatusAgenda(), new TipoConsultaBinder().modelToResponse(agenda.getTipoConsulta()),
+				new ProfissionalBinder().modelToResponse(agenda.getProfissional()),
+				new PacienteBinder().modelToResponse(agenda.getPaciente()), agenda.getAno(), agenda.getMes(),
+				agenda.getDia(), agenda.getHora(), agenda.getMinuto(), agenda.getObservacao());
 	}
 
 	public List<AgendaResponse> modelToListResponse(List<Agenda> agendas) {

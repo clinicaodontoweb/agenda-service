@@ -14,11 +14,13 @@ public class EstadoBinder implements Serializable {
 	private static final long serialVersionUID = -5110503949830176771L;
 
 	public Estado requestToModel(EstadoRequest estadoRequest) {
-		return new Estado(estadoRequest.getIdEstado(), estadoRequest.getNome(), estadoRequest.getSigla());
+		return new Estado(estadoRequest.getIdEstado(), estadoRequest.getNome(),
+				new SiglaBinder().requestToModel(estadoRequest.getSiglaRequest()));
 	}
 
 	public EstadoResponse modelToResponse(Estado estado) {
-		return new EstadoResponse(estado.getIdEstado(), estado.getNome(), estado.getSigla());
+		return new EstadoResponse(estado.getIdEstado(), estado.getNome(),
+				new SiglaBinder().modelToResponse(estado.getSigla()));
 	}
 
 	public List<EstadoResponse> modelToListResponse(List<Estado> estados) {
