@@ -122,11 +122,23 @@ public class Endpoint {
 		siglaService.save(siglaBinder.requestToModel(siglaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/sigla", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateSigla(@RequestBody @Valid SiglaRequest siglaRequest) {
+		siglaService.save(siglaBinder.requestToModel(siglaRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/agenda", method = RequestMethod.POST)
 	public ResponseEntity<?> saveAgenda(@RequestBody @Valid AgendaRequest agendaRequest) {
 		agendaService.save(agendaBinder.requestToModel(agendaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/agenda", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateAgenda(@RequestBody @Valid AgendaRequest agendaRequest) {
+		agendaService.save(agendaBinder.requestToModel(agendaRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/convenio", method = RequestMethod.POST)
@@ -134,11 +146,23 @@ public class Endpoint {
 		convenioService.save(convenioBinder.requestToModel(convenioRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/convenio", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateConvenio(@RequestBody @Valid ConvenioRequest convenioRequest) {
+		convenioService.save(convenioBinder.requestToModel(convenioRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/bairro", method = RequestMethod.POST)
 	public ResponseEntity<?> saveBairro(@RequestBody @Valid BairroRequest bairroRequest) {
 		bairroService.save(bairroBinder.requestToModel(bairroRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/bairro", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateBairro(@RequestBody @Valid BairroRequest bairroRequest) {
+		bairroService.save(bairroBinder.requestToModel(bairroRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/cep", method = RequestMethod.POST)
@@ -146,11 +170,23 @@ public class Endpoint {
 		cepService.save(cepBinder.requestToModel(cepRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/cep", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateCep(@RequestBody @Valid CepRequest cepRequest) {
+		cepService.save(cepBinder.requestToModel(cepRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/cidade", method = RequestMethod.POST)
 	public ResponseEntity<?> saveCidade(@RequestBody @Valid CidadeRequest cidadeRequest) {
 		cidadeService.save(cidadeBinder.requestToModel(cidadeRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/cidade", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateCidade(@RequestBody @Valid CidadeRequest cidadeRequest) {
+		cidadeService.save(cidadeBinder.requestToModel(cidadeRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/estado", method = RequestMethod.POST)
@@ -158,17 +194,35 @@ public class Endpoint {
 		estadoService.save(estadoBinder.requestToModel(estadoRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/estado", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateEstado(@RequestBody @Valid EstadoRequest estadoRequest) {
+		estadoService.save(estadoBinder.requestToModel(estadoRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/paciente", method = RequestMethod.POST)
 	public ResponseEntity<?> savePaciente(@RequestBody @Valid PacienteRequest pacienteRequest) {
 		pacienteService.save(pacienteBinder.requestToModel(pacienteRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value = "/paciente", method = RequestMethod.PUT)
+	public ResponseEntity<?> updatePaciente(@RequestBody @Valid PacienteRequest pacienteRequest) {
+		pacienteService.save(pacienteBinder.requestToModel(pacienteRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/profissional", method = RequestMethod.POST)
 	public ResponseEntity<?> saveProfissional(@RequestBody @Valid ProfissionalRequest profissionalRequest) {
 		profissionalService.save(profissionalBinder.requestToModel(profissionalRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/profissional", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateProfissional(@RequestBody @Valid ProfissionalRequest profissionalRequest) {
+		profissionalService.save(profissionalBinder.requestToModel(profissionalRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/sigla", method = RequestMethod.GET)
@@ -329,6 +383,12 @@ public class Endpoint {
 	public ResponseEntity<?> saveTipoConsulta(@RequestBody @Valid TipoConsultaRequest tipoConsultaRequest) {
 		tipoConsultaService.save(tipoConsultaBinder.requestToModel(tipoConsultaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/tipoConsulta", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateTipoConsulta(@RequestBody @Valid TipoConsultaRequest tipoConsultaRequest) {
+		tipoConsultaService.save(tipoConsultaBinder.requestToModel(tipoConsultaRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/tipoConsulta", method = RequestMethod.GET)
