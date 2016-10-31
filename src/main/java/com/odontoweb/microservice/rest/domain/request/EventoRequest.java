@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-import com.odontoweb.microservice.impl.model.enums.StatusAgenda;
+import com.odontoweb.microservice.impl.model.enums.StatusEvento;
 
-public class AgendaRequest implements Serializable {
+public class EventoRequest implements Serializable {
 
 	private static final long serialVersionUID = -2690624974662872216L;
 
-	private Long idAgenda;
+	private Long idEvento;
 	private Boolean confirmado;
 	private Boolean encaixe;
-	private StatusAgenda statusAgenda;
+	private StatusEvento statusEvento;
 	@NotNull(message = "Tipo de Consulta é obrigatório!")
 	private TipoConsultaRequest tipoConsultaRequest;
 
@@ -40,12 +40,12 @@ public class AgendaRequest implements Serializable {
 
 	private String observacao;
 
-	public Long getIdAgenda() {
-		return idAgenda;
+	public Long getIdEvento() {
+		return idEvento;
 	}
 
-	public void setIdAgenda(Long idAgenda) {
-		this.idAgenda = idAgenda;
+	public void setIdEvento(Long idEvento) {
+		this.idEvento = idEvento;
 	}
 
 	public Boolean getConfirmado() {
@@ -64,12 +64,12 @@ public class AgendaRequest implements Serializable {
 		this.encaixe = encaixe;
 	}
 
-	public StatusAgenda getStatusAgenda() {
-		return statusAgenda;
+	public StatusEvento getStatusEvento() {
+		return statusEvento;
 	}
 
-	public void setStatusAgenda(StatusAgenda statusAgenda) {
-		this.statusAgenda = statusAgenda;
+	public void setStatusEvento(StatusEvento statusEvento) {
+		this.statusEvento = statusEvento;
 	}
 
 	public Integer getAno() {

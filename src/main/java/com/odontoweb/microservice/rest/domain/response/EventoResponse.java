@@ -2,16 +2,16 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.enums.StatusAgenda;
+import com.odontoweb.microservice.impl.model.enums.StatusEvento;
 
-public class AgendaResponse implements Serializable {
+public class EventoResponse implements Serializable {
 
 	private static final long serialVersionUID = 5941051393813560581L;
 
-	private Long idAgenda;
+	private Long idEvento;
 	private Boolean confirmado;
 	private Boolean encaixe;
-	private StatusAgenda statusAgenda;
+	private StatusEvento statusEvento;
 	private TipoConsultaResponse tipoConsultaResponse;
 	private ProfissionalResponse profissionalResponse;
 	private PacienteResponse pacienteResponse;
@@ -22,17 +22,17 @@ public class AgendaResponse implements Serializable {
 	private Integer minuto;
 	private String observacao;
 
-	public AgendaResponse() {
+	public EventoResponse() {
 	}
 
-	public AgendaResponse(Long idAgenda, Boolean confirmado, Boolean encaixe, StatusAgenda statusAgenda,
+	public EventoResponse(Long idEvento, Boolean confirmado, Boolean encaixe, StatusEvento statusEvento,
 			TipoConsultaResponse tipoConsultaResponse, ProfissionalResponse profissionalResponse,
 			PacienteResponse pacienteResponse, Integer ano, Integer mes, Integer dia, Integer hora, Integer minuto,
 			String observacao) {
-		this.idAgenda = idAgenda;
+		this.idEvento = idEvento;
 		this.confirmado = confirmado;
 		this.encaixe = encaixe;
-		this.statusAgenda = statusAgenda;
+		this.statusEvento = statusEvento;
 		this.tipoConsultaResponse = tipoConsultaResponse;
 		this.profissionalResponse = profissionalResponse;
 		this.pacienteResponse = pacienteResponse;
@@ -45,12 +45,12 @@ public class AgendaResponse implements Serializable {
 
 	}
 
-	public Long getIdAgenda() {
-		return idAgenda;
+	public Long getIdEvento() {
+		return idEvento;
 	}
 
-	public void setIdAgenda(Long idAgenda) {
-		this.idAgenda = idAgenda;
+	public void setIdEvento(Long idEvento) {
+		this.idEvento = idEvento;
 	}
 
 	public Boolean getConfirmado() {
@@ -69,12 +69,12 @@ public class AgendaResponse implements Serializable {
 		this.encaixe = encaixe;
 	}
 
-	public StatusAgenda getStatusAgenda() {
-		return statusAgenda;
+	public StatusEvento getStatusEvento() {
+		return statusEvento;
 	}
 
-	public void setStatusAgenda(StatusAgenda statusAgenda) {
-		this.statusAgenda = statusAgenda;
+	public void setStatusEvento(StatusEvento statusEvento) {
+		this.statusEvento = statusEvento;
 	}
 
 	public Integer getAno() {

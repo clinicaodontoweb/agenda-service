@@ -13,42 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.odontoweb.microservice.impl.service.AgendaService;
 import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
 import com.odontoweb.microservice.impl.service.CidadeService;
 import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.impl.service.EstadoService;
+import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.impl.service.ProfissionalService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
-import com.odontoweb.microservice.rest.binder.AgendaBinder;
 import com.odontoweb.microservice.rest.binder.BairroBinder;
 import com.odontoweb.microservice.rest.binder.CepBinder;
 import com.odontoweb.microservice.rest.binder.CidadeBinder;
 import com.odontoweb.microservice.rest.binder.ConvenioBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
+import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
 import com.odontoweb.microservice.rest.binder.ProfissionalBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
-import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
 import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 import com.odontoweb.microservice.rest.domain.request.CepRequest;
 import com.odontoweb.microservice.rest.domain.request.CidadeRequest;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.request.EstadoRequest;
+import com.odontoweb.microservice.rest.domain.request.EventoRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
 import com.odontoweb.microservice.rest.domain.request.ProfissionalRequest;
 import com.odontoweb.microservice.rest.domain.request.SiglaRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
-import com.odontoweb.microservice.rest.domain.response.AgendaResponse;
 import com.odontoweb.microservice.rest.domain.response.BairroResponse;
 import com.odontoweb.microservice.rest.domain.response.CepResponse;
 import com.odontoweb.microservice.rest.domain.response.CidadeResponse;
 import com.odontoweb.microservice.rest.domain.response.ConvenioResponse;
 import com.odontoweb.microservice.rest.domain.response.EstadoResponse;
+import com.odontoweb.microservice.rest.domain.response.EventoResponse;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
 import com.odontoweb.microservice.rest.domain.response.ProfissionalResponse;
 import com.odontoweb.microservice.rest.domain.response.SiglaResponse;
@@ -61,7 +61,7 @@ public class Endpoint {
 	SiglaService siglaService;
 	
 	@Autowired
-	AgendaService agendaService;
+	EventoService eventoService;
 	
 	@Autowired
 	ConvenioService convenioService;
@@ -112,7 +112,7 @@ public class Endpoint {
 	CidadeBinder cidadeBinder;
 
 	@Autowired
-	AgendaBinder agendaBinder;
+	EventoBinder eventoBinder;
 
 	@Autowired
 	ConvenioBinder convenioBinder;
@@ -129,15 +129,15 @@ public class Endpoint {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/agenda", method = RequestMethod.POST)
-	public ResponseEntity<?> saveAgenda(@RequestBody @Valid AgendaRequest agendaRequest) {
-		agendaService.save(agendaBinder.requestToModel(agendaRequest));
+	@RequestMapping(value = "/evento", method = RequestMethod.POST)
+	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest) {
+		eventoService.save(eventoBinder.requestToModel(eventoRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/agenda", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateAgenda(@RequestBody @Valid AgendaRequest agendaRequest) {
-		agendaService.save(agendaBinder.requestToModel(agendaRequest));
+	@RequestMapping(value = "/evento", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateEvento(@RequestBody @Valid EventoRequest eventoRequest) {
+		eventoService.save(eventoBinder.requestToModel(eventoRequest));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -231,9 +231,9 @@ public class Endpoint {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/agenda", method = RequestMethod.GET)
-	public ResponseEntity<List<AgendaResponse>> findAllAgendas() {
-		return new ResponseEntity<List<AgendaResponse>>(agendaBinder.modelToListResponse(agendaService.findAll()),
+	@RequestMapping(value = "/evento", method = RequestMethod.GET)
+	public ResponseEntity<List<EventoResponse>> findAllEventos() {
+		return new ResponseEntity<List<EventoResponse>>(eventoBinder.modelToListResponse(eventoService.findAll()),
 				HttpStatus.OK);
 	}
 
@@ -285,9 +285,9 @@ public class Endpoint {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/agenda/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteAgenda(@PathVariable("id") Long id) {
-		agendaService.delete(id);
+	@RequestMapping(value = "/evento/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteEvento(@PathVariable("id") Long id) {
+		eventoService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -338,9 +338,9 @@ public class Endpoint {
 		return new ResponseEntity<>(siglaBinder.modelToResponse(siglaService.findById(id)), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/agenda/{id}", method = RequestMethod.GET)
-	public ResponseEntity<AgendaResponse> findAgendaById(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findById(id)), HttpStatus.OK);
+	@RequestMapping(value = "/evento/{id}", method = RequestMethod.GET)
+	public ResponseEntity<EventoResponse> findEventoById(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(eventoBinder.modelToResponse(eventoService.findById(id)), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/convenio/{id}", method = RequestMethod.GET)
@@ -409,9 +409,9 @@ public class Endpoint {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/agenda/profissional/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<AgendaResponse>> findAgendaByProfissional(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(agendaBinder.modelToListResponse(agendaService.findAgendaByProfissional(id)), HttpStatus.OK);
+	@RequestMapping(value = "/evento/profissional/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<EventoResponse>> findEventoByProfissional(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(eventoBinder.modelToListResponse(eventoService.findEventoByProfissional(id)), HttpStatus.OK);
 	}
 
 }

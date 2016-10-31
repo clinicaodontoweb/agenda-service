@@ -1,16 +1,16 @@
 package com.odontoweb.microservice.impl.model.enums;
 
-public enum StatusAgenda {
+public enum StatusEvento {
 	ABERTO("Aberto"), CONCLUIDO("Concluído"), CANCELADO("Cancelado");
 
-	private String statusAgenda;
+	private String statusEvento;
 
-	private StatusAgenda(String statusAgenda) {
-		this.statusAgenda = statusAgenda;
+	private StatusEvento(String statusEvento) {
+		this.statusEvento = statusEvento;
 	}
 
 	@Override
 	public String toString() {
-		return this.statusAgenda;
+		return this.statusEvento;
 	}
 }
