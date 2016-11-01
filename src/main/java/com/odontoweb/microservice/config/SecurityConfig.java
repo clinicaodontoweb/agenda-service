@@ -47,16 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-			.antMatchers("/sigla/**").permitAll()
-			.antMatchers("/estado/**").permitAll()
-			.antMatchers("/paciente/**").permitAll()
-			.antMatchers("/profissional/**").permitAll()
-			.antMatchers("/tipoConsulta/**").permitAll()
-			.antMatchers("/agenda/**").permitAll()
-			.antMatchers("/bairro/**").permitAll()
-			.antMatchers("/cep/**").permitAll()
-			.antMatchers("/cidade/**").permitAll()
-			.antMatchers("/convenio/**").permitAll()
 			.anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
