@@ -3,7 +3,7 @@ package com.odontoweb.microservice.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.odontoweb.microservice.impl.repository.AgendaRepository;
+import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.BairroRepository;
 import com.odontoweb.microservice.impl.repository.CepRepository;
 import com.odontoweb.microservice.impl.repository.CidadeRepository;
@@ -13,7 +13,7 @@ import com.odontoweb.microservice.impl.repository.PacienteRepository;
 import com.odontoweb.microservice.impl.repository.ProfissionalRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
 import com.odontoweb.microservice.impl.repository.TipoConsultaRepository;
-import com.odontoweb.microservice.impl.service.AgendaService;
+import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
 import com.odontoweb.microservice.impl.service.CidadeService;
@@ -23,7 +23,7 @@ import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.impl.service.ProfissionalService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
-import com.odontoweb.microservice.rest.binder.AgendaBinder;
+import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.BairroBinder;
 import com.odontoweb.microservice.rest.binder.CepBinder;
 import com.odontoweb.microservice.rest.binder.CidadeBinder;
@@ -48,8 +48,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public AgendaService agendaService(AgendaRepository repository, ProfissionalRepository profissionalRepository) {
-		return new AgendaService(repository, profissionalRepository);
+	public EventoService eventoService(EventoRepository repository, ProfissionalRepository profissionalRepository) {
+		return new EventoService(repository, profissionalRepository);
 	}
 
 	@Bean
@@ -88,8 +88,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public AgendaBinder agendaBinder() {
-		return new AgendaBinder();
+	public EventoBinder eventoBinder() {
+		return new EventoBinder();
 	}
 
 	@Bean
