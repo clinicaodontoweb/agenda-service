@@ -34,6 +34,14 @@ public class Agenda implements Serializable {
 	@JoinColumn(name = "FK_AGENDA")
 	private List<Evento> eventos;
 
+	public Agenda() {}
+	
+	public Agenda(Long idAgenda, Profissional profissional, List<Evento> eventos){
+		this.idAgenda = idAgenda;
+		this.profissional = profissional;
+		this.eventos = eventos;
+	}
+	
 	public Long getIdAgenda() {
 		return idAgenda;
 	}

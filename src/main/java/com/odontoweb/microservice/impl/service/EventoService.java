@@ -6,17 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
-import com.odontoweb.microservice.impl.repository.ProfissionalRepository;
 
 public class EventoService {
 
 	private EventoRepository eventoRepository;
-	private ProfissionalRepository profissionalRepository;
 
 	@Autowired
-	public EventoService(EventoRepository eventoRepository, ProfissionalRepository profissionalRepository) {
+	public EventoService(EventoRepository eventoRepository) {
 		this.eventoRepository = eventoRepository;
-		this.profissionalRepository = profissionalRepository;
 	}
 
 	public List<Evento> findAll() {
@@ -34,9 +31,4 @@ public class EventoService {
 	public void delete(Long id) {
 		eventoRepository.delete(id);
 	}
-
-	public List<Evento> findEventoByProfissional(Long id) {
-		return eventoRepository.findEventoByProfissional(profissionalRepository.findOne(id));
-	}
-
 }

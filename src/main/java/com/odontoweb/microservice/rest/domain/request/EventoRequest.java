@@ -17,9 +17,6 @@ public class EventoRequest implements Serializable {
 	@NotNull(message = "Tipo de Consulta é obrigatório!")
 	private TipoConsultaRequest tipoConsultaRequest;
 
-	@NotNull(message = "É obrigatório informar o profissional!")
-	private ProfissionalRequest profissionalRequest;
-
 	@NotNull(message = "É obrigatório informar o paciente!")
 	private PacienteRequest pacienteRequest;
 
@@ -126,14 +123,6 @@ public class EventoRequest implements Serializable {
 
 	public void setTipoConsultaRequest(TipoConsultaRequest tipoConsultaRequest) {
 		this.tipoConsultaRequest = tipoConsultaRequest;
-	}
-
-	public ProfissionalRequest getProfissionalRequest() {
-		return profissionalRequest;
-	}
-
-	public void setProfissionalRequest(ProfissionalRequest profissionalRequest) {
-		this.profissionalRequest = profissionalRequest;
 	}
 
 	public PacienteRequest getPacienteRequest() {

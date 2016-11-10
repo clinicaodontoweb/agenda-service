@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.odontoweb.microservice.impl.service.AgendaService;
 import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
 import com.odontoweb.microservice.impl.service.CidadeService;
@@ -23,6 +24,7 @@ import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.impl.service.ProfissionalService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
+import com.odontoweb.microservice.rest.binder.AgendaBinder;
 import com.odontoweb.microservice.rest.binder.BairroBinder;
 import com.odontoweb.microservice.rest.binder.CepBinder;
 import com.odontoweb.microservice.rest.binder.CidadeBinder;
@@ -33,6 +35,7 @@ import com.odontoweb.microservice.rest.binder.PacienteBinder;
 import com.odontoweb.microservice.rest.binder.ProfissionalBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
+import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
 import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 import com.odontoweb.microservice.rest.domain.request.CepRequest;
 import com.odontoweb.microservice.rest.domain.request.CidadeRequest;
@@ -43,6 +46,7 @@ import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
 import com.odontoweb.microservice.rest.domain.request.ProfissionalRequest;
 import com.odontoweb.microservice.rest.domain.request.SiglaRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
+import com.odontoweb.microservice.rest.domain.response.AgendaResponse;
 import com.odontoweb.microservice.rest.domain.response.BairroResponse;
 import com.odontoweb.microservice.rest.domain.response.CepResponse;
 import com.odontoweb.microservice.rest.domain.response.CidadeResponse;
@@ -59,10 +63,13 @@ public class Endpoint {
 
 	@Autowired
 	SiglaService siglaService;
-	
+
 	@Autowired
 	EventoService eventoService;
-	
+
+	@Autowired
+	AgendaService agendaService;
+
 	@Autowired
 	ConvenioService convenioService;
 
@@ -115,6 +122,9 @@ public class Endpoint {
 	EventoBinder eventoBinder;
 
 	@Autowired
+	AgendaBinder agendaBinder;
+
+	@Autowired
 	ConvenioBinder convenioBinder;
 
 	@RequestMapping(value = "/sigla", method = RequestMethod.POST)
@@ -122,7 +132,7 @@ public class Endpoint {
 		siglaService.save(siglaBinder.requestToModel(siglaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/sigla", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateSigla(@RequestBody @Valid SiglaRequest siglaRequest) {
 		siglaService.save(siglaBinder.requestToModel(siglaRequest));
@@ -134,10 +144,22 @@ public class Endpoint {
 		eventoService.save(eventoBinder.requestToModel(eventoRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/evento", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateEvento(@RequestBody @Valid EventoRequest eventoRequest) {
 		eventoService.save(eventoBinder.requestToModel(eventoRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/agenda", method = RequestMethod.POST)
+	public ResponseEntity<?> saveAgenda(@RequestBody @Valid AgendaRequest agendaRequest) {
+		agendaService.save(agendaBinder.requestToModel(agendaRequest));
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/agenda", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateAgenda(@RequestBody @Valid AgendaRequest agendaRequest) {
+		agendaService.save(agendaBinder.requestToModel(agendaRequest));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -146,7 +168,7 @@ public class Endpoint {
 		convenioService.save(convenioBinder.requestToModel(convenioRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/convenio", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateConvenio(@RequestBody @Valid ConvenioRequest convenioRequest) {
 		convenioService.save(convenioBinder.requestToModel(convenioRequest));
@@ -158,7 +180,7 @@ public class Endpoint {
 		bairroService.save(bairroBinder.requestToModel(bairroRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/bairro", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateBairro(@RequestBody @Valid BairroRequest bairroRequest) {
 		bairroService.save(bairroBinder.requestToModel(bairroRequest));
@@ -170,7 +192,7 @@ public class Endpoint {
 		cepService.save(cepBinder.requestToModel(cepRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/cep", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateCep(@RequestBody @Valid CepRequest cepRequest) {
 		cepService.save(cepBinder.requestToModel(cepRequest));
@@ -182,7 +204,7 @@ public class Endpoint {
 		cidadeService.save(cidadeBinder.requestToModel(cidadeRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/cidade", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateCidade(@RequestBody @Valid CidadeRequest cidadeRequest) {
 		cidadeService.save(cidadeBinder.requestToModel(cidadeRequest));
@@ -194,7 +216,7 @@ public class Endpoint {
 		estadoService.save(estadoBinder.requestToModel(estadoRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/estado", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateEstado(@RequestBody @Valid EstadoRequest estadoRequest) {
 		estadoService.save(estadoBinder.requestToModel(estadoRequest));
@@ -206,7 +228,7 @@ public class Endpoint {
 		pacienteService.save(pacienteBinder.requestToModel(pacienteRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/paciente", method = RequestMethod.PUT)
 	public ResponseEntity<?> updatePaciente(@RequestBody @Valid PacienteRequest pacienteRequest) {
 		pacienteService.save(pacienteBinder.requestToModel(pacienteRequest));
@@ -218,7 +240,7 @@ public class Endpoint {
 		profissionalService.save(profissionalBinder.requestToModel(profissionalRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/profissional", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateProfissional(@RequestBody @Valid ProfissionalRequest profissionalRequest) {
 		profissionalService.save(profissionalBinder.requestToModel(profissionalRequest));
@@ -234,6 +256,12 @@ public class Endpoint {
 	@RequestMapping(value = "/evento", method = RequestMethod.GET)
 	public ResponseEntity<List<EventoResponse>> findAllEventos() {
 		return new ResponseEntity<List<EventoResponse>>(eventoBinder.modelToListResponse(eventoService.findAll()),
+				HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/agenda", method = RequestMethod.GET)
+	public ResponseEntity<List<AgendaResponse>> findAllAgendas() {
+		return new ResponseEntity<List<AgendaResponse>>(agendaBinder.modelToListResponse(agendaService.findAll()),
 				HttpStatus.OK);
 	}
 
@@ -291,6 +319,12 @@ public class Endpoint {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/agenda/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteAgenda(@PathVariable("id") Long id) {
+		agendaService.delete(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/convenio/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteConvenio(@PathVariable("id") Long id) {
 		convenioService.delete(id);
@@ -343,6 +377,11 @@ public class Endpoint {
 		return new ResponseEntity<>(eventoBinder.modelToResponse(eventoService.findById(id)), HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/agenda/{id}", method = RequestMethod.GET)
+	public ResponseEntity<AgendaResponse> findAgendaById(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findById(id)), HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/convenio/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ConvenioResponse> findConvenioById(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(convenioBinder.modelToResponse(convenioService.findById(id)), HttpStatus.OK);
@@ -384,7 +423,7 @@ public class Endpoint {
 		tipoConsultaService.save(tipoConsultaBinder.requestToModel(tipoConsultaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
+
 	@RequestMapping(value = "/tipoConsulta", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateTipoConsulta(@RequestBody @Valid TipoConsultaRequest tipoConsultaRequest) {
 		tipoConsultaService.save(tipoConsultaBinder.requestToModel(tipoConsultaRequest));
@@ -408,10 +447,11 @@ public class Endpoint {
 		return new ResponseEntity<>(tipoConsultaBinder.modelToResponse(tipoConsultaService.findById(id)),
 				HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/evento/profissional/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<EventoResponse>> findEventoByProfissional(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(eventoBinder.modelToListResponse(eventoService.findEventoByProfissional(id)), HttpStatus.OK);
+
+	@RequestMapping(value = "/agenda/profissional/{id}", method = RequestMethod.GET)
+	public ResponseEntity<AgendaResponse> findAgendaByProfissional(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByProfissional(id)),
+				HttpStatus.OK);
 	}
 
 }

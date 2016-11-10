@@ -13,7 +13,6 @@ public class EventoResponse implements Serializable {
 	private Boolean encaixe;
 	private StatusEvento statusEvento;
 	private TipoConsultaResponse tipoConsultaResponse;
-	private ProfissionalResponse profissionalResponse;
 	private PacienteResponse pacienteResponse;
 	private Integer ano;
 	private Integer mes;
@@ -26,15 +25,13 @@ public class EventoResponse implements Serializable {
 	}
 
 	public EventoResponse(Long idEvento, Boolean confirmado, Boolean encaixe, StatusEvento statusEvento,
-			TipoConsultaResponse tipoConsultaResponse, ProfissionalResponse profissionalResponse,
-			PacienteResponse pacienteResponse, Integer ano, Integer mes, Integer dia, Integer hora, Integer minuto,
-			String observacao) {
+			TipoConsultaResponse tipoConsultaResponse, PacienteResponse pacienteResponse, Integer ano, Integer mes,
+			Integer dia, Integer hora, Integer minuto, String observacao) {
 		this.idEvento = idEvento;
 		this.confirmado = confirmado;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsultaResponse = tipoConsultaResponse;
-		this.profissionalResponse = profissionalResponse;
 		this.pacienteResponse = pacienteResponse;
 		this.ano = ano;
 		this.mes = mes;
@@ -131,14 +128,6 @@ public class EventoResponse implements Serializable {
 
 	public void setTipoConsultaResponse(TipoConsultaResponse tipoConsultaResponse) {
 		this.tipoConsultaResponse = tipoConsultaResponse;
-	}
-
-	public ProfissionalResponse getProfissionalResponse() {
-		return profissionalResponse;
-	}
-
-	public void setProfissionalResponse(ProfissionalResponse profissionalResponse) {
-		this.profissionalResponse = profissionalResponse;
 	}
 
 	public PacienteResponse getPacienteResponse() {

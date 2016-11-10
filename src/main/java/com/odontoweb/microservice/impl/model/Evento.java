@@ -42,10 +42,6 @@ public class Evento implements Serializable {
 	private TipoConsulta tipoConsulta;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_PROFISSIONAL")
-	private Profissional profissional;
-
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_PACIENTE")
 	private Paciente paciente;
 
@@ -71,14 +67,13 @@ public class Evento implements Serializable {
 	}
 
 	public Evento(Long idEvento, Boolean confirmado, Boolean encaixe, StatusEvento statusEvento,
-			TipoConsulta tipoConsulta, Profissional profissional, Paciente paciente, Integer ano, Integer mes,
-			Integer dia, Integer hora, Integer minuto, String observacao) {
+			TipoConsulta tipoConsulta, Paciente paciente, Integer ano, Integer mes, Integer dia, Integer hora,
+			Integer minuto, String observacao) {
 		this.idEvento = idEvento;
 		this.confirmado = confirmado;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsulta = tipoConsulta;
-		this.profissional = profissional;
 		this.paciente = paciente;
 		this.ano = ano;
 		this.mes = mes;
@@ -127,14 +122,6 @@ public class Evento implements Serializable {
 
 	public void setTipoConsulta(TipoConsulta tipoConsulta) {
 		this.tipoConsulta = tipoConsulta;
-	}
-
-	public Profissional getProfissional() {
-		return profissional;
-	}
-
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
 	}
 
 	public Paciente getPaciente() {
@@ -196,9 +183,8 @@ public class Evento implements Serializable {
 	@Override
 	public String toString() {
 		return "Evento [id=" + idEvento + ", confirmado=" + confirmado + ", encaixe=" + encaixe + ", statusEvento="
-				+ statusEvento + ", tipoConsulta=" + tipoConsulta + ", profissional=" + profissional + ", paciente="
-				+ paciente + ", ano=" + ano + ", mes=" + mes + ", dia=" + dia + ", hora=" + hora + ", minuto=" + minuto
-				+ ", observacao=" + observacao + "]";
+				+ statusEvento + ", tipoConsulta=" + tipoConsulta + ", paciente=" + paciente + ", ano=" + ano + ", mes="
+				+ mes + ", dia=" + dia + ", hora=" + hora + ", minuto=" + minuto + ", observacao=" + observacao + "]";
 	}
 
 }
