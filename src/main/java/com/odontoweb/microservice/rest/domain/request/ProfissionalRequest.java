@@ -1,7 +1,6 @@
 package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -16,8 +15,8 @@ public class ProfissionalRequest implements Serializable {
 	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
 
-	@NotNull(message = "Pelo menos um telefone é necessário!")
-	private List<TelefoneRequest> telefones;
+	@NotNull(message = "É obrigatório inserir um contato!")
+	private ContatoRequest contatoRequest;
 
 	@NotNull(message = "Gênero é obrigatório!")
 	private Genero genero;
@@ -46,12 +45,12 @@ public class ProfissionalRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<TelefoneRequest> getTelefones() {
-		return telefones;
+	public ContatoRequest getContatoRequest() {
+		return contatoRequest;
 	}
 
-	public void setTelefones(List<TelefoneRequest> telefones) {
-		this.telefones = telefones;
+	public void setContatoRequest(ContatoRequest contatoRequest) {
+		this.contatoRequest = contatoRequest;
 	}
 
 	public Genero getGenero() {

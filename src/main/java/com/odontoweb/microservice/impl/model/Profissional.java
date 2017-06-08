@@ -1,7 +1,6 @@
 package com.odontoweb.microservice.impl.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.odontoweb.microservice.impl.model.enums.Genero;
@@ -32,9 +31,9 @@ public class Profissional implements Serializable {
 	@Column(name = "STR_NOME")
 	private String nome;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_PROFISSIONAL")
-	private List<Telefone> telefones;
+	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name = "FK_CONTATO")
+	private Contato contato;
 
 	@Column(name = "STR_GENERO")
 	@Enumerated(EnumType.STRING)
@@ -52,11 +51,11 @@ public class Profissional implements Serializable {
 	public Profissional() {
 	}
 
-	public Profissional(Long idProfissional, String nome, List<Telefone> telefones, Genero genero, String conselho, String registro,
+	public Profissional(Long idProfissional, String nome, Contato contato, Genero genero, String conselho, String registro,
 			String codigoBrasileiroOcupacao) {
 		this.idProfissional = idProfissional;
 		this.nome = nome;
-		this.telefones = telefones;
+		this.contato = contato;
 		this.genero = genero;
 		this.conselho = conselho;
 		this.registro = registro;
@@ -79,12 +78,12 @@ public class Profissional implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+	public Contato getContato() {
+		return contato;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setContato(Contato contato) {
+		this.contato = contato;
 	}
 
 	public Genero getGenero() {

@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "TBL_AGENDA")
 public class Agenda implements Serializable {
@@ -31,6 +34,7 @@ public class Agenda implements Serializable {
 	private Profissional profissional;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	@JoinColumn(name = "FK_AGENDA")
 	private List<Evento> eventos;
 

@@ -15,14 +15,14 @@ public class ProfissionalBinder implements Serializable {
 
 	public Profissional requestToModel(ProfissionalRequest profissionalRequest) {
 		return new Profissional(profissionalRequest.getIdProfissional(), profissionalRequest.getNome(),
-				new TelefoneBinder().requestToListModel(profissionalRequest.getTelefones()),
+				new ContatoBinder().requestToModel(profissionalRequest.getContatoRequest()),
 				profissionalRequest.getGenero(), profissionalRequest.getConselho(), profissionalRequest.getRegistro(),
 				profissionalRequest.getCodigoBrasileiroOcupacao());
 	}
 
 	public ProfissionalResponse modelToResponse(Profissional profissional) {
 		return new ProfissionalResponse(profissional.getIdProfissional(), profissional.getNome(),
-				new TelefoneBinder().modelToListResponse(profissional.getTelefones()), profissional.getGenero(),
+				new ContatoBinder().modelToResponse(profissional.getContato()), profissional.getGenero(),
 				profissional.getConselho(), profissional.getRegistro(), profissional.getCodigoBrasileiroOcupacao());
 	}
 
