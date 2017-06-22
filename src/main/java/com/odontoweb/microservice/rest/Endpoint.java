@@ -1,5 +1,6 @@
 package com.odontoweb.microservice.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.odontoweb.microservice.impl.service.AgendaService;
@@ -452,6 +454,14 @@ public class Endpoint {
 	public ResponseEntity<AgendaResponse> findAgendaByProfissional(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByProfissional(id)),
 				HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/agenda/profissional/{id}/evento", method=RequestMethod.GET)
+	public ResponseEntity<List<AgendaResponse>> findAgendaByEvento(@PathVariable("id") Long id,
+			@RequestParam(value = "dataInicio", required = true) Long dataInicio,
+			@RequestParam(value = "dataFim", required = true) Long dataFim) {
+		return new ResponseEntity<List<AgendaResponse>>(agendaBinder.modelToListResponse(
+				agendaService.findAgendaByDataEvento(id, new Date(dataInicio), new Date(dataFim))), HttpStatus.OK);
 	}
 
 }

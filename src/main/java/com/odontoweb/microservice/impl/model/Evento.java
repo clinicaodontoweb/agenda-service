@@ -1,6 +1,8 @@
 package com.odontoweb.microservice.impl.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,6 +64,9 @@ public class Evento implements Serializable {
 
 	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
+	
+	@Column(name = "DTA_EVENTO")
+	private Date dataEvento;
 
 	public Evento() {
 	}
@@ -81,6 +86,14 @@ public class Evento implements Serializable {
 		this.hora = hora;
 		this.minuto = minuto;
 		this.observacao = observacao;
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, ano);
+		cal.set(Calendar.MONTH, mes);
+		cal.set(Calendar.DAY_OF_MONTH, dia);
+		cal.set(Calendar.HOUR, hora);
+		cal.set(Calendar.MINUTE, minuto);
+		
+		this.dataEvento = cal.getTime();
 
 	}
 
@@ -178,6 +191,14 @@ public class Evento implements Serializable {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Date getDataEvento() {
+		return dataEvento;
+	}
+
+	public void setDataEvento(Date dataEvento) {
+		this.dataEvento = dataEvento;
 	}
 
 	@Override
