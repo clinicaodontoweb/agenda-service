@@ -17,6 +17,7 @@ public class EventoBinder implements Serializable {
 		return new Evento(eventoRequest.getIdEvento(), eventoRequest.getConfirmado(), eventoRequest.getEncaixe(),
 				eventoRequest.getStatusEvento(),
 				new TipoConsultaBinder().requestToModel(eventoRequest.getTipoConsultaRequest()),
+				new AgendaBinder().requestToModel(eventoRequest.getAgendaRequest()),
 				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()), eventoRequest.getAno(),
 				eventoRequest.getMes(), eventoRequest.getDia(), eventoRequest.getHora(), eventoRequest.getMinuto(),
 				eventoRequest.getObservacao());
@@ -25,6 +26,7 @@ public class EventoBinder implements Serializable {
 	public EventoResponse modelToResponse(Evento evento) {
 		return new EventoResponse(evento.getIdEvento(), evento.getConfirmado(), evento.getEncaixe(),
 				evento.getStatusEvento(), new TipoConsultaBinder().modelToResponse(evento.getTipoConsulta()),
+				new AgendaBinder().modelToResponse(evento.getAgenda()),
 				new PacienteBinder().modelToResponse(evento.getPaciente()), evento.getAno(), evento.getMes(),
 				evento.getDia(), evento.getHora(), evento.getMinuto(), evento.getObservacao());
 	}

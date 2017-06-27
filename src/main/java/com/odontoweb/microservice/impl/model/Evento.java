@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -28,6 +29,10 @@ public class Evento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long idEvento;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "FK_AGENDA")
+	private Agenda agenda;
 
 	@Column(name = "BOO_CONFIRMADO")
 	private Boolean confirmado;
@@ -64,7 +69,7 @@ public class Evento implements Serializable {
 
 	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
-	
+
 	@Column(name = "DTA_EVENTO")
 	private Date dataEvento;
 
@@ -72,13 +77,14 @@ public class Evento implements Serializable {
 	}
 
 	public Evento(Long idEvento, Boolean confirmado, Boolean encaixe, StatusEvento statusEvento,
-			TipoConsulta tipoConsulta, Paciente paciente, Integer ano, Integer mes, Integer dia, Integer hora,
-			Integer minuto, String observacao) {
+			TipoConsulta tipoConsulta, Agenda agenda, Paciente paciente, Integer ano, Integer mes, Integer dia,
+			Integer hora, Integer minuto, String observacao) {
 		this.idEvento = idEvento;
 		this.confirmado = confirmado;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsulta = tipoConsulta;
+		this.agenda = agenda;
 		this.paciente = paciente;
 		this.ano = ano;
 		this.mes = mes;
@@ -92,7 +98,7 @@ public class Evento implements Serializable {
 		cal.set(Calendar.DAY_OF_MONTH, dia);
 		cal.set(Calendar.HOUR, hora);
 		cal.set(Calendar.MINUTE, minuto);
-		
+
 		this.dataEvento = cal.getTime();
 
 	}
@@ -201,11 +207,20 @@ public class Evento implements Serializable {
 		this.dataEvento = dataEvento;
 	}
 
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+
 	@Override
 	public String toString() {
 		return "Evento [id=" + idEvento + ", confirmado=" + confirmado + ", encaixe=" + encaixe + ", statusEvento="
-				+ statusEvento + ", tipoConsulta=" + tipoConsulta + ", paciente=" + paciente + ", ano=" + ano + ", mes="
-				+ mes + ", dia=" + dia + ", hora=" + hora + ", minuto=" + minuto + ", observacao=" + observacao + "]";
+				+ statusEvento + ", tipoConsulta=" + tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente
+				+ ", ano=" + ano + ", mes=" + mes + ", dia=" + dia + ", hora=" + hora + ", minuto=" + minuto
+				+ ", observacao=" + observacao + "]";
 	}
 
 }

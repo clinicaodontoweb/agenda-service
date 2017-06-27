@@ -1,7 +1,6 @@
 package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class AgendaResponse implements Serializable {
 
@@ -9,15 +8,13 @@ public class AgendaResponse implements Serializable {
 
 	private Long idAgenda;
 	private ProfissionalResponse profissional;
-	private List<EventoResponse> eventos;
 
 	public AgendaResponse() {
 	}
 
-	public AgendaResponse(Long idAgenda, ProfissionalResponse profissional, List<EventoResponse> eventos) {
+	public AgendaResponse(Long idAgenda, ProfissionalResponse profissional) {
 		this.idAgenda = idAgenda;
 		this.profissional = profissional;
-		this.eventos = eventos;
 	}
 
 	public Long getIdAgenda() {
@@ -34,14 +31,6 @@ public class AgendaResponse implements Serializable {
 
 	public void setProfissional(ProfissionalResponse profissional) {
 		this.profissional = profissional;
-	}
-
-	public List<EventoResponse> getEventos() {
-		return eventos;
-	}
-
-	public void setEventos(List<EventoResponse> eventos) {
-		this.eventos = eventos;
 	}
 
 }

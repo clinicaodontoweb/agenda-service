@@ -456,12 +456,14 @@ public class Endpoint {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/agenda/profissional/{id}/evento", method=RequestMethod.GET)
-	public ResponseEntity<List<AgendaResponse>> findAgendaByEvento(@PathVariable("id") Long id,
+	@RequestMapping(value = "/evento/profissional/{id}/evento", method = RequestMethod.GET)
+	public ResponseEntity<List<EventoResponse>> findEventoByProfissional(@PathVariable("id") Long id,
 			@RequestParam(value = "dataInicio", required = true) Long dataInicio,
 			@RequestParam(value = "dataFim", required = true) Long dataFim) {
-		return new ResponseEntity<List<AgendaResponse>>(agendaBinder.modelToListResponse(
-				agendaService.findAgendaByDataEvento(id, new Date(dataInicio), new Date(dataFim))), HttpStatus.OK);
+		return new ResponseEntity<List<EventoResponse>>(
+				eventoBinder.modelToListResponse(
+						eventoService.findEventoByProfissional(id, new Date(dataInicio), new Date(dataFim))),
+				HttpStatus.OK);
 	}
 
 }

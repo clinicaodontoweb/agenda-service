@@ -14,25 +14,27 @@ public class EventoRequest implements Serializable {
 	private Boolean confirmado;
 	private Boolean encaixe;
 	private StatusEvento statusEvento;
+	private AgendaRequest agendaRequest;
+
 	@NotNull(message = "Tipo de Consulta é obrigatório!")
 	private TipoConsultaRequest tipoConsultaRequest;
 
 	@NotNull(message = "É obrigatório informar o paciente!")
 	private PacienteRequest pacienteRequest;
 
-	@NotNull(message = "Data da consulta obrigatório!")
+	@NotNull(message = "Ano da consulta obrigatório!")
 	private Integer ano;
 
-	@NotNull(message = "Data da consulta obrigatório!")
+	@NotNull(message = "Mês da consulta obrigatório!")
 	private Integer mes;
 
-	@NotNull(message = "Data da consulta obrigatório!")
+	@NotNull(message = "Dia da consulta obrigatório!")
 	private Integer dia;
 
-	@NotNull(message = "Data da consulta obrigatório!")
+	@NotNull(message = "Hora da consulta obrigatório!")
 	private Integer hora;
 
-	@NotNull(message = "Data da consulta obrigatório!")
+	@NotNull(message = "Minuto da consulta obrigatório!")
 	private Integer minuto;
 
 	private String observacao;
@@ -131,6 +133,14 @@ public class EventoRequest implements Serializable {
 
 	public void setPacienteRequest(PacienteRequest pacienteRequest) {
 		this.pacienteRequest = pacienteRequest;
+	}
+
+	public AgendaRequest getAgendaRequest() {
+		return agendaRequest;
+	}
+
+	public void setAgendaRequest(AgendaRequest agendaRequest) {
+		this.agendaRequest = agendaRequest;
 	}
 
 }
