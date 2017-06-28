@@ -303,6 +303,12 @@ public class Endpoint {
 				HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/paciente/autocomplete/{nome}", method = RequestMethod.GET)
+	public ResponseEntity<List<PacienteResponse>> findPacientesByNome(@PathVariable("nome") String nome) {
+		return new ResponseEntity<List<PacienteResponse>>(
+				pacienteBinder.modelToListResponse(pacienteService.findPacientesByNome(nome)), HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/profissional", method = RequestMethod.GET)
 	public ResponseEntity<List<ProfissionalResponse>> findAllProfissionais() {
 		return new ResponseEntity<List<ProfissionalResponse>>(

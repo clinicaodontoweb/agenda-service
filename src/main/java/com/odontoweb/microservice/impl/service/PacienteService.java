@@ -32,4 +32,8 @@ public class PacienteService {
 		return pacienteRepository.findAll();
 	}
 
+	public List<Paciente> findPacientesByNome(String nome) {
+		return pacienteRepository.findByNomeContainingIgnoreCase(nome);
+	}
+
 }
