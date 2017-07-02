@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.odontoweb.microservice.impl.model.Evento;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.ProfissionalRepository;
+import com.odontoweb.microservice.rest.util.DateUtil;
 
 public class EventoService {
 
@@ -37,8 +38,16 @@ public class EventoService {
 		eventoRepository.delete(id);
 	}
 
-	public List<Evento> findEventoByProfissional(Long idProfissional, Date dataInicio, Date dataFim) {
-		return eventoRepository.findEventoByProfissional(profissionalRepository.findOne(idProfissional), dataInicio,
-				dataFim);
+	public List<Evento> findEventoByProfissional(Long idProfissional, Long dataInicio, Long dataFim) {
+		if(dataInicio == null){
+			dataInicio = DateUtil.getDataInicial((new Date()).getTime());
+		}
+		
+		if(dataFim == null){
+			dataFim = DateUtil.getDataInicial((new Date()).getTime());
+		}
+		
+		return eventoRepository.findEventoByProfissional(profissionalRepository.findOne(idProfissional), new Date(dataInicio),
+				new Date(dataFim));
 	}
 }

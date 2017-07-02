@@ -1,6 +1,5 @@
 package com.odontoweb.microservice.rest;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -462,13 +461,13 @@ public class Endpoint {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/evento/profissional/{id}/evento", method = RequestMethod.GET)
+	@RequestMapping(value = "/evento/profissional/{id}", method = RequestMethod.GET)
 	public ResponseEntity<List<EventoResponse>> findEventoByProfissional(@PathVariable("id") Long id,
-			@RequestParam(value = "dataInicio", required = true) Long dataInicio,
-			@RequestParam(value = "dataFim", required = true) Long dataFim) {
+			@RequestParam(value = "dataInicio") Long dataInicio,
+			@RequestParam(value = "dataFim") Long dataFim) {
 		return new ResponseEntity<List<EventoResponse>>(
 				eventoBinder.modelToListResponse(
-						eventoService.findEventoByProfissional(id, new Date(dataInicio), new Date(dataFim))),
+						eventoService.findEventoByProfissional(id, dataInicio, dataFim)),
 				HttpStatus.OK);
 	}
 
