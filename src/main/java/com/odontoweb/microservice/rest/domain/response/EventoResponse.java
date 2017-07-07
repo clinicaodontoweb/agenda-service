@@ -9,7 +9,6 @@ public class EventoResponse implements Serializable {
 	private static final long serialVersionUID = 5941051393813560581L;
 
 	private Long idEvento;
-	private Boolean confirmado;
 	private Boolean encaixe;
 	private StatusEvento statusEvento;
 	private TipoConsultaResponse tipoConsultaResponse;
@@ -18,18 +17,20 @@ public class EventoResponse implements Serializable {
 	private Integer ano;
 	private Integer mes;
 	private Integer dia;
-	private Integer hora;
-	private Integer minuto;
+	private Integer horaInicio;
+	private Integer horaFim;
+	private Integer minutoInicio;
+	private Integer minutoFim;
 	private String observacao;
 
 	public EventoResponse() {
 	}
 
-	public EventoResponse(Long idEvento, Boolean confirmado, Boolean encaixe, StatusEvento statusEvento,
+	public EventoResponse(Long idEvento, Boolean encaixe, StatusEvento statusEvento,
 			TipoConsultaResponse tipoConsultaResponse, AgendaResponse agendaResponse, PacienteResponse pacienteResponse,
-			Integer ano, Integer mes, Integer dia, Integer hora, Integer minuto, String observacao) {
+			Integer ano, Integer mes, Integer dia, Integer horaInicio, Integer horaFim, Integer minutoInicio,
+			Integer minutoFim, String observacao) {
 		this.idEvento = idEvento;
-		this.confirmado = confirmado;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsultaResponse = tipoConsultaResponse;
@@ -38,8 +39,10 @@ public class EventoResponse implements Serializable {
 		this.ano = ano;
 		this.mes = mes;
 		this.dia = dia;
-		this.hora = hora;
-		this.minuto = minuto;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
+		this.minutoInicio = minutoInicio;
+		this.minutoFim = minutoFim;
 		this.observacao = observacao;
 
 	}
@@ -50,14 +53,6 @@ public class EventoResponse implements Serializable {
 
 	public void setIdEvento(Long idEvento) {
 		this.idEvento = idEvento;
-	}
-
-	public Boolean getConfirmado() {
-		return confirmado;
-	}
-
-	public void setConfirmado(Boolean confirmado) {
-		this.confirmado = confirmado;
 	}
 
 	public Boolean getEncaixe() {
@@ -100,20 +95,36 @@ public class EventoResponse implements Serializable {
 		this.dia = dia;
 	}
 
-	public Integer getHora() {
-		return hora;
+	public Integer getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setHora(Integer hora) {
-		this.hora = hora;
+	public void setHoraInicio(Integer horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public Integer getMinuto() {
-		return minuto;
+	public Integer getHoraFim() {
+		return horaFim;
 	}
 
-	public void setMinuto(Integer minuto) {
-		this.minuto = minuto;
+	public void setHoraFim(Integer horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public Integer getMinutoInicio() {
+		return minutoInicio;
+	}
+
+	public void setMinutoInicio(Integer minutoInicio) {
+		this.minutoInicio = minutoInicio;
+	}
+
+	public Integer getMinutoFim() {
+		return minutoFim;
+	}
+
+	public void setMinutoFim(Integer minutoFim) {
+		this.minutoFim = minutoFim;
 	}
 
 	public String getObservacao() {

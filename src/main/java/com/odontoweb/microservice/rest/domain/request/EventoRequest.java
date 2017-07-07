@@ -11,7 +11,6 @@ public class EventoRequest implements Serializable {
 	private static final long serialVersionUID = -2690624974662872216L;
 
 	private Long idEvento;
-	private Boolean confirmado;
 	private Boolean encaixe;
 	private StatusEvento statusEvento;
 	private AgendaRequest agendaRequest;
@@ -31,11 +30,17 @@ public class EventoRequest implements Serializable {
 	@NotNull(message = "Dia da consulta obrigatório!")
 	private Integer dia;
 
-	@NotNull(message = "Hora da consulta obrigatório!")
-	private Integer hora;
+	@NotNull(message = "Hora de inicio da consulta obrigatório!")
+	private Integer horaInicio;
 
-	@NotNull(message = "Minuto da consulta obrigatório!")
-	private Integer minuto;
+	@NotNull(message = "Minuto de inicio da consulta obrigatório!")
+	private Integer minutoInicio;
+
+	@NotNull(message = "Hora final da consulta obrigatório!")
+	private Integer horaFim;
+
+	@NotNull(message = "Minuto final da consulta obrigatório!")
+	private Integer minutoFim;
 
 	private String observacao;
 
@@ -45,14 +50,6 @@ public class EventoRequest implements Serializable {
 
 	public void setIdEvento(Long idEvento) {
 		this.idEvento = idEvento;
-	}
-
-	public Boolean getConfirmado() {
-		return confirmado;
-	}
-
-	public void setConfirmado(Boolean confirmado) {
-		this.confirmado = confirmado;
 	}
 
 	public Boolean getEncaixe() {
@@ -95,20 +92,36 @@ public class EventoRequest implements Serializable {
 		this.dia = dia;
 	}
 
-	public Integer getHora() {
-		return hora;
+	public Integer getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setHora(Integer hora) {
-		this.hora = hora;
+	public void setHoraInicio(Integer horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public Integer getMinuto() {
-		return minuto;
+	public Integer getMinutoInicio() {
+		return minutoInicio;
 	}
 
-	public void setMinuto(Integer minuto) {
-		this.minuto = minuto;
+	public void setMinutoInicio(Integer minutoInicio) {
+		this.minutoInicio = minutoInicio;
+	}
+
+	public Integer getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(Integer horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public Integer getMinutoFim() {
+		return minutoFim;
+	}
+
+	public void setMinutoFim(Integer minutoFim) {
+		this.minutoFim = minutoFim;
 	}
 
 	public String getObservacao() {

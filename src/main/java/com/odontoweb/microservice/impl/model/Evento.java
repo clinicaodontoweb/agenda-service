@@ -34,9 +34,6 @@ public class Evento implements Serializable {
 	@JoinColumn(name = "FK_AGENDA")
 	private Agenda agenda;
 
-	@Column(name = "BOO_CONFIRMADO")
-	private Boolean confirmado;
-
 	@Column(name = "BOO_ENCAIXE")
 	private Boolean encaixe;
 
@@ -61,11 +58,17 @@ public class Evento implements Serializable {
 	@Column(name = "NUM_DIA")
 	private Integer dia;
 
-	@Column(name = "NUM_HORA")
-	private Integer hora;
+	@Column(name = "NUM_HORA_INICIO")
+	private Integer horaInicio;
 
-	@Column(name = "NUM_MINUTO")
-	private Integer minuto;
+	@Column(name = "NUM_HORA_FIM")
+	private Integer horaFim;
+
+	@Column(name = "NUM_MINUTO_INICIO")
+	private Integer minutoInicio;
+
+	@Column(name = "NUM_MINUTO_FIM")
+	private Integer minutoFim;
 
 	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
@@ -76,11 +79,10 @@ public class Evento implements Serializable {
 	public Evento() {
 	}
 
-	public Evento(Long idEvento, Boolean confirmado, Boolean encaixe, StatusEvento statusEvento,
-			TipoConsulta tipoConsulta, Agenda agenda, Paciente paciente, Integer ano, Integer mes, Integer dia,
-			Integer hora, Integer minuto, String observacao) {
+	public Evento(Long idEvento, Boolean encaixe, StatusEvento statusEvento, TipoConsulta tipoConsulta, Agenda agenda,
+			Paciente paciente, Integer ano, Integer mes, Integer dia, Integer horaInicio, Integer horaFim,
+			Integer minutoInicio, Integer minutoFim, String observacao) {
 		this.idEvento = idEvento;
-		this.confirmado = confirmado;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsulta = tipoConsulta;
@@ -89,15 +91,17 @@ public class Evento implements Serializable {
 		this.ano = ano;
 		this.mes = mes;
 		this.dia = dia;
-		this.hora = hora;
-		this.minuto = minuto;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
+		this.minutoInicio = minutoInicio;
+		this.minutoFim = minutoFim;
 		this.observacao = observacao;
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, ano);
 		cal.set(Calendar.MONTH, mes);
 		cal.set(Calendar.DAY_OF_MONTH, dia);
-		cal.set(Calendar.HOUR, hora);
-		cal.set(Calendar.MINUTE, minuto);
+		cal.set(Calendar.HOUR, horaInicio);
+		cal.set(Calendar.MINUTE, minutoInicio);
 
 		this.dataEvento = cal.getTime();
 
@@ -109,14 +113,6 @@ public class Evento implements Serializable {
 
 	public void setIdEvento(Long idEvento) {
 		this.idEvento = idEvento;
-	}
-
-	public Boolean getConfirmado() {
-		return confirmado;
-	}
-
-	public void setConfirmado(Boolean confirmado) {
-		this.confirmado = confirmado;
 	}
 
 	public Boolean getEncaixe() {
@@ -175,20 +171,36 @@ public class Evento implements Serializable {
 		this.dia = dia;
 	}
 
-	public Integer getHora() {
-		return hora;
+	public Integer getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setHora(Integer hora) {
-		this.hora = hora;
+	public void setHoraInicio(Integer horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public Integer getMinuto() {
-		return minuto;
+	public Integer getHoraFim() {
+		return horaFim;
 	}
 
-	public void setMinuto(Integer minuto) {
-		this.minuto = minuto;
+	public void setHoraFim(Integer horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public Integer getMinutoInicio() {
+		return minutoInicio;
+	}
+
+	public void setMinutoInicio(Integer minutoInicio) {
+		this.minutoInicio = minutoInicio;
+	}
+
+	public Integer getMinutoFim() {
+		return minutoFim;
+	}
+
+	public void setMinutoFim(Integer minutoFim) {
+		this.minutoFim = minutoFim;
 	}
 
 	public String getObservacao() {
@@ -217,10 +229,10 @@ public class Evento implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + idEvento + ", confirmado=" + confirmado + ", encaixe=" + encaixe + ", statusEvento="
-				+ statusEvento + ", tipoConsulta=" + tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente
-				+ ", ano=" + ano + ", mes=" + mes + ", dia=" + dia + ", hora=" + hora + ", minuto=" + minuto
-				+ ", observacao=" + observacao + "]";
+		return "Evento [id=" + idEvento + ", encaixe=" + encaixe + ", statusEvento=" + statusEvento + ", tipoConsulta="
+				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", ano=" + ano + ", mes=" + mes
+				+ ", dia=" + dia + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + ", minutoInicio="
+				+ minutoInicio + ", minutoFim=" + minutoFim + ", observacao=" + observacao + "]";
 	}
 
 }
