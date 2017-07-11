@@ -1,6 +1,7 @@
 package com.odontoweb.microservice.rest.binder;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,9 +18,8 @@ public class EventoBinder implements Serializable {
 		return new Evento(eventoRequest.getIdEvento(), eventoRequest.getEncaixe(), eventoRequest.getStatusEvento(),
 				new TipoConsultaBinder().requestToModel(eventoRequest.getTipoConsultaRequest()),
 				new AgendaBinder().requestToModel(eventoRequest.getAgendaRequest()),
-				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()), eventoRequest.getAno(),
-				eventoRequest.getMes(), eventoRequest.getDia(), eventoRequest.getHoraInicio(),
-				eventoRequest.getHoraFim(), eventoRequest.getMinutoInicio(), eventoRequest.getMinutoFim(),
+				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()),
+				new Date(eventoRequest.getDataInicio()), new Date(eventoRequest.getDataFim()),
 				eventoRequest.getObservacao());
 	}
 
@@ -27,9 +27,8 @@ public class EventoBinder implements Serializable {
 		return new EventoResponse(evento.getIdEvento(), evento.getEncaixe(), evento.getStatusEvento(),
 				new TipoConsultaBinder().modelToResponse(evento.getTipoConsulta()),
 				new AgendaBinder().modelToResponse(evento.getAgenda()),
-				new PacienteBinder().modelToResponse(evento.getPaciente()), evento.getAno(), evento.getMes(),
-				evento.getDia(), evento.getHoraInicio(), evento.getHoraFim(), evento.getMinutoInicio(),
-				evento.getMinutoFim(), evento.getObservacao());
+				new PacienteBinder().modelToResponse(evento.getPaciente()), evento.getObservacao(),
+				evento.getDataInicio().getTime(), evento.getDataFim().getTime());
 	}
 
 	public List<EventoResponse> modelToListResponse(List<Evento> eventos) {

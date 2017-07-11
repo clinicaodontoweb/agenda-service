@@ -1,7 +1,6 @@
 package com.odontoweb.microservice.impl.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -49,61 +48,29 @@ public class Evento implements Serializable {
 	@JoinColumn(name = "FK_PACIENTE")
 	private Paciente paciente;
 
-	@Column(name = "NUM_ANO")
-	private Integer ano;
-
-	@Column(name = "NUM_MES")
-	private Integer mes;
-
-	@Column(name = "NUM_DIA")
-	private Integer dia;
-
-	@Column(name = "NUM_HORA_INICIO")
-	private Integer horaInicio;
-
-	@Column(name = "NUM_HORA_FIM")
-	private Integer horaFim;
-
-	@Column(name = "NUM_MINUTO_INICIO")
-	private Integer minutoInicio;
-
-	@Column(name = "NUM_MINUTO_FIM")
-	private Integer minutoFim;
-
 	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
 
-	@Column(name = "DTA_EVENTO")
-	private Date dataEvento;
+	@Column(name = "DTA_INICIO")
+	private Date dataInicio;
+
+	@Column(name = "DTA_FIM")
+	private Date dataFim;
 
 	public Evento() {
 	}
 
 	public Evento(Long idEvento, Boolean encaixe, StatusEvento statusEvento, TipoConsulta tipoConsulta, Agenda agenda,
-			Paciente paciente, Integer ano, Integer mes, Integer dia, Integer horaInicio, Integer horaFim,
-			Integer minutoInicio, Integer minutoFim, String observacao) {
+			Paciente paciente, Date dataInicio, Date dataFim, String observacao) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsulta = tipoConsulta;
 		this.agenda = agenda;
 		this.paciente = paciente;
-		this.ano = ano;
-		this.mes = mes;
-		this.dia = dia;
-		this.horaInicio = horaInicio;
-		this.horaFim = horaFim;
-		this.minutoInicio = minutoInicio;
-		this.minutoFim = minutoFim;
 		this.observacao = observacao;
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, ano);
-		cal.set(Calendar.MONTH, mes);
-		cal.set(Calendar.DAY_OF_MONTH, dia);
-		cal.set(Calendar.HOUR, horaInicio);
-		cal.set(Calendar.MINUTE, minutoInicio);
-
-		this.dataEvento = cal.getTime();
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
 
 	}
 
@@ -147,76 +114,12 @@ public class Evento implements Serializable {
 		this.paciente = paciente;
 	}
 
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public Integer getMes() {
-		return mes;
-	}
-
-	public void setMes(Integer mes) {
-		this.mes = mes;
-	}
-
-	public Integer getDia() {
-		return dia;
-	}
-
-	public void setDia(Integer dia) {
-		this.dia = dia;
-	}
-
-	public Integer getHoraInicio() {
-		return horaInicio;
-	}
-
-	public void setHoraInicio(Integer horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-
-	public Integer getHoraFim() {
-		return horaFim;
-	}
-
-	public void setHoraFim(Integer horaFim) {
-		this.horaFim = horaFim;
-	}
-
-	public Integer getMinutoInicio() {
-		return minutoInicio;
-	}
-
-	public void setMinutoInicio(Integer minutoInicio) {
-		this.minutoInicio = minutoInicio;
-	}
-
-	public Integer getMinutoFim() {
-		return minutoFim;
-	}
-
-	public void setMinutoFim(Integer minutoFim) {
-		this.minutoFim = minutoFim;
-	}
-
 	public String getObservacao() {
 		return observacao;
 	}
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}
-
-	public Date getDataEvento() {
-		return dataEvento;
-	}
-
-	public void setDataEvento(Date dataEvento) {
-		this.dataEvento = dataEvento;
 	}
 
 	public Agenda getAgenda() {
@@ -227,12 +130,27 @@ public class Evento implements Serializable {
 		this.agenda = agenda;
 	}
 
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
+
 	@Override
 	public String toString() {
 		return "Evento [id=" + idEvento + ", encaixe=" + encaixe + ", statusEvento=" + statusEvento + ", tipoConsulta="
-				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", ano=" + ano + ", mes=" + mes
-				+ ", dia=" + dia + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + ", minutoInicio="
-				+ minutoInicio + ", minutoFim=" + minutoFim + ", observacao=" + observacao + "]";
+				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", dataInicio=" + dataInicio
+				+ ", dataFim=" + dataFim + ", observacao=" + observacao + "]";
 	}
 
 }

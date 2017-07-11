@@ -14,13 +14,8 @@ public class EventoResponse implements Serializable {
 	private TipoConsultaResponse tipoConsultaResponse;
 	private AgendaResponse agendaResponse;
 	private PacienteResponse pacienteResponse;
-	private Integer ano;
-	private Integer mes;
-	private Integer dia;
-	private Integer horaInicio;
-	private Integer horaFim;
-	private Integer minutoInicio;
-	private Integer minutoFim;
+	private Long dataInicio;
+	private Long dataFim;
 	private String observacao;
 
 	public EventoResponse() {
@@ -28,21 +23,15 @@ public class EventoResponse implements Serializable {
 
 	public EventoResponse(Long idEvento, Boolean encaixe, StatusEvento statusEvento,
 			TipoConsultaResponse tipoConsultaResponse, AgendaResponse agendaResponse, PacienteResponse pacienteResponse,
-			Integer ano, Integer mes, Integer dia, Integer horaInicio, Integer horaFim, Integer minutoInicio,
-			Integer minutoFim, String observacao) {
+			String observacao, Long dataInicio, Long dataFim) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsultaResponse = tipoConsultaResponse;
 		this.agendaResponse = agendaResponse;
 		this.pacienteResponse = pacienteResponse;
-		this.ano = ano;
-		this.mes = mes;
-		this.dia = dia;
-		this.horaInicio = horaInicio;
-		this.horaFim = horaFim;
-		this.minutoInicio = minutoInicio;
-		this.minutoFim = minutoFim;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
 		this.observacao = observacao;
 
 	}
@@ -69,62 +58,6 @@ public class EventoResponse implements Serializable {
 
 	public void setStatusEvento(StatusEvento statusEvento) {
 		this.statusEvento = statusEvento;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public Integer getMes() {
-		return mes;
-	}
-
-	public void setMes(Integer mes) {
-		this.mes = mes;
-	}
-
-	public Integer getDia() {
-		return dia;
-	}
-
-	public void setDia(Integer dia) {
-		this.dia = dia;
-	}
-
-	public Integer getHoraInicio() {
-		return horaInicio;
-	}
-
-	public void setHoraInicio(Integer horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-
-	public Integer getHoraFim() {
-		return horaFim;
-	}
-
-	public void setHoraFim(Integer horaFim) {
-		this.horaFim = horaFim;
-	}
-
-	public Integer getMinutoInicio() {
-		return minutoInicio;
-	}
-
-	public void setMinutoInicio(Integer minutoInicio) {
-		this.minutoInicio = minutoInicio;
-	}
-
-	public Integer getMinutoFim() {
-		return minutoFim;
-	}
-
-	public void setMinutoFim(Integer minutoFim) {
-		this.minutoFim = minutoFim;
 	}
 
 	public String getObservacao() {
@@ -157,6 +90,22 @@ public class EventoResponse implements Serializable {
 
 	public void setAgendaResponse(AgendaResponse agendaResponse) {
 		this.agendaResponse = agendaResponse;
+	}
+
+	public Long getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Long dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Long getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Long dataFim) {
+		this.dataFim = dataFim;
 	}
 
 }
