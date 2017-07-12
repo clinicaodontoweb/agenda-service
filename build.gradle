@@ -21,8 +21,7 @@ repositories {
 }
 
 dependencies {
-	//compile 'com.odontoweb.microservices:arch:1.0'
-	compile fileTree(dir: 'lib/', include: ['arquitetura-1.0.jar'])
+	compile 'com.odontoweb.microservices:arch:1.0'
 }
 
 springBoot {
