@@ -1,1 +1,1 @@
-web: java -jar build\libs\agenda-service.jar --spring.profiles.active=heroku
+web: java -jar build/libs/agenda-service.jar --spring.profiles.active=heroku
