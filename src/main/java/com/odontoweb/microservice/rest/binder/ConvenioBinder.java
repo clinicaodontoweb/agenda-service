@@ -33,4 +33,12 @@ public class ConvenioBinder implements Serializable {
 				.collect(Collectors.toList());
 
 	}
+
+	public List<Convenio> requestToListModel(List<ConvenioRequest> conveniosRequest) {
+		if (conveniosRequest == null)
+			return null;
+		return conveniosRequest.stream().filter(Objects::nonNull)
+				.map(convenioRequest -> requestToModel(convenioRequest)).collect(Collectors.toList());
+
+	}
 }

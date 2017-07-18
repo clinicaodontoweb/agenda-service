@@ -19,7 +19,8 @@ public class PacienteBinder implements Serializable {
 				pacienteRequest.getEstadoCivil(),
 				new ContatoBinder().requestToModel(pacienteRequest.getContatoRequest()),
 				new EnderecoBinder().requestToModel(pacienteRequest.getEnderecoRequest()),
-				new ConvenioBinder().requestToModel(pacienteRequest.getConvenioRequest()));
+				new ConvenioBinder().requestToListModel(pacienteRequest.getConveniosRequest()),
+				pacienteRequest.getIndicacao(), pacienteRequest.getProfissao());
 	}
 
 	public PacienteResponse modelToResponse(Paciente paciente) {
@@ -27,7 +28,8 @@ public class PacienteBinder implements Serializable {
 				paciente.getGenero(), paciente.getDataNascimento(), paciente.getEstadoCivil(),
 				new ContatoBinder().modelToResponse(paciente.getContato()),
 				new EnderecoBinder().modelToResponse(paciente.getEndereco()),
-				new ConvenioBinder().modelToResponse(paciente.getConvenio()));
+				new ConvenioBinder().modelToListResponse(paciente.getConvenios()), paciente.getProfissao(),
+				paciente.getIndicacao());
 	}
 
 	public List<PacienteResponse> modelToListResponse(List<Paciente> pacientes) {
@@ -35,6 +37,14 @@ public class PacienteBinder implements Serializable {
 			return null;
 		return pacientes.stream().filter(Objects::nonNull).map(paciente -> modelToResponse(paciente))
 				.collect(Collectors.toList());
+
+	}
+
+	public List<Paciente> requestToListModel(List<PacienteRequest> pacientesRequest) {
+		if (pacientesRequest == null)
+			return null;
+		return pacientesRequest.stream().filter(Objects::nonNull)
+				.map(pacienteRequest -> requestToModel(pacienteRequest)).collect(Collectors.toList());
 
 	}
 

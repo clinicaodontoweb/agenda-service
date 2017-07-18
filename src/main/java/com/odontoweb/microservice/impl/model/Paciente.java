@@ -3,6 +3,7 @@ package com.odontoweb.microservice.impl.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,11 +15,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
@@ -55,23 +60,31 @@ public class Paciente implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name = "FK_CONVENIO")
-	private Convenio convenio;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Fetch(FetchMode.SUBSELECT)
+	@JoinTable(name = "TBL_PACIENTE_CONVENIO", joinColumns = @JoinColumn(name = "FK_PACIENTE", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_CONVENIO", referencedColumnName = "ID"))
+	private List<Convenio> convenios;
+
+	@Column(name = "STR_PROFISSAO")
+	private String profissao;
+
+	@Column(name = "STR_INDICACAO")
+	private String indicacao;
 
 	public Paciente() {
 	}
 
 	public Paciente(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
-			EstadoCivil estadoCivil, Contato contato, Endereco endereco, Convenio convenio) {
+			EstadoCivil estadoCivil, Contato contato, Endereco endereco, List<Convenio> convenios, String indicacao,
+			String profissao) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -81,7 +94,9 @@ public class Paciente implements Serializable {
 		this.estadoCivil = estadoCivil;
 		this.contato = contato;
 		this.endereco = endereco;
-		this.convenio = convenio;
+		this.convenios = convenios;
+		this.indicacao = indicacao;
+		this.profissao = profissao;
 	}
 
 	public Long getIdPaciente() {
@@ -156,18 +171,35 @@ public class Paciente implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Convenio getConvenio() {
-		return convenio;
+	public List<Convenio> getConvenios() {
+		return convenios;
 	}
 
-	public void setConvenio(Convenio convenio) {
-		this.convenio = convenio;
+	public void setConvenios(List<Convenio> convenios) {
+		this.convenios = convenios;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
+	}
+
+	public String getIndicacao() {
+		return indicacao;
+	}
+
+	public void setIndicacao(String indicacao) {
+		this.indicacao = indicacao;
 	}
 
 	@Override
 	public String toString() {
 		return "Paciente [id=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", genero=" + genero
 				+ ", dataNascimento=" + new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento) + ", estadoCivil="
-				+ estadoCivil + ", contato=" + contato + ", endereco=" + endereco + ", convenio=" + convenio + "]";
+				+ estadoCivil + ", contato=" + contato + ", endereco=" + endereco + ", indicacao=" + indicacao
+				+ ", profissao = " + profissao + "]";
 	}
 }

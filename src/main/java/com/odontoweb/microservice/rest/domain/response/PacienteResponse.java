@@ -2,6 +2,7 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
@@ -19,14 +20,16 @@ public class PacienteResponse implements Serializable {
 	private EstadoCivil estadoCivil;
 	private ContatoResponse contatoResponse;
 	private EnderecoResponse enderecoResponse;
-	private ConvenioResponse convenioResponse;
+	private List<ConvenioResponse> conveniosResponse;
+	private String profissao;
+	private String indicacao;
 
 	public PacienteResponse() {
 	}
 
 	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
 			EstadoCivil estadoCivil, ContatoResponse contatoResponse, EnderecoResponse enderecoResponse,
-			ConvenioResponse convenioResponse) {
+			List<ConvenioResponse> conveniosResponse, String profissao, String indicacao) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -36,7 +39,9 @@ public class PacienteResponse implements Serializable {
 		this.estadoCivil = estadoCivil;
 		this.contatoResponse = contatoResponse;
 		this.enderecoResponse = enderecoResponse;
-		this.convenioResponse = convenioResponse;
+		this.conveniosResponse = conveniosResponse;
+		this.profissao = profissao;
+		this.indicacao = indicacao;
 	}
 
 	public Long getIdPaciente() {
@@ -111,12 +116,28 @@ public class PacienteResponse implements Serializable {
 		this.enderecoResponse = enderecoResponse;
 	}
 
-	public ConvenioResponse getConvenioResponse() {
-		return convenioResponse;
+	public List<ConvenioResponse> getConveniosResponse() {
+		return conveniosResponse;
 	}
 
-	public void setConvenioResponse(ConvenioResponse convenioResponse) {
-		this.convenioResponse = convenioResponse;
+	public void setConveniosResponse(List<ConvenioResponse> conveniosResponse) {
+		this.conveniosResponse = conveniosResponse;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
+	}
+
+	public String getIndicacao() {
+		return indicacao;
+	}
+
+	public void setIndicacao(String indicacao) {
+		this.indicacao = indicacao;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -36,7 +37,11 @@ public class PacienteRequest implements Serializable {
 	@NotNull(message = "Endereço é obrigatório!")
 	private EnderecoRequest enderecoRequest;
 
-	private ConvenioRequest convenioRequest;
+	private List<ConvenioRequest> conveniosRequest;
+
+	private String indicacao;
+
+	private String profissao;
 
 	public Long getIdPaciente() {
 		return idPaciente;
@@ -110,12 +115,28 @@ public class PacienteRequest implements Serializable {
 		this.enderecoRequest = enderecoRequest;
 	}
 
-	public ConvenioRequest getConvenioRequest() {
-		return convenioRequest;
+	public List<ConvenioRequest> getConveniosRequest() {
+		return conveniosRequest;
 	}
 
-	public void setConvenioRequest(ConvenioRequest convenioRequest) {
-		this.convenioRequest = convenioRequest;
+	public void setConveniosRequest(List<ConvenioRequest> conveniosRequest) {
+		this.conveniosRequest = conveniosRequest;
+	}
+
+	public String getIndicacao() {
+		return indicacao;
+	}
+
+	public void setIndicacao(String indicacao) {
+		this.indicacao = indicacao;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
 	}
 
 }
