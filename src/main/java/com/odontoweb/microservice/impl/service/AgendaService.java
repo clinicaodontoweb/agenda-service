@@ -8,19 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Agenda;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
-import com.odontoweb.microservice.impl.repository.ProfissionalRepository;
+import com.odontoweb.microservice.impl.repository.DentistaRepository;
 
 public class AgendaService implements Serializable {
 
 	private static final long serialVersionUID = -4998591815407410597L;
 
 	private AgendaRepository agendaRepository;
-	private ProfissionalRepository profissionalRepository;
+	private DentistaRepository dentistaRepository;
 
 	@Autowired
-	public AgendaService(AgendaRepository agendaRepository, ProfissionalRepository profissionalRepository) {
+	public AgendaService(AgendaRepository agendaRepository, DentistaRepository dentistaRepository) {
 		this.agendaRepository = agendaRepository;
-		this.profissionalRepository = profissionalRepository;
+		this.dentistaRepository = dentistaRepository;
 	}
 
 	public List<Agenda> findAll() {
@@ -40,7 +40,7 @@ public class AgendaService implements Serializable {
 	}
 	
 	public Agenda findAgendaByProfissional(Long id) {
-		return agendaRepository.findAgendaByProfissional(profissionalRepository.findOne(id));
+		return agendaRepository.findAgendaByProfissional(dentistaRepository.findOne(id));
 	}
 	
 }

@@ -7,7 +7,7 @@ public class AgendaRequest implements Serializable {
 	private static final long serialVersionUID = 436747791286284283L;
 
 	private Long idAgenda;
-	private ProfissionalRequest profissional;
+	private DentistaRequest profissional;
 
 	public Long getIdAgenda() {
 		return idAgenda;
@@ -17,11 +17,11 @@ public class AgendaRequest implements Serializable {
 		this.idAgenda = idAgenda;
 	}
 
-	public ProfissionalRequest getProfissional() {
+	public DentistaRequest getProfissional() {
 		return profissional;
 	}
 
-	public void setProfissional(ProfissionalRequest profissional) {
+	public void setProfissional(DentistaRequest profissional) {
 		this.profissional = profissional;
 	}
 

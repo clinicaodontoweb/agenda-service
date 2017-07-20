@@ -25,13 +25,13 @@ public class Agenda implements Serializable {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_PROFISSIONAL")
-	private Profissional profissional;
+	private Dentista dentista;
 
 	public Agenda() {}
 	
-	public Agenda(Long idAgenda, Profissional profissional){
+	public Agenda(Long idAgenda, Dentista dentista){
 		this.idAgenda = idAgenda;
-		this.profissional = profissional;
+		this.dentista = dentista;
 	}
 	
 	public Long getIdAgenda() {
@@ -42,12 +42,12 @@ public class Agenda implements Serializable {
 		this.idAgenda = idAgenda;
 	}
 
-	public Profissional getProfissional() {
-		return profissional;
+	public Dentista getProfissional() {
+		return dentista;
 	}
 
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
+	public void setProfissional(Dentista dentista) {
+		this.dentista = dentista;
 	}
 
 }

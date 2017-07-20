@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
-import com.odontoweb.microservice.impl.repository.ProfissionalRepository;
+import com.odontoweb.microservice.impl.repository.DentistaRepository;
 import com.odontoweb.microservice.rest.util.DateUtil;
 
 public class EventoService {
@@ -16,7 +16,7 @@ public class EventoService {
 	private EventoRepository eventoRepository;
 
 	@Autowired
-	private ProfissionalRepository profissionalRepository;
+	private DentistaRepository dentistaRepository;
 
 	public EventoService(EventoRepository eventoRepository) {
 		this.eventoRepository = eventoRepository;
@@ -47,7 +47,7 @@ public class EventoService {
 			dataFim = DateUtil.getDataInicial((new Date()).getTime());
 		}
 		
-		return eventoRepository.findEventoByProfissional(profissionalRepository.findOne(idProfissional), new Date(dataInicio),
+		return eventoRepository.findEventoByProfissional(dentistaRepository.findOne(idProfissional), new Date(dataInicio),
 				new Date(dataFim));
 	}
 }

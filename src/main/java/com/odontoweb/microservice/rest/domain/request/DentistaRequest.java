@@ -6,11 +6,13 @@ import javax.validation.constraints.NotNull;
 
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
-public class ProfissionalRequest implements Serializable {
+public class DentistaRequest implements Serializable {
 
 	private static final long serialVersionUID = -5217785988080284220L;
 
-	private Long idProfissional;
+	private Long idDentista;
+
+	private UsuarioClinicaRequest usuarioClinicaRequest;
 
 	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
@@ -29,12 +31,20 @@ public class ProfissionalRequest implements Serializable {
 
 	private String codigoBrasileiroOcupacao;
 
-	public Long getIdProfissional() {
-		return idProfissional;
+	public Long getIdDentista() {
+		return idDentista;
 	}
 
-	public void setIdProfissional(Long idProfissional) {
-		this.idProfissional = idProfissional;
+	public void setIdDentista(Long idDentista) {
+		this.idDentista = idDentista;
+	}
+
+	public UsuarioClinicaRequest getUsuarioClinicaRequest() {
+		return usuarioClinicaRequest;
+	}
+
+	public void setUsuarioClinicaRequest(UsuarioClinicaRequest usuarioClinicaRequest) {
+		this.usuarioClinicaRequest = usuarioClinicaRequest;
 	}
 
 	public String getNome() {

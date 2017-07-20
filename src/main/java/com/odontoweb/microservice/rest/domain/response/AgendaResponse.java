@@ -7,12 +7,12 @@ public class AgendaResponse implements Serializable {
 	private static final long serialVersionUID = 1582101913813759874L;
 
 	private Long idAgenda;
-	private ProfissionalResponse profissional;
+	private DentistaResponse profissional;
 
 	public AgendaResponse() {
 	}
 
-	public AgendaResponse(Long idAgenda, ProfissionalResponse profissional) {
+	public AgendaResponse(Long idAgenda, DentistaResponse profissional) {
 		this.idAgenda = idAgenda;
 		this.profissional = profissional;
 	}
@@ -25,11 +25,11 @@ public class AgendaResponse implements Serializable {
 		this.idAgenda = idAgenda;
 	}
 
-	public ProfissionalResponse getProfissional() {
+	public DentistaResponse getProfissional() {
 		return profissional;
 	}
 
-	public void setProfissional(ProfissionalResponse profissional) {
+	public void setProfissional(DentistaResponse profissional) {
 		this.profissional = profissional;
 	}
 

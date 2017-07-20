@@ -11,7 +11,7 @@ import com.odontoweb.microservice.impl.repository.ConvenioRepository;
 import com.odontoweb.microservice.impl.repository.EstadoRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.PacienteRepository;
-import com.odontoweb.microservice.impl.repository.ProfissionalRepository;
+import com.odontoweb.microservice.impl.repository.DentistaRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
 import com.odontoweb.microservice.impl.repository.TipoConsultaRepository;
 import com.odontoweb.microservice.impl.service.AgendaService;
@@ -22,7 +22,7 @@ import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
-import com.odontoweb.microservice.impl.service.ProfissionalService;
+import com.odontoweb.microservice.impl.service.DentistaService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
 import com.odontoweb.microservice.rest.binder.AgendaBinder;
@@ -33,7 +33,7 @@ import com.odontoweb.microservice.rest.binder.ConvenioBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
-import com.odontoweb.microservice.rest.binder.ProfissionalBinder;
+import com.odontoweb.microservice.rest.binder.DentistaBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
 
@@ -51,8 +51,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public AgendaService agendaService(AgendaRepository repository, ProfissionalRepository profissionalRepository) {
-		return new AgendaService(repository, profissionalRepository);
+	public AgendaService agendaService(AgendaRepository repository, DentistaRepository dentistaRepository) {
+		return new AgendaService(repository, dentistaRepository);
 	}
 
 	@Bean
@@ -61,8 +61,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public ProfissionalService profissionalService(ProfissionalRepository repository) {
-		return new ProfissionalService(repository);
+	public DentistaService dentistaService(DentistaRepository repository) {
+		return new DentistaService(repository);
 	}
 
 	@Bean
@@ -136,8 +136,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public ProfissionalBinder profissionalBinder() {
-		return new ProfissionalBinder();
+	public DentistaBinder dentistaBinder() {
+		return new DentistaBinder();
 	}
 
 	@Bean

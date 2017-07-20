@@ -22,7 +22,7 @@ import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
-import com.odontoweb.microservice.impl.service.ProfissionalService;
+import com.odontoweb.microservice.impl.service.DentistaService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
 import com.odontoweb.microservice.rest.binder.AgendaBinder;
@@ -33,7 +33,7 @@ import com.odontoweb.microservice.rest.binder.ConvenioBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
-import com.odontoweb.microservice.rest.binder.ProfissionalBinder;
+import com.odontoweb.microservice.rest.binder.DentistaBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
 import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
@@ -44,7 +44,7 @@ import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.request.EstadoRequest;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
-import com.odontoweb.microservice.rest.domain.request.ProfissionalRequest;
+import com.odontoweb.microservice.rest.domain.request.DentistaRequest;
 import com.odontoweb.microservice.rest.domain.request.SiglaRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
 import com.odontoweb.microservice.rest.domain.response.AgendaResponse;
@@ -55,7 +55,7 @@ import com.odontoweb.microservice.rest.domain.response.ConvenioResponse;
 import com.odontoweb.microservice.rest.domain.response.EstadoResponse;
 import com.odontoweb.microservice.rest.domain.response.EventoResponse;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
-import com.odontoweb.microservice.rest.domain.response.ProfissionalResponse;
+import com.odontoweb.microservice.rest.domain.response.DentistaResponse;
 import com.odontoweb.microservice.rest.domain.response.SiglaResponse;
 import com.odontoweb.microservice.rest.domain.response.TipoConsultaResponse;
 
@@ -93,7 +93,7 @@ public class Endpoint {
 	PacienteService pacienteService;
 
 	@Autowired
-	ProfissionalService profissionalService;
+	DentistaService dentistaService;
 
 	@Autowired
 	SiglaBinder siglaBinder;
@@ -108,7 +108,7 @@ public class Endpoint {
 	PacienteBinder pacienteBinder;
 
 	@Autowired
-	ProfissionalBinder profissionalBinder;
+	DentistaBinder dentistaBinder;
 
 	@Autowired
 	BairroBinder bairroBinder;
@@ -237,14 +237,14 @@ public class Endpoint {
 	}
 
 	@RequestMapping(value = "/profissional", method = RequestMethod.POST)
-	public ResponseEntity<?> saveProfissional(@RequestBody @Valid ProfissionalRequest profissionalRequest) {
-		profissionalService.save(profissionalBinder.requestToModel(profissionalRequest));
+	public ResponseEntity<?> saveProfissional(@RequestBody @Valid DentistaRequest dentistaRequest) {
+		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/profissional", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateProfissional(@RequestBody @Valid ProfissionalRequest profissionalRequest) {
-		profissionalService.save(profissionalBinder.requestToModel(profissionalRequest));
+	public ResponseEntity<?> updateProfissional(@RequestBody @Valid DentistaRequest dentistaRequest) {
+		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -309,9 +309,9 @@ public class Endpoint {
 	}
 
 	@RequestMapping(value = "/profissional", method = RequestMethod.GET)
-	public ResponseEntity<List<ProfissionalResponse>> findAllProfissionais() {
-		return new ResponseEntity<List<ProfissionalResponse>>(
-				profissionalBinder.modelToListResponse(profissionalService.findAll()), HttpStatus.OK);
+	public ResponseEntity<List<DentistaResponse>> findAllProfissionais() {
+		return new ResponseEntity<List<DentistaResponse>>(
+				dentistaBinder.modelToListResponse(dentistaService.findAll()), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/sigla/{id}", method = RequestMethod.DELETE)
@@ -370,7 +370,7 @@ public class Endpoint {
 
 	@RequestMapping(value = "/profissional/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteProfissional(@PathVariable("id") Long id) {
-		profissionalService.delete(id);
+		dentistaService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -420,8 +420,8 @@ public class Endpoint {
 	}
 
 	@RequestMapping(value = "/profissional/{id}", method = RequestMethod.GET)
-	public ResponseEntity<ProfissionalResponse> findProfissionalById(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(profissionalBinder.modelToResponse(profissionalService.findById(id)),
+	public ResponseEntity<DentistaResponse> findProfissionalById(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(dentistaBinder.modelToResponse(dentistaService.findById(id)),
 				HttpStatus.OK);
 	}
 

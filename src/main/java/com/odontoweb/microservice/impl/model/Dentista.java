@@ -18,20 +18,24 @@ import javax.persistence.Table;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
 @Entity
-@Table(name = "TBL_PROFISSIONAL")
-public class Profissional implements Serializable {
+@Table(name = "TBL_DENTISTA")
+public class Dentista implements Serializable {
 
 	private static final long serialVersionUID = 5100117436384354033L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long idProfissional;
+	private Long idDentista;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_USUARIO_CLINICA")
+	private UsuarioClinica usuarioClinica;
 
 	@Column(name = "STR_NOME")
 	private String nome;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
@@ -48,12 +52,13 @@ public class Profissional implements Serializable {
 	@Column(name = "STR_CODIGO_BRASILEIRO_OCUPACAO")
 	private String codigoBrasileiroOcupacao;
 
-	public Profissional() {
+	public Dentista() {
 	}
 
-	public Profissional(Long idProfissional, String nome, Contato contato, Genero genero, String conselho, String registro,
-			String codigoBrasileiroOcupacao) {
-		this.idProfissional = idProfissional;
+	public Dentista(Long idDentista, UsuarioClinica usuarioClinica, String nome, Contato contato, Genero genero,
+			String conselho, String registro, String codigoBrasileiroOcupacao) {
+		this.idDentista = idDentista;
+		this.usuarioClinica = usuarioClinica;
 		this.nome = nome;
 		this.contato = contato;
 		this.genero = genero;
@@ -62,12 +67,12 @@ public class Profissional implements Serializable {
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
 	}
 
-	public Long getIdProfissional() {
-		return idProfissional;
+	public Long getIdDentista() {
+		return idDentista;
 	}
 
-	public void setIdProfissional(Long idProfissional) {
-		this.idProfissional = idProfissional;
+	public void setIdDentista(Long idDentista) {
+		this.idDentista = idDentista;
 	}
 
 	public String getNome() {
@@ -118,10 +123,19 @@ public class Profissional implements Serializable {
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
 	}
 
+	public UsuarioClinica getUsuarioClinica() {
+		return usuarioClinica;
+	}
+
+	public void setUsuarioClinica(UsuarioClinica usuarioClinica) {
+		this.usuarioClinica = usuarioClinica;
+	}
+
 	@Override
 	public String toString() {
-		return "Profissional [id=" + idProfissional + ", nome=" + nome + ", generoso=" + genero + ", conselho="
-				+ conselho + ", registro=" + registro + ", codigoBrasileiroOcupacao=" + codigoBrasileiroOcupacao + "]";
+		return "Dentista [id=" + idDentista + ", usuarioClinica=" + usuarioClinica + ", nome=" + nome
+				+ ", generoso=" + genero + ", conselho=" + conselho + ", registro=" + registro
+				+ ", codigoBrasileiroOcupacao=" + codigoBrasileiroOcupacao + "]";
 	}
 
 }

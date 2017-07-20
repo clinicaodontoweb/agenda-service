@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
-public class ProfissionalResponse implements Serializable {
+public class DentistaResponse implements Serializable {
 
 	private static final long serialVersionUID = -1205176944035282783L;
 
-	private Long idProfissional;
+	private Long idDentista;
+	private UsuarioClinicaResponse usuarioClinicaResponse;
 	private String nome;
 	private ContatoResponse contatoResponse;
 	private Genero genero;
@@ -16,12 +17,14 @@ public class ProfissionalResponse implements Serializable {
 	private String registro;
 	private String codigoBrasileiroOcupacao;
 
-	public ProfissionalResponse() {
+	public DentistaResponse() {
 	}
 
-	public ProfissionalResponse(Long idProfissional, String nome, ContatoResponse contatoResponse, Genero genero,
-			String conselho, String registro, String codigoBrasileiroOcupacao) {
-		this.idProfissional = idProfissional;
+	public DentistaResponse(Long idDentista, UsuarioClinicaResponse usuarioClinicaResponse, String nome,
+			ContatoResponse contatoResponse, Genero genero, String conselho, String registro,
+			String codigoBrasileiroOcupacao) {
+		this.idDentista = idDentista;
+		this.usuarioClinicaResponse = usuarioClinicaResponse;
 		this.nome = nome;
 		this.contatoResponse = contatoResponse;
 		this.genero = genero;
@@ -30,12 +33,20 @@ public class ProfissionalResponse implements Serializable {
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
 	}
 
-	public Long getIdProfissional() {
-		return idProfissional;
+	public Long getIdDentista() {
+		return idDentista;
 	}
 
-	public void setIdProfissional(Long idProfissional) {
-		this.idProfissional = idProfissional;
+	public void setIdDentista(Long idDentista) {
+		this.idDentista = idDentista;
+	}
+
+	public UsuarioClinicaResponse getUsuarioClinicaResponse() {
+		return usuarioClinicaResponse;
+	}
+
+	public void setUsuarioClinicaResponse(UsuarioClinicaResponse usuarioClinicaResponse) {
+		this.usuarioClinicaResponse = usuarioClinicaResponse;
 	}
 
 	public String getNome() {
