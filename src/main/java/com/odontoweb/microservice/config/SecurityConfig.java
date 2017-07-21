@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/sigla/**").permitAll()
 			.antMatchers("/estado/**").permitAll()
 			.antMatchers("/paciente/**").permitAll()
-			.antMatchers("/profissional/**").permitAll()
+			.antMatchers("/dentista/**").permitAll()
 			.antMatchers("/tipoConsulta/**").permitAll()
 			.antMatchers("/evento/**").permitAll()
 			.antMatchers("/agenda/**").permitAll()
@@ -58,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/cep/**").permitAll()
 			.antMatchers("/cidade/**").permitAll()
 			.antMatchers("/convenio/**").permitAll()
+			.antMatchers("/recepcionista/**").permitAll()
+			.antMatchers("/usuarioClinica/**").permitAll()
 			.anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

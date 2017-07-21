@@ -1,7 +1,6 @@
 package com.odontoweb.microservice.impl.service;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +37,9 @@ public class AgendaService implements Serializable {
 	public void delete(Long id) {
 		agendaRepository.delete(id);
 	}
-	
-	public Agenda findAgendaByProfissional(Long id) {
-		return agendaRepository.findAgendaByProfissional(dentistaRepository.findOne(id));
+
+	public Agenda findAgendaByDentista(Long id) {
+		return agendaRepository.findAgendaByDentista(dentistaRepository.findOne(id));
 	}
-	
+
 }

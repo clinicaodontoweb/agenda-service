@@ -19,45 +19,53 @@ import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
 import com.odontoweb.microservice.impl.service.CidadeService;
 import com.odontoweb.microservice.impl.service.ConvenioService;
+import com.odontoweb.microservice.impl.service.DentistaService;
 import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
-import com.odontoweb.microservice.impl.service.DentistaService;
+import com.odontoweb.microservice.impl.service.RecepcionistaService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
+import com.odontoweb.microservice.impl.service.UsuarioClinicaService;
 import com.odontoweb.microservice.rest.binder.AgendaBinder;
 import com.odontoweb.microservice.rest.binder.BairroBinder;
 import com.odontoweb.microservice.rest.binder.CepBinder;
 import com.odontoweb.microservice.rest.binder.CidadeBinder;
 import com.odontoweb.microservice.rest.binder.ConvenioBinder;
+import com.odontoweb.microservice.rest.binder.DentistaBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
-import com.odontoweb.microservice.rest.binder.DentistaBinder;
+import com.odontoweb.microservice.rest.binder.RecepcionistaBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
+import com.odontoweb.microservice.rest.binder.UsuarioClinicaBinder;
 import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
 import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 import com.odontoweb.microservice.rest.domain.request.CepRequest;
 import com.odontoweb.microservice.rest.domain.request.CidadeRequest;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
+import com.odontoweb.microservice.rest.domain.request.DentistaRequest;
 import com.odontoweb.microservice.rest.domain.request.EstadoRequest;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
-import com.odontoweb.microservice.rest.domain.request.DentistaRequest;
+import com.odontoweb.microservice.rest.domain.request.RecepcionistaRequest;
 import com.odontoweb.microservice.rest.domain.request.SiglaRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
+import com.odontoweb.microservice.rest.domain.request.UsuarioClinicaRequest;
 import com.odontoweb.microservice.rest.domain.response.AgendaResponse;
 import com.odontoweb.microservice.rest.domain.response.BairroResponse;
 import com.odontoweb.microservice.rest.domain.response.CepResponse;
 import com.odontoweb.microservice.rest.domain.response.CidadeResponse;
 import com.odontoweb.microservice.rest.domain.response.ConvenioResponse;
+import com.odontoweb.microservice.rest.domain.response.DentistaResponse;
 import com.odontoweb.microservice.rest.domain.response.EstadoResponse;
 import com.odontoweb.microservice.rest.domain.response.EventoResponse;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
-import com.odontoweb.microservice.rest.domain.response.DentistaResponse;
+import com.odontoweb.microservice.rest.domain.response.RecepcionistaResponse;
 import com.odontoweb.microservice.rest.domain.response.SiglaResponse;
 import com.odontoweb.microservice.rest.domain.response.TipoConsultaResponse;
+import com.odontoweb.microservice.rest.domain.response.UsuarioClinicaResponse;
 
 @RestController
 public class Endpoint {
@@ -94,6 +102,12 @@ public class Endpoint {
 
 	@Autowired
 	DentistaService dentistaService;
+	
+	@Autowired
+	RecepcionistaService recepcionistaService;
+	
+	@Autowired
+	UsuarioClinicaService usuarioClinicaService;
 
 	@Autowired
 	SiglaBinder siglaBinder;
@@ -127,6 +141,12 @@ public class Endpoint {
 
 	@Autowired
 	ConvenioBinder convenioBinder;
+	
+	@Autowired
+	RecepcionistaBinder recepcionistaBinder;
+	
+	@Autowired
+	UsuarioClinicaBinder usuarioClinicaBinder;
 
 	@RequestMapping(value = "/sigla", method = RequestMethod.POST)
 	public ResponseEntity<?> saveSigla(@RequestBody @Valid SiglaRequest siglaRequest) {
@@ -236,15 +256,39 @@ public class Endpoint {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/profissional", method = RequestMethod.POST)
-	public ResponseEntity<?> saveProfissional(@RequestBody @Valid DentistaRequest dentistaRequest) {
+	@RequestMapping(value = "/dentista", method = RequestMethod.POST)
+	public ResponseEntity<?> saveDentista(@RequestBody @Valid DentistaRequest dentistaRequest) {
 		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/profissional", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateProfissional(@RequestBody @Valid DentistaRequest dentistaRequest) {
+	@RequestMapping(value = "/dentista", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateDentista(@RequestBody @Valid DentistaRequest dentistaRequest) {
 		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/recepcionista", method = RequestMethod.POST)
+	public ResponseEntity<?> saveRecepcionista(@RequestBody @Valid RecepcionistaRequest recepcionistaRequest) {
+		recepcionistaService.save(recepcionistaBinder.requestToModel(recepcionistaRequest));
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/recepcionista", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateRecepcionista(@RequestBody @Valid RecepcionistaRequest recepcionistaRequest) {
+		recepcionistaService.save(recepcionistaBinder.requestToModel(recepcionistaRequest));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUsuarioClinica(@RequestBody @Valid UsuarioClinicaRequest usuarioClinicaRequest) {
+		usuarioClinicaService.save(usuarioClinicaBinder.requestToModel(usuarioClinicaRequest));
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateUsuarioClinica(@RequestBody @Valid UsuarioClinicaRequest usuarioClinicaRequest) {
+		usuarioClinicaService.save(usuarioClinicaBinder.requestToModel(usuarioClinicaRequest));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -308,10 +352,22 @@ public class Endpoint {
 				pacienteBinder.modelToListResponse(pacienteService.findPacientesByNome(nome)), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/profissional", method = RequestMethod.GET)
-	public ResponseEntity<List<DentistaResponse>> findAllProfissionais() {
+	@RequestMapping(value = "/dentista", method = RequestMethod.GET)
+	public ResponseEntity<List<DentistaResponse>> findAllDentistas() {
 		return new ResponseEntity<List<DentistaResponse>>(
 				dentistaBinder.modelToListResponse(dentistaService.findAll()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/recepcionista", method = RequestMethod.GET)
+	public ResponseEntity<List<RecepcionistaResponse>> findAllRecepcionistas() {
+		return new ResponseEntity<List<RecepcionistaResponse>>(
+				recepcionistaBinder.modelToListResponse(recepcionistaService.findAll()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.GET)
+	public ResponseEntity<List<UsuarioClinicaResponse>> findAllUsuariosClinicas() {
+		return new ResponseEntity<List<UsuarioClinicaResponse>>(
+				usuarioClinicaBinder.modelToListResponse(usuarioClinicaService.findAll()), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/sigla/{id}", method = RequestMethod.DELETE)
@@ -368,9 +424,21 @@ public class Endpoint {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/profissional/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteProfissional(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/dentista/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteDentista(@PathVariable("id") Long id) {
 		dentistaService.delete(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/usuarioClinica/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteUsuarioClinica(@PathVariable("id") Long id) {
+		usuarioClinicaService.delete(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/recepcionista/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteRecepcionista(@PathVariable("id") Long id) {
+		recepcionistaService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -419,8 +487,8 @@ public class Endpoint {
 		return new ResponseEntity<>(pacienteBinder.modelToResponse(pacienteService.findById(id)), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/profissional/{id}", method = RequestMethod.GET)
-	public ResponseEntity<DentistaResponse> findProfissionalById(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/dentista/{id}", method = RequestMethod.GET)
+	public ResponseEntity<DentistaResponse> findDentistaById(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(dentistaBinder.modelToResponse(dentistaService.findById(id)),
 				HttpStatus.OK);
 	}
@@ -455,19 +523,19 @@ public class Endpoint {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/agenda/profissional/{id}", method = RequestMethod.GET)
-	public ResponseEntity<AgendaResponse> findAgendaByProfissional(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByProfissional(id)),
+	@RequestMapping(value = "/agenda/dentista/{id}", method = RequestMethod.GET)
+	public ResponseEntity<AgendaResponse> findAgendaByDentista(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByDentista(id)),
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/evento/profissional/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<EventoResponse>> findEventoByProfissional(@PathVariable("id") Long id,
+	@RequestMapping(value = "/evento/dentista/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<EventoResponse>> findEventoByDentista(@PathVariable("id") Long id,
 			@RequestParam(value = "dataInicio") Long dataInicio,
 			@RequestParam(value = "dataFim") Long dataFim) {
 		return new ResponseEntity<List<EventoResponse>>(
 				eventoBinder.modelToListResponse(
-						eventoService.findEventoByProfissional(id, dataInicio, dataFim)),
+						eventoService.findEventoByDentista(id, dataInicio, dataFim)),
 				HttpStatus.OK);
 	}
 

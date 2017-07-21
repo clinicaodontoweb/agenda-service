@@ -38,7 +38,7 @@ public class EventoService {
 		eventoRepository.delete(id);
 	}
 
-	public List<Evento> findEventoByProfissional(Long idProfissional, Long dataInicio, Long dataFim) {
+	public List<Evento> findEventoByDentista(Long idDentista, Long dataInicio, Long dataFim) {
 		if(dataInicio == null){
 			dataInicio = DateUtil.getDataInicial((new Date()).getTime());
 		}
@@ -47,7 +47,7 @@ public class EventoService {
 			dataFim = DateUtil.getDataInicial((new Date()).getTime());
 		}
 		
-		return eventoRepository.findEventoByProfissional(dentistaRepository.findOne(idProfissional), new Date(dataInicio),
+		return eventoRepository.findEventoByDentista(dentistaRepository.findOne(idDentista), new Date(dataInicio),
 				new Date(dataFim));
 	}
 }
