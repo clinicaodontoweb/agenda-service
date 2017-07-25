@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Recepcionista;
 import com.odontoweb.microservice.impl.repository.RecepcionistaRepository;
+import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
 
 public class RecepcionistaService {
 
 	private RecepcionistaRepository recepcionistaRepository;
+	
+	@Autowired
+	private UsuarioClinicaRepository usuarioClinicaRepository;
 
 	@Autowired
 	public RecepcionistaService(RecepcionistaRepository recepcionistaRepository) {
@@ -30,6 +34,10 @@ public class RecepcionistaService {
 
 	public Recepcionista findById(Long idRecepcionista) {
 		return recepcionistaRepository.findOne(idRecepcionista);
+	}
+	
+	public Recepcionista findByUsuarioClinica(String email){
+		return recepcionistaRepository.findByUsuarioClinica(usuarioClinicaRepository.findByEmail(email));
 	}
 
 }

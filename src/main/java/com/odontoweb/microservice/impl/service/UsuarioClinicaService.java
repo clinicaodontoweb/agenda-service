@@ -31,5 +31,9 @@ public class UsuarioClinicaService {
 	public UsuarioClinica findById(Long idUsuarioClinica) {
 		return usuarioClinicaRepository.findOne(idUsuarioClinica);
 	}
+	
+	public UsuarioClinica findUsuarioClinica(String email){
+		return usuarioClinicaRepository.findByEmail(email);
+	}
 
 }
