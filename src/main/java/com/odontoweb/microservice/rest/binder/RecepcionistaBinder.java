@@ -18,14 +18,15 @@ public class RecepcionistaBinder implements Serializable {
 				new UsuarioClinicaBinder().requestToModel(recepcionistaRequest.getUsuarioClinicaRequest()),
 				recepcionistaRequest.getNome(),
 				new ContatoBinder().requestToModel(recepcionistaRequest.getContatoRequest()),
-				recepcionistaRequest.getGenero(),
+				new EnumerationBinder().requestToEnum(recepcionistaRequest.getGeneroRequest()),
 				new DentistaBinder().requestToListModel(recepcionistaRequest.getDentistasRequest()));
 	}
 
 	public RecepcionistaResponse modelToResponse(Recepcionista recepcionista) {
 		return new RecepcionistaResponse(recepcionista.getIdRecepcionista(),
 				new UsuarioClinicaBinder().modelToResponse(recepcionista.getUsuarioClinica()), recepcionista.getNome(),
-				new ContatoBinder().modelToResponse(recepcionista.getContato()), recepcionista.getGenero(),
+				new ContatoBinder().modelToResponse(recepcionista.getContato()),
+				new EnumerationBinder().enumToResponse(recepcionista.getGenero()),
 				new DentistaBinder().modelToListResponse(recepcionista.getDentistas()));
 	}
 

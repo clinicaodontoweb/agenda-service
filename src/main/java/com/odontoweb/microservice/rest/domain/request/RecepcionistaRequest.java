@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import com.odontoweb.microservice.impl.model.enums.Genero;
-
 public class RecepcionistaRequest implements Serializable {
 
 	private static final long serialVersionUID = -6226294694573759482L;
@@ -22,7 +20,7 @@ public class RecepcionistaRequest implements Serializable {
 	private ContatoRequest contatoRequest;
 
 	@NotNull(message = "Gênero é obrigatório!")
-	private Genero genero;
+	private GeneroRequest generoRequest;
 
 	private List<DentistaRequest> dentistasRequest;
 
@@ -58,12 +56,12 @@ public class RecepcionistaRequest implements Serializable {
 		this.contatoRequest = contatoRequest;
 	}
 
-	public Genero getGenero() {
-		return genero;
+	public GeneroRequest getGeneroRequest() {
+		return generoRequest;
 	}
 
-	public void setGenero(Genero genero) {
-		this.genero = genero;
+	public void setGeneroRequest(GeneroRequest generoRequest) {
+		this.generoRequest = generoRequest;
 	}
 
 	public List<DentistaRequest> getDentistasRequest() {

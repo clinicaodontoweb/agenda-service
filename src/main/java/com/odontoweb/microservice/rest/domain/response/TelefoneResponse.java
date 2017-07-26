@@ -2,8 +2,6 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.enums.TipoTelefone;
-
 public class TelefoneResponse implements Serializable {
 
 	private static final long serialVersionUID = 1502274284284683154L;
@@ -11,16 +9,16 @@ public class TelefoneResponse implements Serializable {
 	private Long idTelefone;
 	private Integer numero;
 	private Integer ddd;
-	private TipoTelefone tipoTelefone;
+	private TipoTelefoneResponse tipoTelefoneResponse;
 
 	public TelefoneResponse() {
 	}
 
-	public TelefoneResponse(Long idTelefone, Integer numero, Integer ddd, TipoTelefone tipoTelefone) {
+	public TelefoneResponse(Long idTelefone, Integer numero, Integer ddd, TipoTelefoneResponse tipoTelefoneResponse) {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
-		this.tipoTelefone = tipoTelefone;
+		this.tipoTelefoneResponse = tipoTelefoneResponse;
 	}
 
 	public Long getIdTelefone() {
@@ -47,12 +45,12 @@ public class TelefoneResponse implements Serializable {
 		this.ddd = ddd;
 	}
 
-	public TipoTelefone getTipoTelefone() {
-		return tipoTelefone;
+	public TipoTelefoneResponse getTipoTelefoneResponse() {
+		return tipoTelefoneResponse;
 	}
 
-	public void setTipoTelefone(TipoTelefone tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
+	public void setTipoTelefoneResponse(TipoTelefoneResponse tipoTelefoneResponse) {
+		this.tipoTelefoneResponse = tipoTelefoneResponse;
 	}
 
 }

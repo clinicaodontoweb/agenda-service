@@ -48,7 +48,7 @@ public class Evento implements Serializable {
 	@JoinColumn(name = "FK_PACIENTE")
 	private Paciente paciente;
 
-	@Column(name = "STR_OBSERVACAO")
+	@Column(name = "STR_OBSERVACAO", length = 4096)
 	private String observacao;
 
 	@Column(name = "DTA_INICIO")

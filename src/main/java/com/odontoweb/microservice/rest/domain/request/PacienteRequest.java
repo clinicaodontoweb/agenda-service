@@ -6,9 +6,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
-import com.odontoweb.microservice.impl.model.enums.Genero;
-
 public class PacienteRequest implements Serializable {
 
 	private static final long serialVersionUID = -6227648176297815452L;
@@ -24,12 +21,12 @@ public class PacienteRequest implements Serializable {
 	private String nome;
 
 	@NotNull(message = "Gênero é obrigatório!")
-	private Genero genero;
+	private GeneroRequest generoRequest;
 
 	@NotNull(message = "Data de nascimento é obrigatório!")
 	private Date dataNascimento;
 
-	private EstadoCivil estadoCivil;
+	private EstadoCivilRequest estadoCivilRequest;
 
 	@NotNull(message = "Contato é obrigatório!")
 	private ContatoRequest contatoRequest;
@@ -75,14 +72,6 @@ public class PacienteRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public Genero getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
-
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -91,12 +80,20 @@ public class PacienteRequest implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public EstadoCivil getEstadoCivil() {
-		return estadoCivil;
+	public GeneroRequest getGeneroRequest() {
+		return generoRequest;
 	}
 
-	public void setEstadoCivil(EstadoCivil estadoCivil) {
-		this.estadoCivil = estadoCivil;
+	public void setGeneroRequest(GeneroRequest generoRequest) {
+		this.generoRequest = generoRequest;
+	}
+
+	public EstadoCivilRequest getEstadoCivilRequest() {
+		return estadoCivilRequest;
+	}
+
+	public void setEstadoCivilRequest(EstadoCivilRequest estadoCivilRequest) {
+		this.estadoCivilRequest = estadoCivilRequest;
 	}
 
 	public ContatoRequest getContatoRequest() {

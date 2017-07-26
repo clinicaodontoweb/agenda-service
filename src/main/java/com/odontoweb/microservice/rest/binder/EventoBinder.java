@@ -15,7 +15,8 @@ public class EventoBinder implements Serializable {
 	private static final long serialVersionUID = -7767265161514792685L;
 
 	public Evento requestToModel(EventoRequest eventoRequest) {
-		return new Evento(eventoRequest.getIdEvento(), eventoRequest.getEncaixe(), eventoRequest.getStatusEvento(),
+		return new Evento(eventoRequest.getIdEvento(), eventoRequest.getEncaixe(),
+				new EnumerationBinder().requestToEnum(eventoRequest.getStatusEventoRequest()),
 				new TipoConsultaBinder().requestToModel(eventoRequest.getTipoConsultaRequest()),
 				new AgendaBinder().requestToModel(eventoRequest.getAgendaRequest()),
 				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()),
@@ -24,7 +25,8 @@ public class EventoBinder implements Serializable {
 	}
 
 	public EventoResponse modelToResponse(Evento evento) {
-		return new EventoResponse(evento.getIdEvento(), evento.getEncaixe(), evento.getStatusEvento(),
+		return new EventoResponse(evento.getIdEvento(), evento.getEncaixe(),
+				new EnumerationBinder().enumToResponse(evento.getStatusEvento()),
 				new TipoConsultaBinder().modelToResponse(evento.getTipoConsulta()),
 				new AgendaBinder().modelToResponse(evento.getAgenda()),
 				new PacienteBinder().modelToResponse(evento.getPaciente()), evento.getObservacao(),

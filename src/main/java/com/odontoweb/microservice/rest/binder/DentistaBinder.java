@@ -14,18 +14,19 @@ public class DentistaBinder implements Serializable {
 	private static final long serialVersionUID = -2268580869115475558L;
 
 	public Dentista requestToModel(DentistaRequest dentistaRequest) {
-		return new Dentista(dentistaRequest.getIdDentista(),
-				new UsuarioClinicaBinder().requestToModel(dentistaRequest.getUsuarioClinicaRequest()),
-				dentistaRequest.getNome(), new ContatoBinder().requestToModel(dentistaRequest.getContatoRequest()),
-				dentistaRequest.getGenero(), dentistaRequest.getConselho(), dentistaRequest.getRegistro(),
+		return new Dentista(dentistaRequest.getIdDentista(), dentistaRequest.getNome(),
+				new ContatoBinder().requestToModel(dentistaRequest.getContatoRequest()),
+				new EnumerationBinder().requestToEnum(dentistaRequest.getGeneroRequest()),
+				dentistaRequest.getConselho(), dentistaRequest.getRegistro(),
 				dentistaRequest.getCodigoBrasileiroOcupacao());
 	}
 
 	public DentistaResponse modelToResponse(Dentista dentista) {
 		return new DentistaResponse(dentista.getIdDentista(),
 				new UsuarioClinicaBinder().modelToResponse(dentista.getUsuarioClinica()), dentista.getNome(),
-				new ContatoBinder().modelToResponse(dentista.getContato()), dentista.getGenero(),
-				dentista.getConselho(), dentista.getRegistro(), dentista.getCodigoBrasileiroOcupacao());
+				new ContatoBinder().modelToResponse(dentista.getContato()),
+				new EnumerationBinder().enumToResponse(dentista.getGenero()), dentista.getConselho(),
+				dentista.getRegistro(), dentista.getCodigoBrasileiroOcupacao());
 	}
 
 	public List<DentistaResponse> modelToListResponse(List<Dentista> dentistas) {

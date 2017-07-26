@@ -55,10 +55,9 @@ public class Dentista implements Serializable {
 	public Dentista() {
 	}
 
-	public Dentista(Long idDentista, UsuarioClinica usuarioClinica, String nome, Contato contato, Genero genero,
+	public Dentista(Long idDentista, String nome, Contato contato, Genero genero,
 			String conselho, String registro, String codigoBrasileiroOcupacao) {
 		this.idDentista = idDentista;
-		this.usuarioClinica = usuarioClinica;
 		this.nome = nome;
 		this.contato = contato;
 		this.genero = genero;

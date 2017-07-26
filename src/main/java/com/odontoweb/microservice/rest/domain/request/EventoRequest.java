@@ -4,15 +4,13 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-import com.odontoweb.microservice.impl.model.enums.StatusEvento;
-
 public class EventoRequest implements Serializable {
 
 	private static final long serialVersionUID = -2690624974662872216L;
 
 	private Long idEvento;
 	private Boolean encaixe;
-	private StatusEvento statusEvento;
+	private StatusEventoRequest statusEventoRequest;
 	private AgendaRequest agendaRequest;
 	private Long dataInicio;
 	private Long dataFim;
@@ -41,12 +39,12 @@ public class EventoRequest implements Serializable {
 		this.encaixe = encaixe;
 	}
 
-	public StatusEvento getStatusEvento() {
-		return statusEvento;
+	public StatusEventoRequest getStatusEventoRequest() {
+		return statusEventoRequest;
 	}
 
-	public void setStatusEvento(StatusEvento statusEvento) {
-		this.statusEvento = statusEvento;
+	public void setStatusEventoRequest(StatusEventoRequest statusEventoRequest) {
+		this.statusEventoRequest = statusEventoRequest;
 	}
 
 	public String getObservacao() {

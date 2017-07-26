@@ -39,6 +39,11 @@ public class Contato implements Serializable {
 		this.telefones = telefones; 
 		this.email = email;
 	}
+	
+	public Contato(List<Telefone> telefones, String email) {
+		this.telefones = telefones; 
+		this.email = email;
+	}
  
 	public Long getIdContato() {
 		return idContato;

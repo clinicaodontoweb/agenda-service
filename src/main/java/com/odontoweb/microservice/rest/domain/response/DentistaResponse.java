@@ -2,8 +2,6 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.enums.Genero;
-
 public class DentistaResponse implements Serializable {
 
 	private static final long serialVersionUID = -1205176944035282783L;
@@ -12,7 +10,7 @@ public class DentistaResponse implements Serializable {
 	private UsuarioClinicaResponse usuarioClinicaResponse;
 	private String nome;
 	private ContatoResponse contatoResponse;
-	private Genero genero;
+	private GeneroResponse generoResponse;
 	private String conselho;
 	private String registro;
 	private String codigoBrasileiroOcupacao;
@@ -21,13 +19,13 @@ public class DentistaResponse implements Serializable {
 	}
 
 	public DentistaResponse(Long idDentista, UsuarioClinicaResponse usuarioClinicaResponse, String nome,
-			ContatoResponse contatoResponse, Genero genero, String conselho, String registro,
+			ContatoResponse contatoResponse, GeneroResponse generoResponse, String conselho, String registro,
 			String codigoBrasileiroOcupacao) {
 		this.idDentista = idDentista;
 		this.usuarioClinicaResponse = usuarioClinicaResponse;
 		this.nome = nome;
 		this.contatoResponse = contatoResponse;
-		this.genero = genero;
+		this.generoResponse = generoResponse;
 		this.conselho = conselho;
 		this.registro = registro;
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
@@ -65,12 +63,12 @@ public class DentistaResponse implements Serializable {
 		this.contatoResponse = contatoResponse;
 	}
 
-	public Genero getGenero() {
-		return genero;
+	public GeneroResponse getGeneroResponse() {
+		return generoResponse;
 	}
 
-	public void setGenero(Genero genero) {
-		this.genero = genero;
+	public void setGeneroResponse(GeneroResponse generoResponse) {
+		this.generoResponse = generoResponse;
 	}
 
 	public String getConselho() {

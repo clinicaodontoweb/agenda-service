@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-import com.odontoweb.microservice.impl.model.enums.TipoTelefone;
-
 public class TelefoneRequest implements Serializable {
 
 	private static final long serialVersionUID = -8017936722048406458L;
@@ -19,16 +17,16 @@ public class TelefoneRequest implements Serializable {
 	private Integer ddd;
 
 	@NotNull(message = "Tipo de Telefone é obrigatório")
-	private TipoTelefone tipoTelefone;
-	
-	
-	public TelefoneRequest() {}
-	
-	public TelefoneRequest(Long idTelefone, Integer numero, Integer ddd, TipoTelefone tipoTelefone) {
+	private TipoTelefoneRequest tipoTelefoneRequest;
+
+	public TelefoneRequest() {
+	}
+
+	public TelefoneRequest(Long idTelefone, Integer numero, Integer ddd, TipoTelefoneRequest tipoTelefoneRequest) {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
-		this.tipoTelefone = tipoTelefone;
+		this.tipoTelefoneRequest = tipoTelefoneRequest;
 	}
 
 	public Long getIdTelefone() {
@@ -55,12 +53,12 @@ public class TelefoneRequest implements Serializable {
 		this.ddd = ddd;
 	}
 
-	public TipoTelefone getTipoTelefone() {
-		return tipoTelefone;
+	public TipoTelefoneRequest getTipoTelefoneRequest() {
+		return tipoTelefoneRequest;
 	}
 
-	public void setTipoTelefone(TipoTelefone tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
+	public void setTipoTelefoneRequest(TipoTelefoneRequest tipoTelefoneRequest) {
+		this.tipoTelefoneRequest = tipoTelefoneRequest;
 	}
 
 }

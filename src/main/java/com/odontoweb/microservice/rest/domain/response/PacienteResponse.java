@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
-import com.odontoweb.microservice.impl.model.enums.Genero;
-
 public class PacienteResponse implements Serializable {
 
 	private static final long serialVersionUID = 1098978359016228966L;
@@ -15,9 +12,9 @@ public class PacienteResponse implements Serializable {
 	private String cpf;
 	private String rg;
 	private String nome;
-	private Genero genero;
+	private GeneroResponse generoResponse;
 	private Date dataNascimento;
-	private EstadoCivil estadoCivil;
+	private EstadoCivilResponse estadoCivilResponse;
 	private ContatoResponse contatoResponse;
 	private EnderecoResponse enderecoResponse;
 	private List<ConvenioResponse> conveniosResponse;
@@ -27,16 +24,17 @@ public class PacienteResponse implements Serializable {
 	public PacienteResponse() {
 	}
 
-	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
-			EstadoCivil estadoCivil, ContatoResponse contatoResponse, EnderecoResponse enderecoResponse,
-			List<ConvenioResponse> conveniosResponse, String profissao, String indicacao) {
+	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, GeneroResponse generoResponse,
+			Date dataNascimento, EstadoCivilResponse estadoCivilResponse, ContatoResponse contatoResponse,
+			EnderecoResponse enderecoResponse, List<ConvenioResponse> conveniosResponse, String profissao,
+			String indicacao) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.nome = nome;
-		this.genero = genero;
+		this.generoResponse = generoResponse;
 		this.dataNascimento = dataNascimento;
-		this.estadoCivil = estadoCivil;
+		this.estadoCivilResponse = estadoCivilResponse;
 		this.contatoResponse = contatoResponse;
 		this.enderecoResponse = enderecoResponse;
 		this.conveniosResponse = conveniosResponse;
@@ -76,14 +74,6 @@ public class PacienteResponse implements Serializable {
 		this.nome = nome;
 	}
 
-	public Genero getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
-
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -92,12 +82,20 @@ public class PacienteResponse implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public EstadoCivil getEstadoCivil() {
-		return estadoCivil;
+	public GeneroResponse getGeneroResponse() {
+		return generoResponse;
 	}
 
-	public void setEstadoCivil(EstadoCivil estadoCivil) {
-		this.estadoCivil = estadoCivil;
+	public void setGeneroResponse(GeneroResponse generoResponse) {
+		this.generoResponse = generoResponse;
+	}
+
+	public EstadoCivilResponse getEstadoCivilResponse() {
+		return estadoCivilResponse;
+	}
+
+	public void setEstadoCivilResponse(EstadoCivilResponse estadoCivilResponse) {
+		this.estadoCivilResponse = estadoCivilResponse;
 	}
 
 	public ContatoResponse getContatoResponse() {

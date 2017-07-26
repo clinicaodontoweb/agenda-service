@@ -20,7 +20,7 @@ public class DentistaService {
 		this.dentistaRepository = profissionalRespository;
 	}
 
-	public boolean save(Dentista dentista) {
+	public boolean save(Dentista dentista, String email) {
 		return dentistaRepository.save(dentista) != null;
 	}
 

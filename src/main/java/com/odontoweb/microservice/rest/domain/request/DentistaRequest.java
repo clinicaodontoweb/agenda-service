@@ -4,15 +4,11 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-import com.odontoweb.microservice.impl.model.enums.Genero;
-
 public class DentistaRequest implements Serializable {
 
 	private static final long serialVersionUID = -5217785988080284220L;
 
 	private Long idDentista;
-
-	private UsuarioClinicaRequest usuarioClinicaRequest;
 
 	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
@@ -21,7 +17,7 @@ public class DentistaRequest implements Serializable {
 	private ContatoRequest contatoRequest;
 
 	@NotNull(message = "Gênero é obrigatório!")
-	private Genero genero;
+	private GeneroRequest generoRequest;
 
 	@NotNull(message = "Conselho é obrigatório!")
 	private String conselho;
@@ -37,14 +33,6 @@ public class DentistaRequest implements Serializable {
 
 	public void setIdDentista(Long idDentista) {
 		this.idDentista = idDentista;
-	}
-
-	public UsuarioClinicaRequest getUsuarioClinicaRequest() {
-		return usuarioClinicaRequest;
-	}
-
-	public void setUsuarioClinicaRequest(UsuarioClinicaRequest usuarioClinicaRequest) {
-		this.usuarioClinicaRequest = usuarioClinicaRequest;
 	}
 
 	public String getNome() {
@@ -63,12 +51,12 @@ public class DentistaRequest implements Serializable {
 		this.contatoRequest = contatoRequest;
 	}
 
-	public Genero getGenero() {
-		return genero;
+	public GeneroRequest getGeneroRequest() {
+		return generoRequest;
 	}
 
-	public void setGenero(Genero genero) {
-		this.genero = genero;
+	public void setGeneroRequest(GeneroRequest generoRequest) {
+		this.generoRequest = generoRequest;
 	}
 
 	public String getConselho() {

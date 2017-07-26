@@ -15,12 +15,12 @@ public class TelefoneBinder implements Serializable {
 
 	public Telefone requestToModel(TelefoneRequest telefoneRequest) {
 		return new Telefone(telefoneRequest.getIdTelefone(), telefoneRequest.getNumero(), telefoneRequest.getDdd(),
-				telefoneRequest.getTipoTelefone());
+				new EnumerationBinder().requestToEnum(telefoneRequest.getTipoTelefoneRequest()));
 	}
 
 	public TelefoneResponse modelToResponse(Telefone telefone) {
 		return new TelefoneResponse(telefone.getIdTelefone(), telefone.getNumero(), telefone.getDdd(),
-				telefone.getTipoTelefone());
+				new EnumerationBinder().enumToResponse(telefone.getTipoTelefone()));
 	}
 
 	public List<TelefoneResponse> modelToListResponse(List<Telefone> telefones) {

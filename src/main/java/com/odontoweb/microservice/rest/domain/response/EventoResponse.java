@@ -2,15 +2,13 @@ package com.odontoweb.microservice.rest.domain.response;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.enums.StatusEvento;
-
 public class EventoResponse implements Serializable {
 
 	private static final long serialVersionUID = 5941051393813560581L;
 
 	private Long idEvento;
 	private Boolean encaixe;
-	private StatusEvento statusEvento;
+	private StatusEventoResponse statusEventoResponse;
 	private TipoConsultaResponse tipoConsultaResponse;
 	private AgendaResponse agendaResponse;
 	private PacienteResponse pacienteResponse;
@@ -21,12 +19,12 @@ public class EventoResponse implements Serializable {
 	public EventoResponse() {
 	}
 
-	public EventoResponse(Long idEvento, Boolean encaixe, StatusEvento statusEvento,
+	public EventoResponse(Long idEvento, Boolean encaixe, StatusEventoResponse statusEventoResponse,
 			TipoConsultaResponse tipoConsultaResponse, AgendaResponse agendaResponse, PacienteResponse pacienteResponse,
 			String observacao, Long dataInicio, Long dataFim) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
-		this.statusEvento = statusEvento;
+		this.statusEventoResponse = statusEventoResponse;
 		this.tipoConsultaResponse = tipoConsultaResponse;
 		this.agendaResponse = agendaResponse;
 		this.pacienteResponse = pacienteResponse;
@@ -52,12 +50,12 @@ public class EventoResponse implements Serializable {
 		this.encaixe = encaixe;
 	}
 
-	public StatusEvento getStatusEvento() {
-		return statusEvento;
+	public StatusEventoResponse getStatusEventoResponse() {
+		return statusEventoResponse;
 	}
 
-	public void setStatusEvento(StatusEvento statusEvento) {
-		this.statusEvento = statusEvento;
+	public void setStatusEventoResponse(StatusEventoResponse statusEventoResponse) {
+		this.statusEventoResponse = statusEventoResponse;
 	}
 
 	public String getObservacao() {

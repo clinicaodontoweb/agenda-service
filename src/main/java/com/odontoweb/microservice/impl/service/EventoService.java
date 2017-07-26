@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
+import com.odontoweb.microservice.impl.repository.AgendaRepository;
 import com.odontoweb.microservice.impl.repository.DentistaRepository;
 import com.odontoweb.microservice.rest.util.DateUtil;
 
@@ -14,6 +15,9 @@ public class EventoService {
 
 	@Autowired
 	private EventoRepository eventoRepository;
+	
+	@Autowired
+	private AgendaRepository agendaRepository;
 
 	@Autowired
 	private DentistaRepository dentistaRepository;
@@ -26,7 +30,8 @@ public class EventoService {
 		return eventoRepository.findAll();
 	}
 
-	public boolean save(Evento evento) {
+	public boolean save(Evento evento, Long idEvento) {
+		evento.setAgenda(agendaRepository.findOne(idEvento));
 		return eventoRepository.save(evento) != null;
 	}
 

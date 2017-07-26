@@ -15,8 +15,9 @@ public class PacienteBinder implements Serializable {
 
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {
 		return new Paciente(pacienteRequest.getIdPaciente(), pacienteRequest.getCpf(), pacienteRequest.getRg(),
-				pacienteRequest.getNome(), pacienteRequest.getGenero(), pacienteRequest.getDataNascimento(),
-				pacienteRequest.getEstadoCivil(),
+				pacienteRequest.getNome(), new EnumerationBinder().requestToEnum(pacienteRequest.getGeneroRequest()),
+				pacienteRequest.getDataNascimento(),
+				new EnumerationBinder().requestToEnum(pacienteRequest.getEstadoCivilRequest()),
 				new ContatoBinder().requestToModel(pacienteRequest.getContatoRequest()),
 				new EnderecoBinder().requestToModel(pacienteRequest.getEnderecoRequest()),
 				new ConvenioBinder().requestToListModel(pacienteRequest.getConveniosRequest()),
@@ -25,7 +26,8 @@ public class PacienteBinder implements Serializable {
 
 	public PacienteResponse modelToResponse(Paciente paciente) {
 		return new PacienteResponse(paciente.getIdPaciente(), paciente.getCpf(), paciente.getRg(), paciente.getNome(),
-				paciente.getGenero(), paciente.getDataNascimento(), paciente.getEstadoCivil(),
+				new EnumerationBinder().enumToResponse(paciente.getGenero()), paciente.getDataNascimento(),
+				new EnumerationBinder().enumToResponse(paciente.getEstadoCivil()),
 				new ContatoBinder().modelToResponse(paciente.getContato()),
 				new EnderecoBinder().modelToResponse(paciente.getEndereco()),
 				new ConvenioBinder().modelToListResponse(paciente.getConvenios()), paciente.getProfissao(),

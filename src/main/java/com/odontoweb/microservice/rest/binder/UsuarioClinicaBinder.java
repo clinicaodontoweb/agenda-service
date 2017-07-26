@@ -15,12 +15,12 @@ public class UsuarioClinicaBinder implements Serializable {
 
 	public UsuarioClinica requestToModel(UsuarioClinicaRequest usuarioClinicaRequest) {
 		return new UsuarioClinica(usuarioClinicaRequest.getIdUsuarioClinica(), usuarioClinicaRequest.getEmail(),
-				usuarioClinicaRequest.getTipoProfissional());
+				new EnumerationBinder().requestToEnum(usuarioClinicaRequest.getTipoProfissionalRequest()));
 	}
 
 	public UsuarioClinicaResponse modelToResponse(UsuarioClinica usuarioClinica) {
 		return new UsuarioClinicaResponse(usuarioClinica.getIdUsuarioClinica(), usuarioClinica.getEmail(),
-				usuarioClinica.getTipoProfissional());
+				new EnumerationBinder().enumToResponse(usuarioClinica.getTipoProfissional()));
 	}
 
 	public List<UsuarioClinicaResponse> modelToListResponse(List<UsuarioClinica> usuariosClinica) {

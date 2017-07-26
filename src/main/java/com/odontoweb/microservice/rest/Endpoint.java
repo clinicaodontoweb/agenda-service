@@ -162,15 +162,15 @@ public class Endpoint {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/evento", method = RequestMethod.POST)
-	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest) {
-		eventoService.save(eventoBinder.requestToModel(eventoRequest));
+	@RequestMapping(value = "/evento/{idAgenda}", method = RequestMethod.POST)
+	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest, @PathVariable("idAgenda") Long idAgenda) {
+		eventoService.save(eventoBinder.requestToModel(eventoRequest), idAgenda);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/evento", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateEvento(@RequestBody @Valid EventoRequest eventoRequest) {
-		eventoService.save(eventoBinder.requestToModel(eventoRequest));
+	@RequestMapping(value = "/evento/{idAgenda}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateEvento(@RequestBody @Valid EventoRequest eventoRequest, @PathVariable("idAgenda") Long idAgenda) {
+		eventoService.save(eventoBinder.requestToModel(eventoRequest), idAgenda);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -259,26 +259,30 @@ public class Endpoint {
 	}
 
 	@RequestMapping(value = "/dentista", method = RequestMethod.POST)
-	public ResponseEntity<?> saveDentista(@RequestBody @Valid DentistaRequest dentistaRequest) {
-		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest));
+	public ResponseEntity<?> saveDentista(@RequestBody @Valid DentistaRequest dentistaRequest, Authentication authentication) {
+		User user = (User)authentication.getPrincipal();
+		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest), user.getUsername());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/dentista", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateDentista(@RequestBody @Valid DentistaRequest dentistaRequest) {
-		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest));
+	public ResponseEntity<?> updateDentista(@RequestBody @Valid DentistaRequest dentistaRequest, Authentication authentication) {
+		User user = (User)authentication.getPrincipal();
+		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest), user.getUsername());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/recepcionista", method = RequestMethod.POST)
-	public ResponseEntity<?> saveRecepcionista(@RequestBody @Valid RecepcionistaRequest recepcionistaRequest) {
-		recepcionistaService.save(recepcionistaBinder.requestToModel(recepcionistaRequest));
+	public ResponseEntity<?> saveRecepcionista(@RequestBody @Valid RecepcionistaRequest recepcionistaRequest, Authentication authentication) {
+		User user = (User)authentication.getPrincipal();
+		recepcionistaService.save(recepcionistaBinder.requestToModel(recepcionistaRequest), user.getUsername());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/recepcionista", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateRecepcionista(@RequestBody @Valid RecepcionistaRequest recepcionistaRequest) {
-		recepcionistaService.save(recepcionistaBinder.requestToModel(recepcionistaRequest));
+	public ResponseEntity<?> updateRecepcionista(@RequestBody @Valid RecepcionistaRequest recepcionistaRequest, Authentication authentication) {
+		User user = (User)authentication.getPrincipal();
+		recepcionistaService.save(recepcionistaBinder.requestToModel(recepcionistaRequest), user.getUsername());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

@@ -2,20 +2,18 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-import com.odontoweb.microservice.impl.model.enums.TipoProfissional;
-
 public class UsuarioClinicaRequest implements Serializable {
 
 	private static final long serialVersionUID = 5916436510559374401L;
 
 	private Long idUsuarioClinica;
 	private String email;
-	private TipoProfissional tipoProfissional;
+	private TipoProfissionalRequest tipoProfissionalRequest;
 
-	public UsuarioClinicaRequest(Long idUsuarioClinica, String email, TipoProfissional tipoProfissional) {
+	public UsuarioClinicaRequest(Long idUsuarioClinica, String email, TipoProfissionalRequest tipoProfissionalRequest) {
 		this.idUsuarioClinica = idUsuarioClinica;
 		this.email = email;
-		this.tipoProfissional = tipoProfissional;
+		this.tipoProfissionalRequest = tipoProfissionalRequest;
 	}
 
 	public UsuarioClinicaRequest() {
@@ -37,12 +35,12 @@ public class UsuarioClinicaRequest implements Serializable {
 		this.email = email;
 	}
 
-	public TipoProfissional getTipoProfissional() {
-		return tipoProfissional;
+	public TipoProfissionalRequest getTipoProfissionalRequest() {
+		return tipoProfissionalRequest;
 	}
 
-	public void setTipoProfissional(TipoProfissional tipoProfissional) {
-		this.tipoProfissional = tipoProfissional;
+	public void setTipoProfissionalRequest(TipoProfissionalRequest tipoProfissionalRequest) {
+		this.tipoProfissionalRequest = tipoProfissionalRequest;
 	}
 
 }
