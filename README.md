@@ -178,4 +178,74 @@ http://localhost:3334/agenda-service/recepcionista <br />
 **Metodo:** DELETE <br />
 Remove a entidade Recepcionista <br />
 **Request:** <br/>
-http://localhost:3334/agenda-service/recepcionista/16 <br />
+http://localhost:3334/agenda-service/recepcionista/{id} <br />
+
+**Metodo:** GET <br />
+Busca o objeto Recepcionista pelo token de autenticação <br />
+**Request:** <br/>
+http://localhost:3334/agenda-service/profissional/recepcionista <br />
+**Exemplos GET:** Success <br />
+**Response Body:**
+```json
+{
+    "idRecepcionista": 1,
+    "usuarioClinicaResponse": {
+        "idUsuarioClinica": 1,
+        "email": "recepcionista@gmail.com",
+        "tipoProfissionalResponse": {
+            "tipoProfissional": "Recepcionista"
+        }
+    },
+    "nome": "Recepcionista",
+    "contatoResponse": {
+        "idContato": 6,
+        "telefones": [
+            {
+                "idTelefone": 7,
+                "numero": 975544633,
+                "ddd": 21,
+                "tipoTelefoneResponse": {
+                    "tipoTelefone": "Celular"
+                }
+            }
+        ],
+        "email": "nena.moreira@example.com"
+    },
+    "generoResponse": {
+        "genero": "Feminino"
+    },
+    "dentistasResponse": [
+        {
+            "idDentista": 1,
+            "usuarioClinicaResponse": {
+                "idUsuarioClinica": 2,
+                "email": "aline@gmail.com",
+                "tipoProfissionalResponse": {
+                    "tipoProfissional": "Dentista"
+                }
+            },
+            "nome": "ALINE CASTRO E SOUZA",
+            "contatoResponse": {
+                "idContato": 10,
+                "telefones": [
+                    {
+                        "idTelefone": 11,
+                        "numero": 996654321,
+                        "ddd": 51,
+                        "tipoTelefoneResponse": {
+                            "tipoTelefone": "Residencial"
+                        }
+                    }
+                ],
+                "email": "novaes@example.com"
+            },
+            "generoResponse": {
+                "genero": "Feminino"
+            },
+            "conselho": "CRO/SC",
+            "registro": "1557",
+            "codigoBrasileiroOcupacao": "132"
+        }
+    ]
+}
+```
