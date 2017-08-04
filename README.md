@@ -33,7 +33,21 @@ http://localhost:3334/agenda-service/recepcionista <br />
 **Exemplos POST:** Success <br />
 **Request Body:**
 ```json
-{"nome":"ANA LUIZA","contatoRequest":{"telefones":[{"numero":34545543,"ddd":54,"tipoTelefone": "CELULAR"}],"email":"recepcionista.teste@gmail.com"},"genero":"FEMININO","dentistas":[2]}
+{
+  "nome":"ANA LUIZA",
+  "contatoRequest":{
+    "telefones":[
+      {
+        "numero":34545543,
+        "ddd":54,
+        "tipoTelefone": "CELULAR"
+      }
+    ],
+    "email":"recepcionista.teste@gmail.com"
+  },
+  "genero":"FEMININO",
+  "dentistas":[2]
+}
 ```
 
 **Metodo:** PUT <br />
@@ -44,22 +58,22 @@ http://localhost:3334/agenda-service/recepcionista <br />
 **Request Body:**
 ```json
 {
-	"idRecepcionista":14,
-	"nome":"ANA LUIZA COSTA",
-	"contatoRequest":{
-		"idContato":24,
-		"telefones":[
-			{
-				"idTelefone":27,
-				"numero":1111111111,
-				"ddd":51,
-				"tipoTelefone": "CELULAR"
-			}
-		],
-		"email":"recepcionista.teste@gmail.com"
-	},
-	"genero":"FEMININO",
-	"dentistas":[2]
+  "idRecepcionista":14,
+  "nome":"ANA LUIZA COSTA",
+  "contatoRequest":{
+    "idContato":24,
+	"telefones":[
+	  {
+	    "idTelefone":27,
+		"numero":1111111111,
+		"ddd":51,
+		"tipoTelefone": "CELULAR"
+      }
+	],
+	"email":"recepcionista.teste@gmail.com"
+  },
+  "genero":"FEMININO",
+  "dentistas":[2]
 }
 ```
 
