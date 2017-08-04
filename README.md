@@ -1,18 +1,18 @@
 # AGENDA-SERVICE
 
-Projeto de exemplo pr� configurado
+Projeto de exemplo pré configurado
 
-### Pr�-Requisitos
+### Pré-Requisitos
 
 Compilar e executar o projeto **https://github.com/clinicaodontoweb/arquitetura**
 
-### Instala��o
+### Instalação
 
 Para compilar o projeto rode o seguinte comando:
 
 `gradle clean build`
 
-Para iniciar o servi�o rode o seguinte comando na raiz do projeto:
+Para iniciar o serviço rode o seguinte comando na raiz do projeto:
 
 `java -jar build\libs\sample-service-1.x.x.jar`
 
