@@ -76,6 +76,104 @@ http://localhost:3334/agenda-service/recepcionista <br />
   "dentistas":[2]
 }
 ```
+**Response Body:**
+```json
+[
+	{
+		"idRecepcionista": 1,
+		"usuarioClinicaResponse": {
+			"idUsuarioClinica": 1,
+			"email": "recepcionista@gmail.com",
+			"tipoProfissionalResponse": {
+				"tipoProfissional": "Recepcionista"
+			}
+		},
+		"nome": "Recepcionista",
+		"contatoResponse": {
+			"idContato": 6,
+			"telefones": [
+				{
+					"idTelefone": 7,
+					"numero": 975544633,
+					"ddd": 21,
+					"tipoTelefoneResponse": {
+						"tipoTelefone": "Celular"
+					}
+				}
+			],
+			"email": "nena.moreira@example.com"
+		},
+		"generoResponse": {
+			"genero": "Feminino"
+		},
+		"dentistasResponse": [
+			{
+				"idDentista": 1,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 2,
+					"email": "aline@gmail.com",
+					"tipoProfissionalResponse": {
+						"tipoProfissional": "Dentista"
+					}
+				},
+				"nome": "ALINE CASTRO E SOUZA",
+				"contatoResponse": {
+					"idContato": 10,
+					"telefones": [
+						{
+							"idTelefone": 11,
+							"numero": 996654321,
+							"ddd": 51,
+							"tipoTelefoneResponse": {
+								"tipoTelefone": "Residencial"
+							}
+						}
+					],
+					"email": "novaes@example.com"
+				},
+				"generoResponse": {
+					"genero": "Feminino"
+				},
+				"conselho": "CRO/SC",
+				"registro": "1557",
+				"codigoBrasileiroOcupacao": "132"
+			},
+			{
+				"idDentista": 2,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 3,
+					"email": "livia@gmail.com",
+					"tipoProfissionalResponse": {
+						"tipoProfissional": "Dentista"
+					}
+				},
+				"nome": "LIVIA DOS SANTOS",
+				"contatoResponse": {
+					"idContato": 7,
+					"telefones": [
+						{
+							"idTelefone": 8,
+							"numero": 915459800,
+							"ddd": 61,
+							"tipoTelefoneResponse": {
+								"tipoTelefone": "Celular"
+							}
+						}
+					],
+					"email": "herculano.dacosta@example.com"
+				},
+				"generoResponse": {
+					"genero": "Feminino"
+				},
+				"conselho": "CRO/SC",
+				"registro": "2334",
+				"codigoBrasileiroOcupacao": "132"
+			}
+		]
+	}
+]
+```
+
 
 **Metodo:** DELETE <br />
 Remove a entidade Recepcionista <br />
