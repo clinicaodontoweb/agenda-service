@@ -1,7 +1,5 @@
 # AGENDA-SERVICE
 
-Projeto de exemplo pré configurado
-
 ### Pré-Requisitos
 
 Compilar e executar o projeto **https://github.com/clinicaodontoweb/arquitetura**
@@ -14,15 +12,22 @@ Para compilar o projeto rode o seguinte comando:
 
 Para iniciar o serviço rode o seguinte comando na raiz do projeto:
 
-`java -jar build\libs\sample-service-1.x.x.jar`
+`java -jar build\libs\agenda-service-1.x.x.jar`
 
 Para iniciar o serviço pela IDE apenas rode a classe **com.odontoweb.microservice.Application.java**
 
 ### Lista de serviços:
 
-#### AGENDA
+#### RECEPCIONISTA
+
+**Metodo:** GET <br />
+####Busca todos os objetos da entidade Recepcionista
+**Request:** <br/>
+http://localhost:3334/agenda-service/recepcionista <br />
+
 
 **Metodo:** POST <br />
+####Insere uma nova entidade Recepcionista
 **Request:** <br/>
 http://localhost:3334/agenda-service/recepcionista <br />
 **Exemplos POST:** Success <br />
@@ -46,6 +51,7 @@ http://localhost:3334/agenda-service/recepcionista <br />
 ```
 
 **Metodo:** PUT <br />
+####Atualiza a entidade Recepcionista
 **Request:** <br/>
 http://localhost:3334/agenda-service/recepcionista <br />
 **Exemplos PUT:** Success <br />
@@ -71,37 +77,7 @@ http://localhost:3334/agenda-service/recepcionista <br />
 }
 ```
 
-
-
-#### Autenticação (POST)
-
-```
-http://localhost:3333/sample-service/auth
-```
-
-**Request**
-
-```
-{
-  "email": "andre@gmail.com",
-  "senha": "123456"
-}
-```
-
---------------------------------------------
-
-
-#### Lista de roles (GET)
-
-```
-http://localhost:3333/sample-service/protected
-```
-
-**Request Header**
-
-`
-X-Auth-Token : {token}
-`
-
---------------------------------------------
-
+**Metodo:** DELETE <br />
+####Remove a entidade Recepcionista
+**Request:** <br/>
+http://localhost:3334/agenda-service/recepcionista/16 <br />
