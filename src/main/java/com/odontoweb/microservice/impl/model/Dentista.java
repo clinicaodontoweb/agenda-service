@@ -29,13 +29,13 @@ public class Dentista implements Serializable {
 	private Long idDentista;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_USUARIO_CLINICA")
+	@JoinColumn(name = "FK_USUARIO_CLINICA", unique = true)
 	private UsuarioClinica usuarioClinica;
 
 	@Column(name = "STR_NOME")
 	private String nome;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 

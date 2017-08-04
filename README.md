@@ -76,6 +76,9 @@ http://localhost:3334/agenda-service/recepcionista <br />
   "dentistas":[2]
 }
 ```
+**Metodo:** GET <br />
+Busca a lista de objeto Recepcionista <br />
+**Request:** <br/>
 **Response Body:**
 ```json
 [
@@ -84,9 +87,7 @@ http://localhost:3334/agenda-service/recepcionista <br />
 		"usuarioClinicaResponse": {
 			"idUsuarioClinica": 1,
 			"email": "recepcionista@gmail.com",
-			"tipoProfissionalResponse": {
-				"tipoProfissional": "Recepcionista"
-			}
+			"tipoProfissional": "RECEPCIONISTA"
 		},
 		"nome": "Recepcionista",
 		"contatoResponse": {
@@ -96,25 +97,19 @@ http://localhost:3334/agenda-service/recepcionista <br />
 					"idTelefone": 7,
 					"numero": 975544633,
 					"ddd": 21,
-					"tipoTelefoneResponse": {
-						"tipoTelefone": "Celular"
-					}
+					"tipoTelefone": "CELULAR"
 				}
 			],
 			"email": "nena.moreira@example.com"
 		},
-		"generoResponse": {
-			"genero": "Feminino"
-		},
+		"genero": "FEMININO",
 		"dentistasResponse": [
 			{
 				"idDentista": 1,
 				"usuarioClinicaResponse": {
 					"idUsuarioClinica": 2,
 					"email": "aline@gmail.com",
-					"tipoProfissionalResponse": {
-						"tipoProfissional": "Dentista"
-					}
+					"tipoProfissional": "DENTISTA"
 				},
 				"nome": "ALINE CASTRO E SOUZA",
 				"contatoResponse": {
@@ -124,16 +119,12 @@ http://localhost:3334/agenda-service/recepcionista <br />
 							"idTelefone": 11,
 							"numero": 996654321,
 							"ddd": 51,
-							"tipoTelefoneResponse": {
-								"tipoTelefone": "Residencial"
-							}
+							"tipoTelefone": "RESIDENCIAL"
 						}
 					],
 					"email": "novaes@example.com"
 				},
-				"generoResponse": {
-					"genero": "Feminino"
-				},
+				"genero": "FEMININO",
 				"conselho": "CRO/SC",
 				"registro": "1557",
 				"codigoBrasileiroOcupacao": "132"
@@ -143,9 +134,7 @@ http://localhost:3334/agenda-service/recepcionista <br />
 				"usuarioClinicaResponse": {
 					"idUsuarioClinica": 3,
 					"email": "livia@gmail.com",
-					"tipoProfissionalResponse": {
-						"tipoProfissional": "Dentista"
-					}
+					"tipoProfissional": "DENTISTA"
 				},
 				"nome": "LIVIA DOS SANTOS",
 				"contatoResponse": {
@@ -155,16 +144,232 @@ http://localhost:3334/agenda-service/recepcionista <br />
 							"idTelefone": 8,
 							"numero": 915459800,
 							"ddd": 61,
-							"tipoTelefoneResponse": {
-								"tipoTelefone": "Celular"
-							}
+							"tipoTelefone": "CELULAR"
 						}
 					],
 					"email": "herculano.dacosta@example.com"
 				},
-				"generoResponse": {
-					"genero": "Feminino"
+				"genero": "FEMININO",
+				"conselho": "CRO/SC",
+				"registro": "2334",
+				"codigoBrasileiroOcupacao": "132"
+			}
+		]
+	},
+	{
+		"idRecepcionista": 10,
+		"usuarioClinicaResponse": {
+			"idUsuarioClinica": 1,
+			"email": "recepcionista@gmail.com",
+			"tipoProfissional": "RECEPCIONISTA"
+		},
+		"nome": "Recepcionista Teste",
+		"contatoResponse": {
+			"idContato": 17,
+			"telefones": [
+				{
+					"idTelefone": 19,
+					"numero": 34545543,
+					"ddd": 54,
+					"tipoTelefone": "CELULAR"
+				}
+			],
+			"email": "recepcionista.teste@gmail.com"
+		},
+		"genero": "FEMININO",
+		"dentistasResponse": []
+	},
+	{
+		"idRecepcionista": 11,
+		"usuarioClinicaResponse": {
+			"idUsuarioClinica": 1,
+			"email": "recepcionista@gmail.com",
+			"tipoProfissional": "RECEPCIONISTA"
+		},
+		"nome": "Recepcionista Teste",
+		"contatoResponse": {
+			"idContato": 18,
+			"telefones": [
+				{
+					"idTelefone": 21,
+					"numero": 34545543,
+					"ddd": 54,
+					"tipoTelefone": "CELULAR"
+				}
+			],
+			"email": "recepcionista.teste@gmail.com"
+		},
+		"genero": "FEMININO",
+		"dentistasResponse": [
+			{
+				"idDentista": 1,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 2,
+					"email": "aline@gmail.com",
+					"tipoProfissional": "DENTISTA"
 				},
+				"nome": "ALINE CASTRO E SOUZA",
+				"contatoResponse": {
+					"idContato": 10,
+					"telefones": [
+						{
+							"idTelefone": 11,
+							"numero": 996654321,
+							"ddd": 51,
+							"tipoTelefone": "RESIDENCIAL"
+						}
+					],
+					"email": "novaes@example.com"
+				},
+				"genero": "FEMININO",
+				"conselho": "CRO/SC",
+				"registro": "1557",
+				"codigoBrasileiroOcupacao": "132"
+			},
+			{
+				"idDentista": 2,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 3,
+					"email": "livia@gmail.com",
+					"tipoProfissional": "DENTISTA"
+				},
+				"nome": "LIVIA DOS SANTOS",
+				"contatoResponse": {
+					"idContato": 7,
+					"telefones": [
+						{
+							"idTelefone": 8,
+							"numero": 915459800,
+							"ddd": 61,
+							"tipoTelefone": "CELULAR"
+						}
+					],
+					"email": "herculano.dacosta@example.com"
+				},
+				"genero": "FEMININO",
+				"conselho": "CRO/SC",
+				"registro": "2334",
+				"codigoBrasileiroOcupacao": "132"
+			}
+		]
+	},
+	{
+		"idRecepcionista": 12,
+		"usuarioClinicaResponse": {
+			"idUsuarioClinica": 1,
+			"email": "recepcionista@gmail.com",
+			"tipoProfissional": "RECEPCIONISTA"
+		},
+		"nome": "Recepcionista Teste",
+		"contatoResponse": {
+			"idContato": 19,
+			"telefones": [
+				{
+					"idTelefone": 22,
+					"numero": 34545543,
+					"ddd": 54,
+					"tipoTelefone": "CELULAR"
+				}
+			],
+			"email": "recepcionista.teste@gmail.com"
+		},
+		"genero": "FEMININO",
+		"dentistasResponse": [
+			{
+				"idDentista": 1,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 2,
+					"email": "aline@gmail.com",
+					"tipoProfissional": "DENTISTA"
+				},
+				"nome": "ALINE CASTRO E SOUZA",
+				"contatoResponse": {
+					"idContato": 10,
+					"telefones": [
+						{
+							"idTelefone": 11,
+							"numero": 996654321,
+							"ddd": 51,
+							"tipoTelefone": "RESIDENCIAL"
+						}
+					],
+					"email": "novaes@example.com"
+				},
+				"genero": "FEMININO",
+				"conselho": "CRO/SC",
+				"registro": "1557",
+				"codigoBrasileiroOcupacao": "132"
+			},
+			{
+				"idDentista": 2,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 3,
+					"email": "livia@gmail.com",
+					"tipoProfissional": "DENTISTA"
+				},
+				"nome": "LIVIA DOS SANTOS",
+				"contatoResponse": {
+					"idContato": 7,
+					"telefones": [
+						{
+							"idTelefone": 8,
+							"numero": 915459800,
+							"ddd": 61,
+							"tipoTelefone": "CELULAR"
+						}
+					],
+					"email": "herculano.dacosta@example.com"
+				},
+				"genero": "FEMININO",
+				"conselho": "CRO/SC",
+				"registro": "2334",
+				"codigoBrasileiroOcupacao": "132"
+			}
+		]
+	},
+	{
+		"idRecepcionista": 13,
+		"usuarioClinicaResponse": {
+			"idUsuarioClinica": 1,
+			"email": "recepcionista@gmail.com",
+			"tipoProfissional": "RECEPCIONISTA"
+		},
+		"nome": "Recepcionista Teste 2",
+		"contatoResponse": {
+			"idContato": 20,
+			"telefones": [
+				{
+					"idTelefone": 23,
+					"numero": 34545543,
+					"ddd": 54,
+					"tipoTelefone": "CELULAR"
+				}
+			],
+			"email": "recepcionista.teste@gmail.com"
+		},
+		"genero": "FEMININO",
+		"dentistasResponse": [
+			{
+				"idDentista": 2,
+				"usuarioClinicaResponse": {
+					"idUsuarioClinica": 3,
+					"email": "livia@gmail.com",
+					"tipoProfissional": "DENTISTA"
+				},
+				"nome": "LIVIA DOS SANTOS",
+				"contatoResponse": {
+					"idContato": 7,
+					"telefones": [
+						{
+							"idTelefone": 8,
+							"numero": 915459800,
+							"ddd": 61,
+							"tipoTelefone": "CELULAR"
+						}
+					],
+					"email": "herculano.dacosta@example.com"
+				},
+				"genero": "FEMININO",
 				"conselho": "CRO/SC",
 				"registro": "2334",
 				"codigoBrasileiroOcupacao": "132"
@@ -188,64 +393,52 @@ http://localhost:3334/agenda-service/profissional/recepcionista <br />
 **Response Body:**
 ```json
 {
-    "idRecepcionista": 1,
-    "usuarioClinicaResponse": {
-        "idUsuarioClinica": 1,
-        "email": "recepcionista@gmail.com",
-        "tipoProfissionalResponse": {
-            "tipoProfissional": "Recepcionista"
-        }
-    },
-    "nome": "Recepcionista",
-    "contatoResponse": {
-        "idContato": 6,
-        "telefones": [
-            {
-                "idTelefone": 7,
-                "numero": 975544633,
-                "ddd": 21,
-                "tipoTelefoneResponse": {
-                    "tipoTelefone": "Celular"
-                }
-            }
-        ],
-        "email": "nena.moreira@example.com"
-    },
-    "generoResponse": {
-        "genero": "Feminino"
-    },
-    "dentistasResponse": [
-        {
-            "idDentista": 1,
-            "usuarioClinicaResponse": {
-                "idUsuarioClinica": 2,
-                "email": "aline@gmail.com",
-                "tipoProfissionalResponse": {
-                    "tipoProfissional": "Dentista"
-                }
-            },
-            "nome": "ALINE CASTRO E SOUZA",
-            "contatoResponse": {
-                "idContato": 10,
-                "telefones": [
-                    {
-                        "idTelefone": 11,
-                        "numero": 996654321,
-                        "ddd": 51,
-                        "tipoTelefoneResponse": {
-                            "tipoTelefone": "Residencial"
-                        }
-                    }
-                ],
-                "email": "novaes@example.com"
-            },
-            "generoResponse": {
-                "genero": "Feminino"
-            },
-            "conselho": "CRO/SC",
-            "registro": "1557",
-            "codigoBrasileiroOcupacao": "132"
-        }
-    ]
+	"idRecepcionista": 1,
+	"usuarioClinicaResponse": {
+		"idUsuarioClinica": 1,
+		"email": "recepcionista@gmail.com",
+		"tipoProfissional": "RECEPCIONISTA"
+	},
+	"nome": "Recepcionista",
+	"contatoResponse": {
+		"idContato": 6,
+		"telefones": [
+			{
+				"idTelefone": 7,
+				"numero": 975544633,
+				"ddd": 21,
+				"tipoTelefone": "CELULAR"
+			}
+		],
+		"email": "nena.moreira@example.com"
+	},
+	"genero": "FEMININO",
+	"dentistasResponse": [
+		{
+			"idDentista": 1,
+			"usuarioClinicaResponse": {
+				"idUsuarioClinica": 2,
+				"email": "aline@gmail.com",
+				"tipoProfissional": "DENTISTA"
+			},
+			"nome": "ALINE CASTRO E SOUZA",
+			"contatoResponse": {
+				"idContato": 10,
+				"telefones": [
+					{
+						"idTelefone": 11,
+						"numero": 996654321,
+						"ddd": 51,
+						"tipoTelefone": "RESIDENCIAL"
+					}
+				],
+				"email": "novaes@example.com"
+			},
+			"genero": "FEMININO",
+			"conselho": "CRO/SC",
+			"registro": "1557",
+			"codigoBrasileiroOcupacao": "132"
+		}
+	]
 }
 ```

@@ -268,7 +268,15 @@ public class Endpoint {
 	public ResponseEntity<?> saveDentista(@RequestBody @Valid DentistaRequest dentistaRequest,
 			Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
-		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest), user.getUsername());
+		Dentista dentista = dentistaBinder.requestToModel(dentistaRequest);
+		UsuarioClinica usuarioClinica = usuarioClinicaService.findUsuarioClinica(dentistaRequest.getContatoRequest().getEmail());
+		if(usuarioClinica == null){
+			usuarioClinica = new UsuarioClinica();
+			usuarioClinica.setEmail(dentistaRequest.getContatoRequest().getEmail());
+			usuarioClinica.setTipoProfissional(TipoProfissional.DENTISTA);
+		}
+		dentista.setUsuarioClinica(usuarioClinica);
+		dentistaService.save(dentista);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
@@ -276,7 +284,15 @@ public class Endpoint {
 	public ResponseEntity<?> updateDentista(@RequestBody @Valid DentistaRequest dentistaRequest,
 			Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
-		dentistaService.save(dentistaBinder.requestToModel(dentistaRequest), user.getUsername());
+		Dentista dentista = dentistaBinder.requestToModel(dentistaRequest);
+		UsuarioClinica usuarioClinica = usuarioClinicaService.findUsuarioClinica(dentistaRequest.getContatoRequest().getEmail());
+		if(usuarioClinica == null){
+			usuarioClinica = new UsuarioClinica();
+			usuarioClinica.setEmail(dentistaRequest.getContatoRequest().getEmail());
+			usuarioClinica.setTipoProfissional(TipoProfissional.DENTISTA);
+		}
+		dentista.setUsuarioClinica(usuarioClinica);
+		dentistaService.save(dentista);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

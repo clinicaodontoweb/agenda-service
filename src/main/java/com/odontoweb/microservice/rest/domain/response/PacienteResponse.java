@@ -12,9 +12,9 @@ public class PacienteResponse implements Serializable {
 	private String cpf;
 	private String rg;
 	private String nome;
-	private GeneroResponse generoResponse;
+	private String genero;
 	private Date dataNascimento;
-	private EstadoCivilResponse estadoCivilResponse;
+	private String estadoCivil;
 	private ContatoResponse contatoResponse;
 	private EnderecoResponse enderecoResponse;
 	private List<ConvenioResponse> conveniosResponse;
@@ -32,9 +32,9 @@ public class PacienteResponse implements Serializable {
 		this.cpf = cpf;
 		this.rg = rg;
 		this.nome = nome;
-		this.generoResponse = generoResponse;
+		this.genero = generoResponse.getGenero();
 		this.dataNascimento = dataNascimento;
-		this.estadoCivilResponse = estadoCivilResponse;
+		this.estadoCivil = estadoCivilResponse.getEstadoCivil();
 		this.contatoResponse = contatoResponse;
 		this.enderecoResponse = enderecoResponse;
 		this.conveniosResponse = conveniosResponse;
@@ -82,20 +82,20 @@ public class PacienteResponse implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public GeneroResponse getGeneroResponse() {
-		return generoResponse;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setGeneroResponse(GeneroResponse generoResponse) {
-		this.generoResponse = generoResponse;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
-	public EstadoCivilResponse getEstadoCivilResponse() {
-		return estadoCivilResponse;
+	public String getEstadoCivil() {
+		return estadoCivil;
 	}
 
-	public void setEstadoCivilResponse(EstadoCivilResponse estadoCivilResponse) {
-		this.estadoCivilResponse = estadoCivilResponse;
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
 	}
 
 	public ContatoResponse getContatoResponse() {

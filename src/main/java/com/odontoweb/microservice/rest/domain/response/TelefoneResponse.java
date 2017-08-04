@@ -9,7 +9,7 @@ public class TelefoneResponse implements Serializable {
 	private Long idTelefone;
 	private Integer numero;
 	private Integer ddd;
-	private TipoTelefoneResponse tipoTelefoneResponse;
+	private String tipoTelefone;
 
 	public TelefoneResponse() {
 	}
@@ -18,7 +18,7 @@ public class TelefoneResponse implements Serializable {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
-		this.tipoTelefoneResponse = tipoTelefoneResponse;
+		this.tipoTelefone = tipoTelefoneResponse.getTipoTelefone();
 	}
 
 	public Long getIdTelefone() {
@@ -45,12 +45,12 @@ public class TelefoneResponse implements Serializable {
 		this.ddd = ddd;
 	}
 
-	public TipoTelefoneResponse getTipoTelefoneResponse() {
-		return tipoTelefoneResponse;
+	public String getTipoTelefone() {
+		return tipoTelefone;
 	}
 
-	public void setTipoTelefoneResponse(TipoTelefoneResponse tipoTelefoneResponse) {
-		this.tipoTelefoneResponse = tipoTelefoneResponse;
+	public void setTipoTelefone(String tipoTelefone) {
+		this.tipoTelefone = tipoTelefone;
 	}
 
 }

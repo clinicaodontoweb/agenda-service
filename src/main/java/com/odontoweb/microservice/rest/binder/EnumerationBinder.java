@@ -27,7 +27,7 @@ public class EnumerationBinder implements Serializable {
 	}
 
 	public EstadoCivilResponse enumToResponse(EstadoCivil estadoCivil) {
-		return new EstadoCivilResponse(estadoCivil.toString());
+		return new EstadoCivilResponse(estadoCivil.name());
 	}
 
 	public Genero requestToEnum(GeneroRequest generoRequest) {
@@ -35,7 +35,7 @@ public class EnumerationBinder implements Serializable {
 	}
 
 	public GeneroResponse enumToResponse(Genero genero) {
-		return new GeneroResponse(genero.toString());
+		return new GeneroResponse(genero.name());
 	}
 
 	public StatusEvento requestToEnum(StatusEventoRequest statusEventoRequest) {
@@ -43,7 +43,7 @@ public class EnumerationBinder implements Serializable {
 	}
 
 	public StatusEventoResponse enumToResponse(StatusEvento statusEvento) {
-		return new StatusEventoResponse(statusEvento.toString());
+		return new StatusEventoResponse(statusEvento.name());
 	}
 
 	public TipoProfissional requestToEnum(TipoProfissionalRequest tipoProfissionalRequest) {
@@ -51,7 +51,7 @@ public class EnumerationBinder implements Serializable {
 	}
 
 	public TipoProfissionalResponse enumToResponse(TipoProfissional tipoProfissional) {
-		return new TipoProfissionalResponse(tipoProfissional.toString());
+		return new TipoProfissionalResponse(tipoProfissional.name());
 	}
 
 	public TipoTelefone requestToEnum(TipoTelefoneRequest tipoTelefoneRequest) {
@@ -59,7 +59,7 @@ public class EnumerationBinder implements Serializable {
 	}
 
 	public TipoTelefoneResponse enumToResponse(TipoTelefone tipoTelefone) {
-		return new TipoTelefoneResponse(tipoTelefone.toString());
+		return new TipoTelefoneResponse(tipoTelefone.name());
 	}
 
 }

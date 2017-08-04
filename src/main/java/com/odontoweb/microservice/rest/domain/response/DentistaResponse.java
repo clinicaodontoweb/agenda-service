@@ -10,7 +10,7 @@ public class DentistaResponse implements Serializable {
 	private UsuarioClinicaResponse usuarioClinicaResponse;
 	private String nome;
 	private ContatoResponse contatoResponse;
-	private GeneroResponse generoResponse;
+	private String genero;
 	private String conselho;
 	private String registro;
 	private String codigoBrasileiroOcupacao;
@@ -25,7 +25,7 @@ public class DentistaResponse implements Serializable {
 		this.usuarioClinicaResponse = usuarioClinicaResponse;
 		this.nome = nome;
 		this.contatoResponse = contatoResponse;
-		this.generoResponse = generoResponse;
+		this.genero = generoResponse.getGenero();
 		this.conselho = conselho;
 		this.registro = registro;
 		this.codigoBrasileiroOcupacao = codigoBrasileiroOcupacao;
@@ -63,12 +63,12 @@ public class DentistaResponse implements Serializable {
 		this.contatoResponse = contatoResponse;
 	}
 
-	public GeneroResponse getGeneroResponse() {
-		return generoResponse;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setGeneroResponse(GeneroResponse generoResponse) {
-		this.generoResponse = generoResponse;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public String getConselho() {

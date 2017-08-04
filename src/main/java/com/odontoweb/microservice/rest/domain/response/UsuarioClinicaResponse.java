@@ -8,13 +8,13 @@ public class UsuarioClinicaResponse implements Serializable {
 
 	private Long idUsuarioClinica;
 	private String email;
-	private TipoProfissionalResponse tipoProfissionalResponse;
+	private String tipoProfissional;
 
 	public UsuarioClinicaResponse(Long idUsuarioClinica, String email,
 			TipoProfissionalResponse tipoProfissionalResponse) {
 		this.idUsuarioClinica = idUsuarioClinica;
 		this.email = email;
-		this.tipoProfissionalResponse = tipoProfissionalResponse;
+		this.tipoProfissional = tipoProfissionalResponse.getTipoProfissional();
 	}
 
 	public UsuarioClinicaResponse() {
@@ -36,12 +36,12 @@ public class UsuarioClinicaResponse implements Serializable {
 		this.email = email;
 	}
 
-	public TipoProfissionalResponse getTipoProfissionalResponse() {
-		return tipoProfissionalResponse;
+	public String getTipoProfissional() {
+		return tipoProfissional;
 	}
 
-	public void setTipoProfissionalResponse(TipoProfissionalResponse tipoProfissionalResponse) {
-		this.tipoProfissionalResponse = tipoProfissionalResponse;
+	public void setTipoProfissional(String tipoProfissional) {
+		this.tipoProfissional = tipoProfissional;
 	}
 
 }

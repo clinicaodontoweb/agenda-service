@@ -11,7 +11,7 @@ public class RecepcionistaResponse implements Serializable {
 	private UsuarioClinicaResponse usuarioClinicaResponse;
 	private String nome;
 	private ContatoResponse contatoResponse;
-	private GeneroResponse generoResponse;
+	private String genero;
 	private List<DentistaResponse> dentistasResponse;
 
 	public RecepcionistaResponse(Long idRecepcionista, UsuarioClinicaResponse usuarioClinicaResponse, String nome,
@@ -20,7 +20,7 @@ public class RecepcionistaResponse implements Serializable {
 		this.usuarioClinicaResponse = usuarioClinicaResponse;
 		this.nome = nome;
 		this.contatoResponse = contatoResponse;
-		this.generoResponse = generoResponse;
+		this.genero = generoResponse.getGenero();
 		this.dentistasResponse = dentistasResponse;
 	}
 
@@ -60,12 +60,12 @@ public class RecepcionistaResponse implements Serializable {
 		this.contatoResponse = contatoResponse;
 	}
 
-	public GeneroResponse getGeneroResponse() {
-		return generoResponse;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setGeneroResponse(GeneroResponse generoResponse) {
-		this.generoResponse = generoResponse;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public List<DentistaResponse> getDentistasResponse() {
