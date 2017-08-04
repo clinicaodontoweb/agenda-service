@@ -21,37 +21,23 @@ Para iniciar o serviço pela IDE apenas rode a classe **com.odontoweb.microservi
 #### RECEPCIONISTA
 
 **Metodo:** GET <br />
-####Busca todos os objetos da entidade Recepcionista
+Busca todos os objetos da entidade Recepcionista <br />
 **Request:** <br/>
 http://localhost:3334/agenda-service/recepcionista <br />
 
 
 **Metodo:** POST <br />
-####Insere uma nova entidade Recepcionista
+Insere uma nova entidade Recepcionista <br />
 **Request:** <br/>
 http://localhost:3334/agenda-service/recepcionista <br />
 **Exemplos POST:** Success <br />
 **Request Body:**
 ```json
-{
-	"nome":"ANA LUIZA",
-	"contatoRequest":{
-		"telefones":[
-			{
-				"numero":34545543,
-				"ddd":54,
-				"tipoTelefone": "CELULAR"
-			}
-		],
-		"email":"recepcionista.teste@gmail.com"
-	},
-	"genero":"FEMININO",
-	"dentistas":[2]
-}
+{"nome":"ANA LUIZA","contatoRequest":{"telefones":[{"numero":34545543,"ddd":54,"tipoTelefone": "CELULAR"}],"email":"recepcionista.teste@gmail.com"},"genero":"FEMININO","dentistas":[2]}
 ```
 
 **Metodo:** PUT <br />
-####Atualiza a entidade Recepcionista
+Atualiza a entidade Recepcionista <br />
 **Request:** <br/>
 http://localhost:3334/agenda-service/recepcionista <br />
 **Exemplos PUT:** Success <br />
@@ -78,6 +64,6 @@ http://localhost:3334/agenda-service/recepcionista <br />
 ```
 
 **Metodo:** DELETE <br />
-####Remove a entidade Recepcionista
+Remove a entidade Recepcionista <br />
 **Request:** <br/>
 http://localhost:3334/agenda-service/recepcionista/16 <br />
