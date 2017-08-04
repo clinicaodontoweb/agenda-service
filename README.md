@@ -68,7 +68,7 @@ http://localhost:3334/agenda-service/recepcionista <br />
 		"numero":1111111111,
 		"ddd":51,
 		"tipoTelefone": "CELULAR"
-      }
+	  }
 	],
 	"email":"recepcionista.teste@gmail.com"
   },
