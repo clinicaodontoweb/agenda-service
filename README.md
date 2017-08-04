@@ -79,6 +79,8 @@ http://localhost:3334/agenda-service/recepcionista <br />
 **Metodo:** GET <br />
 Busca a lista de objeto Recepcionista <br />
 **Request:** <br/>
+http://localhost:3334/agenda-service/recepcionista <br />
+**Exemplos GET:** Success <br />
 **Response Body:**
 ```json
 [
