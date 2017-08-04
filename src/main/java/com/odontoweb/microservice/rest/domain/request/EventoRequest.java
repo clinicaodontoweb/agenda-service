@@ -2,8 +2,6 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
 public class EventoRequest implements Serializable {
 
 	private static final long serialVersionUID = -2690624974662872216L;
@@ -15,10 +13,8 @@ public class EventoRequest implements Serializable {
 	private Long dataInicio;
 	private Long dataFim;
 
-	@NotNull(message = "Tipo de Consulta é obrigatório!")
 	private TipoConsultaRequest tipoConsultaRequest;
 
-	@NotNull(message = "É obrigatório informar o paciente!")
 	private PacienteRequest pacienteRequest;
 
 	private String observacao;

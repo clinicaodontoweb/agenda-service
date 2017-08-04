@@ -17,7 +17,7 @@ public class DentistaRequest implements Serializable {
 	private ContatoRequest contatoRequest;
 
 	@NotNull(message = "Gênero é obrigatório!")
-	private GeneroRequest generoRequest;
+	private String genero;
 
 	@NotNull(message = "Conselho é obrigatório!")
 	private String conselho;
@@ -51,12 +51,12 @@ public class DentistaRequest implements Serializable {
 		this.contatoRequest = contatoRequest;
 	}
 
-	public GeneroRequest getGeneroRequest() {
-		return generoRequest;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setGeneroRequest(GeneroRequest generoRequest) {
-		this.generoRequest = generoRequest;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public String getConselho() {

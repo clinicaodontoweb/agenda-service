@@ -18,9 +18,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
 @Entity
@@ -35,7 +32,7 @@ public class Recepcionista implements Serializable {
 	private Long idRecepcionista;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_USUARIO_CLINICA")
+	@JoinColumn(name = "FK_USUARIO_CLINICA", unique = true)
 	private UsuarioClinica usuarioClinica;
 
 	@Column(name = "STR_NOME")
@@ -49,9 +46,8 @@ public class Recepcionista implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Fetch(FetchMode.SUBSELECT)
-	@JoinTable(name = "TBL_RECEPCIONISTA_DENTISTA", joinColumns = @JoinColumn(name = "FK_RECEPCIONISTA", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_DENTISTA", referencedColumnName = "ID"))
+	@ManyToMany(cascade=CascadeType.REFRESH)
+	@JoinTable(name = "TBL_RECEPCIONISTA_DENTISTA", joinColumns = @JoinColumn(name = "FK_RECEPCIONISTA", referencedColumnName = "ID", nullable = false), inverseJoinColumns = @JoinColumn(name = "FK_DENTISTA", referencedColumnName = "ID", nullable = false))
 	private List<Dentista> dentistas;
 
 	public Recepcionista(Long idRecepcionista, UsuarioClinica usuarioClinica, String nome, Contato contato,
@@ -114,6 +110,31 @@ public class Recepcionista implements Serializable {
 
 	public void setDentistas(List<Dentista> dentistas) {
 		this.dentistas = dentistas;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idRecepcionista == null) ? 0 : idRecepcionista.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Recepcionista other = (Recepcionista) obj;
+		if (idRecepcionista == null) {
+			if (other.idRecepcionista != null)
+				return false;
+		} else if (!idRecepcionista.equals(other.idRecepcionista))
+			return false;
+		return true;
 	}
 
 	@Override

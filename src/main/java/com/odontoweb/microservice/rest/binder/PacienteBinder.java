@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Paciente;
+import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
+import com.odontoweb.microservice.impl.model.enums.Genero;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
 
@@ -15,12 +17,12 @@ public class PacienteBinder implements Serializable {
 
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {
 		return new Paciente(pacienteRequest.getIdPaciente(), pacienteRequest.getCpf(), pacienteRequest.getRg(),
-				pacienteRequest.getNome(), new EnumerationBinder().requestToEnum(pacienteRequest.getGeneroRequest()),
+				pacienteRequest.getNome(), Genero.valueOf(pacienteRequest.getGenero()),
 				pacienteRequest.getDataNascimento(),
-				new EnumerationBinder().requestToEnum(pacienteRequest.getEstadoCivilRequest()),
+				EstadoCivil.valueOf(pacienteRequest.getEstadoCivil()),
 				new ContatoBinder().requestToModel(pacienteRequest.getContatoRequest()),
 				new EnderecoBinder().requestToModel(pacienteRequest.getEnderecoRequest()),
-				new ConvenioBinder().requestToListModel(pacienteRequest.getConveniosRequest()),
+				new ConvenioBinder().requestListIdToListModel(pacienteRequest.getConvenios()),
 				pacienteRequest.getIndicacao(), pacienteRequest.getProfissao());
 	}
 

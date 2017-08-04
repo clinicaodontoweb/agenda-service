@@ -21,12 +21,12 @@ public class PacienteRequest implements Serializable {
 	private String nome;
 
 	@NotNull(message = "Gênero é obrigatório!")
-	private GeneroRequest generoRequest;
+	private String genero;
 
 	@NotNull(message = "Data de nascimento é obrigatório!")
 	private Date dataNascimento;
 
-	private EstadoCivilRequest estadoCivilRequest;
+	private String estadoCivil;
 
 	@NotNull(message = "Contato é obrigatório!")
 	private ContatoRequest contatoRequest;
@@ -34,7 +34,7 @@ public class PacienteRequest implements Serializable {
 	@NotNull(message = "Endereço é obrigatório!")
 	private EnderecoRequest enderecoRequest;
 
-	private List<ConvenioRequest> conveniosRequest;
+	private List<Long> convenios;
 
 	private String indicacao;
 
@@ -80,22 +80,6 @@ public class PacienteRequest implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public GeneroRequest getGeneroRequest() {
-		return generoRequest;
-	}
-
-	public void setGeneroRequest(GeneroRequest generoRequest) {
-		this.generoRequest = generoRequest;
-	}
-
-	public EstadoCivilRequest getEstadoCivilRequest() {
-		return estadoCivilRequest;
-	}
-
-	public void setEstadoCivilRequest(EstadoCivilRequest estadoCivilRequest) {
-		this.estadoCivilRequest = estadoCivilRequest;
-	}
-
 	public ContatoRequest getContatoRequest() {
 		return contatoRequest;
 	}
@@ -112,14 +96,6 @@ public class PacienteRequest implements Serializable {
 		this.enderecoRequest = enderecoRequest;
 	}
 
-	public List<ConvenioRequest> getConveniosRequest() {
-		return conveniosRequest;
-	}
-
-	public void setConveniosRequest(List<ConvenioRequest> conveniosRequest) {
-		this.conveniosRequest = conveniosRequest;
-	}
-
 	public String getIndicacao() {
 		return indicacao;
 	}
@@ -134,6 +110,30 @@ public class PacienteRequest implements Serializable {
 
 	public void setProfissao(String profissao) {
 		this.profissao = profissao;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public List<Long> getConvenios() {
+		return convenios;
+	}
+
+	public void setConvenios(List<Long> convenios) {
+		this.convenios = convenios;
 	}
 
 }

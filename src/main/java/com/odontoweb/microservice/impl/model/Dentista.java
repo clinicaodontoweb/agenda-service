@@ -35,7 +35,7 @@ public class Dentista implements Serializable {
 	@Column(name = "STR_NOME")
 	private String nome;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_CONTATO")
 	private Contato contato;
 
@@ -128,6 +128,33 @@ public class Dentista implements Serializable {
 
 	public void setUsuarioClinica(UsuarioClinica usuarioClinica) {
 		this.usuarioClinica = usuarioClinica;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idDentista == null) ? 0 : idDentista.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dentista other = (Dentista) obj;
+		if (idDentista == null) {
+			if (other.idDentista != null)
+				return false;
+		} else if (!idDentista.equals(other.idDentista))
+			return false;
+		return true;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.odontoweb.microservice.impl.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,14 @@ public class DentistaService {
 	
 	public Dentista findByUsuarioClinica(String email){
 		return dentistaRepository.findByUsuarioClinica(usuarioClinicaRepository.findByEmail(email));
+	}
+	
+	public List<Dentista> getListDentistas(List<Long> ids){
+		List<Dentista> dentistas = new ArrayList<Dentista>();
+		for (Long id : ids) {
+			dentistas.add(findById(id));
+		}
+		return dentistas;
 	}
 
 }

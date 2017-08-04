@@ -8,12 +8,12 @@ public class UsuarioClinicaRequest implements Serializable {
 
 	private Long idUsuarioClinica;
 	private String email;
-	private TipoProfissionalRequest tipoProfissionalRequest;
+	private String tipoProfissional;
 
-	public UsuarioClinicaRequest(Long idUsuarioClinica, String email, TipoProfissionalRequest tipoProfissionalRequest) {
+	public UsuarioClinicaRequest(Long idUsuarioClinica, String email, String tipoProfissional) {
 		this.idUsuarioClinica = idUsuarioClinica;
 		this.email = email;
-		this.tipoProfissionalRequest = tipoProfissionalRequest;
+		this.tipoProfissional = tipoProfissional;
 	}
 
 	public UsuarioClinicaRequest() {
@@ -35,12 +35,12 @@ public class UsuarioClinicaRequest implements Serializable {
 		this.email = email;
 	}
 
-	public TipoProfissionalRequest getTipoProfissionalRequest() {
-		return tipoProfissionalRequest;
+	public String getTipoProfissional() {
+		return tipoProfissional;
 	}
 
-	public void setTipoProfissionalRequest(TipoProfissionalRequest tipoProfissionalRequest) {
-		this.tipoProfissionalRequest = tipoProfissionalRequest;
+	public void setTipoProfissional(String tipoProfissional) {
+		this.tipoProfissional = tipoProfissional;
 	}
-
+	
 }

@@ -5,13 +5,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.odontoweb.microservice.impl.model.Convenio;
+import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.response.ConvenioResponse;
 
 public class ConvenioBinder implements Serializable {
 
 	private static final long serialVersionUID = -6564303786520599427L;
+	
+	@Autowired
+	private ConvenioService convenioService;
 
 	public Convenio requestToModel(ConvenioRequest convenioRequest) {
 		return new Convenio(convenioRequest.getIdConvenio(), convenioRequest.getNome(), convenioRequest.getCnpj(),
@@ -40,5 +46,9 @@ public class ConvenioBinder implements Serializable {
 		return conveniosRequest.stream().filter(Objects::nonNull)
 				.map(convenioRequest -> requestToModel(convenioRequest)).collect(Collectors.toList());
 
+	}
+	
+	public List<Convenio> requestListIdToListModel(List<Long> convenios){
+		return convenioService.getListConvenios(convenios);
 	}
 }

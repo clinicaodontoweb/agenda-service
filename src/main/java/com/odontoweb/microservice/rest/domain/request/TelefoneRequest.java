@@ -17,16 +17,16 @@ public class TelefoneRequest implements Serializable {
 	private Integer ddd;
 
 	@NotNull(message = "Tipo de Telefone é obrigatório")
-	private TipoTelefoneRequest tipoTelefoneRequest;
+	private String tipoTelefone;
 
 	public TelefoneRequest() {
 	}
 
-	public TelefoneRequest(Long idTelefone, Integer numero, Integer ddd, TipoTelefoneRequest tipoTelefoneRequest) {
+	public TelefoneRequest(Long idTelefone, Integer numero, Integer ddd, String tipoTelefone) {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
-		this.tipoTelefoneRequest = tipoTelefoneRequest;
+		this.tipoTelefone = tipoTelefone;
 	}
 
 	public Long getIdTelefone() {
@@ -53,12 +53,12 @@ public class TelefoneRequest implements Serializable {
 		this.ddd = ddd;
 	}
 
-	public TipoTelefoneRequest getTipoTelefoneRequest() {
-		return tipoTelefoneRequest;
+	public String getTipoTelefone() {
+		return tipoTelefone;
 	}
 
-	public void setTipoTelefoneRequest(TipoTelefoneRequest tipoTelefoneRequest) {
-		this.tipoTelefoneRequest = tipoTelefoneRequest;
+	public void setTipoTelefone(String tipoTelefone) {
+		this.tipoTelefone = tipoTelefone;
 	}
 
 }

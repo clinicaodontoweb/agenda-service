@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Telefone;
+import com.odontoweb.microservice.impl.model.enums.TipoTelefone;
 import com.odontoweb.microservice.rest.domain.request.TelefoneRequest;
 import com.odontoweb.microservice.rest.domain.response.TelefoneResponse;
 
@@ -15,7 +16,7 @@ public class TelefoneBinder implements Serializable {
 
 	public Telefone requestToModel(TelefoneRequest telefoneRequest) {
 		return new Telefone(telefoneRequest.getIdTelefone(), telefoneRequest.getNumero(), telefoneRequest.getDdd(),
-				new EnumerationBinder().requestToEnum(telefoneRequest.getTipoTelefoneRequest()));
+				TipoTelefone.valueOf(telefoneRequest.getTipoTelefone()));
 	}
 
 	public TelefoneResponse modelToResponse(Telefone telefone) {

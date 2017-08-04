@@ -1,5 +1,6 @@
 package com.odontoweb.microservice.impl.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class ConvenioService {
 
 	public void delete(Long id) {
 		convenioRepository.delete(id);
+	}
+	
+	public List<Convenio> getListConvenios(List<Long> idsConvenio){
+		List<Convenio> convenios = new ArrayList<Convenio>();
+		for (Long id : idsConvenio) {
+			convenios.add(findById(id));
+		}
+		return convenios;
 	}
 
 }

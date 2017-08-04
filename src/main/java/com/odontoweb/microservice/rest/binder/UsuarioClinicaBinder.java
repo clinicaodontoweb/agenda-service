@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.UsuarioClinica;
+import com.odontoweb.microservice.impl.model.enums.TipoProfissional;
 import com.odontoweb.microservice.rest.domain.request.UsuarioClinicaRequest;
 import com.odontoweb.microservice.rest.domain.response.UsuarioClinicaResponse;
 
@@ -14,11 +15,13 @@ public class UsuarioClinicaBinder implements Serializable {
 	private static final long serialVersionUID = 1373672342180409382L;
 
 	public UsuarioClinica requestToModel(UsuarioClinicaRequest usuarioClinicaRequest) {
+		if(usuarioClinicaRequest == null) return null;
 		return new UsuarioClinica(usuarioClinicaRequest.getIdUsuarioClinica(), usuarioClinicaRequest.getEmail(),
-				new EnumerationBinder().requestToEnum(usuarioClinicaRequest.getTipoProfissionalRequest()));
+				TipoProfissional.valueOf(usuarioClinicaRequest.getTipoProfissional()));
 	}
 
 	public UsuarioClinicaResponse modelToResponse(UsuarioClinica usuarioClinica) {
+		if(usuarioClinica == null) return null;
 		return new UsuarioClinicaResponse(usuarioClinica.getIdUsuarioClinica(), usuarioClinica.getEmail(),
 				new EnumerationBinder().enumToResponse(usuarioClinica.getTipoProfissional()));
 	}

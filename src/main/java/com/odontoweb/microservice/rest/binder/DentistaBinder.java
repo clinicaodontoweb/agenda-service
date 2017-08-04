@@ -5,18 +5,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.odontoweb.microservice.impl.model.Dentista;
+import com.odontoweb.microservice.impl.model.enums.Genero;
+import com.odontoweb.microservice.impl.service.DentistaService;
 import com.odontoweb.microservice.rest.domain.request.DentistaRequest;
 import com.odontoweb.microservice.rest.domain.response.DentistaResponse;
 
 public class DentistaBinder implements Serializable {
 
 	private static final long serialVersionUID = -2268580869115475558L;
-
+	
 	public Dentista requestToModel(DentistaRequest dentistaRequest) {
 		return new Dentista(dentistaRequest.getIdDentista(), dentistaRequest.getNome(),
 				new ContatoBinder().requestToModel(dentistaRequest.getContatoRequest()),
-				new EnumerationBinder().requestToEnum(dentistaRequest.getGeneroRequest()),
+				Genero.valueOf(dentistaRequest.getGenero()),
 				dentistaRequest.getConselho(), dentistaRequest.getRegistro(),
 				dentistaRequest.getCodigoBrasileiroOcupacao());
 	}
@@ -44,5 +48,4 @@ public class DentistaBinder implements Serializable {
 				.map(dentistaRequest -> requestToModel(dentistaRequest)).collect(Collectors.toList());
 
 	}
-
 }
