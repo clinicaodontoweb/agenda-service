@@ -8,11 +8,9 @@ import com.odontoweb.microservice.impl.repository.BairroRepository;
 import com.odontoweb.microservice.impl.repository.CepRepository;
 import com.odontoweb.microservice.impl.repository.CidadeRepository;
 import com.odontoweb.microservice.impl.repository.ConvenioRepository;
-import com.odontoweb.microservice.impl.repository.DentistaRepository;
 import com.odontoweb.microservice.impl.repository.EstadoRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.PacienteRepository;
-import com.odontoweb.microservice.impl.repository.RecepcionistaRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
 import com.odontoweb.microservice.impl.repository.TipoConsultaRepository;
 import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
@@ -21,11 +19,9 @@ import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
 import com.odontoweb.microservice.impl.service.CidadeService;
 import com.odontoweb.microservice.impl.service.ConvenioService;
-import com.odontoweb.microservice.impl.service.DentistaService;
 import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
-import com.odontoweb.microservice.impl.service.RecepcionistaService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
 import com.odontoweb.microservice.impl.service.UsuarioClinicaService;
@@ -34,11 +30,9 @@ import com.odontoweb.microservice.rest.binder.BairroBinder;
 import com.odontoweb.microservice.rest.binder.CepBinder;
 import com.odontoweb.microservice.rest.binder.CidadeBinder;
 import com.odontoweb.microservice.rest.binder.ConvenioBinder;
-import com.odontoweb.microservice.rest.binder.DentistaBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
-import com.odontoweb.microservice.rest.binder.RecepcionistaBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
 import com.odontoweb.microservice.rest.binder.UsuarioClinicaBinder;
@@ -57,18 +51,13 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public AgendaService agendaService(AgendaRepository repository, DentistaRepository dentistaRepository) {
-		return new AgendaService(repository, dentistaRepository);
+	public AgendaService agendaService(AgendaRepository repository, UsuarioClinicaRepository usuarioclinicaRepository) {
+		return new AgendaService(repository, usuarioclinicaRepository);
 	}
 
 	@Bean
 	public EventoService eventoService(EventoRepository repository) {
 		return new EventoService(repository);
-	}
-
-	@Bean
-	public DentistaService dentistaService(DentistaRepository repository) {
-		return new DentistaService(repository);
 	}
 
 	@Bean
@@ -99,11 +88,6 @@ public class ServiceConfig {
 	@Bean
 	public SiglaService siglaService(SiglaRepository repository) {
 		return new SiglaService(repository);
-	}
-
-	@Bean
-	public RecepcionistaService recepcionistaService(RecepcionistaRepository repository) {
-		return new RecepcionistaService(repository);
 	}
 
 	@Bean
@@ -152,11 +136,6 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public DentistaBinder dentistaBinder() {
-		return new DentistaBinder();
-	}
-
-	@Bean
 	public SiglaBinder siglaBinder() {
 		return new SiglaBinder();
 	}
@@ -164,11 +143,6 @@ public class ServiceConfig {
 	@Bean
 	public TipoConsultaBinder tipoConsultaBinder() {
 		return new TipoConsultaBinder();
-	}
-
-	@Bean
-	public RecepcionistaBinder recepcionistaBinder() {
-		return new RecepcionistaBinder();
 	}
 
 	@Bean

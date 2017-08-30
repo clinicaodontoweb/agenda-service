@@ -15,13 +15,13 @@ public class AgendaBinder implements Serializable {
 
 	public Agenda requestToModel(AgendaRequest agendaRequest) {
 		return new Agenda(agendaRequest.getIdAgenda(),
-				new DentistaBinder().requestToModel(agendaRequest.getProfissional()));
+				new UsuarioClinicaBinder().requestToModel(agendaRequest.getUsuarioClinicaRequest()));
 	}
 
 	public AgendaResponse modelToResponse(Agenda agenda) {
 		if(agenda == null) return null;
 		return new AgendaResponse(agenda.getIdAgenda(),
-				new DentistaBinder().modelToResponse(agenda.getProfissional()));
+				new UsuarioClinicaBinder().modelToResponse(agenda.getUsuarioClinica()));
 	}
 
 	public List<AgendaResponse> modelToListResponse(List<Agenda> agendas) {

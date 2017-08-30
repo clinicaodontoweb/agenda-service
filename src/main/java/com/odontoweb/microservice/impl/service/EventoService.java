@@ -6,21 +6,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
-import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
-import com.odontoweb.microservice.impl.repository.DentistaRepository;
+import com.odontoweb.microservice.impl.repository.EventoRepository;
+import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
 import com.odontoweb.microservice.rest.util.DateUtil;
 
 public class EventoService {
 
 	@Autowired
 	private EventoRepository eventoRepository;
-	
+
 	@Autowired
 	private AgendaRepository agendaRepository;
 
 	@Autowired
-	private DentistaRepository dentistaRepository;
+	private UsuarioClinicaRepository usuarioClinicaRepository;
 
 	public EventoService(EventoRepository eventoRepository) {
 		this.eventoRepository = eventoRepository;
@@ -43,16 +43,16 @@ public class EventoService {
 		eventoRepository.delete(id);
 	}
 
-	public List<Evento> findEventoByDentista(Long idDentista, Long dataInicio, Long dataFim) {
-		if(dataInicio == null){
+	public List<Evento> findEventoByDentista(String email, Long dataInicio, Long dataFim) {
+		if (dataInicio == null) {
 			dataInicio = DateUtil.getDataInicial((new Date()).getTime());
 		}
-		
-		if(dataFim == null){
+
+		if (dataFim == null) {
 			dataFim = DateUtil.getDataInicial((new Date()).getTime());
 		}
-		
-		return eventoRepository.findEventoByDentista(dentistaRepository.findOne(idDentista), new Date(dataInicio),
+
+		return eventoRepository.findEventoByDentista(usuarioClinicaRepository.findByEmail(email), new Date(dataInicio),
 				new Date(dataFim));
 	}
 }
