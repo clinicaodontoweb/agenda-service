@@ -24,7 +24,7 @@ public class Agenda implements Serializable {
 	private Long idAgenda;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_DENTISTA")
+	@JoinColumn(name = "FK_USUARIO_CLINICA")
 	private UsuarioClinica usuarioClinica;
 
 	public Agenda() {
