@@ -35,5 +35,9 @@ public class UsuarioClinicaService {
 	public UsuarioClinica findUsuarioClinica(String email){
 		return usuarioClinicaRepository.findByEmail(email);
 	}
+	
+	public UsuarioClinica findUsuarioClinicaByHashKey(String hashKey){
+		return usuarioClinicaRepository.findByHashKey(hashKey);
+	}
 
 }

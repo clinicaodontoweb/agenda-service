@@ -27,6 +27,9 @@ public class UsuarioClinica implements Serializable {
 	@Column(name = "STR_EMAIL", unique = true)
 	private String email;
 
+	@Column(name = "STR_HASH_KEY")
+	private String hashKey;
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STR_TIPO_PROFISSIONAL")
 	private TipoProfissional tipoProfissional;
@@ -62,6 +65,14 @@ public class UsuarioClinica implements Serializable {
 
 	public void setTipoProfissional(TipoProfissional tipoProfissional) {
 		this.tipoProfissional = tipoProfissional;
+	}
+
+	public String getHashKey() {
+		return hashKey;
+	}
+
+	public void setHashKey(String hashKey) {
+		this.hashKey = hashKey;
 	}
 
 	@Override

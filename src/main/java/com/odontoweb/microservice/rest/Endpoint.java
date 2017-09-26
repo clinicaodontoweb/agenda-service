@@ -619,10 +619,10 @@ public class Endpoint {
 		}
 	}
 
-	@RequestMapping(value = "/agenda/dentista/{email}", method = RequestMethod.GET)
-	public ResponseEntity<?> findAgendaByDentista(@PathVariable("email") String email) {
+	@RequestMapping(value = "/agenda/dentista/{hashKey}", method = RequestMethod.GET)
+	public ResponseEntity<?> findAgendaByDentista(@PathVariable("hashKey") String hashKey) {
 		try {
-			return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByDentista(email)),
+			return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByDentista(hashKey)),
 					HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -630,12 +630,12 @@ public class Endpoint {
 		}
 	}
 
-	@RequestMapping(value = "/evento/dentista/{email}", method = RequestMethod.GET)
-	public ResponseEntity<?> findEventoByDentista(@PathVariable("email") String email,
+	@RequestMapping(value = "/evento/dentista/{hashKey}", method = RequestMethod.GET)
+	public ResponseEntity<?> findEventoByDentista(@PathVariable("hashKey") String hashKey,
 			@RequestParam(value = "dataInicio") Long dataInicio, @RequestParam(value = "dataFim") Long dataFim) {
 		try {
 			return new ResponseEntity<List<EventoResponse>>(
-					eventoBinder.modelToListResponse(eventoService.findEventoByDentista(email, dataInicio, dataFim)),
+					eventoBinder.modelToListResponse(eventoService.findEventoByDentista(hashKey, dataInicio, dataFim)),
 					HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
