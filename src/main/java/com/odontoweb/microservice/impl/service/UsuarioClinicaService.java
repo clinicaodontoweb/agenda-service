@@ -31,13 +31,19 @@ public class UsuarioClinicaService {
 	public UsuarioClinica findById(Long idUsuarioClinica) {
 		return usuarioClinicaRepository.findOne(idUsuarioClinica);
 	}
-	
-	public UsuarioClinica findUsuarioClinica(String email){
+
+	public UsuarioClinica findUsuarioClinica(String email) {
 		return usuarioClinicaRepository.findByEmail(email);
 	}
-	
-	public UsuarioClinica findUsuarioClinicaByHashKey(String hashKey){
+
+	public UsuarioClinica findUsuarioClinicaByHashKey(String hashKey) {
 		return usuarioClinicaRepository.findByHashKey(hashKey);
+	}
+
+	public boolean usuarioExists(String email) {
+		if (findUsuarioClinica(email) != null)
+			return true;
+		return false;
 	}
 
 }

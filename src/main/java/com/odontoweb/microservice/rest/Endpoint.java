@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.odontoweb.arquitetura.exception.response.ExceptionResponse;
 import com.odontoweb.arquitetura.model.User;
+import com.odontoweb.microservice.exception.UsuarioDuplicateFoundException;
+import com.odontoweb.microservice.exception.UsuarioNotFoundException;
 import com.odontoweb.microservice.impl.service.AgendaService;
 import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
@@ -235,6 +237,9 @@ public class Endpoint {
 	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUsuarioClinica(@RequestBody @Valid UsuarioClinicaRequest usuarioClinicaRequest) {
 		try {
+			if (usuarioClinicaService.usuarioExists(usuarioClinicaRequest.getEmail())) {
+				throw new UsuarioDuplicateFoundException();
+			}
 			usuarioClinicaService.save(usuarioClinicaBinder.requestToModel(usuarioClinicaRequest));
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -246,6 +251,9 @@ public class Endpoint {
 	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateUsuarioClinica(@RequestBody @Valid UsuarioClinicaRequest usuarioClinicaRequest) {
 		try {
+			if (!usuarioClinicaService.usuarioExists(usuarioClinicaRequest.getEmail())) {
+				throw new UsuarioNotFoundException();
+			}
 			usuarioClinicaService.save(usuarioClinicaBinder.requestToModel(usuarioClinicaRequest));
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
@@ -622,7 +630,7 @@ public class Endpoint {
 	@RequestMapping(value = "/agenda/dentista/{hashKey}", method = RequestMethod.GET)
 	public ResponseEntity<?> findAgendaByDentista(@PathVariable("hashKey") String hashKey) {
 		try {
-			return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByDentista(hashKey)),
+			return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByUsuarioClinica(hashKey)),
 					HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -634,9 +642,8 @@ public class Endpoint {
 	public ResponseEntity<?> findEventoByDentista(@PathVariable("hashKey") String hashKey,
 			@RequestParam(value = "dataInicio") Long dataInicio, @RequestParam(value = "dataFim") Long dataFim) {
 		try {
-			return new ResponseEntity<List<EventoResponse>>(
-					eventoBinder.modelToListResponse(eventoService.findEventoByDentista(hashKey, dataInicio, dataFim)),
-					HttpStatus.OK);
+			return new ResponseEntity<List<EventoResponse>>(eventoBinder.modelToListResponse(
+					eventoService.findEventoByUsuarioClinica(hashKey, dataInicio, dataFim)), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);

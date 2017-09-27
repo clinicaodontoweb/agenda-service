@@ -38,8 +38,8 @@ public class AgendaService implements Serializable {
 		agendaRepository.delete(id);
 	}
 
-	public Agenda findAgendaByDentista(String hashKey) {
-		return agendaRepository.findAgendaByDentista(usuarioClinicaRepository.findByHashKey(hashKey));
+	public Agenda findAgendaByUsuarioClinica(String hashKey) {
+		return agendaRepository.findAgendaByUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey));
 	}
 
 }

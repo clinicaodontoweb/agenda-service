@@ -6,5 +6,5 @@ import com.odontoweb.microservice.impl.model.Agenda;
 import com.odontoweb.microservice.impl.model.UsuarioClinica;
 
 public interface AgendaRepository extends JpaRepository<Agenda, Long> {
-	public Agenda findAgendaByDentista(UsuarioClinica usuarioClinica);
+	public Agenda findAgendaByUsuarioClinica(UsuarioClinica usuarioClinica);
 }

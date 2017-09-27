@@ -43,7 +43,7 @@ public class EventoService {
 		eventoRepository.delete(id);
 	}
 
-	public List<Evento> findEventoByDentista(String hashKey, Long dataInicio, Long dataFim) {
+	public List<Evento> findEventoByUsuarioClinica(String hashKey, Long dataInicio, Long dataFim) {
 		if (dataInicio == null) {
 			dataInicio = DateUtil.getDataInicial((new Date()).getTime());
 		}
@@ -52,7 +52,7 @@ public class EventoService {
 			dataFim = DateUtil.getDataInicial((new Date()).getTime());
 		}
 
-		return eventoRepository.findEventoByDentista(usuarioClinicaRepository.findByHashKey(hashKey), new Date(dataInicio),
-				new Date(dataFim));
+		return eventoRepository.findEventoByUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey),
+				new Date(dataInicio), new Date(dataFim));
 	}
 }

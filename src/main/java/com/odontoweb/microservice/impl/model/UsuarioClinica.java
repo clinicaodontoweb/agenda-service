@@ -34,9 +34,10 @@ public class UsuarioClinica implements Serializable {
 	@Column(name = "STR_TIPO_PROFISSIONAL")
 	private TipoProfissional tipoProfissional;
 
-	public UsuarioClinica(Long idUsuarioClinica, String email, TipoProfissional tipoProfissional) {
+	public UsuarioClinica(Long idUsuarioClinica, String email, String hashKey, TipoProfissional tipoProfissional) {
 		this.idUsuarioClinica = idUsuarioClinica;
 		this.email = email;
+		this.hashKey = hashKey;
 		this.tipoProfissional = tipoProfissional;
 	}
 
