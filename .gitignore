@@ -6,3 +6,5 @@
 bin/
 build/
 classes/
+.idea/
+agenda-service.iml
