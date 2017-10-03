@@ -12,6 +12,7 @@ public class EventoRequest implements Serializable {
 	private AgendaRequest agendaRequest;
 	private Long dataInicio;
 	private Long dataFim;
+	private Long idConvenio;
 
 	private TipoConsultaRequest tipoConsultaRequest;
 
@@ -89,6 +90,14 @@ public class EventoRequest implements Serializable {
 
 	public void setDataFim(Long dataFim) {
 		this.dataFim = dataFim;
+	}
+
+	public Long getIdConvenio() {
+		return idConvenio;
+	}
+
+	public void setIdConvenio(Long idConvenio) {
+		this.idConvenio = idConvenio;
 	}
 
 }

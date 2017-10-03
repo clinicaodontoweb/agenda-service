@@ -48,6 +48,10 @@ public class Evento implements Serializable {
 	@JoinColumn(name = "FK_PACIENTE")
 	private Paciente paciente;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "FK_CONVENIO")
+	private Convenio convenio;
+
 	@Column(name = "STR_OBSERVACAO", length = 4096)
 	private String observacao;
 
@@ -61,13 +65,14 @@ public class Evento implements Serializable {
 	}
 
 	public Evento(Long idEvento, Boolean encaixe, StatusEvento statusEvento, TipoConsulta tipoConsulta, Agenda agenda,
-			Paciente paciente, Date dataInicio, Date dataFim, String observacao) {
+			Paciente paciente, Convenio convenio, Date dataInicio, Date dataFim, String observacao) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
 		this.statusEvento = statusEvento;
 		this.tipoConsulta = tipoConsulta;
 		this.agenda = agenda;
 		this.paciente = paciente;
+		this.convenio = convenio;
 		this.observacao = observacao;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
@@ -146,11 +151,19 @@ public class Evento implements Serializable {
 		this.dataFim = dataFim;
 	}
 
+	public Convenio getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(Convenio convenio) {
+		this.convenio = convenio;
+	}
+
 	@Override
 	public String toString() {
 		return "Evento [id=" + idEvento + ", encaixe=" + encaixe + ", statusEvento=" + statusEvento + ", tipoConsulta="
-				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", dataInicio=" + dataInicio
-				+ ", dataFim=" + dataFim + ", observacao=" + observacao + "]";
+				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", convenio=" + convenio
+				+ ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", observacao=" + observacao + "]";
 	}
 
 }

@@ -7,12 +7,18 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Evento;
+import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
 import com.odontoweb.microservice.rest.domain.response.EventoResponse;
 
 public class EventoBinder implements Serializable {
 
 	private static final long serialVersionUID = -7767265161514792685L;
+	private ConvenioService convenioService;
+
+	public EventoBinder(ConvenioService convenioService) {
+		this.convenioService = convenioService;
+	}
 
 	public Evento requestToModel(EventoRequest eventoRequest) {
 		return new Evento(eventoRequest.getIdEvento(), eventoRequest.getEncaixe(),
@@ -20,8 +26,8 @@ public class EventoBinder implements Serializable {
 				new TipoConsultaBinder().requestToModel(eventoRequest.getTipoConsultaRequest()),
 				new AgendaBinder().requestToModel(eventoRequest.getAgendaRequest()),
 				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()),
-				new Date(eventoRequest.getDataInicio()), new Date(eventoRequest.getDataFim()),
-				eventoRequest.getObservacao());
+				convenioService.findById(eventoRequest.getIdConvenio()), new Date(eventoRequest.getDataInicio()),
+				new Date(eventoRequest.getDataFim()), eventoRequest.getObservacao());
 	}
 
 	public EventoResponse modelToResponse(Evento evento) {
@@ -29,7 +35,8 @@ public class EventoBinder implements Serializable {
 				new EnumerationBinder().enumToResponse(evento.getStatusEvento()),
 				new TipoConsultaBinder().modelToResponse(evento.getTipoConsulta()),
 				new AgendaBinder().modelToResponse(evento.getAgenda()),
-				new PacienteBinder().modelToResponse(evento.getPaciente()), evento.getObservacao(),
+				new PacienteBinder().modelToResponse(evento.getPaciente()),
+				new ConvenioBinder().modelToResponse(evento.getConvenio()), evento.getObservacao(),
 				evento.getDataInicio().getTime(), evento.getDataFim().getTime());
 	}
 
