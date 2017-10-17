@@ -22,13 +22,17 @@ public class TipoConsulta implements Serializable {
 
 	@Column(name = "STR_NOME")
 	private String nome;
-
+	
+	@Column(name="STR_COR")
+	private String cor;
+	
 	public TipoConsulta() {
 	}
 
-	public TipoConsulta(Long idTipoConsulta, String nome) {
+	public TipoConsulta(Long idTipoConsulta, String nome, String cor) {
 		this.idTipoConsulta = idTipoConsulta;
 		this.nome = nome;
+		this.cor = cor;
 	}
 
 	public Long getIdTipoConsulta() {
@@ -46,6 +50,8 @@ public class TipoConsulta implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	
 
 	@Override
 	public String toString() {
