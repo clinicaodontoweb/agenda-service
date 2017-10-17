@@ -9,9 +9,11 @@ public class TipoConsultaRequest implements Serializable {
 	private static final long serialVersionUID = -1455378347372024359L;
 
 	private Long idTipoConsulta;
-	
+
 	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
+
+	private String cor;
 
 	public Long getIdTipoConsulta() {
 		return idTipoConsulta;
@@ -27,6 +29,14 @@ public class TipoConsultaRequest implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 }

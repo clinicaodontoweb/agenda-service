@@ -22,10 +22,10 @@ public class TipoConsulta implements Serializable {
 
 	@Column(name = "STR_NOME")
 	private String nome;
-	
-	@Column(name="STR_COR")
+
+	@Column(name = "STR_COR")
 	private String cor;
-	
+
 	public TipoConsulta() {
 	}
 
@@ -50,8 +50,14 @@ public class TipoConsulta implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
 
 	@Override
 	public String toString() {

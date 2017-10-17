@@ -8,11 +8,12 @@ public class TipoConsultaResponse implements Serializable {
 
 	private Long idTipoConsulta;
 	private String nome;
+	private String cor;
 
 	public TipoConsultaResponse() {
 	}
 
-	public TipoConsultaResponse(Long idTipoConsulta, String nome) {
+	public TipoConsultaResponse(Long idTipoConsulta, String nome, String cor) {
 		this.idTipoConsulta = idTipoConsulta;
 		this.nome = nome;
 	}
@@ -31,6 +32,14 @@ public class TipoConsultaResponse implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 }

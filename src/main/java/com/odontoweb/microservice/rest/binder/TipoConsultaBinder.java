@@ -14,17 +14,21 @@ public class TipoConsultaBinder implements Serializable {
 	private static final long serialVersionUID = 6000795044646669253L;
 
 	public TipoConsulta requestToModel(TipoConsultaRequest tipoConsultaRequest) {
-		return new TipoConsulta(tipoConsultaRequest.getIdTipoConsulta(), tipoConsultaRequest.getNome());
+		return new TipoConsulta(tipoConsultaRequest.getIdTipoConsulta(), tipoConsultaRequest.getNome(),
+				tipoConsultaRequest.getCor());
 	}
 
 	public TipoConsultaResponse modelToResponse(TipoConsulta tipoConsulta) {
-		return new TipoConsultaResponse(tipoConsulta.getIdTipoConsulta(), tipoConsulta.getNome());
+		return new TipoConsultaResponse(tipoConsulta.getIdTipoConsulta(), tipoConsulta.getNome(),
+				tipoConsulta.getCor());
 	}
-	
-	public List<TipoConsultaResponse> modelToListResponse(List<TipoConsulta> tipoConsultas){
-		if(tipoConsultas == null) return null;
-		return tipoConsultas.stream().filter(Objects::nonNull).map(tipoConsulta->modelToResponse(tipoConsulta)).collect(Collectors.toList());
-		
+
+	public List<TipoConsultaResponse> modelToListResponse(List<TipoConsulta> tipoConsultas) {
+		if (tipoConsultas == null)
+			return null;
+		return tipoConsultas.stream().filter(Objects::nonNull).map(tipoConsulta -> modelToResponse(tipoConsulta))
+				.collect(Collectors.toList());
+
 	}
 
 }

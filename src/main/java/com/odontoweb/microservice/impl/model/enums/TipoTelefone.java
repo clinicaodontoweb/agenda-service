@@ -1,7 +1,7 @@
 package com.odontoweb.microservice.impl.model.enums;
 
 public enum TipoTelefone {
-	RESIDENCIAL("Residencial"), COMERCIAL("Comercial"), CELULAR("Celular"), FAX("Fax");
+	RESIDENCIAL("Residencial"), COMERCIAL("Comercial"), CELULAR("Celular"), WHATSAPP("WhatsApp");
 
 	private String tipoTelefone;
 
