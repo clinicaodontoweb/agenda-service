@@ -42,6 +42,10 @@ public class EnumerationBinder implements Serializable {
 		return StatusEvento.valueOf(statusEventoRequest.getStatusEvento());
 	}
 
+    public StatusEvento requestToEnum(String statusEvento) {
+        return StatusEvento.valueOf(statusEvento);
+    }
+
 	public StatusEventoResponse enumToResponse(StatusEvento statusEvento) {
 		return new StatusEventoResponse(statusEvento.name());
 	}

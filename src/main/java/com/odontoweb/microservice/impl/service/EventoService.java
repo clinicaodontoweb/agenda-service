@@ -35,6 +35,10 @@ public class EventoService {
 		return eventoRepository.save(evento) != null;
 	}
 
+	public boolean save(Evento agendamento) {
+	    return eventoRepository.save(agendamento) != null;
+    }
+
 	public Evento findById(Long id) {
 		return eventoRepository.findOne(id);
 	}

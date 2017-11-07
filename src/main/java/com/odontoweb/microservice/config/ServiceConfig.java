@@ -101,8 +101,13 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public EventoBinder eventoBinder(ConvenioRepository convenioRepository) {
-		return new EventoBinder(convenioService(convenioRepository));
+	public EventoBinder eventoBinder(ConvenioRepository convenioRepository,
+                                     PacienteRepository pacienteRepository,
+                                     TipoConsultaRepository tipoConsultaRepository) {
+
+		return new EventoBinder(convenioService(convenioRepository),
+                pacienteService(pacienteRepository),
+                tipoConsultaService(tipoConsultaRepository));
 	}
 
 	@Bean
