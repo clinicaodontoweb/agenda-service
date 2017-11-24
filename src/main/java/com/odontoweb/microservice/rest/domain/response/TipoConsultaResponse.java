@@ -16,7 +16,10 @@ public class TipoConsultaResponse implements Serializable {
 	public TipoConsultaResponse(Long idTipoConsulta, String nome, String cor) {
 		this.idTipoConsulta = idTipoConsulta;
 		this.nome = nome;
+		this.cor = cor;
 	}
+
+
 
 	public Long getIdTipoConsulta() {
 		return idTipoConsulta;
