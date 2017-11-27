@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.odontoweb.microservices:arch:1.0'
+	compile 'com.odontoweb.microservices:arch:2.0'
 }
 
 springBoot {
