@@ -36,8 +36,8 @@ public class EventoService {
 	}
 
 	public boolean save(Evento agendamento) {
-	    return eventoRepository.save(agendamento) != null;
-    }
+		return eventoRepository.save(agendamento) != null;
+	}
 
 	public Evento findById(Long id) {
 		return eventoRepository.findOne(id);
@@ -58,5 +58,13 @@ public class EventoService {
 
 		return eventoRepository.findEventoByUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey),
 				new Date(dataInicio), new Date(dataFim));
+	}
+
+	public List<Evento> findEventoByNomePaciente(String nomePaciente) {
+		return eventoRepository.findEventoByNomePaciente(nomePaciente);
+	}
+
+	public List<Evento> findEventoByCpfPaciente(String cpf) {
+		return eventoRepository.findEventoByCpfPaciente(cpf);
 	}
 }

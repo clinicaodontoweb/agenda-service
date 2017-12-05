@@ -502,6 +502,29 @@ public class Endpoint {
 		}
 	}
 
+	@RequestMapping(value = "/evento/paciente/nome/{nome}", method = RequestMethod.GET)
+	public ResponseEntity<?> findEventoByNomePaciente(@PathVariable("nome") String nomePaciente) {
+		try {
+			return new ResponseEntity<>(
+					eventoBinder.modelToListResponse(eventoService.findEventoByNomePaciente(nomePaciente)),
+					HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/evento/paciente/cpf/{cpf}", method = RequestMethod.GET)
+	public ResponseEntity<?> findEventoByCpfPaciente(@PathVariable("cpf") String cpf) {
+		try {
+			return new ResponseEntity<>(eventoBinder.modelToListResponse(eventoService.findEventoByCpfPaciente(cpf)),
+					HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	@RequestMapping(value = "/agenda/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findAgendaById(@PathVariable("id") Long id) {
 		try {
