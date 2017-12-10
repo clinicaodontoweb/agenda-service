@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.odontoweb.microservice.impl.model.Evento;
-import com.odontoweb.microservice.impl.service.AgendaService;
 import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
@@ -22,22 +21,21 @@ public class EventoBinder implements Serializable {
 	private ConvenioService convenioService;
 	private PacienteService pacienteService;
 	private TipoConsultaService tipoConsultaService;
+	private StatusBinder statusBinder;
 
-
-	public EventoBinder(ConvenioService convenioService,
-                        PacienteService pacienteService,
-                        TipoConsultaService tipoConsultaService) {
-
-	    this.convenioService = convenioService;
-	    this.pacienteService = pacienteService;
-	    this.tipoConsultaService = tipoConsultaService;
+	public EventoBinder(ConvenioService convenioService, PacienteService pacienteService,
+			TipoConsultaService tipoConsultaService, StatusBinder statusBinder) {
+		this.convenioService = convenioService;
+		this.pacienteService = pacienteService;
+		this.tipoConsultaService = tipoConsultaService;
 	}
 
-	public EventoBinder(){}
+	public EventoBinder() {
+	}
 
 	public Evento requestToModel(EventoRequest eventoRequest) {
 		return new Evento(eventoRequest.getIdEvento(), eventoRequest.getEncaixe(),
-				new EnumerationBinder().requestToEnum(eventoRequest.getStatusEventoRequest()),
+				statusBinder.getStatusById(eventoRequest.getIdStatus()),
 				new TipoConsultaBinder().requestToModel(eventoRequest.getTipoConsultaRequest()),
 				new AgendaBinder().requestToModel(eventoRequest.getAgendaRequest()),
 				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()),
@@ -46,23 +44,23 @@ public class EventoBinder implements Serializable {
 	}
 
 	public Evento requestToModel(AgendamentoRequest agendamentoRequest) {
-	    Evento evento = new Evento();
-	    evento.setIdEvento(agendamentoRequest.getId());
-	    evento.setConvenio(this.convenioService.findById(agendamentoRequest.getIdConvenio()));
-	    evento.setPaciente(this.pacienteService.findById(agendamentoRequest.getIdPaciente()));
-	    evento.setTipoConsulta(this.tipoConsultaService.findById(agendamentoRequest.getIdTipoConsulta()));
-	    evento.setDataInicio(new Date(agendamentoRequest.getDataInicio()));
-	    evento.setDataFim(new Date(agendamentoRequest.getDataFim()));
-	    evento.setObservacao(agendamentoRequest.getObservacao());
-	    evento.setStatusEvento(new EnumerationBinder().requestToEnum(agendamentoRequest.getStatus()));
-	    evento.setEncaixe(agendamentoRequest.getEncaixe());
+		Evento evento = new Evento();
+		evento.setIdEvento(agendamentoRequest.getId());
+		evento.setConvenio(this.convenioService.findById(agendamentoRequest.getIdConvenio()));
+		evento.setPaciente(this.pacienteService.findById(agendamentoRequest.getIdPaciente()));
+		evento.setTipoConsulta(this.tipoConsultaService.findById(agendamentoRequest.getIdTipoConsulta()));
+		evento.setDataInicio(new Date(agendamentoRequest.getDataInicio()));
+		evento.setDataFim(new Date(agendamentoRequest.getDataFim()));
+		evento.setObservacao(agendamentoRequest.getObservacao());
+		evento.setStatus(statusBinder.getStatusById(agendamentoRequest.getIdStatus()));
+		evento.setEncaixe(agendamentoRequest.getEncaixe());
 
-	    return evento;
-    }
+		return evento;
+	}
 
 	public EventoResponse modelToResponse(Evento evento) {
 		return new EventoResponse(evento.getIdEvento(), evento.getEncaixe(),
-				new EnumerationBinder().enumToResponse(evento.getStatusEvento()),
+				statusBinder.modelToResponse(evento.getStatus()),
 				new TipoConsultaBinder().modelToResponse(evento.getTipoConsulta()),
 				new AgendaBinder().modelToResponse(evento.getAgenda()),
 				new PacienteBinder().modelToResponse(evento.getPaciente()),

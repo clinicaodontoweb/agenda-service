@@ -6,8 +6,6 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.odontoweb.microservice.impl.model.enums.StatusEvento;
 
 @Entity
 @Table(name = "TBL_EVENTO")
@@ -36,9 +32,9 @@ public class Evento implements Serializable {
 	@Column(name = "BOO_ENCAIXE")
 	private Boolean encaixe;
 
-	@Column(name = "STR_STATUS_EVENTO")
-	@Enumerated(EnumType.STRING)
-	private StatusEvento statusEvento;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "FK_STATUS")
+	private Status status;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FK_TIPO_CONSULTA")
@@ -64,11 +60,11 @@ public class Evento implements Serializable {
 	public Evento() {
 	}
 
-	public Evento(Long idEvento, Boolean encaixe, StatusEvento statusEvento, TipoConsulta tipoConsulta, Agenda agenda,
+	public Evento(Long idEvento, Boolean encaixe, Status status, TipoConsulta tipoConsulta, Agenda agenda,
 			Paciente paciente, Convenio convenio, Date dataInicio, Date dataFim, String observacao) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
-		this.statusEvento = statusEvento;
+		this.status = status;
 		this.tipoConsulta = tipoConsulta;
 		this.agenda = agenda;
 		this.paciente = paciente;
@@ -95,12 +91,12 @@ public class Evento implements Serializable {
 		this.encaixe = encaixe;
 	}
 
-	public StatusEvento getStatusEvento() {
-		return statusEvento;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatusEvento(StatusEvento statusEvento) {
-		this.statusEvento = statusEvento;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public TipoConsulta getTipoConsulta() {
@@ -161,7 +157,7 @@ public class Evento implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + idEvento + ", encaixe=" + encaixe + ", statusEvento=" + statusEvento + ", tipoConsulta="
+		return "Evento [id=" + idEvento + ", encaixe=" + encaixe + ", statusEvento=" + status + ", tipoConsulta="
 				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", convenio=" + convenio
 				+ ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", observacao=" + observacao + "]";
 	}

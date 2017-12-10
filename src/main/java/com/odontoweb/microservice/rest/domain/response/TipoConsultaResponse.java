@@ -8,18 +8,18 @@ public class TipoConsultaResponse implements Serializable {
 
 	private Long idTipoConsulta;
 	private String nome;
-	private String cor;
+	private String corPrimaria;
+	private String corSecundaria;
 
 	public TipoConsultaResponse() {
 	}
 
-	public TipoConsultaResponse(Long idTipoConsulta, String nome, String cor) {
+	public TipoConsultaResponse(Long idTipoConsulta, String nome, String corPrimaria, String corSecundaria) {
 		this.idTipoConsulta = idTipoConsulta;
 		this.nome = nome;
-		this.cor = cor;
+		this.corPrimaria = corPrimaria;
+		this.corSecundaria = corSecundaria;
 	}
-
-
 
 	public Long getIdTipoConsulta() {
 		return idTipoConsulta;
@@ -37,12 +37,20 @@ public class TipoConsultaResponse implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCor() {
-		return cor;
+	public String getCorPrimaria() {
+		return corPrimaria;
 	}
 
-	public void setCor(String cor) {
-		this.cor = cor;
+	public void setCorPrimaria(String corPrimaria) {
+		this.corPrimaria = corPrimaria;
+	}
+
+	public String getCorSecundaria() {
+		return corSecundaria;
+	}
+
+	public void setCorSecundaria(String corSecundaria) {
+		this.corSecundaria = corSecundaria;
 	}
 
 }

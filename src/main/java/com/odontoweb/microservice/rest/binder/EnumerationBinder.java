@@ -4,17 +4,14 @@ import java.io.Serializable;
 
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
-import com.odontoweb.microservice.impl.model.enums.StatusEvento;
 import com.odontoweb.microservice.impl.model.enums.TipoProfissional;
 import com.odontoweb.microservice.impl.model.enums.TipoTelefone;
 import com.odontoweb.microservice.rest.domain.request.EstadoCivilRequest;
 import com.odontoweb.microservice.rest.domain.request.GeneroRequest;
-import com.odontoweb.microservice.rest.domain.request.StatusEventoRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoProfissionalRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoTelefoneRequest;
 import com.odontoweb.microservice.rest.domain.response.EstadoCivilResponse;
 import com.odontoweb.microservice.rest.domain.response.GeneroResponse;
-import com.odontoweb.microservice.rest.domain.response.StatusEventoResponse;
 import com.odontoweb.microservice.rest.domain.response.TipoProfissionalResponse;
 import com.odontoweb.microservice.rest.domain.response.TipoTelefoneResponse;
 
@@ -36,18 +33,6 @@ public class EnumerationBinder implements Serializable {
 
 	public GeneroResponse enumToResponse(Genero genero) {
 		return new GeneroResponse(genero.name());
-	}
-
-	public StatusEvento requestToEnum(StatusEventoRequest statusEventoRequest) {
-		return StatusEvento.valueOf(statusEventoRequest.getStatusEvento());
-	}
-
-    public StatusEvento requestToEnum(String statusEvento) {
-        return StatusEvento.valueOf(statusEvento);
-    }
-
-	public StatusEventoResponse enumToResponse(StatusEvento statusEvento) {
-		return new StatusEventoResponse(statusEvento.name());
 	}
 
 	public TipoProfissional requestToEnum(TipoProfissionalRequest tipoProfissionalRequest) {

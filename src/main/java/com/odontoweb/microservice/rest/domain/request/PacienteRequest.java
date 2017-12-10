@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class PacienteRequest implements Serializable {
 
 	private static final long serialVersionUID = -6227648176297815452L;
 
 	private Long idPaciente;
+	private Long idEndereco;
 
 	@NotNull(message = "Cpf é obrigatório!")
 	private String cpf;
@@ -28,11 +30,34 @@ public class PacienteRequest implements Serializable {
 
 	private String estadoCivil;
 
-	@NotNull(message = "Contato é obrigatório!")
-	private ContatoRequest contatoRequest;
+	private Long idContato;
+
+	private String email;
+
+	private List<TelefoneRequest> telefones;
 
 	@NotNull(message = "Endereço é obrigatório!")
-	private EnderecoRequest enderecoRequest;
+	private String endereco;
+
+	@NotNull(message = "Cep obrigatório!")
+	@Size(min = 8, max = 8, message = "O cep deve conter 8 digitos!")
+	private String cep;
+
+	private String pontoReferencia;
+
+	@NotNull(message = "Nome da cidade obrigatório!")
+	private String cidade;
+
+	@NotNull(message = "Sigla é obrigatório!")
+	private String sigla;
+
+	@NotNull(message = "Nome do bairro obrigatório!")
+	private String bairro;
+
+	@NotNull(message = "Número é obrigatório!")
+	private Integer numero;
+
+	private String complemento;
 
 	private List<Long> convenios;
 
@@ -80,20 +105,84 @@ public class PacienteRequest implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public ContatoRequest getContatoRequest() {
-		return contatoRequest;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setContatoRequest(ContatoRequest contatoRequest) {
-		this.contatoRequest = contatoRequest;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public EnderecoRequest getEnderecoRequest() {
-		return enderecoRequest;
+	public List<TelefoneRequest> getTelefones() {
+		return telefones;
 	}
 
-	public void setEnderecoRequest(EnderecoRequest enderecoRequest) {
-		this.enderecoRequest = enderecoRequest;
+	public void setTelefones(List<TelefoneRequest> telefones) {
+		this.telefones = telefones;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getPontoReferencia() {
+		return pontoReferencia;
+	}
+
+	public void setPontoReferencia(String pontoReferencia) {
+		this.pontoReferencia = pontoReferencia;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public String getIndicacao() {
@@ -134,6 +223,22 @@ public class PacienteRequest implements Serializable {
 
 	public void setConvenios(List<Long> convenios) {
 		this.convenios = convenios;
+	}
+
+	public Long getIdContato() {
+		return idContato;
+	}
+
+	public void setIdContato(Long idContato) {
+		this.idContato = idContato;
+	}
+
+	public Long getIdEndereco() {
+		return idEndereco;
+	}
+
+	public void setIdEndereco(Long idEndereco) {
+		this.idEndereco = idEndereco;
 	}
 
 }

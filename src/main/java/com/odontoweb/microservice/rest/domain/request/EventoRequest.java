@@ -7,8 +7,8 @@ public class EventoRequest implements Serializable {
 	private static final long serialVersionUID = -2690624974662872216L;
 
 	private Long idEvento;
+	private Long idStatus;
 	private Boolean encaixe;
-	private StatusEventoRequest statusEventoRequest;
 	private AgendaRequest agendaRequest;
 	private Long dataInicio;
 	private Long dataFim;
@@ -36,12 +36,12 @@ public class EventoRequest implements Serializable {
 		this.encaixe = encaixe;
 	}
 
-	public StatusEventoRequest getStatusEventoRequest() {
-		return statusEventoRequest;
+	public Long getIdStatus() {
+		return idStatus;
 	}
 
-	public void setStatusEventoRequest(StatusEventoRequest statusEventoRequest) {
-		this.statusEventoRequest = statusEventoRequest;
+	public void setIdStatus(Long idStatus) {
+		this.idStatus = idStatus;
 	}
 
 	public String getObservacao() {

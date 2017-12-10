@@ -34,5 +34,9 @@ public class SiglaService implements Serializable {
 	public void delete(Long id) {
 		siglaRepository.delete(id);
 	}
+	
+	public Sigla findBySigla(String sigla) {
+		return siglaRepository.findBySigla(sigla);
+	}
 
 }

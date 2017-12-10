@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.odontoweb.microservice.impl.model.Convenio;
 import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
@@ -15,20 +13,28 @@ import com.odontoweb.microservice.rest.domain.response.ConvenioResponse;
 public class ConvenioBinder implements Serializable {
 
 	private static final long serialVersionUID = -6564303786520599427L;
-	
-	@Autowired
+
 	private ConvenioService convenioService;
+	private EnderecoBinder enderecoBinder;
+
+	public ConvenioBinder(ConvenioService convenioService, EnderecoBinder enderecoBinder) {
+		this.convenioService = convenioService;
+		this.enderecoBinder = enderecoBinder;
+	}
+
+	public ConvenioBinder() {
+
+	}
 
 	public Convenio requestToModel(ConvenioRequest convenioRequest) {
 		return new Convenio(convenioRequest.getIdConvenio(), convenioRequest.getNome(), convenioRequest.getCnpj(),
-				convenioRequest.getRazaoSocial(),
-				new EnderecoBinder().requestToModel(convenioRequest.getEnderecoRequest()),
+				convenioRequest.getRazaoSocial(), enderecoBinder.requestToModel(convenioRequest.getEnderecoRequest()),
 				new ContatoBinder().requestToModel(convenioRequest.getContatoRequest()));
 	}
 
 	public ConvenioResponse modelToResponse(Convenio convenio) {
 		return new ConvenioResponse(convenio.getIdConvenio(), convenio.getNome(), convenio.getCnpj(),
-				convenio.getRazaoSocial(), new EnderecoBinder().modelToResponse(convenio.getEndereco()),
+				convenio.getRazaoSocial(), enderecoBinder.modelToResponse(convenio.getEndereco()),
 				new ContatoBinder().modelToResponse(convenio.getContato()));
 	}
 
@@ -47,8 +53,8 @@ public class ConvenioBinder implements Serializable {
 				.map(convenioRequest -> requestToModel(convenioRequest)).collect(Collectors.toList());
 
 	}
-	
-	public List<Convenio> requestListIdToListModel(List<Long> convenios){
+
+	public List<Convenio> requestListIdToListModel(List<Long> convenios) {
 		return convenioService.getListConvenios(convenios);
 	}
 }

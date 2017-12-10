@@ -28,6 +28,7 @@ import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.impl.service.SiglaService;
+import com.odontoweb.microservice.impl.service.StatusService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
 import com.odontoweb.microservice.impl.service.UsuarioClinicaService;
 import com.odontoweb.microservice.rest.binder.AgendaBinder;
@@ -39,6 +40,7 @@ import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
+import com.odontoweb.microservice.rest.binder.StatusBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
 import com.odontoweb.microservice.rest.binder.UsuarioClinicaBinder;
 import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
@@ -46,6 +48,7 @@ import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
+import com.odontoweb.microservice.rest.domain.request.StatusRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
 import com.odontoweb.microservice.rest.domain.request.UsuarioClinicaRequest;
 import com.odontoweb.microservice.rest.domain.response.AgendaResponse;
@@ -57,6 +60,7 @@ import com.odontoweb.microservice.rest.domain.response.EstadoResponse;
 import com.odontoweb.microservice.rest.domain.response.EventoResponse;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
 import com.odontoweb.microservice.rest.domain.response.SiglaResponse;
+import com.odontoweb.microservice.rest.domain.response.StatusResponse;
 import com.odontoweb.microservice.rest.domain.response.TipoConsultaResponse;
 
 @RestController
@@ -87,6 +91,9 @@ public class Endpoint {
 	TipoConsultaService tipoConsultaService;
 
 	@Autowired
+	StatusService statusService;
+
+	@Autowired
 	EstadoService estadoService;
 
 	@Autowired
@@ -100,6 +107,9 @@ public class Endpoint {
 
 	@Autowired
 	TipoConsultaBinder tipoConsultaBinder;
+
+	@Autowired
+	StatusBinder statusBinder;
 
 	@Autowired
 	EstadoBinder estadoBinder;
@@ -685,5 +695,61 @@ public class Endpoint {
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@RequestMapping(value = "/status", method = RequestMethod.POST)
+	public ResponseEntity<?> saveStatus(@RequestBody @Valid StatusRequest statusRequest) {
+		try {
+			statusService.save(statusBinder.requestToModel(statusRequest));
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/status", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateStatus(@RequestBody @Valid StatusRequest statusRequest) {
+		try {
+			statusService.save(statusBinder.requestToModel(statusRequest));
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
+	public ResponseEntity<?> findAllStatus() {
+		try {
+			return new ResponseEntity<List<StatusResponse>>(
+					statusBinder.modelToListResponse(statusService.findAll()), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/status/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteStatus(@PathVariable("id") Long id) {
+		try {
+			statusService.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/status/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> findStatusById(@PathVariable("id") Long id) {
+		try {
+			return new ResponseEntity<>(statusBinder.modelToResponse(statusService.findById(id)),
+					HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 
 }

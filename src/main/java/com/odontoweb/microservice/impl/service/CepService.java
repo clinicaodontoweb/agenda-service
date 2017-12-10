@@ -34,5 +34,15 @@ public class CepService implements Serializable {
 	public void delete(Long id) {
 		cepRepository.delete(id);
 	}
+	
+	public Cep findByCep(String cep) {
+		Cep cepModel = cepRepository.findByCep(cep); 
+		if(cepModel == null) {
+			cepModel = new Cep();
+			cepModel.setCep(cep);
+			save(cepModel);
+		}
+		return cepModel;
+	}
 
 }

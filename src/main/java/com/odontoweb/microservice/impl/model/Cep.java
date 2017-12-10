@@ -20,13 +20,13 @@ public class Cep implements Serializable {
 	@Column(name = "ID")
 	private Long idCep;
 
-	@Column(name = "NUM_CEP")
-	private Integer cep;
+	@Column(name = "STR_CEP")
+	private String cep;
 
 	public Cep() {
 	}
 
-	public Cep(Long idCep, Integer cep) {
+	public Cep(Long idCep, String cep) {
 		this.idCep = idCep;
 		this.cep = cep;
 	}
@@ -39,11 +39,11 @@ public class Cep implements Serializable {
 		this.idCep = idCep;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

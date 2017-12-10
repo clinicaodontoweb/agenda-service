@@ -23,16 +23,20 @@ public class TipoConsulta implements Serializable {
 	@Column(name = "STR_NOME")
 	private String nome;
 
-	@Column(name = "STR_COR")
-	private String cor;
+	@Column(name = "STR_COR_PRIMARIA")
+	private String corPrimaria;
+
+	@Column(name = "STR_COR_SECUNDARIA")
+	private String corSecundaria;
 
 	public TipoConsulta() {
 	}
 
-	public TipoConsulta(Long idTipoConsulta, String nome, String cor) {
+	public TipoConsulta(Long idTipoConsulta, String nome, String corPrimaria, String corSecundaria) {
 		this.idTipoConsulta = idTipoConsulta;
 		this.nome = nome;
-		this.cor = cor;
+		this.corPrimaria = corPrimaria;
+		this.corSecundaria = corSecundaria;
 	}
 
 	public Long getIdTipoConsulta() {
@@ -51,12 +55,20 @@ public class TipoConsulta implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCor() {
-		return cor;
+	public String getCorPrimaria() {
+		return corPrimaria;
 	}
 
-	public void setCor(String cor) {
-		this.cor = cor;
+	public void setCorPrimaria(String corPrimaria) {
+		this.corPrimaria = corPrimaria;
+	}
+
+	public String getCorSecundaria() {
+		return corSecundaria;
+	}
+
+	public void setCorSecundaria(String corSecundaria) {
+		this.corSecundaria = corSecundaria;
 	}
 
 	@Override

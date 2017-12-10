@@ -15,12 +15,12 @@ public class TipoConsultaBinder implements Serializable {
 
 	public TipoConsulta requestToModel(TipoConsultaRequest tipoConsultaRequest) {
 		return new TipoConsulta(tipoConsultaRequest.getIdTipoConsulta(), tipoConsultaRequest.getNome(),
-				tipoConsultaRequest.getCor());
+				tipoConsultaRequest.getCorPrimaria(), tipoConsultaRequest.getCorSecundaria());
 	}
 
 	public TipoConsultaResponse modelToResponse(TipoConsulta tipoConsulta) {
 		return new TipoConsultaResponse(tipoConsulta.getIdTipoConsulta(), tipoConsulta.getNome(),
-				tipoConsulta.getCor());
+				tipoConsulta.getCorPrimaria(), tipoConsulta.getCorSecundaria());
 	}
 
 	public List<TipoConsultaResponse> modelToListResponse(List<TipoConsulta> tipoConsultas) {

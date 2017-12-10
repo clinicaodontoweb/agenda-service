@@ -10,4 +10,5 @@ import com.odontoweb.microservice.impl.model.Bairro;
 @Repository
 public interface BairroRepository extends JpaRepository<Bairro, Long> {
 	public List<Bairro> findAll();
+	public Bairro findByNome(String nomeBairro);
 }

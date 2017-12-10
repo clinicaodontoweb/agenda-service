@@ -35,4 +35,14 @@ public class BairroService implements Serializable {
 		bairroRepository.delete(id);
 	}
 
+	public Bairro findByNome(String nomeBairro) {
+		Bairro bairro = bairroRepository.findByNome(nomeBairro);
+		if (bairro == null) {
+			bairro = new Bairro();
+			bairro.setNome(nomeBairro);
+			save(bairro);
+		}
+		return bairro;
+	}
+
 }

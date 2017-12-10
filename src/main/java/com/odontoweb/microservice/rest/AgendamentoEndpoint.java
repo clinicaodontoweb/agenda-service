@@ -1,22 +1,22 @@
 package com.odontoweb.microservice.rest;
 
-import com.odontoweb.arquitetura.exception.response.ExceptionResponse;
-import com.odontoweb.arquitetura.model.User;
-import com.odontoweb.microservice.exception.UsuarioDuplicateFoundException;
-import com.odontoweb.microservice.exception.UsuarioNotFoundException;
-import com.odontoweb.microservice.impl.model.Evento;
-import com.odontoweb.microservice.impl.service.*;
-import com.odontoweb.microservice.rest.binder.*;
-import com.odontoweb.microservice.rest.domain.request.*;
-import com.odontoweb.microservice.rest.domain.response.*;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.List;
+import com.odontoweb.arquitetura.exception.response.ExceptionResponse;
+import com.odontoweb.microservice.impl.model.Evento;
+import com.odontoweb.microservice.impl.service.AgendaService;
+import com.odontoweb.microservice.impl.service.EventoService;
+import com.odontoweb.microservice.rest.binder.EventoBinder;
+import com.odontoweb.microservice.rest.domain.request.AgendamentoRequest;
 
 @RestController
 public class AgendamentoEndpoint {
@@ -25,23 +25,24 @@ public class AgendamentoEndpoint {
 	EventoService eventoService;
 
 	@Autowired
-    AgendaService agendaService;
+	AgendaService agendaService;
 
 	@Autowired
 	EventoBinder eventoBinder;
 
 	@RequestMapping(value = "/agendamento/{hashKey}", method = RequestMethod.POST)
-	public ResponseEntity<?> saveAgendamento(@RequestBody @Valid AgendamentoRequest agendamentoRequest, @PathVariable("hashKey") String hashKey) {
+	public ResponseEntity<?> saveAgendamento(@RequestBody @Valid AgendamentoRequest agendamentoRequest,
+			@PathVariable("hashKey") String hashKey) {
 		try {
-            Evento agendamento = eventoBinder.requestToModel(agendamentoRequest);
-            agendamento.setAgenda(agendaService.findAgendaByUsuarioClinica(hashKey));
+			Evento agendamento = eventoBinder.requestToModel(agendamentoRequest);
+			agendamento.setAgenda(agendaService.findAgendaByUsuarioClinica(hashKey));
 
 			eventoService.save(agendamento);
 
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<>(
-					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()),
+					HttpStatus.BAD_REQUEST);
 		}
 	}
 

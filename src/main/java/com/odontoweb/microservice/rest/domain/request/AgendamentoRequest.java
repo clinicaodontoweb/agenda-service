@@ -2,112 +2,115 @@ package com.odontoweb.microservice.rest.domain.request;
 
 import java.io.Serializable;
 
-public class AgendamentoRequest implements Serializable{
-    private static final long serialVersionUID = 2897521903307927826L;
+public class AgendamentoRequest implements Serializable {
+	private static final long serialVersionUID = 2897521903307927826L;
 
-    private Long id;
-    private Boolean encaixe;
-    private String status;
-    private String observacao;
-    private Long dataInicio;
-    private Long dataFim;
-    private Long idTipoConsulta;
-    private Long idPaciente;
-    private Long idConvenio;
-    private Long idAgenda;
+	private Long id;
+	private Long idStatus;
+	private Boolean encaixe;
 
-    AgendamentoRequest(){}
+	private String observacao;
+	private Long dataInicio;
+	private Long dataFim;
+	private Long idTipoConsulta;
+	private Long idPaciente;
+	private Long idConvenio;
+	private Long idAgenda;
 
-    public AgendamentoRequest(Long id, Boolean encaixe, String status, String observacao, Long dataInicio, Long dataFim, Long idTipoConsulta, Long idPaciente, Long idConvenio, Long idAgenda) {
-        this.id = id;
-        this.encaixe = encaixe;
-        this.status = status;
-        this.observacao = observacao;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.idTipoConsulta = idTipoConsulta;
-        this.idPaciente = idPaciente;
-        this.idConvenio = idConvenio;
-        this.idAgenda = idAgenda;
-    }
+	AgendamentoRequest() {
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public AgendamentoRequest(Long id, Boolean encaixe, Long idStatus, String observacao, Long dataInicio, Long dataFim,
+			Long idTipoConsulta, Long idPaciente, Long idConvenio, Long idAgenda) {
+		this.id = id;
+		this.encaixe = encaixe;
+		this.idStatus = idStatus;
+		this.observacao = observacao;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.idTipoConsulta = idTipoConsulta;
+		this.idPaciente = idPaciente;
+		this.idConvenio = idConvenio;
+		this.idAgenda = idAgenda;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Boolean getEncaixe() {
-        return encaixe;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setEncaixe(Boolean encaixe) {
-        this.encaixe = encaixe;
-    }
+	public Boolean getEncaixe() {
+		return encaixe;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setEncaixe(Boolean encaixe) {
+		this.encaixe = encaixe;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public Long getIdStatus() {
+		return idStatus;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public void setIdStatus(Long idStatus) {
+		this.idStatus = idStatus;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public String getObservacao() {
+		return observacao;
+	}
 
-    public Long getDataInicio() {
-        return dataInicio;
-    }
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 
-    public void setDataInicio(Long dataInicio) {
-        this.dataInicio = dataInicio;
-    }
+	public Long getDataInicio() {
+		return dataInicio;
+	}
 
-    public Long getDataFim() {
-        return dataFim;
-    }
+	public void setDataInicio(Long dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
-    public void setDataFim(Long dataFim) {
-        this.dataFim = dataFim;
-    }
+	public Long getDataFim() {
+		return dataFim;
+	}
 
-    public Long getIdTipoConsulta() {
-        return idTipoConsulta;
-    }
+	public void setDataFim(Long dataFim) {
+		this.dataFim = dataFim;
+	}
 
-    public void setIdTipoConsulta(Long idTipoConsulta) {
-        this.idTipoConsulta = idTipoConsulta;
-    }
+	public Long getIdTipoConsulta() {
+		return idTipoConsulta;
+	}
 
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
+	public void setIdTipoConsulta(Long idTipoConsulta) {
+		this.idTipoConsulta = idTipoConsulta;
+	}
 
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-    }
+	public Long getIdPaciente() {
+		return idPaciente;
+	}
 
-    public Long getIdConvenio() {
-        return idConvenio;
-    }
+	public void setIdPaciente(Long idPaciente) {
+		this.idPaciente = idPaciente;
+	}
 
-    public void setIdConvenio(Long idConvenio) {
-        this.idConvenio = idConvenio;
-    }
+	public Long getIdConvenio() {
+		return idConvenio;
+	}
 
-    public Long getIdAgenda() {
-        return idAgenda;
-    }
+	public void setIdConvenio(Long idConvenio) {
+		this.idConvenio = idConvenio;
+	}
 
-    public void setIdAgenda(Long idAgenda) {
-        this.idAgenda = idAgenda;
-    }
+	public Long getIdAgenda() {
+		return idAgenda;
+	}
+
+	public void setIdAgenda(Long idAgenda) {
+		this.idAgenda = idAgenda;
+	}
 }

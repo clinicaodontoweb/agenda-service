@@ -13,7 +13,9 @@ public class TipoConsultaRequest implements Serializable {
 	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
 
-	private String cor;
+	private String corPrimaria;
+
+	private String corSecundaria;
 
 	public Long getIdTipoConsulta() {
 		return idTipoConsulta;
@@ -31,12 +33,20 @@ public class TipoConsultaRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCor() {
-		return cor;
+	public String getCorPrimaria() {
+		return corPrimaria;
 	}
 
-	public void setCor(String cor) {
-		this.cor = cor;
+	public void setCorPrimaria(String corPrimaria) {
+		this.corPrimaria = corPrimaria;
+	}
+
+	public String getCorSecundaria() {
+		return corSecundaria;
+	}
+
+	public void setCorSecundaria(String corSecundaria) {
+		this.corSecundaria = corSecundaria;
 	}
 
 }

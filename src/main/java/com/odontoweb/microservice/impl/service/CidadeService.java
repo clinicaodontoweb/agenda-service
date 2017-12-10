@@ -6,17 +6,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Cidade;
+import com.odontoweb.microservice.impl.model.Estado;
+import com.odontoweb.microservice.impl.model.Sigla;
 import com.odontoweb.microservice.impl.repository.CidadeRepository;
+import com.odontoweb.microservice.impl.repository.EstadoRepository;
+import com.odontoweb.microservice.impl.repository.SiglaRepository;
 
 public class CidadeService implements Serializable {
 
 	private static final long serialVersionUID = -3365479642577507797L;
 
 	private CidadeRepository cidadeRepository;
+	private SiglaRepository siglaRepository;
+	private EstadoRepository estadoRepository;
 
 	@Autowired
-	public CidadeService(CidadeRepository cidadeRepository) {
+	public CidadeService(CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
+			EstadoRepository estadoRepository) {
 		this.cidadeRepository = cidadeRepository;
+		this.siglaRepository = siglaRepository;
+		this.estadoRepository = estadoRepository;
 	}
 
 	public List<Cidade> findAll() {
@@ -33,5 +42,11 @@ public class CidadeService implements Serializable {
 
 	public void delete(Long id) {
 		cidadeRepository.delete(id);
+	}
+
+	public Cidade findByNomeAndEstado(String nome, String sigla) {
+		Sigla siglaModel = siglaRepository.findBySigla(sigla);
+		Estado estadoModel = estadoRepository.findBySigla(siglaModel);
+		return cidadeRepository.findByNomeAndEstado(nome, estadoModel);
 	}
 }
