@@ -22,12 +22,18 @@ public class EventoBinder implements Serializable {
 	private PacienteService pacienteService;
 	private TipoConsultaService tipoConsultaService;
 	private StatusBinder statusBinder;
+	private PacienteBinder pacienteBinder;
+	private ConvenioBinder convenioBinder;
 
 	public EventoBinder(ConvenioService convenioService, PacienteService pacienteService,
-			TipoConsultaService tipoConsultaService, StatusBinder statusBinder) {
+			TipoConsultaService tipoConsultaService, StatusBinder statusBinder, PacienteBinder pacienteBinder,
+			ConvenioBinder convenioBinder) {
 		this.convenioService = convenioService;
 		this.pacienteService = pacienteService;
 		this.tipoConsultaService = tipoConsultaService;
+		this.statusBinder = statusBinder;
+		this.pacienteBinder = pacienteBinder;
+		this.convenioBinder = convenioBinder;
 	}
 
 	public EventoBinder() {
@@ -38,7 +44,7 @@ public class EventoBinder implements Serializable {
 				statusBinder.getStatusById(eventoRequest.getIdStatus()),
 				new TipoConsultaBinder().requestToModel(eventoRequest.getTipoConsultaRequest()),
 				new AgendaBinder().requestToModel(eventoRequest.getAgendaRequest()),
-				new PacienteBinder().requestToModel(eventoRequest.getPacienteRequest()),
+				pacienteBinder.requestToModel(eventoRequest.getPacienteRequest()),
 				convenioService.findById(eventoRequest.getIdConvenio()), new Date(eventoRequest.getDataInicio()),
 				new Date(eventoRequest.getDataFim()), eventoRequest.getObservacao());
 	}
@@ -63,8 +69,8 @@ public class EventoBinder implements Serializable {
 				statusBinder.modelToResponse(evento.getStatus()),
 				new TipoConsultaBinder().modelToResponse(evento.getTipoConsulta()),
 				new AgendaBinder().modelToResponse(evento.getAgenda()),
-				new PacienteBinder().modelToResponse(evento.getPaciente()),
-				new ConvenioBinder().modelToResponse(evento.getConvenio()), evento.getObservacao(),
+				pacienteBinder.modelToResponse(evento.getPaciente()),
+				convenioBinder.modelToResponse(evento.getConvenio()), evento.getObservacao(),
 				evento.getDataInicio().getTime(), evento.getDataFim().getTime());
 	}
 

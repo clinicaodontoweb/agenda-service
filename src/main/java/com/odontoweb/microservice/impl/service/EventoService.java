@@ -65,6 +65,6 @@ public class EventoService {
 	}
 
 	public List<Evento> findEventoByCpfPaciente(String cpf) {
-		return eventoRepository.findEventoByCpfPaciente(cpf);
+		return eventoRepository.findEventoByCpfPaciente(cpf); 
 	}
 }

@@ -22,9 +22,6 @@ public class ConvenioBinder implements Serializable {
 		this.enderecoBinder = enderecoBinder;
 	}
 
-	public ConvenioBinder() {
-
-	}
 
 	public Convenio requestToModel(ConvenioRequest convenioRequest) {
 		return new Convenio(convenioRequest.getIdConvenio(), convenioRequest.getNome(), convenioRequest.getCnpj(),

@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
@@ -17,12 +15,15 @@ public class PacienteBinder implements Serializable {
 
 	private static final long serialVersionUID = 2368417682988907201L;
 
-	@Autowired 
 	private EnderecoBinder enderecoBinder;
-	
-	@Autowired
+
 	private ConvenioBinder convenioBinder;
-	
+
+	public PacienteBinder(EnderecoBinder enderecoBinder, ConvenioBinder convenioBinder) {
+		this.enderecoBinder = enderecoBinder;
+		this.convenioBinder = convenioBinder;
+	}
+
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {
 		return new Paciente(pacienteRequest.getIdPaciente(), pacienteRequest.getCpf(), pacienteRequest.getRg(),
 				pacienteRequest.getNome(), Genero.valueOf(pacienteRequest.getGenero()),
@@ -33,8 +34,8 @@ public class PacienteBinder implements Serializable {
 						pacienteRequest.getCep(), pacienteRequest.getPontoReferencia(), pacienteRequest.getCidade(),
 						pacienteRequest.getSigla(), pacienteRequest.getBairro(), pacienteRequest.getNumero(),
 						pacienteRequest.getComplemento()),
-				convenioBinder.requestListIdToListModel(pacienteRequest.getConvenios()),
-				pacienteRequest.getIndicacao(), pacienteRequest.getProfissao());
+				convenioBinder.requestListIdToListModel(pacienteRequest.getConvenios()), pacienteRequest.getIndicacao(),
+				pacienteRequest.getProfissao());
 	}
 
 	public PacienteResponse modelToResponse(Paciente paciente) {
