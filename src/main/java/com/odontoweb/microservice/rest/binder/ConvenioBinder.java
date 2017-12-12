@@ -28,6 +28,10 @@ public class ConvenioBinder implements Serializable {
 				convenioRequest.getRazaoSocial(), enderecoBinder.requestToModel(convenioRequest.getEnderecoRequest()),
 				new ContatoBinder().requestToModel(convenioRequest.getContatoRequest()));
 	}
+	
+	public Convenio requestToModel(Long idConvenio) {
+		return convenioService.findById(idConvenio);
+	}
 
 	public ConvenioResponse modelToResponse(Convenio convenio) {
 		return new ConvenioResponse(convenio.getIdConvenio(), convenio.getNome(), convenio.getCnpj(),

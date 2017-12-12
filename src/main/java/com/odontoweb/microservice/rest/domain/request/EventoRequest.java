@@ -8,16 +8,12 @@ public class EventoRequest implements Serializable {
 
 	private Long idEvento;
 	private Long idStatus;
+	private Long idPaciente;
+	private Long idTipoConsulta;
 	private Boolean encaixe;
-	private AgendaRequest agendaRequest;
 	private Long dataInicio;
 	private Long dataFim;
 	private Long idConvenio;
-
-	private TipoConsultaRequest tipoConsultaRequest;
-
-	private PacienteRequest pacienteRequest;
-
 	private String observacao;
 
 	public Long getIdEvento() {
@@ -52,28 +48,20 @@ public class EventoRequest implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public TipoConsultaRequest getTipoConsultaRequest() {
-		return tipoConsultaRequest;
+	public Long getIdPaciente() {
+		return idPaciente;
 	}
 
-	public void setTipoConsultaRequest(TipoConsultaRequest tipoConsultaRequest) {
-		this.tipoConsultaRequest = tipoConsultaRequest;
+	public void setIdPaciente(Long idPaciente) {
+		this.idPaciente = idPaciente;
 	}
 
-	public PacienteRequest getPacienteRequest() {
-		return pacienteRequest;
+	public Long getIdTipoConsulta() {
+		return idTipoConsulta;
 	}
 
-	public void setPacienteRequest(PacienteRequest pacienteRequest) {
-		this.pacienteRequest = pacienteRequest;
-	}
-
-	public AgendaRequest getAgendaRequest() {
-		return agendaRequest;
-	}
-
-	public void setAgendaRequest(AgendaRequest agendaRequest) {
-		this.agendaRequest = agendaRequest;
+	public void setIdTipoConsulta(Long idTipoConsulta) {
+		this.idTipoConsulta = idTipoConsulta;
 	}
 
 	public Long getDataInicio() {

@@ -41,5 +41,15 @@ public class AgendaService implements Serializable {
 	public Agenda findAgendaByUsuarioClinica(String hashKey) {
 		return agendaRepository.findAgendaByUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey));
 	}
+	
+	public Agenda findOrCreateAgendaByUsuarioClinica(String hashKey) {
+		Agenda agenda = findAgendaByUsuarioClinica(hashKey);
+		if(agenda == null) {
+			agenda = new Agenda();
+			agenda.setUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey));
+			save(agenda);
+		}
+		return agenda;
+	}
 
 }

@@ -106,21 +106,25 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public AgendaBinder agendaBinder() {
-		return new AgendaBinder();
+	public AgendaBinder agendaBinder(AgendaRepository agendaRepository,
+			UsuarioClinicaRepository usuarioclinicaRepository) {
+		return new AgendaBinder(agendaService(agendaRepository, usuarioclinicaRepository));
 	}
 
 	@Bean
 	public EventoBinder eventoBinder(ConvenioRepository convenioRepository, PacienteRepository pacienteRepository,
 			TipoConsultaRepository tipoConsultaRepository, StatusRepository statusRepository,
 			CepRepository cepRepository, CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
-			EstadoRepository estadoRepository, BairroRepository bairroRepository) {
+			EstadoRepository estadoRepository, BairroRepository bairroRepository, AgendaRepository agendaRepository,
+			UsuarioClinicaRepository usuarioClinicaRepository) {
+		return new EventoBinder(
+				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
+						bairroRepository),
+				pacienteBinder(pacienteRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
+						bairroRepository, convenioRepository),
+				statusBinder(statusRepository), tipoConsultaBinder(tipoConsultaRepository),
+				agendaBinder(agendaRepository, usuarioClinicaRepository));
 
-		return new EventoBinder(convenioService(convenioRepository), pacienteService(pacienteRepository),
-				tipoConsultaService(tipoConsultaRepository), statusBinder(statusRepository),
-				pacienteBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository,
-						convenioRepository),
-				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository));
 	}
 
 	@Bean
@@ -152,10 +156,10 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public PacienteBinder pacienteBinder(CepRepository cepRepository, CidadeRepository cidadeRepository,
-			SiglaRepository siglaRepository, EstadoRepository estadoRepository, BairroRepository bairroRepository,
-			ConvenioRepository convenioRepository) {
-		return new PacienteBinder(
+	public PacienteBinder pacienteBinder(PacienteRepository pacienteRepository, CepRepository cepRepository,
+			CidadeRepository cidadeRepository, SiglaRepository siglaRepository, EstadoRepository estadoRepository,
+			BairroRepository bairroRepository, ConvenioRepository convenioRepository) {
+		return new PacienteBinder(pacienteService(pacienteRepository),
 				enderecoBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository),
 				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
 						bairroRepository));
@@ -167,8 +171,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public TipoConsultaBinder tipoConsultaBinder() {
-		return new TipoConsultaBinder();
+	public TipoConsultaBinder tipoConsultaBinder(TipoConsultaRepository tipoConsultaRepository) {
+		return new TipoConsultaBinder(tipoConsultaService(tipoConsultaRepository));
 	}
 
 	@Bean
