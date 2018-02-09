@@ -11,6 +11,7 @@ import com.odontoweb.microservice.impl.model.Sigla;
 import com.odontoweb.microservice.impl.repository.CidadeRepository;
 import com.odontoweb.microservice.impl.repository.EstadoRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
+import com.odontoweb.microservice.rest.domain.response.CidadeResponse;
 
 public class CidadeService implements Serializable {
 
@@ -47,6 +48,14 @@ public class CidadeService implements Serializable {
 	public Cidade findByNomeAndEstado(String nome, String sigla) {
 		Sigla siglaModel = siglaRepository.findBySigla(sigla);
 		Estado estadoModel = estadoRepository.findBySigla(siglaModel);
-		return cidadeRepository.findByNomeAndEstado(nome, estadoModel);
+		Cidade cidade = cidadeRepository.findByNomeAndEstado(nome, estadoModel);
+		if(cidade == null) {
+			cidade = new Cidade(null, nome, estadoModel);
+			if(save(cidade)) {
+				return cidade;
+			}
+			return null;
+		}
+		return cidade;
 	}
 }

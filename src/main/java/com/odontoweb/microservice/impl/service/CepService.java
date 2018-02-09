@@ -38,8 +38,7 @@ public class CepService implements Serializable {
 	public Cep findByCep(String cep) {
 		Cep cepModel = cepRepository.findByCep(cep); 
 		if(cepModel == null) {
-			cepModel = new Cep();
-			cepModel.setCep(cep);
+			cepModel = new Cep(null, cep);
 			save(cepModel);
 		}
 		return cepModel;
