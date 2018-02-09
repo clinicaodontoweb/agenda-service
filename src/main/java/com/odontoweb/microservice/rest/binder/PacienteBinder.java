@@ -28,8 +28,8 @@ public class PacienteBinder implements Serializable {
 
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {
 		return new Paciente(pacienteRequest.getIdPaciente(), pacienteRequest.getCpf(), pacienteRequest.getRg(),
-				pacienteRequest.getNome(), Genero.valueOf(pacienteRequest.getGenero()),
-				pacienteRequest.getDataNascimento(), EstadoCivil.valueOf(pacienteRequest.getEstadoCivil()),
+				pacienteRequest.getNome(), Genero.valueOf(pacienteRequest.getGenero().toUpperCase()),
+				pacienteRequest.getDataNascimento(), EstadoCivil.valueOf(pacienteRequest.getEstadoCivil().toUpperCase()),
 				new ContatoBinder().requestToModel(pacienteRequest.getIdContato(), pacienteRequest.getEmail(),
 						pacienteRequest.getTelefones()),
 				enderecoBinder.requestToModel(pacienteRequest.getIdEndereco(), pacienteRequest.getEndereco(),
