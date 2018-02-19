@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TBL_EVENTO")
@@ -52,9 +54,11 @@ public class Evento implements Serializable {
 	private String observacao;
 
 	@Column(name = "DTA_INICIO")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicio;
 
 	@Column(name = "DTA_FIM")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFim;
 
 	public Evento() {

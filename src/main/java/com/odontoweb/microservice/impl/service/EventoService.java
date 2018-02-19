@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
+import com.odontoweb.microservice.impl.model.enums.TipoAcaoAuditoria;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
@@ -21,21 +22,27 @@ public class EventoService {
 
 	@Autowired
 	private UsuarioClinicaRepository usuarioClinicaRepository;
+	
+	@Autowired
+	private AuditoriaService auditoriaService;
 
-	public EventoService(EventoRepository eventoRepository) {
+	public EventoService(EventoRepository eventoRepository, AuditoriaService auditoriaService) {
 		this.eventoRepository = eventoRepository;
+		this.auditoriaService = auditoriaService;
 	}
 
 	public List<Evento> findAll() {
 		return eventoRepository.findAll();
 	}
 
-	public boolean save(Evento evento, Long idEvento) {
-		evento.setAgenda(agendaRepository.findOne(idEvento));
+	public boolean save(Evento evento, Long idAgenda) {
+		evento.setAgenda(agendaRepository.findOne(idAgenda));
 		return eventoRepository.save(evento) != null;
 	}
 
-	public boolean save(Evento agendamento) {
+	public boolean save(Evento agendamento, String usuario) {
+		boolean isNew = agendamento.getIdEvento() == null;
+		auditoriaService.save(agendamento, agendamento.getIdEvento(), Evento.class.getSimpleName(), isNew ? TipoAcaoAuditoria.CREATE :TipoAcaoAuditoria.UPDATE, usuario);
 		return eventoRepository.save(agendamento) != null;
 	}
 

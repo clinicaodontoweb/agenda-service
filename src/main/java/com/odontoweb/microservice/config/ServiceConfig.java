@@ -3,7 +3,9 @@ package com.odontoweb.microservice.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
+import com.odontoweb.microservice.impl.repository.AuditoriaRepository;
 import com.odontoweb.microservice.impl.repository.BairroRepository;
 import com.odontoweb.microservice.impl.repository.CepRepository;
 import com.odontoweb.microservice.impl.repository.CidadeRepository;
@@ -16,6 +18,7 @@ import com.odontoweb.microservice.impl.repository.StatusRepository;
 import com.odontoweb.microservice.impl.repository.TipoConsultaRepository;
 import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
 import com.odontoweb.microservice.impl.service.AgendaService;
+import com.odontoweb.microservice.impl.service.AuditoriaService;
 import com.odontoweb.microservice.impl.service.BairroService;
 import com.odontoweb.microservice.impl.service.CepService;
 import com.odontoweb.microservice.impl.service.CidadeService;
@@ -50,6 +53,12 @@ public class ServiceConfig {
 	}
 
 	@Bean
+	public AuditoriaService auditoriaService(AuditoriaRepository auditoriaRepository) {
+		ObjectMapper mapper = new ObjectMapper();
+		return new AuditoriaService(auditoriaRepository, mapper);
+	}
+
+	@Bean
 	public PacienteService pacienteService(PacienteRepository repository) {
 		return new PacienteService(repository);
 	}
@@ -60,8 +69,8 @@ public class ServiceConfig {
 	}
 
 	@Bean
-	public EventoService eventoService(EventoRepository repository) {
-		return new EventoService(repository);
+	public EventoService eventoService(EventoRepository repository, AuditoriaRepository auditoriaRepository) {
+		return new EventoService(repository, auditoriaService(auditoriaRepository));
 	}
 
 	@Bean
@@ -116,7 +125,7 @@ public class ServiceConfig {
 			TipoConsultaRepository tipoConsultaRepository, StatusRepository statusRepository,
 			CepRepository cepRepository, CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
 			EstadoRepository estadoRepository, BairroRepository bairroRepository, AgendaRepository agendaRepository,
-			UsuarioClinicaRepository usuarioClinicaRepository) {
+			UsuarioClinicaRepository usuarioClinicaRepository, AuditoriaRepository auditoriaRepository) {
 		return new EventoBinder(
 				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
 						bairroRepository),

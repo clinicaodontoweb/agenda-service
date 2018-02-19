@@ -139,9 +139,9 @@ public class Endpoint {
 	UsuarioClinicaBinder usuarioClinicaBinder;
 
 	@RequestMapping(value = "/evento/{hashkey}", method = RequestMethod.POST)
-	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest, @PathVariable("hashkey") String hashkey) {
+	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest, @PathVariable("hashkey") String hashkey, Authentication authentication) {
 		try {
-			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey));
+			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey), authentication.getName());
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -151,9 +151,9 @@ public class Endpoint {
 
 	@RequestMapping(value = "/evento/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateEvento(@RequestBody @Valid EventoRequest eventoRequest,
-			@PathVariable("hashkey") String hashkey) {
+			@PathVariable("hashkey") String hashkey, Authentication authentication) {
 		try {
-			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey));
+			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey), authentication.getName());
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
