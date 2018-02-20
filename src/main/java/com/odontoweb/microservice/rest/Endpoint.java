@@ -141,7 +141,7 @@ public class Endpoint {
 	@RequestMapping(value = "/evento/{hashkey}", method = RequestMethod.POST)
 	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest, @PathVariable("hashkey") String hashkey, Authentication authentication) {
 		try {
-			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey), authentication.getName());
+			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey), ((User)authentication.getPrincipal()).getUsername());
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(

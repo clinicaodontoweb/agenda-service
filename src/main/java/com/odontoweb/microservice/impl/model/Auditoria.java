@@ -10,15 +10,19 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
+import com.odontoweb.arquitetura.custom.sql.hibernate.usertype.JsonDataUserType;
 import com.odontoweb.microservice.impl.model.enums.TipoAcaoAuditoria;
 
 @Entity
 @Table(name = "TBL_AUDITORIA")
+@TypeDef(name = "JsonDataUserType", typeClass = JsonDataUserType.class)
 public class Auditoria implements Serializable {
 
 	private static final long serialVersionUID = -7324893402738289653L;
@@ -32,7 +36,7 @@ public class Auditoria implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAtualizacao;
 
-	@Column(name = "TIPO_ACAO_AUDITORIA")
+	@Column(name = "STR_TIPO_ACAO_AUDITORIA")
 	@Enumerated(EnumType.STRING)
 	private TipoAcaoAuditoria tipoAcaoAuditoria;
 
@@ -45,7 +49,7 @@ public class Auditoria implements Serializable {
 	@Column(name = "STR_USUARIO")
 	private String usuario;
 
-	@Lob
+	@Type(type = "JsonDataUserType")
 	@Column(name = "STR_DADOS")
 	private String dados;
 
