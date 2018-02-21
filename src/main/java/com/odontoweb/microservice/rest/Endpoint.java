@@ -47,6 +47,7 @@ import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
 import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
+import com.odontoweb.microservice.rest.domain.request.PacienteEditRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
 import com.odontoweb.microservice.rest.domain.request.StatusRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
@@ -234,9 +235,9 @@ public class Endpoint {
 	}
 
 	@RequestMapping(value = "/paciente", method = RequestMethod.PUT)
-	public ResponseEntity<?> updatePaciente(@RequestBody @Valid PacienteRequest pacienteRequest) {
+	public ResponseEntity<?> updatePaciente(@RequestBody @Valid PacienteEditRequest pacienteEditRequest) {
 		try {
-			pacienteService.save(pacienteBinder.requestToModel(pacienteRequest));
+			pacienteService.save(pacienteBinder.requestToModel(pacienteEditRequest));
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(

@@ -9,6 +9,7 @@ import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 import com.odontoweb.microservice.impl.service.PacienteService;
+import com.odontoweb.microservice.rest.domain.request.PacienteEditRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
 
@@ -20,7 +21,8 @@ public class PacienteBinder implements Serializable {
 	private EnderecoBinder enderecoBinder;
 	private ConvenioBinder convenioBinder;
 
-	public PacienteBinder(PacienteService pacienteService, EnderecoBinder enderecoBinder, ConvenioBinder convenioBinder) {
+	public PacienteBinder(PacienteService pacienteService, EnderecoBinder enderecoBinder,
+			ConvenioBinder convenioBinder) {
 		this.pacienteService = pacienteService;
 		this.enderecoBinder = enderecoBinder;
 		this.convenioBinder = convenioBinder;
@@ -29,7 +31,8 @@ public class PacienteBinder implements Serializable {
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {
 		return new Paciente(pacienteRequest.getIdPaciente(), pacienteRequest.getCpf(), pacienteRequest.getRg(),
 				pacienteRequest.getNome(), Genero.valueOf(pacienteRequest.getGenero().toUpperCase()),
-				pacienteRequest.getDataNascimento(), EstadoCivil.valueOf(pacienteRequest.getEstadoCivil().toUpperCase()),
+				pacienteRequest.getDataNascimento(),
+				EstadoCivil.valueOf(pacienteRequest.getEstadoCivil().toUpperCase()),
 				new ContatoBinder().requestToModel(pacienteRequest.getIdContato(), pacienteRequest.getEmail(),
 						pacienteRequest.getTelefones()),
 				enderecoBinder.requestToModel(pacienteRequest.getIdEndereco(), pacienteRequest.getEndereco(),
@@ -39,7 +42,18 @@ public class PacienteBinder implements Serializable {
 				convenioBinder.requestListIdToListModel(pacienteRequest.getConvenios()), pacienteRequest.getIndicacao(),
 				pacienteRequest.getProfissao());
 	}
-	
+
+	public Paciente requestToModel(PacienteEditRequest pacienteEditRequest) {
+		return new Paciente(pacienteEditRequest.getIdPaciente(), pacienteEditRequest.getCpf(),
+				pacienteEditRequest.getRg(), pacienteEditRequest.getNome(),
+				Genero.valueOf(pacienteEditRequest.getGenero().toUpperCase()), pacienteEditRequest.getDataNascimento(),
+				EstadoCivil.valueOf(pacienteEditRequest.getEstadoCivil().toUpperCase()),
+				new ContatoBinder().requestToModel(pacienteEditRequest.getContatoRequest()),
+				enderecoBinder.requestToModel(pacienteEditRequest.getEnderecoRequest()),
+				convenioBinder.requestToListModel(pacienteEditRequest.getConveniosRequest()),
+				pacienteEditRequest.getIndicacao(), pacienteEditRequest.getProfissao());
+	}
+
 	public Paciente requestToModel(Long idPaciente) {
 		return pacienteService.findById(idPaciente);
 	}
