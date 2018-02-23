@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Agenda;
+import com.odontoweb.microservice.impl.model.UsuarioClinica;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
 import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
 
@@ -14,12 +15,12 @@ public class AgendaService implements Serializable {
 	private static final long serialVersionUID = -4998591815407410597L;
 
 	private AgendaRepository agendaRepository;
-	private UsuarioClinicaRepository usuarioClinicaRepository;
+	private UsuarioClinicaService usuarioClinicaService;
 
 	@Autowired
-	public AgendaService(AgendaRepository agendaRepository, UsuarioClinicaRepository usuarioClinicaRepository) {
+	public AgendaService(AgendaRepository agendaRepository, UsuarioClinicaService usuarioClinicaService) {
 		this.agendaRepository = agendaRepository;
-		this.usuarioClinicaRepository = usuarioClinicaRepository;
+		this.usuarioClinicaService = usuarioClinicaService;
 	}
 
 	public List<Agenda> findAll() {
@@ -38,16 +39,24 @@ public class AgendaService implements Serializable {
 		agendaRepository.delete(id);
 	}
 
-	public Agenda findAgendaByUsuarioClinica(String hashKey) {
-		return agendaRepository.findAgendaByUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey));
+	public Agenda findAgendaByUsuarioClinica(UsuarioClinica usuarioClinica) {
+		Agenda agenda = null;
+		if(usuarioClinica != null) {
+			agenda = agendaRepository.findByUsuarioClinica(usuarioClinica);
+		}
+		return agenda;
 	}
 	
 	public Agenda findOrCreateAgendaByUsuarioClinica(String hashKey) {
-		Agenda agenda = findAgendaByUsuarioClinica(hashKey);
-		if(agenda == null) {
-			agenda = new Agenda();
-			agenda.setUsuarioClinica(usuarioClinicaRepository.findByHashKey(hashKey));
-			save(agenda);
+		UsuarioClinica usuarioClinica = usuarioClinicaService.findUsuarioClinicaByHashKey(hashKey);
+		Agenda agenda = null;
+		if(usuarioClinica != null) {
+			agenda = findAgendaByUsuarioClinica(usuarioClinica);
+			if(agenda == null) {
+				agenda = new Agenda();
+				agenda.setUsuarioClinica(usuarioClinica);
+				save(agenda);
+			}
 		}
 		return agenda;
 	}

@@ -16,7 +16,7 @@ public class TelefoneBinder implements Serializable {
 
 	public Telefone requestToModel(TelefoneRequest telefoneRequest) {
 		return new Telefone(telefoneRequest.getIdTelefone(), telefoneRequest.getNumero(), telefoneRequest.getDdd(),
-				TipoTelefone.valueOf(telefoneRequest.getTipoTelefone()));
+				TipoTelefone.valueOf(telefoneRequest.getTipoTelefone().toUpperCase()));
 	}
 
 	public TelefoneResponse modelToResponse(Telefone telefone) {

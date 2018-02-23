@@ -65,7 +65,7 @@ public class ServiceConfig {
 
 	@Bean
 	public AgendaService agendaService(AgendaRepository repository, UsuarioClinicaRepository usuarioclinicaRepository) {
-		return new AgendaService(repository, usuarioclinicaRepository);
+		return new AgendaService(repository, usuarioClinicaService(usuarioclinicaRepository));
 	}
 
 	@Bean

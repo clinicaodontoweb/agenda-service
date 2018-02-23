@@ -140,9 +140,11 @@ public class Endpoint {
 	UsuarioClinicaBinder usuarioClinicaBinder;
 
 	@RequestMapping(value = "/evento/{hashkey}", method = RequestMethod.POST)
-	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest, @PathVariable("hashkey") String hashkey, Authentication authentication) {
+	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest,
+			@PathVariable("hashkey") String hashkey, Authentication authentication) {
 		try {
-			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey), ((User)authentication.getPrincipal()).getUsername());
+			eventoService.save(eventoBinder.requestToModel(eventoRequest, hashkey),
+					((User) authentication.getPrincipal()).getUsername());
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -664,7 +666,9 @@ public class Endpoint {
 	@RequestMapping(value = "/agenda/dentista/{hashKey}", method = RequestMethod.GET)
 	public ResponseEntity<?> findAgendaByDentista(@PathVariable("hashKey") String hashKey) {
 		try {
-			return new ResponseEntity<>(agendaBinder.modelToResponse(agendaService.findAgendaByUsuarioClinica(hashKey)),
+			return new ResponseEntity<>(
+					agendaBinder.modelToResponse(agendaService
+							.findAgendaByUsuarioClinica(usuarioClinicaService.findUsuarioClinicaByHashKey(hashKey))),
 					HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -696,7 +700,7 @@ public class Endpoint {
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@RequestMapping(value = "/status", method = RequestMethod.POST)
 	public ResponseEntity<?> saveStatus(@RequestBody @Valid StatusRequest statusRequest) {
 		try {
@@ -722,8 +726,8 @@ public class Endpoint {
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public ResponseEntity<?> findAllStatus() {
 		try {
-			return new ResponseEntity<List<StatusResponse>>(
-					statusBinder.modelToListResponse(statusService.findAll()), HttpStatus.OK);
+			return new ResponseEntity<List<StatusResponse>>(statusBinder.modelToListResponse(statusService.findAll()),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
@@ -744,13 +748,11 @@ public class Endpoint {
 	@RequestMapping(value = "/status/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findStatusById(@PathVariable("id") Long id) {
 		try {
-			return new ResponseEntity<>(statusBinder.modelToResponse(statusService.findById(id)),
-					HttpStatus.OK);
+			return new ResponseEntity<>(statusBinder.modelToResponse(statusService.findById(id)), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}
 	}
-
 
 }
