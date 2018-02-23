@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.odontoweb.microservice.impl.model.Agenda;
 import com.odontoweb.microservice.impl.model.UsuarioClinica;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
-import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
 
 public class AgendaService implements Serializable {
 
@@ -41,18 +40,18 @@ public class AgendaService implements Serializable {
 
 	public Agenda findAgendaByUsuarioClinica(UsuarioClinica usuarioClinica) {
 		Agenda agenda = null;
-		if(usuarioClinica != null) {
+		if (usuarioClinica != null) {
 			agenda = agendaRepository.findByUsuarioClinica(usuarioClinica);
 		}
 		return agenda;
 	}
-	
+
 	public Agenda findOrCreateAgendaByUsuarioClinica(String hashKey) {
 		UsuarioClinica usuarioClinica = usuarioClinicaService.findUsuarioClinicaByHashKey(hashKey);
 		Agenda agenda = null;
-		if(usuarioClinica != null) {
+		if (usuarioClinica != null) {
 			agenda = findAgendaByUsuarioClinica(usuarioClinica);
-			if(agenda == null) {
+			if (agenda == null) {
 				agenda = new Agenda();
 				agenda.setUsuarioClinica(usuarioClinica);
 				save(agenda);
