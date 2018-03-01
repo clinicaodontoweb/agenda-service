@@ -35,6 +35,7 @@ import com.odontoweb.microservice.rest.binder.BairroBinder;
 import com.odontoweb.microservice.rest.binder.CepBinder;
 import com.odontoweb.microservice.rest.binder.CidadeBinder;
 import com.odontoweb.microservice.rest.binder.ConvenioBinder;
+import com.odontoweb.microservice.rest.binder.ConvenioPacienteBinder;
 import com.odontoweb.microservice.rest.binder.EnderecoBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
@@ -160,6 +161,14 @@ public class ServiceConfig {
 	}
 
 	@Bean
+	public ConvenioPacienteBinder convenioPacienteBinder(ConvenioRepository convenioRepository,
+			CepRepository cepRepository, CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
+			EstadoRepository estadoRepository, BairroRepository bairroRepository) {
+		return new ConvenioPacienteBinder(convenioBinder(convenioRepository, cepRepository, cidadeRepository,
+				siglaRepository, estadoRepository, bairroRepository));
+	}
+
+	@Bean
 	public EstadoBinder estadoBinder() {
 		return new EstadoBinder();
 	}
@@ -170,8 +179,8 @@ public class ServiceConfig {
 			BairroRepository bairroRepository, ConvenioRepository convenioRepository) {
 		return new PacienteBinder(pacienteService(pacienteRepository),
 				enderecoBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository),
-				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
-						bairroRepository));
+				convenioPacienteBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository,
+						estadoRepository, bairroRepository));
 	}
 
 	@Bean

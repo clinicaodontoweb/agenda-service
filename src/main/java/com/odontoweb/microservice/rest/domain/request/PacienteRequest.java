@@ -28,6 +28,8 @@ public class PacienteRequest implements Serializable {
 	@NotNull(message = "Data de nascimento é obrigatório!")
 	private Date dataNascimento;
 
+	private Date dataCadastro;
+
 	private String estadoCivil;
 
 	private Long idContato;
@@ -59,11 +61,23 @@ public class PacienteRequest implements Serializable {
 
 	private String complemento;
 
-	private List<Long> convenios;
+	private List<ConvenioPacienteRequest> conveniosPaciente;
 
-	private String indicacao;
+	private IndicacaoPacienteRequest indicacaoPaciente;
 
-	private String profissao;
+	private List<RedeSocialPacienteRequest> redesSociaisPaciente;
+
+	private ProfissaoRequest profissao;
+
+	private String localTrabalho;
+
+	private String nomePai;
+
+	private String nomeMae;
+
+	private String observacao;
+
+	private Boolean pendenciaFinanceira;
 
 	public Long getIdPaciente() {
 		return idPaciente;
@@ -185,22 +199,6 @@ public class PacienteRequest implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public String getIndicacao() {
-		return indicacao;
-	}
-
-	public void setIndicacao(String indicacao) {
-		this.indicacao = indicacao;
-	}
-
-	public String getProfissao() {
-		return profissao;
-	}
-
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
-	}
-
 	public String getGenero() {
 		return genero;
 	}
@@ -217,14 +215,6 @@ public class PacienteRequest implements Serializable {
 		this.estadoCivil = estadoCivil;
 	}
 
-	public List<Long> getConvenios() {
-		return convenios;
-	}
-
-	public void setConvenios(List<Long> convenios) {
-		this.convenios = convenios;
-	}
-
 	public Long getIdContato() {
 		return idContato;
 	}
@@ -239,6 +229,86 @@ public class PacienteRequest implements Serializable {
 
 	public void setIdEndereco(Long idEndereco) {
 		this.idEndereco = idEndereco;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public List<ConvenioPacienteRequest> getConveniosPaciente() {
+		return conveniosPaciente;
+	}
+
+	public void setConveniosPaciente(List<ConvenioPacienteRequest> conveniosPaciente) {
+		this.conveniosPaciente = conveniosPaciente;
+	}
+
+	public IndicacaoPacienteRequest getIndicacaoPaciente() {
+		return indicacaoPaciente;
+	}
+
+	public void setIndicacaoPaciente(IndicacaoPacienteRequest indicacaoPaciente) {
+		this.indicacaoPaciente = indicacaoPaciente;
+	}
+
+	public ProfissaoRequest getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(ProfissaoRequest profissao) {
+		this.profissao = profissao;
+	}
+
+	public String getLocalTrabalho() {
+		return localTrabalho;
+	}
+
+	public void setLocalTrabalho(String localTrabalho) {
+		this.localTrabalho = localTrabalho;
+	}
+
+	public String getNomePai() {
+		return nomePai;
+	}
+
+	public void setNomePai(String nomePai) {
+		this.nomePai = nomePai;
+	}
+
+	public String getNomeMae() {
+		return nomeMae;
+	}
+
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Boolean getPendenciaFinanceira() {
+		return pendenciaFinanceira;
+	}
+
+	public void setPendenciaFinanceira(Boolean pendenciaFinanceira) {
+		this.pendenciaFinanceira = pendenciaFinanceira;
+	}
+
+	public List<RedeSocialPacienteRequest> getRedesSociaisPaciente() {
+		return redesSociaisPaciente;
+	}
+
+	public void setRedesSociaisPaciente(List<RedeSocialPacienteRequest> redesSociaisPaciente) {
+		this.redesSociaisPaciente = redesSociaisPaciente;
 	}
 
 }

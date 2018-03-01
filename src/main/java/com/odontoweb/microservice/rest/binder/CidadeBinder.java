@@ -15,7 +15,7 @@ public class CidadeBinder implements Serializable {
 
 	public Cidade requestToModel(CidadeRequest cidadeRequest) {
 		return new Cidade(cidadeRequest.getIdCidade(), cidadeRequest.getNome(),
-				new EstadoBinder().requestToModel(cidadeRequest.getEstadoRequest()));
+				new EstadoBinder().requestToModel(cidadeRequest.getEstado()));
 	}
 
 	public CidadeResponse modelToResponse(Cidade cidade) {

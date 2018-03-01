@@ -34,14 +34,23 @@ public class Telefone implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoTelefone tipoTelefone;
 
+	@Column(name = "BOO_PRINCIPAL")
+	private Boolean principal;
+
+	@Column(name = "STR_NOME")
+	private String nome;
+
 	public Telefone() {
+		this.principal = Boolean.FALSE;
 	}
 
-	public Telefone(Long idTelefone, Integer numero, Integer ddd, TipoTelefone tipoTelefone) {
+	public Telefone(Long idTelefone, Integer numero, Integer ddd, TipoTelefone tipoTelefone, Boolean principal, String nome) {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
 		this.tipoTelefone = tipoTelefone;
+		this.principal = principal;
+		this.nome = nome;
 	}
 
 	public Long getIdTelefone() {
@@ -76,10 +85,30 @@ public class Telefone implements Serializable {
 		this.tipoTelefone = tipoTelefone;
 	}
 
+	public Boolean getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Boolean principal) {
+		if(principal == null) {
+			this.principal = Boolean.FALSE;
+		}else {
+			this.principal = principal;
+		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	@Override
 	public String toString() {
 		return "Telefone [id=" + idTelefone + ", numero=" + numero + ", ddd=" + ddd + ", tipoTelefone=" + tipoTelefone
-				+ "]";
+				+ ", nome=" + nome +", principal="+principal+"]";
 	}
 
 }

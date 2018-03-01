@@ -9,10 +9,10 @@ public class EventoResponse implements Serializable {
 	private Long idEvento;
 	private Boolean encaixe;
 	private StatusResponse statusEvento;
-	private TipoConsultaResponse tipoConsultaResponse;
-	private AgendaResponse agendaResponse;
-	private PacienteResponse pacienteResponse;
-	private ConvenioResponse convenioResponse;
+	private TipoConsultaResponse tipoConsulta;
+	private AgendaResponse agenda;
+	private PacienteResponse paciente;
+	private ConvenioResponse convenio;
 	private Long dataInicio;
 	private Long dataFim;
 	private String observacao;
@@ -20,16 +20,16 @@ public class EventoResponse implements Serializable {
 	public EventoResponse() {
 	}
 
-	public EventoResponse(Long idEvento, Boolean encaixe, StatusResponse statusResponse,
-			TipoConsultaResponse tipoConsultaResponse, AgendaResponse agendaResponse, PacienteResponse pacienteResponse,
-			ConvenioResponse convenioResponse, String observacao, Long dataInicio, Long dataFim) {
+	public EventoResponse(Long idEvento, Boolean encaixe, StatusResponse status, TipoConsultaResponse tipoConsulta,
+			AgendaResponse agenda, PacienteResponse paciente, ConvenioResponse convenio, String observacao,
+			Long dataInicio, Long dataFim) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
-		this.statusEvento = statusResponse;
-		this.tipoConsultaResponse = tipoConsultaResponse;
-		this.agendaResponse = agendaResponse;
-		this.pacienteResponse = pacienteResponse;
-		this.convenioResponse = convenioResponse;
+		this.statusEvento = status;
+		this.tipoConsulta = tipoConsulta;
+		this.agenda = agenda;
+		this.paciente = paciente;
+		this.convenio = convenio;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.observacao = observacao;
@@ -68,30 +68,6 @@ public class EventoResponse implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public TipoConsultaResponse getTipoConsultaResponse() {
-		return tipoConsultaResponse;
-	}
-
-	public void setTipoConsultaResponse(TipoConsultaResponse tipoConsultaResponse) {
-		this.tipoConsultaResponse = tipoConsultaResponse;
-	}
-
-	public PacienteResponse getPacienteResponse() {
-		return pacienteResponse;
-	}
-
-	public void setPacienteResponse(PacienteResponse pacienteResponse) {
-		this.pacienteResponse = pacienteResponse;
-	}
-
-	public AgendaResponse getAgendaResponse() {
-		return agendaResponse;
-	}
-
-	public void setAgendaResponse(AgendaResponse agendaResponse) {
-		this.agendaResponse = agendaResponse;
-	}
-
 	public Long getDataInicio() {
 		return dataInicio;
 	}
@@ -108,12 +84,36 @@ public class EventoResponse implements Serializable {
 		this.dataFim = dataFim;
 	}
 
-	public ConvenioResponse getConvenioResponse() {
-		return convenioResponse;
+	public TipoConsultaResponse getTipoConsulta() {
+		return tipoConsulta;
 	}
 
-	public void setConvenioResponse(ConvenioResponse convenioResponse) {
-		this.convenioResponse = convenioResponse;
+	public void setTipoConsulta(TipoConsultaResponse tipoConsulta) {
+		this.tipoConsulta = tipoConsulta;
+	}
+
+	public AgendaResponse getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(AgendaResponse agenda) {
+		this.agenda = agenda;
+	}
+
+	public PacienteResponse getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(PacienteResponse paciente) {
+		this.paciente = paciente;
+	}
+
+	public ConvenioResponse getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(ConvenioResponse convenio) {
+		this.convenio = convenio;
 	}
 
 }

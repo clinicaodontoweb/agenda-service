@@ -7,7 +7,7 @@ public class AgendaRequest implements Serializable {
 	private static final long serialVersionUID = 436747791286284283L;
 
 	private Long idAgenda;
-	private UsuarioClinicaRequest usuarioClinicaRequest;
+	private UsuarioClinicaRequest usuarioClinica;
 
 	public Long getIdAgenda() {
 		return idAgenda;
@@ -17,12 +17,12 @@ public class AgendaRequest implements Serializable {
 		this.idAgenda = idAgenda;
 	}
 
-	public UsuarioClinicaRequest getUsuarioClinicaRequest() {
-		return usuarioClinicaRequest;
+	public UsuarioClinicaRequest getUsuarioClinica() {
+		return usuarioClinica;
 	}
 
-	public void setUsuarioClinicaRequest(UsuarioClinicaRequest usuarioClinicaRequest) {
-		this.usuarioClinicaRequest = usuarioClinicaRequest;
+	public void setUsuarioClinica(UsuarioClinicaRequest usuarioClinica) {
+		this.usuarioClinica = usuarioClinica;
 	}
 
 }

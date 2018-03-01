@@ -8,15 +8,15 @@ public class EstadoResponse implements Serializable {
 
 	private Long idEstado;
 	private String nome;
-	private SiglaResponse siglaResponse;
+	private SiglaResponse sigla;
 
 	public EstadoResponse() {
 	}
 
-	public EstadoResponse(Long idEstado, String nome, SiglaResponse siglaResponse) {
+	public EstadoResponse(Long idEstado, String nome, SiglaResponse sigla) {
 		this.idEstado = idEstado;
 		this.nome = nome;
-		this.siglaResponse = siglaResponse;
+		this.sigla = sigla;
 	}
 
 	public Long getIdEstado() {
@@ -35,12 +35,12 @@ public class EstadoResponse implements Serializable {
 		this.nome = nome;
 	}
 
-	public SiglaResponse getSiglaResponse() {
-		return siglaResponse;
+	public SiglaResponse getSigla() {
+		return sigla;
 	}
 
-	public void setSiglaResponse(SiglaResponse siglaResponse) {
-		this.siglaResponse = siglaResponse;
+	public void setSigla(SiglaResponse sigla) {
+		this.sigla = sigla;
 	}
 
 }

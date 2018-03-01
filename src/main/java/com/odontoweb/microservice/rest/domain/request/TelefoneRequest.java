@@ -19,14 +19,21 @@ public class TelefoneRequest implements Serializable {
 	@NotNull(message = "Tipo de Telefone é obrigatório")
 	private String tipoTelefone;
 
+	private Boolean principal;
+
+	private String nome;
+
 	public TelefoneRequest() {
 	}
 
-	public TelefoneRequest(Long idTelefone, Integer numero, Integer ddd, String tipoTelefone) {
+	public TelefoneRequest(Long idTelefone, Integer numero, Integer ddd, String tipoTelefone, Boolean principal,
+			String nome) {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
 		this.tipoTelefone = tipoTelefone;
+		this.principal = principal;
+		this.nome = nome;
 	}
 
 	public Long getIdTelefone() {
@@ -59,6 +66,22 @@ public class TelefoneRequest implements Serializable {
 
 	public void setTipoTelefone(String tipoTelefone) {
 		this.tipoTelefone = tipoTelefone;
+	}
+
+	public Boolean getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

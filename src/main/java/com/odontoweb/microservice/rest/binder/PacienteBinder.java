@@ -19,19 +19,19 @@ public class PacienteBinder implements Serializable {
 
 	private PacienteService pacienteService;
 	private EnderecoBinder enderecoBinder;
-	private ConvenioBinder convenioBinder;
+	private ConvenioPacienteBinder convenioPacienteBinder;
 
 	public PacienteBinder(PacienteService pacienteService, EnderecoBinder enderecoBinder,
-			ConvenioBinder convenioBinder) {
+			ConvenioPacienteBinder convenioPacienteBinder) {
 		this.pacienteService = pacienteService;
 		this.enderecoBinder = enderecoBinder;
-		this.convenioBinder = convenioBinder;
+		this.convenioPacienteBinder = convenioPacienteBinder;
 	}
 
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {
 		return new Paciente(pacienteRequest.getIdPaciente(), pacienteRequest.getCpf(), pacienteRequest.getRg(),
 				pacienteRequest.getNome(), Genero.valueOf(pacienteRequest.getGenero().toUpperCase()),
-				pacienteRequest.getDataNascimento(),
+				pacienteRequest.getDataNascimento(), pacienteRequest.getDataCadastro(),
 				EstadoCivil.valueOf(pacienteRequest.getEstadoCivil().toUpperCase()),
 				new ContatoBinder().requestToModel(pacienteRequest.getIdContato(), pacienteRequest.getEmail(),
 						pacienteRequest.getTelefones()),
@@ -39,19 +39,29 @@ public class PacienteBinder implements Serializable {
 						pacienteRequest.getCep(), pacienteRequest.getPontoReferencia(), pacienteRequest.getCidade(),
 						pacienteRequest.getSigla(), pacienteRequest.getBairro(), pacienteRequest.getNumero(),
 						pacienteRequest.getComplemento()),
-				convenioBinder.requestListIdToListModel(pacienteRequest.getConvenios()), pacienteRequest.getIndicacao(),
-				pacienteRequest.getProfissao());
+				convenioPacienteBinder.requestToListModel(pacienteRequest.getConveniosPaciente()),
+				new IndicacaoPacienteBinder().requestToModel(pacienteRequest.getIndicacaoPaciente()),
+				new RedeSocialPacienteBinder().requestToListModel(pacienteRequest.getRedesSociaisPaciente()),
+				new ProfissaoBinder().requestToModel(pacienteRequest.getProfissao()),
+				pacienteRequest.getLocalTrabalho(), pacienteRequest.getNomePai(), pacienteRequest.getNomeMae(),
+				pacienteRequest.getObservacao(), pacienteRequest.getPendenciaFinanceira());
 	}
 
 	public Paciente requestToModel(PacienteEditRequest pacienteEditRequest) {
 		return new Paciente(pacienteEditRequest.getIdPaciente(), pacienteEditRequest.getCpf(),
 				pacienteEditRequest.getRg(), pacienteEditRequest.getNome(),
 				Genero.valueOf(pacienteEditRequest.getGenero().toUpperCase()), pacienteEditRequest.getDataNascimento(),
+				pacienteEditRequest.getDataCadastro(),
 				EstadoCivil.valueOf(pacienteEditRequest.getEstadoCivil().toUpperCase()),
 				new ContatoBinder().requestToModel(pacienteEditRequest.getContatoRequest()),
 				enderecoBinder.requestToModel(pacienteEditRequest.getEnderecoRequest()),
-				convenioBinder.requestToListModel(pacienteEditRequest.getConveniosRequest()),
-				pacienteEditRequest.getIndicacao(), pacienteEditRequest.getProfissao());
+				convenioPacienteBinder.requestToListModel(pacienteEditRequest.getConveniosPaciente()),
+				new IndicacaoPacienteBinder().requestToModel(pacienteEditRequest.getIndicacaoPaciente()),
+				new RedeSocialPacienteBinder().requestToListModel(pacienteEditRequest.getRedesSociaisPaciente()),
+				new ProfissaoBinder().requestToModel(pacienteEditRequest.getProfissao()),
+				pacienteEditRequest.getLocalTrabalho(), pacienteEditRequest.getNomePai(),
+				pacienteEditRequest.getNomeMae(), pacienteEditRequest.getObservacao(),
+				pacienteEditRequest.getPendenciaFinanceira());
 	}
 
 	public Paciente requestToModel(Long idPaciente) {
@@ -61,11 +71,15 @@ public class PacienteBinder implements Serializable {
 	public PacienteResponse modelToResponse(Paciente paciente) {
 		return new PacienteResponse(paciente.getIdPaciente(), paciente.getCpf(), paciente.getRg(), paciente.getNome(),
 				new EnumerationBinder().enumToResponse(paciente.getGenero()), paciente.getDataNascimento(),
-				new EnumerationBinder().enumToResponse(paciente.getEstadoCivil()),
+				paciente.getDataCadastro(), new EnumerationBinder().enumToResponse(paciente.getEstadoCivil()),
 				new ContatoBinder().modelToResponse(paciente.getContato()),
 				enderecoBinder.modelToResponse(paciente.getEndereco()),
-				convenioBinder.modelToListResponse(paciente.getConvenios()), paciente.getProfissao(),
-				paciente.getIndicacao());
+				convenioPacienteBinder.modelToListResponse(paciente.getConveniosPaciente()),
+				new ProfissaoBinder().modelToResponse(paciente.getProfissao()),
+				new IndicacaoPacienteBinder().modelToResponse(paciente.getIndicacaoPaciente()),
+				new RedeSocialPacienteBinder().modelToListResponse(paciente.getRedesSociaisPaciente()),
+				paciente.getLocalTrabalho(), paciente.getNomePai(), paciente.getNomeMae(), paciente.getObservacao(),
+				paciente.getPendenciaFinanceira());
 	}
 
 	public List<PacienteResponse> modelToListResponse(List<Paciente> pacientes) {

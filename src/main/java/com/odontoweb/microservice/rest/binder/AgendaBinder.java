@@ -15,26 +15,27 @@ public class AgendaBinder implements Serializable {
 	private static final long serialVersionUID = -7938299380544799580L;
 
 	private AgendaService agendaService;
-	
+
 	public AgendaBinder(AgendaService agendaService) {
 		this.agendaService = agendaService;
 	}
-	
+
 	public Agenda requestToModel(AgendaRequest agendaRequest) {
 		return new Agenda(agendaRequest.getIdAgenda(),
-				new UsuarioClinicaBinder().requestToModel(agendaRequest.getUsuarioClinicaRequest()));
+				new UsuarioClinicaBinder().requestToModel(agendaRequest.getUsuarioClinica()));
 	}
-	
+
 	public Agenda requestToModel(Long idAgenda) {
 		return agendaService.findById(idAgenda);
 	}
-	
+
 	public Agenda requestToModel(String hashKey) {
 		return agendaService.findOrCreateAgendaByUsuarioClinica(hashKey);
 	}
 
 	public AgendaResponse modelToResponse(Agenda agenda) {
-		if(agenda == null) return null;
+		if (agenda == null)
+			return null;
 		return new AgendaResponse(agenda.getIdAgenda(),
 				new UsuarioClinicaBinder().modelToResponse(agenda.getUsuarioClinica()));
 	}

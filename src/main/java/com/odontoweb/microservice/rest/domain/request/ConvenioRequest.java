@@ -20,10 +20,10 @@ public class ConvenioRequest implements Serializable {
 	private String razaoSocial;
 
 	@NotNull(message = "Endereço é obrigatório!")
-	private EnderecoRequest enderecoRequest;
+	private EnderecoRequest endereco;
 
 	@NotNull(message = "Contato é obrigatório!")
-	private ContatoRequest contatoRequest;
+	private ContatoRequest contato;
 
 	public Long getIdConvenio() {
 		return idConvenio;
@@ -57,20 +57,20 @@ public class ConvenioRequest implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public EnderecoRequest getEnderecoRequest() {
-		return enderecoRequest;
+	public EnderecoRequest getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecoRequest(EnderecoRequest enderecoRequest) {
-		this.enderecoRequest = enderecoRequest;
+	public void setEndereco(EnderecoRequest endereco) {
+		this.endereco = endereco;
 	}
 
-	public ContatoRequest getContatoRequest() {
-		return contatoRequest;
+	public ContatoRequest getContato() {
+		return contato;
 	}
 
-	public void setContatoRequest(ContatoRequest contatoRequest) {
-		this.contatoRequest = contatoRequest;
+	public void setContato(ContatoRequest contato) {
+		this.contato = contato;
 	}
 
 }

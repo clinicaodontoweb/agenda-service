@@ -32,9 +32,9 @@ public class EnderecoBinder implements Serializable {
 
 	public Endereco requestToModel(EnderecoRequest enderecoRequest) {
 		return new Endereco(enderecoRequest.getIdEndereco(), enderecoRequest.getEndereco(),
-				new CepBinder().requestToModel(enderecoRequest.getCepRequest()), enderecoRequest.getPontoReferencia(),
-				new CidadeBinder().requestToModel(enderecoRequest.getCidadeRequest()),
-				new BairroBinder().requestToModel(enderecoRequest.getBairroRequest()), enderecoRequest.getNumero(),
+				new CepBinder().requestToModel(enderecoRequest.getCep()), enderecoRequest.getPontoReferencia(),
+				new CidadeBinder().requestToModel(enderecoRequest.getCidade()),
+				new BairroBinder().requestToModel(enderecoRequest.getBairro()), enderecoRequest.getNumero(),
 				enderecoRequest.getComplemento());
 	}
 
