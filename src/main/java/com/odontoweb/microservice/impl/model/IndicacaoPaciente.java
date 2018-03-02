@@ -2,6 +2,7 @@ package com.odontoweb.microservice.impl.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ public class IndicacaoPaciente implements Serializable {
 	@Column(name = "ID")
 	private Long idIndicacaoPaciente;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_INDICACAO")
 	private Indicacao indicacao;
 

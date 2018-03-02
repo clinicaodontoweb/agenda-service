@@ -75,7 +75,7 @@ public class Paciente implements Serializable {
 	private List<ConvenioPaciente> conveniosPaciente;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Column(name = "FK_INDICACAO_PACIENTE")
+	@JoinColumn(name = "FK_INDICACAO_PACIENTE")
 	private IndicacaoPaciente indicacaoPaciente;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
