@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.UsuarioClinica;
+import com.odontoweb.microservice.impl.model.enums.TipoProfissional;
 import com.odontoweb.microservice.impl.repository.UsuarioClinicaRepository;
 
 public class UsuarioClinicaService {
@@ -32,16 +33,23 @@ public class UsuarioClinicaService {
 		return usuarioClinicaRepository.findOne(idUsuarioClinica);
 	}
 
-	public UsuarioClinica findUsuarioClinica(String email) {
-		return usuarioClinicaRepository.findByEmail(email);
-	}
-
-	public UsuarioClinica findUsuarioClinicaByHashKey(String hashKey) {
+	public UsuarioClinica findUsuarioClinica(String hashKey) {
 		return usuarioClinicaRepository.findByHashKey(hashKey);
 	}
 
-	public boolean usuarioExists(String email) {
-		if (findUsuarioClinica(email) != null)
+	public UsuarioClinica findUsuarioClinicaByHashKey(String hashKey) {
+		UsuarioClinica usuarioClinica = usuarioClinicaRepository.findByHashKey(hashKey);
+		if(usuarioClinica == null) {
+			usuarioClinica = new UsuarioClinica();
+			usuarioClinica.setHashKey(hashKey);
+			usuarioClinica.setTipoProfissional(TipoProfissional.DENTISTA);
+			usuarioClinicaRepository.save(usuarioClinica);
+		}
+		return usuarioClinica;
+	}
+
+	public boolean usuarioExists(String hashKey) {
+		if (findUsuarioClinica(hashKey) != null)
 			return true;
 		return false;
 	}

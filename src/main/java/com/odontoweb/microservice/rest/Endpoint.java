@@ -250,7 +250,7 @@ public class Endpoint {
 	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUsuarioClinica(@RequestBody @Valid UsuarioClinicaRequest usuarioClinicaRequest) {
 		try {
-			if (usuarioClinicaService.usuarioExists(usuarioClinicaRequest.getEmail())) {
+			if (usuarioClinicaService.usuarioExists(usuarioClinicaRequest.getHashKey())) {
 				throw new UsuarioDuplicateFoundException();
 			}
 			usuarioClinicaService.save(usuarioClinicaBinder.requestToModel(usuarioClinicaRequest));
@@ -264,7 +264,7 @@ public class Endpoint {
 	@RequestMapping(value = "/usuarioClinica", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateUsuarioClinica(@RequestBody @Valid UsuarioClinicaRequest usuarioClinicaRequest) {
 		try {
-			if (!usuarioClinicaService.usuarioExists(usuarioClinicaRequest.getEmail())) {
+			if (!usuarioClinicaService.usuarioExists(usuarioClinicaRequest.getHashKey())) {
 				throw new UsuarioNotFoundException();
 			}
 			usuarioClinicaService.save(usuarioClinicaBinder.requestToModel(usuarioClinicaRequest));

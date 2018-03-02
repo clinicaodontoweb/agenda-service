@@ -24,19 +24,15 @@ public class UsuarioClinica implements Serializable {
 	@Column(name = "ID")
 	private Long idUsuarioClinica;
 
-	@Column(name = "STR_EMAIL", unique = true)
-	private String email;
-
-	@Column(name = "STR_HASH_KEY")
+	@Column(name = "STR_HASH_KEY", unique = true)
 	private String hashKey;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STR_TIPO_PROFISSIONAL")
 	private TipoProfissional tipoProfissional;
 
-	public UsuarioClinica(Long idUsuarioClinica, String email, String hashKey, TipoProfissional tipoProfissional) {
+	public UsuarioClinica(Long idUsuarioClinica, String hashKey, TipoProfissional tipoProfissional) {
 		this.idUsuarioClinica = idUsuarioClinica;
-		this.email = email;
 		this.hashKey = hashKey;
 		this.tipoProfissional = tipoProfissional;
 	}
@@ -50,14 +46,6 @@ public class UsuarioClinica implements Serializable {
 
 	public void setIdUsuarioClinica(Long idUsuarioClinica) {
 		this.idUsuarioClinica = idUsuarioClinica;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public TipoProfissional getTipoProfissional() {
@@ -78,7 +66,7 @@ public class UsuarioClinica implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UsuarioClinica [id=" + idUsuarioClinica + ", email=" + email + ", tipoProfissional=" + tipoProfissional
+		return "UsuarioClinica [id=" + idUsuarioClinica + ", tipoProfissional=" + tipoProfissional
 				+ "]";
 	}
 

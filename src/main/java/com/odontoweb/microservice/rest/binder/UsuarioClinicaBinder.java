@@ -17,7 +17,7 @@ public class UsuarioClinicaBinder implements Serializable {
 	public UsuarioClinica requestToModel(UsuarioClinicaRequest usuarioClinicaRequest) {
 		if (usuarioClinicaRequest == null)
 			return null;
-		return new UsuarioClinica(usuarioClinicaRequest.getIdUsuarioClinica(), usuarioClinicaRequest.getEmail(),
+		return new UsuarioClinica(usuarioClinicaRequest.getIdUsuarioClinica(),
 				usuarioClinicaRequest.getHashKey(),
 				TipoProfissional.valueOf(usuarioClinicaRequest.getTipoProfissional()));
 	}
@@ -25,7 +25,7 @@ public class UsuarioClinicaBinder implements Serializable {
 	public UsuarioClinicaResponse modelToResponse(UsuarioClinica usuarioClinica) {
 		if (usuarioClinica == null)
 			return null;
-		return new UsuarioClinicaResponse(usuarioClinica.getIdUsuarioClinica(), usuarioClinica.getEmail(),
+		return new UsuarioClinicaResponse(usuarioClinica.getIdUsuarioClinica(),
 				usuarioClinica.getHashKey(),
 				new EnumerationBinder().enumToResponse(usuarioClinica.getTipoProfissional()));
 	}
