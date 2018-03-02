@@ -5,27 +5,27 @@ import java.io.Serializable;
 public class EnderecoResponse implements Serializable {
 
 	private static final long serialVersionUID = -2325057475478702393L;
-	
+
 	private Long idEndereco;
 	private String endereco;
-	private CepResponse cepResponse;
+	private CepResponse cep;
 	private String pontoReferencia;
-	private CidadeResponse cidadeResponse;
-	private BairroResponse bairroResponse;
+	private CidadeResponse cidade;
+	private BairroResponse bairro;
 	private Integer numero;
 	private String complemento;
 
 	public EnderecoResponse() {
 	}
 
-	public EnderecoResponse(Long idEndereco, String endereco, CepResponse cepResponse, String pontoReferencia,
-			CidadeResponse cidadeResponse, BairroResponse bairroResponse, Integer numero, String complemento) {
+	public EnderecoResponse(Long idEndereco, String endereco, CepResponse cep, String pontoReferencia,
+			CidadeResponse cidade, BairroResponse bairro, Integer numero, String complemento) {
 		this.idEndereco = idEndereco;
 		this.endereco = endereco;
-		this.cepResponse = cepResponse;
+		this.cep = cep;
 		this.pontoReferencia = pontoReferencia;
-		this.cidadeResponse = cidadeResponse;
-		this.bairroResponse = bairroResponse;
+		this.cidade = cidade;
+		this.bairro = bairro;
 		this.numero = numero;
 		this.complemento = complemento;
 	}
@@ -46,36 +46,12 @@ public class EnderecoResponse implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public CepResponse getCepResponse() {
-		return cepResponse;
-	}
-
-	public void setCepResponse(CepResponse cepResponse) {
-		this.cepResponse = cepResponse;
-	}
-
 	public String getPontoReferencia() {
 		return pontoReferencia;
 	}
 
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = pontoReferencia;
-	}
-
-	public CidadeResponse getCidadeResponse() {
-		return cidadeResponse;
-	}
-
-	public void setCidadeResponse(CidadeResponse cidadeResponse) {
-		this.cidadeResponse = cidadeResponse;
-	}
-
-	public BairroResponse getBairroResponse() {
-		return bairroResponse;
-	}
-
-	public void setBairroResponse(BairroResponse bairroResponse) {
-		this.bairroResponse = bairroResponse;
 	}
 
 	public Integer getNumero() {
@@ -92,6 +68,30 @@ public class EnderecoResponse implements Serializable {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	public CepResponse getCep() {
+		return cep;
+	}
+
+	public void setCep(CepResponse cep) {
+		this.cep = cep;
+	}
+
+	public CidadeResponse getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(CidadeResponse cidade) {
+		this.cidade = cidade;
+	}
+
+	public BairroResponse getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(BairroResponse bairro) {
+		this.bairro = bairro;
 	}
 
 }

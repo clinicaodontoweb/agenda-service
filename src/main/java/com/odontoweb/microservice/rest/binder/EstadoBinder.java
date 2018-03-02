@@ -15,7 +15,7 @@ public class EstadoBinder implements Serializable {
 
 	public Estado requestToModel(EstadoRequest estadoRequest) {
 		return new Estado(estadoRequest.getIdEstado(), estadoRequest.getNome(),
-				new SiglaBinder().requestToModel(estadoRequest.getSiglaRequest()));
+				new SiglaBinder().requestToModel(estadoRequest.getSigla()));
 	}
 
 	public EstadoResponse modelToResponse(Estado estado) {

@@ -15,15 +15,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
@@ -56,6 +54,10 @@ public class Paciente implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
 
+	@Column(name = "DTA_DATA_CADASTRO")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCadastro;
+
 	@Column(name = "STR_ESTADO_CIVIL")
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
@@ -68,35 +70,72 @@ public class Paciente implements Serializable {
 	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Fetch(FetchMode.SUBSELECT)
-	@JoinTable(name = "TBL_PACIENTE_CONVENIO", joinColumns = @JoinColumn(name = "FK_PACIENTE", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_CONVENIO", referencedColumnName = "ID"))
-	private List<Convenio> convenios;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_PACIENTE")
+	private List<ConvenioPaciente> conveniosPaciente;
 
-	@Column(name = "STR_PROFISSAO")
-	private String profissao;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Column(name = "FK_INDICACAO_PACIENTE")
+	private IndicacaoPaciente indicacaoPaciente;
 
-	@Column(name = "STR_INDICACAO")
-	private String indicacao;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_PACIENTE")
+	private List<RedeSocialPaciente> redesSociaisPaciente;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_PROFISSAO")
+	private Profissao profissao;
+
+	@Column(name = "STR_LOCAL_TRABALHO")
+	private String localTrabalho;
+
+	@Column(name = "STR_NOME_PAI")
+	private String nomePai;
+
+	@Column(name = "STR_NOME_MAE")
+	private String nomeMae;
+
+	@Lob
+	@Column(name = "STR_OBSERVACAO")
+	private String observacao;
+
+	@Column(name = "BOO_PENDENCIA_FINANCEIRA")
+	private Boolean pendenciaFinanceira;
 
 	public Paciente() {
+		this.pendenciaFinanceira = Boolean.FALSE;
+		this.dataCadastro = new Date();
 	}
 
 	public Paciente(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
-			EstadoCivil estadoCivil, Contato contato, Endereco endereco, List<Convenio> convenios, String indicacao,
-			String profissao) {
+			Date dataCadastro, EstadoCivil estadoCivil, Contato contato, Endereco endereco,
+			List<ConvenioPaciente> conveniosPaciente, IndicacaoPaciente indicacaoPaciente,
+			List<RedeSocialPaciente> redesSociaisPaciente, Profissao profissao, String localTrabalho, String nomePai,
+			String nomeMae, String observacao, Boolean pendenciaFinanceira) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.nome = nome;
 		this.genero = genero;
 		this.dataNascimento = dataNascimento;
+		this.dataCadastro = dataCadastro;
 		this.estadoCivil = estadoCivil;
 		this.contato = contato;
 		this.endereco = endereco;
-		this.convenios = convenios;
-		this.indicacao = indicacao;
+		this.conveniosPaciente = conveniosPaciente;
+		this.indicacaoPaciente = indicacaoPaciente;
+		this.redesSociaisPaciente = redesSociaisPaciente;
 		this.profissao = profissao;
+		this.localTrabalho = localTrabalho;
+		this.nomePai = nomePai;
+		this.nomeMae = nomeMae;
+		this.observacao = observacao;
+		if (pendenciaFinanceira == null) {
+			this.pendenciaFinanceira = Boolean.FALSE;
+		} else {
+			this.pendenciaFinanceira = pendenciaFinanceira;
+		}
+
 	}
 
 	public Long getIdPaciente() {
@@ -171,35 +210,94 @@ public class Paciente implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public List<Convenio> getConvenios() {
-		return convenios;
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setConvenios(List<Convenio> convenios) {
-		this.convenios = convenios;
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
-	public String getProfissao() {
+	public List<ConvenioPaciente> getConveniosPaciente() {
+		return conveniosPaciente;
+	}
+
+	public void setConveniosPaciente(List<ConvenioPaciente> conveniosPaciente) {
+		this.conveniosPaciente = conveniosPaciente;
+	}
+
+	public IndicacaoPaciente getIndicacaoPaciente() {
+		return indicacaoPaciente;
+	}
+
+	public void setIndicacaoPaciente(IndicacaoPaciente indicacaoPaciente) {
+		this.indicacaoPaciente = indicacaoPaciente;
+	}
+
+	public List<RedeSocialPaciente> getRedesSociaisPaciente() {
+		return redesSociaisPaciente;
+	}
+
+	public void setRedesSociaisPaciente(List<RedeSocialPaciente> redesSociaisPaciente) {
+		this.redesSociaisPaciente = redesSociaisPaciente;
+	}
+
+	public Profissao getProfissao() {
 		return profissao;
 	}
 
-	public void setProfissao(String profissao) {
+	public void setProfissao(Profissao profissao) {
 		this.profissao = profissao;
 	}
 
-	public String getIndicacao() {
-		return indicacao;
+	public String getLocalTrabalho() {
+		return localTrabalho;
 	}
 
-	public void setIndicacao(String indicacao) {
-		this.indicacao = indicacao;
+	public void setLocalTrabalho(String localTrabalho) {
+		this.localTrabalho = localTrabalho;
+	}
+
+	public String getNomePai() {
+		return nomePai;
+	}
+
+	public void setNomePai(String nomePai) {
+		this.nomePai = nomePai;
+	}
+
+	public String getNomeMae() {
+		return nomeMae;
+	}
+
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Boolean getPendenciaFinanceira() {
+		return pendenciaFinanceira;
+	}
+
+	public void setPendenciaFinanceira(Boolean pendenciaFinanceira) {
+		this.pendenciaFinanceira = pendenciaFinanceira;
 	}
 
 	@Override
 	public String toString() {
 		return "Paciente [id=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", genero=" + genero
-				+ ", dataNascimento=" + new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento) + ", estadoCivil="
-				+ estadoCivil + ", contato=" + contato + ", endereco=" + endereco + ", indicacao=" + indicacao
-				+ ", profissao = " + profissao + "]";
+				+ ", dataNascimento=" + new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento) + ", dataCadastro="
+				+ new SimpleDateFormat("dd/MM/yyyy").format(dataCadastro) + ", estadoCivil=" + estadoCivil
+				+ ", contato=" + contato + ", endereco=" + endereco + ", indicacao=" + indicacaoPaciente
+				+ ", profissao = " + profissao + ", localTrabalho=" + localTrabalho + ", nomePai=" + nomePai
+				+ ", nomeMae=" + nomeMae + ", observacao=" + observacao + ", pendenciaFinanceira=" + pendenciaFinanceira
+				+ "]";
 	}
 }

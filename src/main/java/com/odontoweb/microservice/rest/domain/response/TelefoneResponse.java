@@ -10,15 +10,20 @@ public class TelefoneResponse implements Serializable {
 	private Integer numero;
 	private Integer ddd;
 	private String tipoTelefone;
+	private Boolean principal;
+	private String nome;
 
 	public TelefoneResponse() {
 	}
 
-	public TelefoneResponse(Long idTelefone, Integer numero, Integer ddd, TipoTelefoneResponse tipoTelefoneResponse) {
+	public TelefoneResponse(Long idTelefone, Integer numero, Integer ddd, TipoTelefoneResponse tipoTelefoneResponse,
+			Boolean principal, String nome) {
 		this.idTelefone = idTelefone;
 		this.numero = numero;
 		this.ddd = ddd;
 		this.tipoTelefone = tipoTelefoneResponse.getTipoTelefone();
+		this.principal = principal;
+		this.nome = nome;
 	}
 
 	public Long getIdTelefone() {
@@ -51,6 +56,22 @@ public class TelefoneResponse implements Serializable {
 
 	public void setTipoTelefone(String tipoTelefone) {
 		this.tipoTelefone = tipoTelefone;
+	}
+
+	public Boolean getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

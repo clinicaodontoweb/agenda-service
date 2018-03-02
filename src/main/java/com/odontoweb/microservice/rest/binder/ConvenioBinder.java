@@ -22,13 +22,12 @@ public class ConvenioBinder implements Serializable {
 		this.enderecoBinder = enderecoBinder;
 	}
 
-
 	public Convenio requestToModel(ConvenioRequest convenioRequest) {
 		return new Convenio(convenioRequest.getIdConvenio(), convenioRequest.getNome(), convenioRequest.getCnpj(),
-				convenioRequest.getRazaoSocial(), enderecoBinder.requestToModel(convenioRequest.getEnderecoRequest()),
-				new ContatoBinder().requestToModel(convenioRequest.getContatoRequest()));
+				convenioRequest.getRazaoSocial(), enderecoBinder.requestToModel(convenioRequest.getEndereco()),
+				new ContatoBinder().requestToModel(convenioRequest.getContato()));
 	}
-	
+
 	public Convenio requestToModel(Long idConvenio) {
 		return convenioService.findById(idConvenio);
 	}

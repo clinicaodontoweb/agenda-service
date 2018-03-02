@@ -14,15 +14,15 @@ public class EnderecoRequest implements Serializable {
 	private String endereco;
 
 	@NotNull(message = "Cep é obrigatório!")
-	private CepRequest cepRequest;
+	private CepRequest cep;
 
 	private String pontoReferencia;
 
 	@NotNull(message = "Cidade é obrigatório!")
-	private CidadeRequest cidadeRequest;
+	private CidadeRequest cidade;
 
 	@NotNull(message = "Bairro é obrigatório!")
-	private BairroRequest bairroRequest;
+	private BairroRequest bairro;
 
 	@NotNull(message = "Número é obrigatório!")
 	private Integer numero;
@@ -45,36 +45,12 @@ public class EnderecoRequest implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public CepRequest getCepRequest() {
-		return cepRequest;
-	}
-
-	public void setCepRequest(CepRequest cepRequest) {
-		this.cepRequest = cepRequest;
-	}
-
 	public String getPontoReferencia() {
 		return pontoReferencia;
 	}
 
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = pontoReferencia;
-	}
-
-	public CidadeRequest getCidadeRequest() {
-		return cidadeRequest;
-	}
-
-	public void setCidadeRequest(CidadeRequest cidadeRequest) {
-		this.cidadeRequest = cidadeRequest;
-	}
-
-	public BairroRequest getBairroRequest() {
-		return bairroRequest;
-	}
-
-	public void setBairroRequest(BairroRequest bairroRequest) {
-		this.bairroRequest = bairroRequest;
 	}
 
 	public Integer getNumero() {
@@ -91,6 +67,30 @@ public class EnderecoRequest implements Serializable {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	public CepRequest getCep() {
+		return cep;
+	}
+
+	public void setCep(CepRequest cep) {
+		this.cep = cep;
+	}
+
+	public CidadeRequest getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(CidadeRequest cidade) {
+		this.cidade = cidade;
+	}
+
+	public BairroRequest getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(BairroRequest bairro) {
+		this.bairro = bairro;
 	}
 
 }

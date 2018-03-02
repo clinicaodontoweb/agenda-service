@@ -14,7 +14,7 @@ public class CidadeRequest implements Serializable {
 	private String nome;
 
 	@NotNull(message = "Estado é obrigatório!")
-	private EstadoRequest estadoRequest;
+	private EstadoRequest estado;
 
 	public Long getIdCidade() {
 		return idCidade;
@@ -32,12 +32,12 @@ public class CidadeRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public EstadoRequest getEstadoRequest() {
-		return estadoRequest;
+	public EstadoRequest getEstado() {
+		return estado;
 	}
 
-	public void setEstadoRequest(EstadoRequest estadoRequest) {
-		this.estadoRequest = estadoRequest;
+	public void setEstado(EstadoRequest estado) {
+		this.estado = estado;
 	}
 
 }

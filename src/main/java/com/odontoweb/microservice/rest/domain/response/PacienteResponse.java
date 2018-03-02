@@ -14,32 +14,47 @@ public class PacienteResponse implements Serializable {
 	private String nome;
 	private String genero;
 	private Date dataNascimento;
+	private Date dataCadastro;
 	private String estadoCivil;
-	private ContatoResponse contatoResponse;
-	private EnderecoResponse enderecoResponse;
-	private List<ConvenioResponse> conveniosResponse;
-	private String profissao;
-	private String indicacao;
+	private ContatoResponse contato;
+	private EnderecoResponse endereco;
+	private List<ConvenioPacienteResponse> conveniosPaciente;
+	private ProfissaoResponse profissao;
+	private IndicacaoPacienteResponse indicacaoPaciente;
+	private List<RedeSocialPacienteResponse> redesSociaisPaciente;
+	private String localTrabalho;
+	private String nomePai;
+	private String nomeMae;
+	private String observacao;
+	private Boolean pendenciaFinanceira;
 
 	public PacienteResponse() {
 	}
 
-	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, GeneroResponse generoResponse,
-			Date dataNascimento, EstadoCivilResponse estadoCivilResponse, ContatoResponse contatoResponse,
-			EnderecoResponse enderecoResponse, List<ConvenioResponse> conveniosResponse, String profissao,
-			String indicacao) {
+	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, GeneroResponse genero,
+			Date dataNascimento, Date dataCadastro, EstadoCivilResponse estadoCivil, ContatoResponse contato,
+			EnderecoResponse endereco, List<ConvenioPacienteResponse> conveniosPaciente, ProfissaoResponse profissao,
+			IndicacaoPacienteResponse indicacaoPaciente, List<RedeSocialPacienteResponse> redesSociaisPaciente,
+			String localTrabalho, String nomePai, String nomeMae, String observacao, Boolean pendenciaFinanceira) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
 		this.nome = nome;
-		this.genero = generoResponse.getGenero();
+		this.genero = genero.getGenero();
 		this.dataNascimento = dataNascimento;
-		this.estadoCivil = estadoCivilResponse.getEstadoCivil();
-		this.contatoResponse = contatoResponse;
-		this.enderecoResponse = enderecoResponse;
-		this.conveniosResponse = conveniosResponse;
+		this.dataCadastro = dataCadastro;
+		this.estadoCivil = estadoCivil.getEstadoCivil();
+		this.contato = contato;
+		this.endereco = endereco;
+		this.conveniosPaciente = conveniosPaciente;
 		this.profissao = profissao;
-		this.indicacao = indicacao;
+		this.indicacaoPaciente = indicacaoPaciente;
+		this.redesSociaisPaciente = redesSociaisPaciente;
+		this.localTrabalho = localTrabalho;
+		this.nomePai = nomePai;
+		this.nomeMae = nomeMae;
+		this.observacao = observacao;
+		this.pendenciaFinanceira = pendenciaFinanceira;
 	}
 
 	public Long getIdPaciente() {
@@ -98,44 +113,100 @@ public class PacienteResponse implements Serializable {
 		this.estadoCivil = estadoCivil;
 	}
 
-	public ContatoResponse getContatoResponse() {
-		return contatoResponse;
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setContatoResponse(ContatoResponse contatoResponse) {
-		this.contatoResponse = contatoResponse;
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
-	public EnderecoResponse getEnderecoResponse() {
-		return enderecoResponse;
-	}
-
-	public void setEnderecoResponse(EnderecoResponse enderecoResponse) {
-		this.enderecoResponse = enderecoResponse;
-	}
-
-	public List<ConvenioResponse> getConveniosResponse() {
-		return conveniosResponse;
-	}
-
-	public void setConveniosResponse(List<ConvenioResponse> conveniosResponse) {
-		this.conveniosResponse = conveniosResponse;
-	}
-
-	public String getProfissao() {
+	public ProfissaoResponse getProfissao() {
 		return profissao;
 	}
 
-	public void setProfissao(String profissao) {
+	public void setProfissao(ProfissaoResponse profissao) {
 		this.profissao = profissao;
 	}
 
-	public String getIndicacao() {
-		return indicacao;
+	public List<RedeSocialPacienteResponse> getRedesSociaisPaciente() {
+		return redesSociaisPaciente;
 	}
 
-	public void setIndicacao(String indicacao) {
-		this.indicacao = indicacao;
+	public void setRedesSociaisPaciente(List<RedeSocialPacienteResponse> redesSociaisPaciente) {
+		this.redesSociaisPaciente = redesSociaisPaciente;
+	}
+
+	public String getLocalTrabalho() {
+		return localTrabalho;
+	}
+
+	public void setLocalTrabalho(String localTrabalho) {
+		this.localTrabalho = localTrabalho;
+	}
+
+	public String getNomePai() {
+		return nomePai;
+	}
+
+	public void setNomePai(String nomePai) {
+		this.nomePai = nomePai;
+	}
+
+	public String getNomeMae() {
+		return nomeMae;
+	}
+
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Boolean getPendenciaFinanceira() {
+		return pendenciaFinanceira;
+	}
+
+	public void setPendenciaFinanceira(Boolean pendenciaFinanceira) {
+		this.pendenciaFinanceira = pendenciaFinanceira;
+	}
+
+	public IndicacaoPacienteResponse getIndicacaoPaciente() {
+		return indicacaoPaciente;
+	}
+
+	public void setIndicacaoPaciente(IndicacaoPacienteResponse indicacaoPaciente) {
+		this.indicacaoPaciente = indicacaoPaciente;
+	}
+
+	public ContatoResponse getContato() {
+		return contato;
+	}
+
+	public void setContato(ContatoResponse contato) {
+		this.contato = contato;
+	}
+
+	public EnderecoResponse getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoResponse endereco) {
+		this.endereco = endereco;
+	}
+
+	public List<ConvenioPacienteResponse> getConveniosPaciente() {
+		return conveniosPaciente;
+	}
+
+	public void setConveniosPaciente(List<ConvenioPacienteResponse> conveniosPaciente) {
+		this.conveniosPaciente = conveniosPaciente;
 	}
 
 }

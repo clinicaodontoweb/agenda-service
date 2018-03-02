@@ -10,20 +10,20 @@ public class ConvenioResponse implements Serializable {
 	private String nome;
 	private String cnpj;
 	private String razaoSocial;
-	private EnderecoResponse enderecoResponse;
-	private ContatoResponse contatoResponse;
+	private EnderecoResponse endereco;
+	private ContatoResponse contato;
 
 	public ConvenioResponse() {
 	}
 
-	public ConvenioResponse(Long idConvenio, String nome, String cnpj, String razaoSocial,
-			EnderecoResponse enderecoResponse, ContatoResponse contatoResponse) {
+	public ConvenioResponse(Long idConvenio, String nome, String cnpj, String razaoSocial, EnderecoResponse endereco,
+			ContatoResponse contato) {
 		this.idConvenio = idConvenio;
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
-		this.enderecoResponse = enderecoResponse;
-		this.contatoResponse = contatoResponse;
+		this.endereco = endereco;
+		this.contato = contato;
 	}
 
 	public Long getIdConvenio() {
@@ -58,20 +58,20 @@ public class ConvenioResponse implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public EnderecoResponse getEnderecoResponse() {
-		return enderecoResponse;
+	public EnderecoResponse getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecoResponse(EnderecoResponse enderecoResponse) {
-		this.enderecoResponse = enderecoResponse;
+	public void setEndereco(EnderecoResponse endereco) {
+		this.endereco = endereco;
 	}
 
-	public ContatoResponse getContatoResponse() {
-		return contatoResponse;
+	public ContatoResponse getContato() {
+		return contato;
 	}
 
-	public void setContatoResponse(ContatoResponse contatoResponse) {
-		this.contatoResponse = contatoResponse;
+	public void setContato(ContatoResponse contato) {
+		this.contato = contato;
 	}
 
 }

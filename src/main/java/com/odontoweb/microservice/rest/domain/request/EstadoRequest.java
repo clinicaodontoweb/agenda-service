@@ -14,7 +14,7 @@ public class EstadoRequest implements Serializable {
 	private String nome;
 
 	@NotNull(message = "Sigla do estado obrigatória!")
-	private SiglaRequest siglaRequest;
+	private SiglaRequest sigla;
 
 	public Long getIdEstado() {
 		return idEstado;
@@ -32,12 +32,12 @@ public class EstadoRequest implements Serializable {
 		this.nome = nome;
 	}
 
-	public SiglaRequest getSiglaRequest() {
-		return siglaRequest;
+	public SiglaRequest getSigla() {
+		return sigla;
 	}
 
-	public void setSiglaRequest(SiglaRequest siglaRequest) {
-		this.siglaRequest = siglaRequest;
+	public void setSigla(SiglaRequest sigla) {
+		this.sigla = sigla;
 	}
 
 }
