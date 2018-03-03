@@ -23,6 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
 
@@ -96,6 +98,7 @@ public class Paciente implements Serializable {
 	private String nomeMae;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
 
