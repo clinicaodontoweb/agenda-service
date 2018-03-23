@@ -11,7 +11,6 @@ import com.odontoweb.microservice.impl.model.Sigla;
 import com.odontoweb.microservice.impl.repository.CidadeRepository;
 import com.odontoweb.microservice.impl.repository.EstadoRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
-import com.odontoweb.microservice.rest.domain.response.CidadeResponse;
 
 public class CidadeService implements Serializable {
 

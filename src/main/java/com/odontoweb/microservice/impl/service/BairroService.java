@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Bairro;
 import com.odontoweb.microservice.impl.repository.BairroRepository;
+import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 
 public class BairroService implements Serializable {
 
@@ -43,6 +44,11 @@ public class BairroService implements Serializable {
 			save(bairro);
 		}
 		return bairro;
+	}
+	
+	public Bairro findByNome(BairroRequest bairroRequest) {
+		if(bairroRequest.getIdBairro() != null) return new Bairro(bairroRequest.getIdBairro(), bairroRequest.getNome());
+		return findByNome(bairroRequest.getNome());
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Cep;
 import com.odontoweb.microservice.impl.repository.CepRepository;
+import com.odontoweb.microservice.rest.domain.request.CepRequest;
 
 public class CepService implements Serializable {
 
@@ -42,6 +43,11 @@ public class CepService implements Serializable {
 			save(cepModel);
 		}
 		return cepModel;
+	}
+	
+	public Cep findByCep(CepRequest cepRequest) {
+		if(cepRequest.getIdCep() != null) return new Cep(cepRequest.getIdCep(), cepRequest.getCep());
+		return findByCep(cepRequest.getCep());
 	}
 
 }
