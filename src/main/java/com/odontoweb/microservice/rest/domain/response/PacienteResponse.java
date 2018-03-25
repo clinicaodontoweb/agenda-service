@@ -18,7 +18,6 @@ public class PacienteResponse implements Serializable {
 	private String estadoCivil;
 	private ContatoResponse contato;
 	private EnderecoResponse endereco;
-	private List<ConvenioPacienteResponse> conveniosPaciente;
 	private ProfissaoResponse profissao;
 	private IndicacaoPacienteResponse indicacaoPaciente;
 	private List<RedeSocialPacienteResponse> redesSociaisPaciente;
@@ -33,9 +32,9 @@ public class PacienteResponse implements Serializable {
 
 	public PacienteResponse(Long idPaciente, String cpf, String rg, String nome, GeneroResponse genero,
 			Date dataNascimento, Date dataCadastro, EstadoCivilResponse estadoCivil, ContatoResponse contato,
-			EnderecoResponse endereco, List<ConvenioPacienteResponse> conveniosPaciente, ProfissaoResponse profissao,
-			IndicacaoPacienteResponse indicacaoPaciente, List<RedeSocialPacienteResponse> redesSociaisPaciente,
-			String localTrabalho, String nomePai, String nomeMae, String observacao, Boolean pendenciaFinanceira) {
+			EnderecoResponse endereco, ProfissaoResponse profissao, IndicacaoPacienteResponse indicacaoPaciente,
+			List<RedeSocialPacienteResponse> redesSociaisPaciente, String localTrabalho, String nomePai, String nomeMae,
+			String observacao, Boolean pendenciaFinanceira) {
 		this.idPaciente = idPaciente;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -46,7 +45,6 @@ public class PacienteResponse implements Serializable {
 		this.estadoCivil = estadoCivil.getEstadoCivil();
 		this.contato = contato;
 		this.endereco = endereco;
-		this.conveniosPaciente = conveniosPaciente;
 		this.profissao = profissao;
 		this.indicacaoPaciente = indicacaoPaciente;
 		this.redesSociaisPaciente = redesSociaisPaciente;
@@ -200,13 +198,4 @@ public class PacienteResponse implements Serializable {
 	public void setEndereco(EnderecoResponse endereco) {
 		this.endereco = endereco;
 	}
-
-	public List<ConvenioPacienteResponse> getConveniosPaciente() {
-		return conveniosPaciente;
-	}
-
-	public void setConveniosPaciente(List<ConvenioPacienteResponse> conveniosPaciente) {
-		this.conveniosPaciente = conveniosPaciente;
-	}
-
 }

@@ -13,7 +13,7 @@ public class EventoRequest implements Serializable {
 	private Boolean encaixe;
 	private Long dataInicio;
 	private Long dataFim;
-	private Long idConvenio;
+	private ConvenioPacienteRequest convenioPaciente;
 	private String observacao;
 
 	public Long getIdEvento() {
@@ -80,12 +80,12 @@ public class EventoRequest implements Serializable {
 		this.dataFim = dataFim;
 	}
 
-	public Long getIdConvenio() {
-		return idConvenio;
+	public ConvenioPacienteRequest getConvenioPaciente() {
+		return convenioPaciente;
 	}
 
-	public void setIdConvenio(Long idConvenio) {
-		this.idConvenio = idConvenio;
+	public void setConvenioPaciente(ConvenioPacienteRequest convenioPaciente) {
+		this.convenioPaciente = convenioPaciente;
 	}
 
 }

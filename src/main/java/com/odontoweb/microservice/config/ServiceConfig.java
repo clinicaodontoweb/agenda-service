@@ -12,7 +12,9 @@ import com.odontoweb.microservice.impl.repository.CidadeRepository;
 import com.odontoweb.microservice.impl.repository.ConvenioRepository;
 import com.odontoweb.microservice.impl.repository.EstadoRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
+import com.odontoweb.microservice.impl.repository.IndicacaoRepository;
 import com.odontoweb.microservice.impl.repository.PacienteRepository;
+import com.odontoweb.microservice.impl.repository.RedeSocialRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
 import com.odontoweb.microservice.impl.repository.StatusRepository;
 import com.odontoweb.microservice.impl.repository.TipoConsultaRepository;
@@ -25,7 +27,9 @@ import com.odontoweb.microservice.impl.service.CidadeService;
 import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
+import com.odontoweb.microservice.impl.service.IndicacaoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
+import com.odontoweb.microservice.impl.service.RedeSocialService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.StatusService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
@@ -39,7 +43,9 @@ import com.odontoweb.microservice.rest.binder.ConvenioPacienteBinder;
 import com.odontoweb.microservice.rest.binder.EnderecoBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
+import com.odontoweb.microservice.rest.binder.IndicacaoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
+import com.odontoweb.microservice.rest.binder.RedeSocialBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.StatusBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
@@ -116,6 +122,16 @@ public class ServiceConfig {
 	}
 
 	@Bean
+	public RedeSocialService redeSocialService(RedeSocialRepository repository) {
+		return new RedeSocialService(repository);
+	}
+
+	@Bean
+	public IndicacaoService indicacaoService(IndicacaoRepository repository) {
+		return new IndicacaoService(repository);
+	}
+
+	@Bean
 	public AgendaBinder agendaBinder(AgendaRepository agendaRepository,
 			UsuarioClinicaRepository usuarioclinicaRepository) {
 		return new AgendaBinder(agendaService(agendaRepository, usuarioclinicaRepository));
@@ -128,12 +144,12 @@ public class ServiceConfig {
 			EstadoRepository estadoRepository, BairroRepository bairroRepository, AgendaRepository agendaRepository,
 			UsuarioClinicaRepository usuarioClinicaRepository, AuditoriaRepository auditoriaRepository) {
 		return new EventoBinder(
-				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
-						bairroRepository),
 				pacienteBinder(pacienteRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
 						bairroRepository, convenioRepository),
 				statusBinder(statusRepository), tipoConsultaBinder(tipoConsultaRepository),
-				agendaBinder(agendaRepository, usuarioClinicaRepository));
+				agendaBinder(agendaRepository, usuarioClinicaRepository),
+				convenioPacienteBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository,
+						estadoRepository, bairroRepository, pacienteRepository));
 
 	}
 
@@ -163,9 +179,13 @@ public class ServiceConfig {
 	@Bean
 	public ConvenioPacienteBinder convenioPacienteBinder(ConvenioRepository convenioRepository,
 			CepRepository cepRepository, CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
-			EstadoRepository estadoRepository, BairroRepository bairroRepository) {
-		return new ConvenioPacienteBinder(convenioBinder(convenioRepository, cepRepository, cidadeRepository,
-				siglaRepository, estadoRepository, bairroRepository));
+			EstadoRepository estadoRepository, BairroRepository bairroRepository,
+			PacienteRepository pacienteRepository) {
+		return new ConvenioPacienteBinder(
+				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
+						bairroRepository),
+				pacienteBinder(pacienteRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
+						bairroRepository, convenioRepository));
 	}
 
 	@Bean
@@ -178,9 +198,7 @@ public class ServiceConfig {
 			CidadeRepository cidadeRepository, SiglaRepository siglaRepository, EstadoRepository estadoRepository,
 			BairroRepository bairroRepository, ConvenioRepository convenioRepository) {
 		return new PacienteBinder(pacienteService(pacienteRepository),
-				enderecoBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository),
-				convenioPacienteBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository,
-						estadoRepository, bairroRepository));
+				enderecoBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository));
 	}
 
 	@Bean
@@ -201,6 +219,16 @@ public class ServiceConfig {
 	@Bean
 	public UsuarioClinicaBinder usuarioClinicaBinder() {
 		return new UsuarioClinicaBinder();
+	}
+
+	@Bean
+	public RedeSocialBinder redeSocialBinder() {
+		return new RedeSocialBinder();
+	}
+
+	@Bean
+	public IndicacaoBinder indicacaoBinder() {
+		return new IndicacaoBinder();
 	}
 
 	@Bean

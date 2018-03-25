@@ -47,9 +47,9 @@ public class Evento implements Serializable {
 	@JoinColumn(name = "FK_PACIENTE")
 	private Paciente paciente;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "FK_CONVENIO")
-	private Convenio convenio;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_CONVENIO_PACIENTE")
+	private ConvenioPaciente convenioPaciente;
 
 	@Lob
 	@Column(name = "STR_OBSERVACAO")
@@ -67,14 +67,14 @@ public class Evento implements Serializable {
 	}
 
 	public Evento(Long idEvento, Boolean encaixe, Status status, TipoConsulta tipoConsulta, Agenda agenda,
-			Paciente paciente, Convenio convenio, Date dataInicio, Date dataFim, String observacao) {
+			Paciente paciente, ConvenioPaciente convenioPaciente, Date dataInicio, Date dataFim, String observacao) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
 		this.status = status;
 		this.tipoConsulta = tipoConsulta;
 		this.agenda = agenda;
 		this.paciente = paciente;
-		this.convenio = convenio;
+		this.convenioPaciente = convenioPaciente;
 		this.observacao = observacao;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
@@ -153,19 +153,20 @@ public class Evento implements Serializable {
 		this.dataFim = dataFim;
 	}
 
-	public Convenio getConvenio() {
-		return convenio;
+	public ConvenioPaciente getConvenioPaciente() {
+		return convenioPaciente;
 	}
 
-	public void setConvenio(Convenio convenio) {
-		this.convenio = convenio;
+	public void setConvenioPaciente(ConvenioPaciente convenioPaciente) {
+		this.convenioPaciente = convenioPaciente;
 	}
 
 	@Override
 	public String toString() {
 		return "Evento [id=" + idEvento + ", encaixe=" + encaixe + ", statusEvento=" + status + ", tipoConsulta="
-				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", convenio=" + convenio
-				+ ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", observacao=" + observacao + "]";
+				+ tipoConsulta + ", agenda" + agenda + ", paciente=" + paciente + ", convenioPaciente="
+				+ convenioPaciente + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", observacao="
+				+ observacao + "]";
 	}
 
 }

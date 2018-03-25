@@ -26,7 +26,9 @@ import com.odontoweb.microservice.impl.service.CidadeService;
 import com.odontoweb.microservice.impl.service.ConvenioService;
 import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
+import com.odontoweb.microservice.impl.service.IndicacaoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
+import com.odontoweb.microservice.impl.service.RedeSocialService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.StatusService;
 import com.odontoweb.microservice.impl.service.TipoConsultaService;
@@ -38,7 +40,9 @@ import com.odontoweb.microservice.rest.binder.CidadeBinder;
 import com.odontoweb.microservice.rest.binder.ConvenioBinder;
 import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
+import com.odontoweb.microservice.rest.binder.IndicacaoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
+import com.odontoweb.microservice.rest.binder.RedeSocialBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.StatusBinder;
 import com.odontoweb.microservice.rest.binder.TipoConsultaBinder;
@@ -47,8 +51,9 @@ import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
 import com.odontoweb.microservice.rest.domain.request.BairroRequest;
 import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
-import com.odontoweb.microservice.rest.domain.request.PacienteEditRequest;
+import com.odontoweb.microservice.rest.domain.request.IndicacaoRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
+import com.odontoweb.microservice.rest.domain.request.RedeSocialRequest;
 import com.odontoweb.microservice.rest.domain.request.StatusRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
 import com.odontoweb.microservice.rest.domain.request.UsuarioClinicaRequest;
@@ -59,7 +64,9 @@ import com.odontoweb.microservice.rest.domain.response.CidadeResponse;
 import com.odontoweb.microservice.rest.domain.response.ConvenioResponse;
 import com.odontoweb.microservice.rest.domain.response.EstadoResponse;
 import com.odontoweb.microservice.rest.domain.response.EventoResponse;
+import com.odontoweb.microservice.rest.domain.response.IndicacaoResponse;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
+import com.odontoweb.microservice.rest.domain.response.RedeSocialResponse;
 import com.odontoweb.microservice.rest.domain.response.SiglaResponse;
 import com.odontoweb.microservice.rest.domain.response.StatusResponse;
 import com.odontoweb.microservice.rest.domain.response.TipoConsultaResponse;
@@ -104,6 +111,12 @@ public class Endpoint {
 	UsuarioClinicaService usuarioClinicaService;
 
 	@Autowired
+	RedeSocialService redeSocialService;
+
+	@Autowired
+	IndicacaoService indicacaoService;
+
+	@Autowired
 	SiglaBinder siglaBinder;
 
 	@Autowired
@@ -138,6 +151,12 @@ public class Endpoint {
 
 	@Autowired
 	UsuarioClinicaBinder usuarioClinicaBinder;
+
+	@Autowired
+	RedeSocialBinder redeSocialBinder;
+
+	@Autowired
+	IndicacaoBinder indicacaoBinder;
 
 	@RequestMapping(value = "/evento/{hashkey}", method = RequestMethod.POST)
 	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest,
@@ -225,6 +244,50 @@ public class Endpoint {
 		}
 	}
 
+	@RequestMapping(value = "/redesocial", method = RequestMethod.POST)
+	public ResponseEntity<?> saveRedeSocial(@RequestBody @Valid RedeSocialRequest redeSocialRequest) {
+		try {
+			redeSocialService.save(redeSocialBinder.requestToModel(redeSocialRequest));
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/redesocial", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateRedeSocial(@RequestBody @Valid RedeSocialRequest redeSocialRequest) {
+		try {
+			redeSocialService.save(redeSocialBinder.requestToModel(redeSocialRequest));
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/indicacao", method = RequestMethod.POST)
+	public ResponseEntity<?> saveIndicacao(@RequestBody @Valid IndicacaoRequest indicacaoRequest) {
+		try {
+			indicacaoService.save(indicacaoBinder.requestToModel(indicacaoRequest));
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/indicacao", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateIndicacao(@RequestBody @Valid IndicacaoRequest indicacaoRequest) {
+		try {
+			indicacaoService.save(indicacaoBinder.requestToModel(indicacaoRequest));
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	@RequestMapping(value = "/paciente", method = RequestMethod.POST)
 	public ResponseEntity<?> savePaciente(@RequestBody @Valid PacienteRequest pacienteRequest) {
 		try {
@@ -237,9 +300,9 @@ public class Endpoint {
 	}
 
 	@RequestMapping(value = "/paciente", method = RequestMethod.PUT)
-	public ResponseEntity<?> updatePaciente(@RequestBody @Valid PacienteEditRequest pacienteEditRequest) {
+	public ResponseEntity<?> updatePaciente(@RequestBody @Valid PacienteRequest pacienteRequest) {
 		try {
-			pacienteService.save(pacienteBinder.requestToModel(pacienteEditRequest));
+			pacienteService.save(pacienteBinder.requestToModel(pacienteRequest));
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -324,6 +387,28 @@ public class Endpoint {
 		try {
 			return new ResponseEntity<List<BairroResponse>>(bairroBinder.modelToListResponse(bairroService.findAll()),
 					HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/indicacao", method = RequestMethod.GET)
+	public ResponseEntity<?> findAllIndicacao() {
+		try {
+			return new ResponseEntity<List<IndicacaoResponse>>(
+					indicacaoBinder.modelToListResponse(indicacaoService.findAll()), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/redesocial", method = RequestMethod.GET)
+	public ResponseEntity<?> findAllRedesSociais() {
+		try {
+			return new ResponseEntity<List<RedeSocialResponse>>(
+					redeSocialBinder.modelToListResponse(redeSocialService.findAll()), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
@@ -433,6 +518,28 @@ public class Endpoint {
 	public ResponseEntity<?> deleteBairro(@PathVariable("id") Long id) {
 		try {
 			bairroService.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/redesocial/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteRedeSocial(@PathVariable("id") Long id) {
+		try {
+			redeSocialService.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/indicacao/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteIndicacao(@PathVariable("id") Long id) {
+		try {
+			indicacaoService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(

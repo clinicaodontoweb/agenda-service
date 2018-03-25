@@ -14,14 +14,14 @@ public class AgendamentoRequest implements Serializable {
 	private Long dataFim;
 	private Long idTipoConsulta;
 	private Long idPaciente;
-	private Long idConvenio;
+	private ConvenioPacienteRequest convenioPaciente;
 	private Long idAgenda;
 
 	AgendamentoRequest() {
 	}
 
 	public AgendamentoRequest(Long id, Boolean encaixe, Long idStatus, String observacao, Long dataInicio, Long dataFim,
-			Long idTipoConsulta, Long idPaciente, Long idConvenio, Long idAgenda) {
+			Long idTipoConsulta, Long idPaciente, ConvenioPacienteRequest convenioPaciente, Long idAgenda) {
 		this.id = id;
 		this.encaixe = encaixe;
 		this.idStatus = idStatus;
@@ -30,7 +30,7 @@ public class AgendamentoRequest implements Serializable {
 		this.dataFim = dataFim;
 		this.idTipoConsulta = idTipoConsulta;
 		this.idPaciente = idPaciente;
-		this.idConvenio = idConvenio;
+		this.convenioPaciente = convenioPaciente;
 		this.idAgenda = idAgenda;
 	}
 
@@ -98,12 +98,12 @@ public class AgendamentoRequest implements Serializable {
 		this.idPaciente = idPaciente;
 	}
 
-	public Long getIdConvenio() {
-		return idConvenio;
+	public ConvenioPacienteRequest getConvenioPaciente() {
+		return convenioPaciente;
 	}
 
-	public void setIdConvenio(Long idConvenio) {
-		this.idConvenio = idConvenio;
+	public void setConvenioPaciente(ConvenioPacienteRequest convenioPaciente) {
+		this.convenioPaciente = convenioPaciente;
 	}
 
 	public Long getIdAgenda() {

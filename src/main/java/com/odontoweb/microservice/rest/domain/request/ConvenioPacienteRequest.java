@@ -7,14 +7,16 @@ public class ConvenioPacienteRequest implements Serializable {
 	private static final long serialVersionUID = -8611820894219165019L;
 
 	private Long idConvenioPaciente;
-	private ConvenioRequest convenio;
+	private Long idConvenio;
+	private Long idPaciente;
 	private String numero;
 	private String titularConvenio;
 
-	public ConvenioPacienteRequest(Long idConvenioPaciente, ConvenioRequest convenio, String numero,
+	public ConvenioPacienteRequest(Long idConvenioPaciente, Long idConvenio, Long idPaciente, String numero,
 			String titularConvenio) {
 		this.idConvenioPaciente = idConvenioPaciente;
-		this.convenio = convenio;
+		this.idConvenio = idConvenio;
+		this.idPaciente = idPaciente;
 		this.numero = numero;
 		this.titularConvenio = titularConvenio;
 	}
@@ -30,12 +32,12 @@ public class ConvenioPacienteRequest implements Serializable {
 		this.idConvenioPaciente = idConvenioPaciente;
 	}
 
-	public ConvenioRequest getConvenio() {
-		return convenio;
+	public Long getIdConvenio() {
+		return idConvenio;
 	}
 
-	public void setConvenio(ConvenioRequest convenio) {
-		this.convenio = convenio;
+	public void setIdConvenio(Long idConvenio) {
+		this.idConvenio = idConvenio;
 	}
 
 	public String getNumero() {
@@ -52,6 +54,14 @@ public class ConvenioPacienteRequest implements Serializable {
 
 	public void setTitularConvenio(String titularConvenio) {
 		this.titularConvenio = titularConvenio;
+	}
+
+	public Long getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(Long idPaciente) {
+		this.idPaciente = idPaciente;
 	}
 
 }

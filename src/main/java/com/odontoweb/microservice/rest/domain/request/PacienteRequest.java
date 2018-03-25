@@ -4,80 +4,55 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 public class PacienteRequest implements Serializable {
 
-	private static final long serialVersionUID = -6227648176297815452L;
+	private static final long serialVersionUID = 1098978359016228966L;
 
 	private Long idPaciente;
-	private Long idEndereco;
-
-	@NotNull(message = "Cpf é obrigatório!")
 	private String cpf;
-
 	private String rg;
-
-	@NotNull(message = "Nome é obrigatório!")
 	private String nome;
-
-	@NotNull(message = "Gênero é obrigatório!")
 	private String genero;
-
-	@NotNull(message = "Data de nascimento é obrigatório!")
 	private Date dataNascimento;
-
-	private Date dataCadastro;
-
 	private String estadoCivil;
-
-	private Long idContato;
-
-	private String email;
-
-	private List<TelefoneRequest> telefones;
-
-	@NotNull(message = "Endereço é obrigatório!")
-	private String endereco;
-
-	@NotNull(message = "Cep obrigatório!")
-	@Size(min = 8, max = 8, message = "O cep deve conter 8 digitos!")
-	private String cep;
-
-	private String pontoReferencia;
-
-	@NotNull(message = "Nome da cidade obrigatório!")
-	private String cidade;
-
-	@NotNull(message = "Sigla é obrigatório!")
-	private String sigla;
-
-	@NotNull(message = "Nome do bairro obrigatório!")
-	private String bairro;
-
-	@NotNull(message = "Número é obrigatório!")
-	private Integer numero;
-
-	private String complemento;
-
-	private List<ConvenioPacienteRequest> conveniosPaciente;
-
+	private ContatoRequest contato;
+	private EnderecoRequest endereco;
 	private IndicacaoPacienteRequest indicacaoPaciente;
-
 	private List<RedeSocialPacienteRequest> redesSociaisPaciente;
-
 	private ProfissaoRequest profissao;
-
 	private String localTrabalho;
-
 	private String nomePai;
-
 	private String nomeMae;
-
 	private String observacao;
-
 	private Boolean pendenciaFinanceira;
+
+	public PacienteRequest() {
+	}
+
+	public PacienteRequest(Long idPaciente, String cpf, String rg, String nome, GeneroRequest generoRequest,
+			Date dataNascimento, EstadoCivilRequest estadoCivilRequest, ContatoRequest contato,
+			EnderecoRequest endereco, List<ConvenioPacienteRequest> conveniosPacientes,
+			IndicacaoPacienteRequest indicacaoPaciente, List<RedeSocialPacienteRequest> redesSociaisPaciente,
+			ProfissaoRequest profissao, String localTrabalho, String nomePai, String nomeMae, String observacao,
+			Boolean pendenciaFinanceira) {
+		this.idPaciente = idPaciente;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.nome = nome;
+		this.genero = generoRequest.getGenero();
+		this.dataNascimento = dataNascimento;
+		this.estadoCivil = estadoCivilRequest.getEstadoCivil();
+		this.contato = contato;
+		this.endereco = endereco;
+		this.profissao = profissao;
+		this.indicacaoPaciente = indicacaoPaciente;
+		this.redesSociaisPaciente = redesSociaisPaciente;
+		this.localTrabalho = localTrabalho;
+		this.nomePai = nomePai;
+		this.nomeMae = nomeMae;
+		this.observacao = observacao;
+		this.pendenciaFinanceira = pendenciaFinanceira;
+	}
 
 	public Long getIdPaciente() {
 		return idPaciente;
@@ -119,86 +94,6 @@ public class PacienteRequest implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public List<TelefoneRequest> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<TelefoneRequest> telefones) {
-		this.telefones = telefones;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getPontoReferencia() {
-		return pontoReferencia;
-	}
-
-	public void setPontoReferencia(String pontoReferencia) {
-		this.pontoReferencia = pontoReferencia;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getSigla() {
-		return sigla;
-	}
-
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
 	public String getGenero() {
 		return genero;
 	}
@@ -215,44 +110,20 @@ public class PacienteRequest implements Serializable {
 		this.estadoCivil = estadoCivil;
 	}
 
-	public Long getIdContato() {
-		return idContato;
-	}
-
-	public void setIdContato(Long idContato) {
-		this.idContato = idContato;
-	}
-
-	public Long getIdEndereco() {
-		return idEndereco;
-	}
-
-	public void setIdEndereco(Long idEndereco) {
-		this.idEndereco = idEndereco;
-	}
-
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	public List<ConvenioPacienteRequest> getConveniosPaciente() {
-		return conveniosPaciente;
-	}
-
-	public void setConveniosPaciente(List<ConvenioPacienteRequest> conveniosPaciente) {
-		this.conveniosPaciente = conveniosPaciente;
-	}
-
 	public IndicacaoPacienteRequest getIndicacaoPaciente() {
 		return indicacaoPaciente;
 	}
 
 	public void setIndicacaoPaciente(IndicacaoPacienteRequest indicacaoPaciente) {
 		this.indicacaoPaciente = indicacaoPaciente;
+	}
+
+	public List<RedeSocialPacienteRequest> getRedesSociaisPaciente() {
+		return redesSociaisPaciente;
+	}
+
+	public void setRedesSociaisPaciente(List<RedeSocialPacienteRequest> redesSociaisPaciente) {
+		this.redesSociaisPaciente = redesSociaisPaciente;
 	}
 
 	public ProfissaoRequest getProfissao() {
@@ -303,12 +174,20 @@ public class PacienteRequest implements Serializable {
 		this.pendenciaFinanceira = pendenciaFinanceira;
 	}
 
-	public List<RedeSocialPacienteRequest> getRedesSociaisPaciente() {
-		return redesSociaisPaciente;
+	public ContatoRequest getContato() {
+		return contato;
 	}
 
-	public void setRedesSociaisPaciente(List<RedeSocialPacienteRequest> redesSociaisPaciente) {
-		this.redesSociaisPaciente = redesSociaisPaciente;
+	public void setContato(ContatoRequest contato) {
+		this.contato = contato;
+	}
+
+	public EnderecoRequest getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoRequest endereco) {
+		this.endereco = endereco;
 	}
 
 }

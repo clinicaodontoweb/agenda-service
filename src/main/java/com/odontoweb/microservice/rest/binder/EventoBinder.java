@@ -17,17 +17,17 @@ public class EventoBinder implements Serializable {
 
 	private StatusBinder statusBinder;
 	private PacienteBinder pacienteBinder;
-	private ConvenioBinder convenioBinder;
 	private TipoConsultaBinder tipoConsultaBinder;
 	private AgendaBinder agendaBinder;
+	private ConvenioPacienteBinder convenioPacienteBinder;
 
-	public EventoBinder(ConvenioBinder convenioBinder, PacienteBinder pacienteBinder, StatusBinder statusBinder,
-			TipoConsultaBinder tipoConsultaBinder, AgendaBinder agendaBinder) {
+	public EventoBinder(PacienteBinder pacienteBinder, StatusBinder statusBinder, TipoConsultaBinder tipoConsultaBinder,
+			AgendaBinder agendaBinder, ConvenioPacienteBinder convenioPacienteBinder) {
 		this.statusBinder = statusBinder;
 		this.pacienteBinder = pacienteBinder;
-		this.convenioBinder = convenioBinder;
 		this.tipoConsultaBinder = tipoConsultaBinder;
 		this.agendaBinder = agendaBinder;
+		this.convenioPacienteBinder = convenioPacienteBinder;
 	}
 
 	public Evento requestToModel(EventoRequest eventoRequest, String hashkey) {
@@ -35,14 +35,15 @@ public class EventoBinder implements Serializable {
 				statusBinder.getStatusById(eventoRequest.getIdStatus()),
 				tipoConsultaBinder.requestToModel(eventoRequest.getIdTipoConsulta()),
 				agendaBinder.requestToModel(hashkey), pacienteBinder.requestToModel(eventoRequest.getIdPaciente()),
-				convenioBinder.requestToModel(eventoRequest.getIdConvenio()), new Date(eventoRequest.getDataInicio()),
-				new Date(eventoRequest.getDataFim()), eventoRequest.getObservacao());
+				convenioPacienteBinder.requestToModel(eventoRequest.getConvenioPaciente()),
+				new Date(eventoRequest.getDataInicio()), new Date(eventoRequest.getDataFim()),
+				eventoRequest.getObservacao());
 	}
 
 	public Evento requestToModel(AgendamentoRequest agendamentoRequest) {
 		Evento evento = new Evento();
 		evento.setIdEvento(agendamentoRequest.getId());
-		evento.setConvenio(convenioBinder.requestToModel(agendamentoRequest.getIdConvenio()));
+		evento.setConvenioPaciente(convenioPacienteBinder.requestToModel(agendamentoRequest.getConvenioPaciente()));
 		evento.setPaciente(pacienteBinder.requestToModel(agendamentoRequest.getIdPaciente()));
 		evento.setTipoConsulta(this.tipoConsultaBinder.requestToModel(agendamentoRequest.getIdTipoConsulta()));
 		evento.setDataInicio(new Date(agendamentoRequest.getDataInicio()));
@@ -59,7 +60,7 @@ public class EventoBinder implements Serializable {
 				statusBinder.modelToResponse(evento.getStatus()),
 				tipoConsultaBinder.modelToResponse(evento.getTipoConsulta()),
 				agendaBinder.modelToResponse(evento.getAgenda()), pacienteBinder.modelToResponse(evento.getPaciente()),
-				convenioBinder.modelToResponse(evento.getConvenio()), evento.getObservacao(),
+				convenioPacienteBinder.modelToResponse(evento.getConvenioPaciente()), evento.getObservacao(),
 				evento.getDataInicio().getTime(), evento.getDataFim().getTime());
 	}
 

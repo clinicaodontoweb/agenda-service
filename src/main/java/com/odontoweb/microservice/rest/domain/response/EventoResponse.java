@@ -12,7 +12,7 @@ public class EventoResponse implements Serializable {
 	private TipoConsultaResponse tipoConsulta;
 	private AgendaResponse agenda;
 	private PacienteResponse paciente;
-	private ConvenioResponse convenio;
+	private ConvenioPacienteResponse convenioPaciente;
 	private Long dataInicio;
 	private Long dataFim;
 	private String observacao;
@@ -21,15 +21,15 @@ public class EventoResponse implements Serializable {
 	}
 
 	public EventoResponse(Long idEvento, Boolean encaixe, StatusResponse status, TipoConsultaResponse tipoConsulta,
-			AgendaResponse agenda, PacienteResponse paciente, ConvenioResponse convenio, String observacao,
-			Long dataInicio, Long dataFim) {
+			AgendaResponse agenda, PacienteResponse paciente, ConvenioPacienteResponse convenioPaciente,
+			String observacao, Long dataInicio, Long dataFim) {
 		this.idEvento = idEvento;
 		this.encaixe = encaixe;
 		this.statusEvento = status;
 		this.tipoConsulta = tipoConsulta;
 		this.agenda = agenda;
 		this.paciente = paciente;
-		this.convenio = convenio;
+		this.convenioPaciente = convenioPaciente;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.observacao = observacao;
@@ -108,12 +108,12 @@ public class EventoResponse implements Serializable {
 		this.paciente = paciente;
 	}
 
-	public ConvenioResponse getConvenio() {
-		return convenio;
+	public ConvenioPacienteResponse getConvenioPaciente() {
+		return convenioPaciente;
 	}
 
-	public void setConvenio(ConvenioResponse convenio) {
-		this.convenio = convenio;
+	public void setConvenioPaciente(ConvenioPacienteResponse convenioPaciente) {
+		this.convenioPaciente = convenioPaciente;
 	}
 
 }

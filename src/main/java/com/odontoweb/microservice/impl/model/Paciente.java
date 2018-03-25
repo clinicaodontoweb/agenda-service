@@ -72,10 +72,6 @@ public class Paciente implements Serializable {
 	@JoinColumn(name = "FK_ENDERECO")
 	private Endereco endereco;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_PACIENTE")
-	private List<ConvenioPaciente> conveniosPaciente;
-
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_INDICACAO_PACIENTE")
 	private IndicacaoPaciente indicacaoPaciente;
@@ -111,8 +107,7 @@ public class Paciente implements Serializable {
 	}
 
 	public Paciente(Long idPaciente, String cpf, String rg, String nome, Genero genero, Date dataNascimento,
-			Date dataCadastro, EstadoCivil estadoCivil, Contato contato, Endereco endereco,
-			List<ConvenioPaciente> conveniosPaciente, IndicacaoPaciente indicacaoPaciente,
+			EstadoCivil estadoCivil, Contato contato, Endereco endereco, IndicacaoPaciente indicacaoPaciente,
 			List<RedeSocialPaciente> redesSociaisPaciente, Profissao profissao, String localTrabalho, String nomePai,
 			String nomeMae, String observacao, Boolean pendenciaFinanceira) {
 		this.idPaciente = idPaciente;
@@ -121,11 +116,9 @@ public class Paciente implements Serializable {
 		this.nome = nome;
 		this.genero = genero;
 		this.dataNascimento = dataNascimento;
-		this.dataCadastro = dataCadastro;
 		this.estadoCivil = estadoCivil;
 		this.contato = contato;
 		this.endereco = endereco;
-		this.conveniosPaciente = conveniosPaciente;
 		this.indicacaoPaciente = indicacaoPaciente;
 		this.redesSociaisPaciente = redesSociaisPaciente;
 		this.profissao = profissao;
@@ -137,6 +130,10 @@ public class Paciente implements Serializable {
 			this.pendenciaFinanceira = Boolean.FALSE;
 		} else {
 			this.pendenciaFinanceira = pendenciaFinanceira;
+		}
+
+		if (idPaciente == null) {
+			this.dataCadastro = new Date();
 		}
 
 	}
@@ -219,14 +216,6 @@ public class Paciente implements Serializable {
 
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public List<ConvenioPaciente> getConveniosPaciente() {
-		return conveniosPaciente;
-	}
-
-	public void setConveniosPaciente(List<ConvenioPaciente> conveniosPaciente) {
-		this.conveniosPaciente = conveniosPaciente;
 	}
 
 	public IndicacaoPaciente getIndicacaoPaciente() {

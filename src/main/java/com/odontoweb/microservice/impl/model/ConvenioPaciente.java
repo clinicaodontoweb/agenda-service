@@ -28,22 +28,27 @@ public class ConvenioPaciente implements Serializable {
 	@JoinColumn(name = "FK_CONVENIO")
 	private Convenio convenio;
 
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "FK_PACIENTE")
+	private Paciente paciente;
+
 	@Column(name = "STR_NUMERO")
 	private String numero;
 
 	@Column(name = "STR_TITULAR_CONVENIO")
 	private String titularConvenio;
-	
-	public ConvenioPaciente(Long idConvenioPaciente, Convenio convenio, String numero, String titularConvenio) {
+
+	public ConvenioPaciente(Long idConvenioPaciente, Convenio convenio, Paciente paciente, String numero,
+			String titularConvenio) {
 		this.idConvenioPaciente = idConvenioPaciente;
 		this.convenio = convenio;
+		this.paciente = paciente;
 		this.numero = numero;
 		this.titularConvenio = titularConvenio;
 	}
-	
+
 	public ConvenioPaciente() {
 	}
-	
 
 	public Long getIdConvenioPaciente() {
 		return idConvenioPaciente;
@@ -75,6 +80,14 @@ public class ConvenioPaciente implements Serializable {
 
 	public void setTitularConvenio(String titularConvenio) {
 		this.titularConvenio = titularConvenio;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	@Override
