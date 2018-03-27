@@ -56,7 +56,7 @@ public class Paciente implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataNascimento;
 
-	@Column(name = "DTA_DATA_CADASTRO")
+	@Column(name = "DTA_DATA_CADASTRO", updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
 

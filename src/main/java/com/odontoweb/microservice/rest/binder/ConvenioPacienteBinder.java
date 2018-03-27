@@ -14,17 +14,14 @@ public class ConvenioPacienteBinder implements Serializable {
 	private static final long serialVersionUID = -1783417548975076896L;
 
 	private ConvenioBinder convenioBinder;
-	private PacienteBinder pacienteBinder;
 
-	public ConvenioPacienteBinder(ConvenioBinder convenioBinder, PacienteBinder pacienteBinder) {
+	public ConvenioPacienteBinder(ConvenioBinder convenioBinder) {
 		this.convenioBinder = convenioBinder;
-		this.pacienteBinder = pacienteBinder;
 	}
 
 	public ConvenioPaciente requestToModel(ConvenioPacienteRequest convenioPacienteRequest) {
 		return new ConvenioPaciente(convenioPacienteRequest.getIdConvenioPaciente(),
 				convenioBinder.requestToModel(convenioPacienteRequest.getIdConvenio()),
-				pacienteBinder.requestToModel(convenioPacienteRequest.getIdPaciente()),
 				convenioPacienteRequest.getNumero(), convenioPacienteRequest.getTitularConvenio());
 	}
 

@@ -181,11 +181,8 @@ public class ServiceConfig {
 			CepRepository cepRepository, CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
 			EstadoRepository estadoRepository, BairroRepository bairroRepository,
 			PacienteRepository pacienteRepository) {
-		return new ConvenioPacienteBinder(
-				convenioBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
-						bairroRepository),
-				pacienteBinder(pacienteRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
-						bairroRepository, convenioRepository));
+		return new ConvenioPacienteBinder(convenioBinder(convenioRepository, cepRepository, cidadeRepository,
+				siglaRepository, estadoRepository, bairroRepository));
 	}
 
 	@Bean

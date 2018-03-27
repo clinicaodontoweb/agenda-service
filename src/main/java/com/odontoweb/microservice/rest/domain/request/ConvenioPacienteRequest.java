@@ -8,15 +8,12 @@ public class ConvenioPacienteRequest implements Serializable {
 
 	private Long idConvenioPaciente;
 	private Long idConvenio;
-	private Long idPaciente;
 	private String numero;
 	private String titularConvenio;
 
-	public ConvenioPacienteRequest(Long idConvenioPaciente, Long idConvenio, Long idPaciente, String numero,
-			String titularConvenio) {
+	public ConvenioPacienteRequest(Long idConvenioPaciente, Long idConvenio, String numero, String titularConvenio) {
 		this.idConvenioPaciente = idConvenioPaciente;
 		this.idConvenio = idConvenio;
-		this.idPaciente = idPaciente;
 		this.numero = numero;
 		this.titularConvenio = titularConvenio;
 	}
@@ -55,13 +52,4 @@ public class ConvenioPacienteRequest implements Serializable {
 	public void setTitularConvenio(String titularConvenio) {
 		this.titularConvenio = titularConvenio;
 	}
-
-	public Long getIdPaciente() {
-		return idPaciente;
-	}
-
-	public void setIdPaciente(Long idPaciente) {
-		this.idPaciente = idPaciente;
-	}
-
 }
