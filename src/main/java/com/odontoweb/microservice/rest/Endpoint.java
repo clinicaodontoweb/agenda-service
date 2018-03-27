@@ -862,4 +862,25 @@ public class Endpoint {
 		}
 	}
 
+	@RequestMapping(value = "/redesocial/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> findRedeSocialById(@PathVariable("id") Long id) {
+		try {
+			return new ResponseEntity<>(redeSocialBinder.modelToResponse(redeSocialService.findById(id)),
+					HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/indicacao/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> findIndicacaoById(@PathVariable("id") Long id) {
+		try {
+			return new ResponseEntity<>(indicacaoBinder.modelToResponse(indicacaoService.findById(id)), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 }
