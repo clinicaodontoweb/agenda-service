@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.impl.model.enums.EstadoCivil;
 import com.odontoweb.microservice.impl.model.enums.Genero;
+import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
@@ -17,11 +18,13 @@ public class PacienteBinder implements Serializable {
 	private static final long serialVersionUID = 2368417682988907201L;
 
 	private PacienteService pacienteService;
+	private EventoService eventoService;
 	private EnderecoBinder enderecoBinder;
-
-	public PacienteBinder(PacienteService pacienteService, EnderecoBinder enderecoBinder) {
+	
+	public PacienteBinder(PacienteService pacienteService, EnderecoBinder enderecoBinder, EventoService eventoService) {
 		this.pacienteService = pacienteService;
 		this.enderecoBinder = enderecoBinder;
+		this.eventoService = eventoService;
 	}
 
 	public Paciente requestToModel(PacienteRequest pacienteRequest) {

@@ -14,6 +14,7 @@ import com.odontoweb.microservice.impl.repository.EstadoRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
 import com.odontoweb.microservice.impl.repository.IndicacaoRepository;
 import com.odontoweb.microservice.impl.repository.PacienteRepository;
+import com.odontoweb.microservice.impl.repository.ProfissaoRepository;
 import com.odontoweb.microservice.impl.repository.RedeSocialRepository;
 import com.odontoweb.microservice.impl.repository.SiglaRepository;
 import com.odontoweb.microservice.impl.repository.StatusRepository;
@@ -29,6 +30,7 @@ import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.IndicacaoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
+import com.odontoweb.microservice.impl.service.ProfissaoService;
 import com.odontoweb.microservice.impl.service.RedeSocialService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.StatusService;
@@ -45,6 +47,7 @@ import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.IndicacaoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
+import com.odontoweb.microservice.rest.binder.ProfissaoBinder;
 import com.odontoweb.microservice.rest.binder.RedeSocialBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.StatusBinder;
@@ -132,6 +135,11 @@ public class ServiceConfig {
 	}
 
 	@Bean
+	public ProfissaoService profissaoService(ProfissaoRepository repository) {
+		return new ProfissaoService(repository);
+	}
+
+	@Bean
 	public AgendaBinder agendaBinder(AgendaRepository agendaRepository,
 			UsuarioClinicaRepository usuarioclinicaRepository) {
 		return new AgendaBinder(agendaService(agendaRepository, usuarioclinicaRepository));
@@ -142,10 +150,11 @@ public class ServiceConfig {
 			TipoConsultaRepository tipoConsultaRepository, StatusRepository statusRepository,
 			CepRepository cepRepository, CidadeRepository cidadeRepository, SiglaRepository siglaRepository,
 			EstadoRepository estadoRepository, BairroRepository bairroRepository, AgendaRepository agendaRepository,
-			UsuarioClinicaRepository usuarioClinicaRepository, AuditoriaRepository auditoriaRepository) {
+			UsuarioClinicaRepository usuarioClinicaRepository, AuditoriaRepository auditoriaRepository,
+			EventoRepository eventoRepository) {
 		return new EventoBinder(
 				pacienteBinder(pacienteRepository, cepRepository, cidadeRepository, siglaRepository, estadoRepository,
-						bairroRepository, convenioRepository),
+						bairroRepository, convenioRepository, auditoriaRepository, eventoRepository),
 				statusBinder(statusRepository), tipoConsultaBinder(tipoConsultaRepository),
 				agendaBinder(agendaRepository, usuarioClinicaRepository),
 				convenioPacienteBinder(convenioRepository, cepRepository, cidadeRepository, siglaRepository,
@@ -193,9 +202,11 @@ public class ServiceConfig {
 	@Bean
 	public PacienteBinder pacienteBinder(PacienteRepository pacienteRepository, CepRepository cepRepository,
 			CidadeRepository cidadeRepository, SiglaRepository siglaRepository, EstadoRepository estadoRepository,
-			BairroRepository bairroRepository, ConvenioRepository convenioRepository) {
+			BairroRepository bairroRepository, ConvenioRepository convenioRepository,
+			AuditoriaRepository auditoriaRepository, EventoRepository eventoRepository) {
 		return new PacienteBinder(pacienteService(pacienteRepository),
-				enderecoBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository));
+				enderecoBinder(cepRepository, cidadeRepository, siglaRepository, estadoRepository, bairroRepository),
+				eventoService(eventoRepository, auditoriaRepository));
 	}
 
 	@Bean
@@ -226,6 +237,11 @@ public class ServiceConfig {
 	@Bean
 	public IndicacaoBinder indicacaoBinder() {
 		return new IndicacaoBinder();
+	}
+
+	@Bean
+	public ProfissaoBinder profissaoBinder() {
+		return new ProfissaoBinder();
 	}
 
 	@Bean

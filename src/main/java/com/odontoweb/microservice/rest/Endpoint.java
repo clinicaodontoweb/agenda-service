@@ -28,6 +28,7 @@ import com.odontoweb.microservice.impl.service.EstadoService;
 import com.odontoweb.microservice.impl.service.EventoService;
 import com.odontoweb.microservice.impl.service.IndicacaoService;
 import com.odontoweb.microservice.impl.service.PacienteService;
+import com.odontoweb.microservice.impl.service.ProfissaoService;
 import com.odontoweb.microservice.impl.service.RedeSocialService;
 import com.odontoweb.microservice.impl.service.SiglaService;
 import com.odontoweb.microservice.impl.service.StatusService;
@@ -42,6 +43,7 @@ import com.odontoweb.microservice.rest.binder.EstadoBinder;
 import com.odontoweb.microservice.rest.binder.EventoBinder;
 import com.odontoweb.microservice.rest.binder.IndicacaoBinder;
 import com.odontoweb.microservice.rest.binder.PacienteBinder;
+import com.odontoweb.microservice.rest.binder.ProfissaoBinder;
 import com.odontoweb.microservice.rest.binder.RedeSocialBinder;
 import com.odontoweb.microservice.rest.binder.SiglaBinder;
 import com.odontoweb.microservice.rest.binder.StatusBinder;
@@ -53,6 +55,7 @@ import com.odontoweb.microservice.rest.domain.request.ConvenioRequest;
 import com.odontoweb.microservice.rest.domain.request.EventoRequest;
 import com.odontoweb.microservice.rest.domain.request.IndicacaoRequest;
 import com.odontoweb.microservice.rest.domain.request.PacienteRequest;
+import com.odontoweb.microservice.rest.domain.request.ProfissaoRequest;
 import com.odontoweb.microservice.rest.domain.request.RedeSocialRequest;
 import com.odontoweb.microservice.rest.domain.request.StatusRequest;
 import com.odontoweb.microservice.rest.domain.request.TipoConsultaRequest;
@@ -66,6 +69,7 @@ import com.odontoweb.microservice.rest.domain.response.EstadoResponse;
 import com.odontoweb.microservice.rest.domain.response.EventoResponse;
 import com.odontoweb.microservice.rest.domain.response.IndicacaoResponse;
 import com.odontoweb.microservice.rest.domain.response.PacienteResponse;
+import com.odontoweb.microservice.rest.domain.response.ProfissaoResponse;
 import com.odontoweb.microservice.rest.domain.response.RedeSocialResponse;
 import com.odontoweb.microservice.rest.domain.response.SiglaResponse;
 import com.odontoweb.microservice.rest.domain.response.StatusResponse;
@@ -117,6 +121,9 @@ public class Endpoint {
 	IndicacaoService indicacaoService;
 
 	@Autowired
+	ProfissaoService profissaoService;
+
+	@Autowired
 	SiglaBinder siglaBinder;
 
 	@Autowired
@@ -157,6 +164,9 @@ public class Endpoint {
 
 	@Autowired
 	IndicacaoBinder indicacaoBinder;
+
+	@Autowired
+	ProfissaoBinder profissaoBinder;
 
 	@RequestMapping(value = "/evento/{hashkey}", method = RequestMethod.POST)
 	public ResponseEntity<?> saveEvento(@RequestBody @Valid EventoRequest eventoRequest,
@@ -281,6 +291,28 @@ public class Endpoint {
 	public ResponseEntity<?> updateIndicacao(@RequestBody @Valid IndicacaoRequest indicacaoRequest) {
 		try {
 			indicacaoService.save(indicacaoBinder.requestToModel(indicacaoRequest));
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/profissao", method = RequestMethod.POST)
+	public ResponseEntity<?> saveProfissao(@RequestBody @Valid ProfissaoRequest profissaoRequest) {
+		try {
+			profissaoService.save(profissaoBinder.requestToModel(profissaoRequest));
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/profissao", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateProfissao(@RequestBody @Valid ProfissaoRequest profissaoRequest) {
+		try {
+			profissaoService.save(profissaoBinder.requestToModel(profissaoRequest));
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -540,6 +572,17 @@ public class Endpoint {
 	public ResponseEntity<?> deleteIndicacao(@PathVariable("id") Long id) {
 		try {
 			indicacaoService.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/profissao/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteProfissao(@PathVariable("id") Long id) {
+		try {
+			profissaoService.delete(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -877,6 +920,27 @@ public class Endpoint {
 	public ResponseEntity<?> findIndicacaoById(@PathVariable("id") Long id) {
 		try {
 			return new ResponseEntity<>(indicacaoBinder.modelToResponse(indicacaoService.findById(id)), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/profissao/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> findProfissaoById(@PathVariable("id") Long id) {
+		try {
+			return new ResponseEntity<>(profissaoBinder.modelToResponse(profissaoService.findById(id)), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/profissao", method = RequestMethod.GET)
+	public ResponseEntity<?> findAllProfissoes() {
+		try {
+			return new ResponseEntity<List<ProfissaoResponse>>(
+					profissaoBinder.modelToListResponse(profissaoService.findAll()), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
