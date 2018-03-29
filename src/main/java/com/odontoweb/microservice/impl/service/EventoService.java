@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
+import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.impl.model.enums.TipoAcaoAuditoria;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
@@ -74,4 +75,8 @@ public class EventoService {
 	public List<Evento> findEventoByCpfPaciente(String cpf) {
 		return eventoRepository.findEventoByCpfPaciente(cpf); 
 	}
+	
+//	public Evento findLastEventoByPaciente(Paciente paciente) {
+//		return eventoRepository.findTopEventoByPacienteByOrderByDataInicioDesc(paciente);
+//	}
 }

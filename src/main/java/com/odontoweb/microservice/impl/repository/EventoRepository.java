@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.odontoweb.microservice.impl.model.Evento;
+import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.impl.model.UsuarioClinica;
 
 public interface EventoRepository extends JpaRepository<Evento, Long> {
@@ -16,5 +17,8 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
 	public List<Evento> findEventoByNomePaciente(String nomePaciente);
 	@Query("SELECT evento FROM Evento evento WHERE evento.paciente.cpf = ?1 AND lower(evento.status.nome) = 'aberto'")
 	public List<Evento> findEventoByCpfPaciente(String cpf);
+	
+	//public Evento findTopEventoByPacienteByOrderByDataInicioDesc(Paciente paciente);
+	
 	//public Evento findEventoConflitante(UsuarioClinica usuarioClinica, Date dataIniciao, Date DataFim);
 }
