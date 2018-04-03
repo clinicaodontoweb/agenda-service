@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "TBL_EVENTO")
 public class Evento implements Serializable {
@@ -52,6 +54,7 @@ public class Evento implements Serializable {
 	private ConvenioPaciente convenioPaciente;
 
 	@Lob
+	@Type(type="text")
 	@Column(name = "STR_OBSERVACAO")
 	private String observacao;
 

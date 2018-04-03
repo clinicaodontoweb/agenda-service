@@ -20,10 +20,13 @@ public class EventoService {
 
 	@Autowired
 	private AgendaRepository agendaRepository;
+	
+	@Autowired
+	private PacienteService pacienteService;
 
 	@Autowired
 	private UsuarioClinicaRepository usuarioClinicaRepository;
-	
+
 	@Autowired
 	private AuditoriaService auditoriaService;
 
@@ -43,7 +46,8 @@ public class EventoService {
 
 	public boolean save(Evento agendamento, String usuario) {
 		boolean isNew = agendamento.getIdEvento() == null;
-		auditoriaService.save(agendamento, agendamento.getIdEvento(), Evento.class.getSimpleName(), isNew ? TipoAcaoAuditoria.CREATE :TipoAcaoAuditoria.UPDATE, usuario);
+		auditoriaService.save(agendamento, agendamento.getIdEvento(), Evento.class.getSimpleName(),
+				isNew ? TipoAcaoAuditoria.CREATE : TipoAcaoAuditoria.UPDATE, usuario);
 		return eventoRepository.save(agendamento) != null;
 	}
 
@@ -73,10 +77,10 @@ public class EventoService {
 	}
 
 	public List<Evento> findEventoByCpfPaciente(String cpf) {
-		return eventoRepository.findEventoByCpfPaciente(cpf); 
+		return eventoRepository.findEventoByCpfPaciente(cpf);
 	}
-	
-//	public Evento findLastEventoByPaciente(Paciente paciente) {
-//		return eventoRepository.findTopEventoByPacienteByOrderByDataInicioDesc(paciente);
-//	}
+
+	public Evento findLastEventoByPaciente(Long  idPaciente) {
+		return eventoRepository.findTopEventoByPacienteOrderByDataInicioDesc(pacienteService.findById(idPaciente));
+	}
 }

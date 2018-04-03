@@ -751,7 +751,9 @@ public class Endpoint {
 	@RequestMapping(value = "/paciente/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findPacienteById(@PathVariable("id") Long id) {
 		try {
-			return new ResponseEntity<>(pacienteBinder.modelToResponse(pacienteService.findById(id)), HttpStatus.OK);
+			PacienteResponse pacienteResponse = pacienteBinder.modelToResponse(pacienteService.findById(id));
+			pacienteResponse.setUltimoEvento(eventoBinder.modelToResponse(eventoService.findLastEventoByPaciente(pacienteResponse.getIdPaciente())));
+			return new ResponseEntity<>(pacienteResponse, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);

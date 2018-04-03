@@ -21,7 +21,7 @@ public class ConvenioPacienteBinder implements Serializable {
 
 	public ConvenioPaciente requestToModel(ConvenioPacienteRequest convenioPacienteRequest) {
 		return new ConvenioPaciente(convenioPacienteRequest.getIdConvenioPaciente(),
-				convenioBinder.requestToModel(convenioPacienteRequest.getConvenio()),
+				convenioBinder.requestToModel(convenioPacienteRequest.getConvenio().getIdConvenio()),
 				convenioPacienteRequest.getNumero(), convenioPacienteRequest.getTitularConvenio());
 	}
 

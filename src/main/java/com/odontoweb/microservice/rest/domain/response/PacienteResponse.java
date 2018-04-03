@@ -26,6 +26,7 @@ public class PacienteResponse implements Serializable {
 	private String nomeMae;
 	private String observacao;
 	private Boolean pendenciaFinanceira;
+	private EventoResponse ultimoEvento;
 
 	public PacienteResponse() {
 	}
@@ -198,4 +199,13 @@ public class PacienteResponse implements Serializable {
 	public void setEndereco(EnderecoResponse endereco) {
 		this.endereco = endereco;
 	}
+
+	public EventoResponse getUltimoEvento() {
+		return ultimoEvento;
+	}
+
+	public void setUltimoEvento(EventoResponse ultimoEvento) {
+		this.ultimoEvento = ultimoEvento;
+	}
+
 }
