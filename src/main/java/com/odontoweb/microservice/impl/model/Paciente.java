@@ -39,7 +39,7 @@ public class Paciente implements Serializable {
 	@Column(name = "ID")
 	private Long idPaciente;
 
-	@Column(name = "STR_CPF")
+	@Column(name = "STR_CPF", unique = true)
 	private String cpf;
 
 	@Column(name = "STR_RG")
