@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.odontoweb.microservice.impl.model.Evento;
-import com.odontoweb.microservice.impl.model.Paciente;
 import com.odontoweb.microservice.impl.model.enums.TipoAcaoAuditoria;
 import com.odontoweb.microservice.impl.repository.AgendaRepository;
 import com.odontoweb.microservice.impl.repository.EventoRepository;
@@ -20,7 +19,7 @@ public class EventoService {
 
 	@Autowired
 	private AgendaRepository agendaRepository;
-	
+
 	@Autowired
 	private PacienteService pacienteService;
 
@@ -80,7 +79,20 @@ public class EventoService {
 		return eventoRepository.findEventoByCpfPaciente(cpf);
 	}
 
-	public Evento findLastEventoByPaciente(Long  idPaciente) {
+	public Evento findLastEventoByPaciente(Long idPaciente) {
 		return eventoRepository.findTopEventoByPacienteOrderByDataInicioDesc(pacienteService.findById(idPaciente));
+	}
+
+	public List<Evento> findEventoConflitante(String hashKey, Long dataInicio, Long dataFim) {
+		if (dataInicio == null) {
+			dataInicio = DateUtil.getDataInicial((new Date()).getTime());
+		}
+
+		if (dataFim == null) {
+			dataFim = DateUtil.getDataInicial((new Date()).getTime());
+		}
+
+		return eventoRepository.findEventoConflitante(usuarioClinicaRepository.findByHashKey(hashKey),
+				new Date(dataInicio), new Date(dataFim));
 	}
 }

@@ -752,7 +752,7 @@ public class Endpoint {
 	public ResponseEntity<?> findPacienteById(@PathVariable("id") Long id) {
 		try {
 			PacienteResponse pacienteResponse = pacienteBinder.modelToResponse(pacienteService.findById(id));
-			pacienteResponse.setUltimoEvento(eventoBinder.modelToResponse(eventoService.findLastEventoByPaciente(pacienteResponse.getIdPaciente())));
+			pacienteResponse.setUltimoEvento(eventoBinder.modelToResponseEmbedded(eventoService.findLastEventoByPaciente(pacienteResponse.getIdPaciente())));
 			return new ResponseEntity<>(pacienteResponse, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
@@ -834,6 +834,18 @@ public class Endpoint {
 		try {
 			return new ResponseEntity<List<EventoResponse>>(eventoBinder.modelToListResponse(
 					eventoService.findEventoByUsuarioClinica(hashKey, dataInicio, dataFim)), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value = "/evento/conflito/dentista/{hashKey}", method = RequestMethod.GET)
+	public ResponseEntity<?> findEventoConflitante(@PathVariable("hashKey") String hashKey,
+			@RequestParam(value = "dataInicio") Long dataInicio, @RequestParam(value = "dataFim") Long dataFim) {
+		try {
+			return new ResponseEntity<List<EventoResponse>>(eventoBinder.modelToListResponseEmbedded(
+					eventoService.findEventoConflitante(hashKey, dataInicio, dataFim)), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
