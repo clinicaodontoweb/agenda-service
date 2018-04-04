@@ -17,8 +17,10 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
 	public List<Evento> findEventoByNomePaciente(String nomePaciente);
 	@Query("SELECT evento FROM Evento evento WHERE evento.paciente.cpf = ?1 AND lower(evento.status.nome) = 'aberto'")
 	public List<Evento> findEventoByCpfPaciente(String cpf);
+	@Query("SELECT evento FROM Evento evento WHERE evento.agenda.usuarioClinica = ?1 AND (?3 BETWEEN evento.dataInicio AND evento.dataFim OR  ?2 BETWEEN evento.dataInicio AND evento.dataFim)")
+	public List<Evento> findEventoConflitante(UsuarioClinica usuarioClinica, Date dataIniciao, Date DataFim);
 	
 	public Evento findTopEventoByPacienteOrderByDataInicioDesc(Paciente paciente);
 	
-	//public Evento findEventoConflitante(UsuarioClinica usuarioClinica, Date dataIniciao, Date DataFim);
+	
 }

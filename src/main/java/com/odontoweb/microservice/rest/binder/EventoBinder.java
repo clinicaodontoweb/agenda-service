@@ -64,10 +64,28 @@ public class EventoBinder implements Serializable {
 				evento.getDataInicio().getTime(), evento.getDataFim().getTime());
 	}
 
+	public EventoResponse modelToResponseEmbedded(Evento evento) {
+		EventoResponse eventoResponse = new EventoResponse();
+		eventoResponse.setIdEvento(evento.getIdEvento());
+		eventoResponse.setStatusEvento(statusBinder.modelToResponse(evento.getStatus()));
+		eventoResponse.setTipoConsulta(tipoConsultaBinder.modelToResponse(evento.getTipoConsulta()));
+		eventoResponse.setDataInicio(evento.getDataInicio().getTime());
+		eventoResponse.setDataFim(evento.getDataFim().getTime());
+		return eventoResponse;
+	}
+
 	public List<EventoResponse> modelToListResponse(List<Evento> eventos) {
 		if (eventos == null)
 			return null;
 		return eventos.stream().filter(Objects::nonNull).map(evento -> modelToResponse(evento))
+				.collect(Collectors.toList());
+
+	}
+	
+	public List<EventoResponse> modelToListResponseEmbedded(List<Evento> eventos) {
+		if (eventos == null)
+			return null;
+		return eventos.stream().filter(Objects::nonNull).map(evento -> modelToResponseEmbedded(evento))
 				.collect(Collectors.toList());
 
 	}
