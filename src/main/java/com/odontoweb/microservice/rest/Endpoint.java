@@ -490,6 +490,16 @@ public class Endpoint {
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@RequestMapping(value = "/paciente/validacpf/{cpf}", method = RequestMethod.GET)
+	public ResponseEntity<?> validaCpf(@PathVariable("cpf") String cpf) {
+		try {
+			return new ResponseEntity<Boolean>(pacienteService.existPacienteWithCpf(cpf), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<ExceptionResponse>(
+					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@RequestMapping(value = "/paciente/autocomplete/{nome}", method = RequestMethod.GET)
 	public ResponseEntity<?> findPacientesByNome(@PathVariable("nome") String nome) {

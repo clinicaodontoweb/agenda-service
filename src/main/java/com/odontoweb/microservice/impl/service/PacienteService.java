@@ -35,5 +35,8 @@ public class PacienteService {
 	public List<Paciente> findPacientesByNome(String nome) {
 		return pacienteRepository.findByNomeContainingIgnoreCase(nome);
 	}
-
+	
+	public boolean existPacienteWithCpf(String cpf) {
+		return pacienteRepository.findByCpf(cpf) != null;
+	}
 }
