@@ -65,13 +65,16 @@ public class EventoBinder implements Serializable {
 	}
 
 	public EventoResponse modelToResponseEmbedded(Evento evento) {
-		EventoResponse eventoResponse = new EventoResponse();
-		eventoResponse.setIdEvento(evento.getIdEvento());
-		eventoResponse.setStatusEvento(statusBinder.modelToResponse(evento.getStatus()));
-		eventoResponse.setTipoConsulta(tipoConsultaBinder.modelToResponse(evento.getTipoConsulta()));
-		eventoResponse.setDataInicio(evento.getDataInicio().getTime());
-		eventoResponse.setDataFim(evento.getDataFim().getTime());
-		return eventoResponse;
+		if(evento != null) {
+			EventoResponse eventoResponse = new EventoResponse();
+			eventoResponse.setIdEvento(evento.getIdEvento());
+			eventoResponse.setStatusEvento(statusBinder.modelToResponse(evento.getStatus()));
+			eventoResponse.setTipoConsulta(tipoConsultaBinder.modelToResponse(evento.getTipoConsulta()));
+			eventoResponse.setDataInicio(evento.getDataInicio().getTime());
+			eventoResponse.setDataFim(evento.getDataFim().getTime());
+			return eventoResponse;
+		}
+		return null;
 	}
 
 	public List<EventoResponse> modelToListResponse(List<Evento> eventos) {
