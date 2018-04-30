@@ -9,6 +9,7 @@ import com.odontoweb.microservice.impl.model.Telefone;
 import com.odontoweb.microservice.impl.model.enums.TipoTelefone;
 import com.odontoweb.microservice.rest.domain.request.TelefoneRequest;
 import com.odontoweb.microservice.rest.domain.response.TelefoneResponse;
+import com.odontoweb.microservice.rest.domain.response.TipoTelefoneResponse;
 
 public class TelefoneBinder implements Serializable {
 

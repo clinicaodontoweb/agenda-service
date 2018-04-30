@@ -48,7 +48,7 @@ public class EnumerationBinder implements Serializable {
 	}
 
 	public TipoTelefoneResponse enumToResponse(TipoTelefone tipoTelefone) {
-		return new TipoTelefoneResponse(tipoTelefone.name());
+		return tipoTelefone == null ? new TipoTelefoneResponse(TipoTelefone.CELULAR.name()) : new TipoTelefoneResponse(tipoTelefone.name());
 	}
 
 }
