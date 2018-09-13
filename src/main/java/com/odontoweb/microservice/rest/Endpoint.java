@@ -486,6 +486,7 @@ public class Endpoint {
 			return new ResponseEntity<List<PacienteResponse>>(
 					pacienteBinder.modelToListResponse(pacienteService.findAll()), HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<ExceptionResponse>(
 					new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}
