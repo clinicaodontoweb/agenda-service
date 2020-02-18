@@ -33,3 +33,7 @@ springBoot {
 	executable = true
 	mainClass = 'com.odontoweb.microservice.Application'
 }
+
+jar {
+	baseName = 'agenda-service'
+}
