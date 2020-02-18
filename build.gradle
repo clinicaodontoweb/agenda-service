@@ -32,11 +32,3 @@ dependencies {
 springBoot {
 	executable = true
 }
-
-jar {
-	baseName = 'agenda-service'
-}
-
-task wrapper(type: Wrapper) {
-	gradleVersion = '2.9'
-}
