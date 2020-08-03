@@ -29,11 +29,11 @@ public class RedeSocialService implements Serializable {
 	}
 
 	public RedeSocial findById(Long id) {
-		return redeSocialRepository.findOne(id);
+		return redeSocialRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		redeSocialRepository.delete(id);
+		redeSocialRepository.deleteById(id);
 	}
 
 	public RedeSocial findByNome(String nomeRedeSocial) {

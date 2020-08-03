@@ -22,11 +22,11 @@ public class TipoConsultaService {
 	}
 	
 	public TipoConsulta findById(Long id){
-		return this.tipoConsultaRepository.findOne(id);
+		return this.tipoConsultaRepository.getOne(id);
 	}
 	
 	public void delete(Long id) {
-		tipoConsultaRepository.delete(id);
+		tipoConsultaRepository.deleteById(id);
 	}
 	
 }

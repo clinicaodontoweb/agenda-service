@@ -1,9 +1,18 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TipoConsultaRequest implements Serializable {
 
 	private static final long serialVersionUID = -1455378347372024359L;
@@ -16,37 +25,4 @@ public class TipoConsultaRequest implements Serializable {
 	private String corPrimaria;
 
 	private String corSecundaria;
-
-	public Long getIdTipoConsulta() {
-		return idTipoConsulta;
-	}
-
-	public void setIdTipoConsulta(Long idTipoConsulta) {
-		this.idTipoConsulta = idTipoConsulta;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCorPrimaria() {
-		return corPrimaria;
-	}
-
-	public void setCorPrimaria(String corPrimaria) {
-		this.corPrimaria = corPrimaria;
-	}
-
-	public String getCorSecundaria() {
-		return corSecundaria;
-	}
-
-	public void setCorSecundaria(String corSecundaria) {
-		this.corSecundaria = corSecundaria;
-	}
-
 }

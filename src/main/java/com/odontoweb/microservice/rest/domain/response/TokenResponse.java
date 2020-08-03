@@ -1,22 +1,18 @@
 package com.odontoweb.microservice.rest.domain.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TokenResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String token;
-
-	public TokenResponse(String token) {
-		this.token = token;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
 }

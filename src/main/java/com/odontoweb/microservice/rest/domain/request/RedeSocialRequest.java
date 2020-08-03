@@ -1,36 +1,20 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RedeSocialRequest implements Serializable {
 
 	private static final long serialVersionUID = -6208329137006430189L;
 
 	private Long idRedeSocial;
 	private String nome;
-
-	public RedeSocialRequest(Long idRedeSocial, String nome) {
-		this.idRedeSocial = idRedeSocial;
-		this.nome = nome;
-	}
-
-	public RedeSocialRequest() {
-	}
-
-	public Long getIdRedeSocial() {
-		return idRedeSocial;
-	}
-
-	public void setIdRedeSocial(Long idRedeSocial) {
-		this.idRedeSocial = idRedeSocial;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 }

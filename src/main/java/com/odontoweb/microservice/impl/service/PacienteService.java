@@ -21,11 +21,11 @@ public class PacienteService {
 	}
 
 	public Paciente findById(Long idPaciente) {
-		return pacienteRepository.findOne(idPaciente);
+		return pacienteRepository.getOne(idPaciente);
 	}
 
 	public void delete(Long id) {
-		pacienteRepository.delete(id);
+		pacienteRepository.deleteById(id);
 	}
 
 	public List<Paciente> findAll() {

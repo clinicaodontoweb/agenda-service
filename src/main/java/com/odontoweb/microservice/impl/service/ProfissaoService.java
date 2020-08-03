@@ -29,11 +29,11 @@ public class ProfissaoService implements Serializable {
 	}
 
 	public Profissao findById(Long id) {
-		return profissaoRepository.findOne(id);
+		return profissaoRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		profissaoRepository.delete(id);
+		profissaoRepository.deleteById(id);
 	}
 
 	public Profissao findByNome(String nomeProfissao) {

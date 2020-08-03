@@ -1,9 +1,18 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SiglaRequest implements Serializable {
 
 	private static final long serialVersionUID = -3523894104353937660L;
@@ -12,29 +21,4 @@ public class SiglaRequest implements Serializable {
 	
 	@NotNull(message = "Sigla é obrigatório!")
 	private String sigla;
-
-	public SiglaRequest(Long idSigla, String sigla) {
-		this.idSigla = idSigla;
-		this.sigla = sigla;
-	}
-
-	public SiglaRequest() {
-	}
-
-	public Long getIdSigla() {
-		return idSigla;
-	}
-
-	public void setIdSigla(Long idSigla) {
-		this.idSigla = idSigla;
-	}
-
-	public String getSigla() {
-		return sigla;
-	}
-
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
-
 }

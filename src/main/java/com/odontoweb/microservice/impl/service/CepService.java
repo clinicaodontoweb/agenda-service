@@ -29,11 +29,11 @@ public class CepService implements Serializable {
 	}
 
 	public Cep findById(Long id) {
-		return cepRepository.findOne(id);
+		return cepRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		cepRepository.delete(id);
+		cepRepository.deleteById(id);
 	}
 	
 	public Cep findByCep(String cep) {

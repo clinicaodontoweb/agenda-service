@@ -31,11 +31,11 @@ public class EstadoService implements Serializable {
 	}
 
 	public Estado findById(Long id) {
-		return estadoRepository.findOne(id);
+		return estadoRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		estadoRepository.delete(id);
+		estadoRepository.deleteById(id);
 	}
 
 	public Estado findByNomeAndSigla(String sigla) {

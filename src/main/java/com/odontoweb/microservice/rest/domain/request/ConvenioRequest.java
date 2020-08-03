@@ -1,9 +1,18 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ConvenioRequest implements Serializable {
 
 	private static final long serialVersionUID = -6143810927663734767L;
@@ -24,53 +33,5 @@ public class ConvenioRequest implements Serializable {
 
 	@NotNull(message = "Contato é obrigatório!")
 	private ContatoRequest contato;
-
-	public Long getIdConvenio() {
-		return idConvenio;
-	}
-
-	public void setIdConvenio(Long idConvenio) {
-		this.idConvenio = idConvenio;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
-	public String getRazaoSocial() {
-		return razaoSocial;
-	}
-
-	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
-	}
-
-	public EnderecoRequest getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(EnderecoRequest endereco) {
-		this.endereco = endereco;
-	}
-
-	public ContatoRequest getContato() {
-		return contato;
-	}
-
-	public void setContato(ContatoRequest contato) {
-		this.contato = contato;
-	}
 
 }

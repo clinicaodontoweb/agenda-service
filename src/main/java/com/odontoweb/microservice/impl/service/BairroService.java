@@ -29,11 +29,11 @@ public class BairroService implements Serializable {
 	}
 
 	public Bairro findById(Long id) {
-		return bairroRepository.findOne(id);
+		return bairroRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		bairroRepository.delete(id);
+		bairroRepository.deleteById(id);
 	}
 
 	public Bairro findByNome(String nomeBairro) {

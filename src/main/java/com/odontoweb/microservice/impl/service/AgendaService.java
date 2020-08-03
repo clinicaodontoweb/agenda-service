@@ -31,11 +31,11 @@ public class AgendaService implements Serializable {
 	}
 
 	public Agenda findById(Long id) {
-		return agendaRepository.findOne(id);
+		return agendaRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		agendaRepository.delete(id);
+		agendaRepository.deleteById(id);
 	}
 
 	public Agenda findAgendaByUsuarioClinica(UsuarioClinica usuarioClinica) {

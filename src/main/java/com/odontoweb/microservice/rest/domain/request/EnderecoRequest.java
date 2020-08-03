@@ -1,9 +1,18 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EnderecoRequest implements Serializable {
 
 	private static final long serialVersionUID = -3343181448308864937L;
@@ -28,69 +37,4 @@ public class EnderecoRequest implements Serializable {
 	private Integer numero;
 
 	private String complemento;
-
-	public Long getIdEndereco() {
-		return idEndereco;
-	}
-
-	public void setIdEndereco(Long idEndereco) {
-		this.idEndereco = idEndereco;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getPontoReferencia() {
-		return pontoReferencia;
-	}
-
-	public void setPontoReferencia(String pontoReferencia) {
-		this.pontoReferencia = pontoReferencia;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public CepRequest getCep() {
-		return cep;
-	}
-
-	public void setCep(CepRequest cep) {
-		this.cep = cep;
-	}
-
-	public CidadeRequest getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(CidadeRequest cidade) {
-		this.cidade = cidade;
-	}
-
-	public BairroRequest getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(BairroRequest bairro) {
-		this.bairro = bairro;
-	}
-
 }

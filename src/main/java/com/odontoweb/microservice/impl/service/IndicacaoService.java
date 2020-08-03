@@ -29,11 +29,11 @@ public class IndicacaoService implements Serializable {
 	}
 
 	public Indicacao findById(Long id) {
-		return indicacaoRepository.findOne(id);
+		return indicacaoRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		indicacaoRepository.delete(id);
+		indicacaoRepository.deleteById(id);
 	}
 
 	public Indicacao findByNome(String nomeIndicacao) {

@@ -22,11 +22,11 @@ public class StatusService {
 	}
 
 	public Status findById(Long id) {
-		return this.statusRepository.findOne(id);
+		return this.statusRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		statusRepository.delete(id);
+		statusRepository.deleteById(id);
 	}
 
 }

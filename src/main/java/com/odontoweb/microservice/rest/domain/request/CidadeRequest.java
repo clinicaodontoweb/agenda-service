@@ -1,9 +1,18 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CidadeRequest implements Serializable {
 
 	private static final long serialVersionUID = 7823889884302590018L;
@@ -15,29 +24,4 @@ public class CidadeRequest implements Serializable {
 
 	@NotNull(message = "Estado é obrigatório!")
 	private EstadoRequest estado;
-
-	public Long getIdCidade() {
-		return idCidade;
-	}
-
-	public void setIdCidade(Long idCidade) {
-		this.idCidade = idCidade;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public EstadoRequest getEstado() {
-		return estado;
-	}
-
-	public void setEstado(EstadoRequest estado) {
-		this.estado = estado;
-	}
-
 }

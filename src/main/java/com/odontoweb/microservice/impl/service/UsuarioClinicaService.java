@@ -22,7 +22,7 @@ public class UsuarioClinicaService {
 	}
 
 	public void delete(Long id) {
-		usuarioClinicaRepository.delete(id);
+		usuarioClinicaRepository.deleteById(id);
 	}
 
 	public List<UsuarioClinica> findAll() {
@@ -30,7 +30,7 @@ public class UsuarioClinicaService {
 	}
 
 	public UsuarioClinica findById(Long idUsuarioClinica) {
-		return usuarioClinicaRepository.findOne(idUsuarioClinica);
+		return usuarioClinicaRepository.getOne(idUsuarioClinica);
 	}
 
 	public UsuarioClinica findUsuarioClinica(String hashKey) {

@@ -10,6 +10,8 @@ import com.odontoweb.microservice.impl.service.AgendaService;
 import com.odontoweb.microservice.rest.domain.request.AgendaRequest;
 import com.odontoweb.microservice.rest.domain.response.AgendaResponse;
 
+import javax.annotation.sql.DataSourceDefinition;
+
 public class AgendaBinder implements Serializable {
 
 	private static final long serialVersionUID = -7938299380544799580L;

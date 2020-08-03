@@ -1,10 +1,19 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ContatoRequest implements Serializable {
 
 	private static final long serialVersionUID = -668475198201992388L;
@@ -16,29 +25,4 @@ public class ContatoRequest implements Serializable {
 
 	@NotNull(message = "Email é obrigatório!")
 	private String email;
-
-	public Long getIdContato() {
-		return idContato;
-	}
-
-	public void setIdContato(Long idContato) {
-		this.idContato = idContato;
-	}
-
-	public List<TelefoneRequest> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<TelefoneRequest> telefones) {
-		this.telefones = telefones;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 }

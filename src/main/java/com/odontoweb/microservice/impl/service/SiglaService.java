@@ -28,11 +28,11 @@ public class SiglaService implements Serializable {
 	}
 
 	public Sigla findById(Long id) {
-		return siglaRepository.findOne(id);
+		return siglaRepository.getOne(id);
 	}
 	
 	public void delete(Long id) {
-		siglaRepository.delete(id);
+		siglaRepository.deleteById(id);
 	}
 	
 	public Sigla findBySigla(String sigla) {

@@ -39,7 +39,7 @@ public class EventoService {
 	}
 
 	public boolean save(Evento evento, Long idAgenda) {
-		evento.setAgenda(agendaRepository.findOne(idAgenda));
+		evento.setAgenda(agendaRepository.getOne(idAgenda));
 		return eventoRepository.save(evento) != null;
 	}
 
@@ -51,11 +51,11 @@ public class EventoService {
 	}
 
 	public Evento findById(Long id) {
-		return eventoRepository.findOne(id);
+		return eventoRepository.getOne(id);
 	}
 
 	public void delete(Long id) {
-		eventoRepository.delete(id);
+		eventoRepository.deleteById(id);
 	}
 
 	public List<Evento> findEventoByUsuarioClinica(String hashKey, Long dataInicio, Long dataFim) {

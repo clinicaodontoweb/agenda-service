@@ -26,11 +26,11 @@ public class ConvenioService {
 	}
 
 	public Convenio findById(Long idConvenio) {
-		return convenioRepository.findOne(idConvenio);
+		return convenioRepository.getOne(idConvenio);
 	}
 
 	public void delete(Long id) {
-		convenioRepository.delete(id);
+		convenioRepository.deleteById(id);
 	}
 	
 	public List<Convenio> getListConvenios(List<Long> idsConvenio){

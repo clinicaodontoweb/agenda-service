@@ -1,14 +1,22 @@
 package com.odontoweb.microservice.rest.domain.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AgendamentoRequest implements Serializable {
 	private static final long serialVersionUID = 2897521903307927826L;
 
 	private Long id;
 	private Long idStatus;
 	private Boolean encaixe;
-
 	private String observacao;
 	private Long dataInicio;
 	private Long dataFim;
@@ -16,101 +24,4 @@ public class AgendamentoRequest implements Serializable {
 	private Long idPaciente;
 	private ConvenioPacienteRequest convenioPaciente;
 	private Long idAgenda;
-
-	AgendamentoRequest() {
-	}
-
-	public AgendamentoRequest(Long id, Boolean encaixe, Long idStatus, String observacao, Long dataInicio, Long dataFim,
-			Long idTipoConsulta, Long idPaciente, ConvenioPacienteRequest convenioPaciente, Long idAgenda) {
-		this.id = id;
-		this.encaixe = encaixe;
-		this.idStatus = idStatus;
-		this.observacao = observacao;
-		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
-		this.idTipoConsulta = idTipoConsulta;
-		this.idPaciente = idPaciente;
-		this.convenioPaciente = convenioPaciente;
-		this.idAgenda = idAgenda;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Boolean getEncaixe() {
-		return encaixe;
-	}
-
-	public void setEncaixe(Boolean encaixe) {
-		this.encaixe = encaixe;
-	}
-
-	public Long getIdStatus() {
-		return idStatus;
-	}
-
-	public void setIdStatus(Long idStatus) {
-		this.idStatus = idStatus;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public Long getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(Long dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public Long getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(Long dataFim) {
-		this.dataFim = dataFim;
-	}
-
-	public Long getIdTipoConsulta() {
-		return idTipoConsulta;
-	}
-
-	public void setIdTipoConsulta(Long idTipoConsulta) {
-		this.idTipoConsulta = idTipoConsulta;
-	}
-
-	public Long getIdPaciente() {
-		return idPaciente;
-	}
-
-	public void setIdPaciente(Long idPaciente) {
-		this.idPaciente = idPaciente;
-	}
-
-	public ConvenioPacienteRequest getConvenioPaciente() {
-		return convenioPaciente;
-	}
-
-	public void setConvenioPaciente(ConvenioPacienteRequest convenioPaciente) {
-		this.convenioPaciente = convenioPaciente;
-	}
-
-	public Long getIdAgenda() {
-		return idAgenda;
-	}
-
-	public void setIdAgenda(Long idAgenda) {
-		this.idAgenda = idAgenda;
-	}
 }
